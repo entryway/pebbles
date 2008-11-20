@@ -1,0 +1,28 @@
+
+
+<% form_for :vendor, @vendor, :url => admin_vendors_path  do |form| %>
+  <p>
+	<label for="name">Name *:</label>
+	<%= form.text_field :name, :size => 20 %><br/>
+	<label for="active">Active *:</label>
+	<%= form.check_box :active %><br/>
+	<hr/>
+	<label for="active">Drop-Ship *:</label>
+	<%= form.check_box :drop_ship %><br/>
+	<label for="active">Drop-Ship Fee *: $</label>
+	<!-- Change field to drop_ship_fee -->
+	<%= form.text_field :shipping, :size =>20 %><br/>
+	<hr/>
+	<label for="description">Description:</label>
+	<%= form.text_area :description, :rows => 10 %><br/>
+	<hr/>
+	<label for="admin_notes">Admin Notes:</label>
+	<%= form.text_area :admin_notes, :rows => 10 %><br/>
+	
+	<hr/>
+	
+	<br/>
+	<br/><br/>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>

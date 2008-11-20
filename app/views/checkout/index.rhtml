@@ -1,0 +1,25 @@
+
+<% if current_cart.cart_items.length > 0 %> 
+
+<h1>Billing/Shipping Address</h1>
+<div class="bigroundbox">
+  <div class="boxcontainer">
+    <h3>Checkout </h3>
+	<div class="checkoutbox">
+	  <form action="/" method="post" class="frmcheckout">
+	  <div>
+		<%= render(:partial => 'address', :locals => {:address_type => 'billing'}) %> 
+		<br class="clear" />
+	  </div>
+	  <div>
+		<%= render(:partial => 'address', :locals => {:address_type => 'shipping'}) %>
+	  </div>
+	  <br class="clear" />
+	</div> <!-- checkoutbox -->
+  </div> <!-- /boxcontainer -->
+  <div class="bigroundboxbottom">&nbsp;</div>
+</div> <!--bigroundbox -->
+
+<p class="btnclick btnright"><%= link_to "Continue", :action => :process_addresses %></p>
+	</form>
+<% end %>

@@ -1,0 +1,13 @@
+<div id="images_form" style="display:inline">
+	<% form_for :option_selection_image, 
+				:url => { :action => 'add_option_selection_image', 	
+						  :controller => 'product_options',
+						  :id => option_selection.id }, 
+	            :html => { :multipart => true, :target => 'option_upload_frame' } do |form| %>
+	    <%= form.file_field :uploaded_data, :value => "Browse", :size => 15 %>
+		<br/>
+	    <%= submit_tag 'Upload' %>
+	<% end %>
+	<iframe id='option_upload_frame' name="option_upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+
+</div>

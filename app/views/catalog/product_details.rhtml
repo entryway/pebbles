@@ -1,0 +1,24 @@
+
+	
+<div id="product-detail">
+	        <%= image_tag @product.product_images[0].public_filename() unless @product.product_images.empty? %>
+			<h1><%= @product.name %></h1>
+			<h2><%= @product.subname %></h2>
+			<p><%= @product.short_description %></p>
+			<p><br/>11" x 15"
+                         <% if @is_wholesaler %> 
+                        <br/>Regular Price:<%= number_to_currency(@product.price) %>  
+                        <br>Wholesale Price:<%= number_to_currency(@product.wholesale_price) %> <br/> 
+                        <% else %> 
+			<br/><%= number_to_currency(@product.price) %> <br/>
+                        <% end %> 
+			<br/><b>Free Shipping</b></p>
+			<br/><br/>
+		<% form_for :product, @product, 
+				    :url => { :controller => "cart", :action => 'add_to_cart', :id => @product } do |form| %>
+		
+			<%= render :partial => "product_options", :locals => { :form => form } %>
+			<br/><br>
+			<%= image_submit_tag 'button-addtocart.jpg', :class => 'image-submit' %>
+		<% end %>
+</div>

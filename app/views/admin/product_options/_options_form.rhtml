@@ -1,0 +1,31 @@
+<% fields_for :product_option, product_option do |option| %>
+	<%= option.hidden_field :id %>
+	<input name="product_id" value="<%= product.id %>" type="hidden">
+	<label>Name:</label>
+	<%= option.text_field :name, :size => 20, 
+						  :class => 'gt-form-text'   %>
+	<br/><label>Selection Type:</label>
+	<%= option.select :selection_type, ProductOption::LIST %>
+  
+	<br/><label>Description:</label>
+	<%= option.text_area :description, :rows => 5, 
+						 :cols => 30, :class => 'gt-form-textarea'  %>
+	<br/><br/>
+<% end %>
+
+<% if product_option.new_record? %>
+	<%= link_to_remote "Create New Option", 
+						:submit => 'options_form',
+						:url => admin_product_product_options_path(@product) %>			
+<% else %>
+   <%#= link_to_remote "Add Option to Product", 
+			    		:submit => 'options_form',
+				    	:method => :put,
+				    	:url => { :action => 'apply_option_to_product',
+				    			  :controller => 'product_options' } %>
+	<%= link_to_remote " Save Option", 
+						:submit => 'options_form',
+						:method => :put,
+						:url => { :action => 'update',
+								  :controller => 'product_options' } %>				
+<% end %>

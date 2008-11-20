@@ -1,0 +1,33 @@
+
+<div class="box1"><div class="box2"><div class="box3"><div class="box4 clearfix">
+	<h1>Find a Retailer</h1>
+	<br/>
+	<%form_for :store, :url => stores_path, :html => {:method => "get"} do |form| %>
+	  	<label>Please Enter Your Zipcode:</label>
+		<%= text_field_tag :zipcode, params[:zipcode], :size => 8 %>
+		&nbsp;&nbsp;<%= image_submit_tag "find.jpg" %>
+		<% if @stores %>
+	  		<% unless @stores.empty? %>
+			<div class="bigroundbox">
+	  			<div class="boxcontainer">
+					<br/><br/><br/><br/>
+					<table class="shoptable">
+	  					<th class="prodcol">
+	    					Distance
+						</th>
+	    				<th >
+							Location
+	  					</th>
+	  					<%= render :partial => "store", :collection => @stores %>
+	  					<%= @map.div(:width => 600, :height => 400) %>
+					</table>
+			     </div>
+			</div>
+	  		<%else%>
+	        	<h2>Sorry We could not find any stores in your area.</h2>
+				<br/><br/>
+	  		<%end%>
+	  	<%end%>
+	<% end %>
+
+</div></div></div></div>

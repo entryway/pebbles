@@ -1,0 +1,49 @@
+<%= stylesheet('product_detail') %>
+<%= stylesheet('lightbox') %>
+<%= javascript('lightbox') %>
+
+<div class="box1"><div class="box2"><div class="box3"><div class="box4 clearfix">
+	<h1><%= @product.name %></h1>
+	<h2><%= @product.subname %></h2>
+	<div id="product-detail">
+		
+		<div id="product_image">
+			<%= light_box @product.product_large_image, @product.product_image %>
+			<br/>
+			<h4><%= number_to_currency(@product.price) %></h4>
+		</div>
+		
+		<div id="product_attributes">
+		    <% if @is_wholesaler %>
+		     	Wholesale Price: <%= number_to_currency(@product.wholesale_price) %>
+		    <% end %>
+			<% form_for :product, @product, 
+						:url => cart_cart_items_path(current_cart),
+                		:html => { :id => "product" } do |form| %> 
+				<div id="product_options">
+					<%= render :partial => 'product_options', 
+					 		   :locals => { :product => @product } %>
+				</div>
+				<div id="add_to_cart">		
+					<input type="hidden" name="id" value="<%= @product.id %>"><br/><br/>
+					Quantity: <%= text_field_tag :quantity, '1', :size => 3 %><br/><br/>
+					<span class="button">
+            			<div id="button"> 
+							<%= render :partial => 'add_to_cart',
+                				   	   :locals => { :out_of_stock => false } %>
+            			</div>
+					</span>
+				</div>
+			<% end %>
+        	<%= observe_form "product",
+              				:update => "button", 
+              				:url => { :action => "check_out_of_stock" } %>
+		</div>
+		
+		<div class="clear"/>
+		<br/><br/>
+		<p><%= @product.short_description %></p>	
+		<br/><br/>
+	</div>
+
+</div></div></div></div>

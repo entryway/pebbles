@@ -1,0 +1,54 @@
+<h1>Order Review</h1>
+<div id="errors">
+<%= error_messages_for 'order' %>
+</div>
+<form method="post" id="checkout" action="<%= url_for :action => :place_order %>">
+<div class="bigroundbox">
+  <div class="boxcontainer">
+    <h3>Checkout </h3>
+	<div class="checkoutbox">
+	  <form action="/" method="post" class="frmcheckout">
+	  <div>
+	    <label>Name</label>
+		<input type="text" class="text" />
+		<br class="clear" />
+		 <label>Email</label>
+		<input type="text" class="text"  />
+		<br class="clear" />
+		 <label>Street Address</label>
+		<input type="text" class="text"  />
+		<br class="clear" />
+		 <label>State/Prov</label>
+		<input type="text" class="text"  />
+		<br class="clear" />
+		 <label>Postal Code</label>
+		<input type="text" class="text"  />
+		<br class="clear" />
+		 <label>Phone</label>
+		<input type="text" class="text"  />
+		<br class="clear" />
+	  </div>
+	  <div>
+	   <label>Name on card</label>
+		<input type="text" class="text" />
+		<br class="clear" />
+		 <label>Card Type</label>
+		<input type="text" class="text"  />
+		<br class="clear" />
+		 <label>Number</label>
+		<input type="text" class="text"  />
+		<br class="clear" />
+		<label>Expiry</label>
+		<input type="text" class="text"  />
+		<br class="clear" />
+		<input type="checkbox" /> &nbsp;Agree to the Terms of Service
+	  </div>
+	  </form>
+	  <br class="clear" />
+	</div> <!-- checkoutbox -->
+  </div> <!-- /boxcontainer -->
+  <div class="bigroundboxbottom">&nbsp;</div>
+</div> <!--bigroundbox -->
+<p class="btnclick btnright"><a href="#">Place Order</a></p>
+
+<% end %>

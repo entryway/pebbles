@@ -1,0 +1,35 @@
+
+
+<% form_for :product, @product, :url => admin_products_path  do |form| %>
+  <p>
+	<label for="name">Name *:</label>
+	<%= form.text_field :name, :size => 20 %><br/>
+	<label for="subname">SubName:</label>
+	<%= form.text_field :subname, :size => 10 %><br/>
+	<hr/> 
+	<%= form.check_box :available %> Available<br/>
+	<%= form.check_box :is_featured %> Featured Product
+	<hr/>
+	<label for="sku">Sku *:</label>
+	<%= form.text_field :sku, :size => 10 %><br/>	
+	<label for="price">Price: $</label>
+	<%= form.text_field :price, :size => 10 %>
+	<label for="weight">Weight *: </label>
+	<%= form.text_field :weight, :size => 10 %><br/>
+	<hr/>	
+	<label for="vendor_id">Vendor:</label>
+	<%= form.collection_select :vendor_id, @vendors, :id, :name %><br/>
+	<hr/>
+	<label for="short_description">Short Description:</label>
+	<%= form.text_area :short_description, :rows => 50, :cols => 50 %><br/>
+	<hr/>
+	<label for="admin_notes">Admin Notes:</label>
+	<%= form.text_area :admin_notes, :rows => 10 %><br/>
+	
+	<hr/>
+	
+	<br/>
+	<br/><br/>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>

@@ -1,0 +1,8 @@
+<h1><%= link_to 'Shop', categories_path %> : <%= @category.name %></h1>
+<p><%= @category.description %></p>
+<br/>
+<% if @categories %>
+	<%= render :partial => 'categories', :categories => @categories %>
+<% else %>
+	<%= redirect_to category_products_path(@category.subcat.id) %>
+<% end %>

@@ -1,0 +1,37 @@
+<%# if @available_options.size > 0 %>
+<!--	<label>List of Available Options: </label>
+	<div id="product_option_select">   -->
+		<%#= render :partial => '/admin/product_options/product_option_select',
+				   :locals => { :product => @product,
+								:available_options => @available_options } %>
+<!--	</div>  -->
+<%# end %>
+<hr/>
+<label>Product Option:</label>
+<div id="product_options">
+	<div id="options_form" style="margin-left: 20px">
+		<%= render :partial => '/admin/product_options/options_form',
+		 		   :locals => { :product_option => @product_option,
+			 					:product => @product } %>
+    </div>
+	<br/>
+	<div id='selection_list'>
+		<%= render :partial => '/admin/product_options/option_selection_list', 
+				   :locals => { :product_option => @product_option,
+					 			:product => @product } %>
+	</div>
+	<br/>
+	<div id="product_option_selections" style="display: none; margin-left: 20px">
+		<div id="selection_form">
+			<%= render :partial => '/admin/product_options/option_selection_form', 
+					   :locals => { :product_option => @product_option,
+						 			:product => @product,
+									:product_option_selection => ProductOptionSelection.new } %>			
+		</div>
+	</div>
+</div>
+<br/>
+<div id='option_list'>
+	<%= render :partial => '/admin/product_options/option_list', 
+			   :locals => { :product => @product } %>
+</div>

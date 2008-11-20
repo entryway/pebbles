@@ -1,0 +1,48 @@
+<% content_for :sidebar do %>
+	<ul>
+		<li><%= link_to 'New', new_admin_promo_code_path %></li>
+	</ul>
+<% end %>
+<h1>Promo Codes</h1>
+
+<% if @promo_codes.size > 0 %>
+
+<div class="gt-table-controls clearfix">
+	<table class="gt-list-table">
+	  <thead>
+		  <tr>
+      		<th class="gt-first">Name</th>
+			<th>Code</th>
+			<th>Dollar Discount</th>
+			<th>Percent Discount</th>
+			<th>Free Shipping</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+		<% @promo_codes.each do |promo_code| %>
+		  <tr class="sorted">
+			<td><%= promo_code.name %></td>
+			<td><%= promo_code.code %></td>
+			<td><%= number_to_currency(promo_code.dollar_discount) %></td>
+			<td><%= promo_code.percent_discount %>%</td>
+			<td><%= promo_code.free_shipping %></td>
+		    <td><%= link_to 'Edit', edit_admin_promo_code_path(promo_code) %></td>
+		    <td><%= link_to 'Delete', admin_promo_code_path(promo_code), 
+							:confirm => 
+								"Are you sure you want to delete #{promo_code.name}?", 
+							:method => :delete %></td>
+		  </tr>
+		<% end %>
+	  </tbody>
+	</table>
+</div>
+
+<% else %>
+No promo codes currently exist -- 
+	<%= link_to " create a new one.", new_admin_promo_code_path %>
+
+<% end %>
+<br />
+
+<br/><br/>
+

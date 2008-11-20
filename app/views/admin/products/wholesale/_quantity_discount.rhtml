@@ -1,0 +1,13 @@
+
+<tr class="discount">
+<% fields_for "product[quantity_discount_attributes][]", quantity_discount do |field| %>
+	<td><%= field.text_field :quantity_low, :index => nil, :size => 5 %></td>
+	<td><%= field.text_field :quantity_high, :index => nil, :size => 5 %></td>
+	<td>$<%= field.text_field number_to_currency(:price_per_product), :index => nil, :size => 5 %></td>
+	<td><%= link_to_function "remove", "this.up('.discount').remove()" %></td>
+	<% unless quantity_discount.new_record? %>
+		<%= field.hidden_field :id, :index => nil %>
+	<% end %>
+<% end %>
+</tr>
+

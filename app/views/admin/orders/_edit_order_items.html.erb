@@ -1,0 +1,51 @@
+<b class="print-hide">Order Items</b>
+<div class="gt-table-controls clearfix">
+	<table class="gt-list-table">
+		<tr>
+			<th>Quantity</th>
+			<th>SKU</th>
+			<th>Product</th>
+			<th id='price-header' style='display:table-cell'>
+				Price
+			</th>
+			<th id='total-header' style='display:table-cell'>
+				Total
+			</th>
+		</tr>
+		<% @order.order_items.each do |order_item| %>
+		<tr>
+			<td id='<%= dom_id(order_item) %>' >
+				<%= text_field_tag 'quantity', order_item.quantity.to_s, :size => 3 %>
+			    <%= link_to_remote 'Update', 
+								{ :url => admin_order_item_path(order_item), 
+								  :method => :put, 
+								  :submit => dom_id(order_item) } %>
+			</td>
+			<td>
+				<%= order_item.product.sku %>
+			</td>
+			<td>
+				<%= order_item.product_name %>
+				<% if order_item.order_item_selections.size > 0 %>
+	   				(<%= render :partial => 'admin/orders/order_item_selections',
+						   		:collection => order_item.order_item_selections %>)
+				<% end %>
+			</td>
+			<td class='price-value' style='display:table-cell'>
+				<%= number_to_currency(order_item.price) %></td>
+			<td class='total-value' style='display:table-cell'>
+				<%= number_to_currency(order_item.price * order_item.quantity) %>
+			</td>
+        <td><%= link_to_remote 'Remove', 
+						{ :url => admin_order_item_path(order_item), 
+						:confirm => "Are you sure you want to remove #{order_item.product_name}?", 
+						:method => :delete } %></td>
+		</tr>
+		<% end %>
+	</table>
+	<div style="float:right; display:inline" id='totals'>
+		<b>SubTotal:</b> <%= number_to_currency(@order.product_cost) %><br/>
+	</div>
+</div>
+  
+

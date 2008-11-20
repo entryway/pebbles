@@ -1,0 +1,26 @@
+
+<% form_for :product, product, :url => admin_product_url(product),
+            :html => { :class => 'gt-form', :method => :put } do |form| %>
+	<div class="gt-table-controls clearfix">
+		<table class="gt-list-table" id="quantity_discounts">
+		  <tr>
+			<% product.product_options.each do |product_option| %>
+				<th><%= product_option.name %></th>
+			<% end %>
+		  </tr>
+		  <%= render :partial => 
+				   	 '/admin/products/out_of_stock_options/product_options', 
+			   	   	 :locals => { :product_options => product.product_options,
+				 				  :product => product } %>
+
+		</table>
+		<br/><br/>
+	</div>		
+<% end %>
+
+
+<div class="gt-table-controls clearfix" id='out_of_stock_options'>
+	<%= render :partial => '/admin/products/out_of_stock_options/out_of_stock_options', 
+		   	   :locals => { :out_of_stock_options => product.out_of_stock_options } %>
+</div>
+

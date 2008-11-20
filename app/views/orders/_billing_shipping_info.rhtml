@@ -1,0 +1,29 @@
+﻿<div id="billing_shipping_wrapper">
+	<%= error_messages_for :order %>
+
+	<div id='billing_details'>
+		<div id="billing_detail_labels">
+			<label>Full Name: </label>&nbsp;
+			<%= form.text_field :full_name, :size => 20 %><br/>			
+			<label>Email: </label>&nbsp;
+			<%= form.text_field :email, :size => 20  %><br/>			
+			<label>Phone Number: </label>&nbsp;
+			<%= form.text_field :phone_number, :size => 20 %><br/>			
+			<label>Company: </label>&nbsp;
+			<%= form.text_field :business, :size => 20 %><br/>	     
+	</div>
+		
+		
+		<span class="clear"/>
+</div> 
+	<div>
+		<%= render :partial => 'billing_address', 
+					:locals => { :address_type => 'billing', 
+								 :billing_address => billing_address } %> 
+		<%= render :partial => 'shipping_address', 
+				:locals => { :address_type => 'shipping', 
+							 :shipping_address => shipping_address }  %>
+  		<br class="clear" />
+	</div> <!-- checkout -->
+</div>
+

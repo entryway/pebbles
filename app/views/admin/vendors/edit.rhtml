@@ -1,0 +1,29 @@
+<h1>Editing vendor</h1>
+
+<%= error_messages_for :vendor %>
+
+<div id="p7TP1" class="p7TPpanel">
+
+  <div class="p7TPwrapper">
+    <div class="p7TP_tabs">
+      <div id="p7tpb1_1" class="down"><a class="down" href="javascript:;">Details</a></div>
+      <br class="p7TPclear" />
+    </div>
+    <div class="p7TPcontent">
+      <div id="p7tpc1_1">
+        <h4>Details</h4>
+			<!-- TODO: Rename form to details -->
+        <%= render :partial => "details", :locals => { :store => @store}%>
+      </div>  
+    </div>
+  </div>
+  <!--[if lte IE 6]>
+		<style type="text/css">.p7TPpanel div,.p7TPpanel a{zoom:100%;}.p7TP_tabs a{white-space:nowrap;}</style>
+	<![endif]-->
+  <!--[if IE 7]>
+		<style>.p7TPpanel div{zoom:100%;}</style>
+	<![endif]-->
+</div>
+
+<%= link_to 'Show', admin_vendor_path(@vendor) %> |
+<%= link_to 'Back', admin_vendor_path %>

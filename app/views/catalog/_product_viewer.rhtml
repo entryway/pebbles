@@ -1,0 +1,29 @@
+<% count = 1 %>
+<table cellpadding="0" cellspacing="0" border="0" width="400">
+<!--BEGIN PRODUCT ROW-->
+		<tr>
+			<% @products.each do |product| %>
+			<td width="25%" align="center">
+				<a href="#" class="thm">
+				<div class="thm"> 
+				     <img src="<%= product.product_images[0].public_filename unless product.product_images.empty? %>" 
+				          width="162" height="162"></div>
+				<div class="thm_desc">
+				<h2>	<%= link_to product.name, :action => :product_details, 
+						:id => product.id %></h2>
+				</div>
+                                <% if @is_wholesaler %> 
+                                <h2><div class="price">Regular Price: <%= number_to_currency(product.price) %></div></h2> 
+				<h2><div class="price">Wholesale Price: <%= number_to_currency(product.wholesale_price) %></div></h2> 
+				<% else %>
+                                <h2><div class="price"><%= number_to_currency(product.price) %></div></h2>
+                                <% end %> 
+				<br/><br/>
+				</a>			
+			</td>
+		    <%= "</tr>" if (count % 4 == 0) %> 
+			<% count += 1 %>
+			<%= "<tr>" if (count % 4 == 0 < @products.length) %>
+<!--END PRODUCT ROW-->
+			<% end %>
+	</table>

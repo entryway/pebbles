@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Order Receipt</title>
+</head>
+
+<body>
+<h1>Order Receipt</h1>
+<br />
+<p>Thank you for your purchase of Green Label Organic clothing and <b>special thanks for your commitment to organic cotton</b>.  Your support of organic cotton will <b>save up to 1/3 of pound of toxic chemicals per shirt</b> from being sprayed onto our earth.</p><br />
+<h2>Order Details</h2>
+<br />
+<strong>Order Number: <b><%= @order.order_number %></b></strong><br />
+<br />
+<br />
+<strong>Order Details:</strong><br />
+<br /><br/>
+<% @order.order_items.each do |order_item| %>
+	<%= order_item.quantity %> - <%= order_item.product_name %> Organic T-Shirt - 
+	<%= number_to_currency(order_item.quantity * order_item.price) %><br/>
+<% end %>
+
+<br/><br/>
+SubTotal: <%= number_to_currency(@order.product_cost) %><br/>
+<%= "Tax:" + number_to_currency(@order.tax) + "<br/>" if @order.tax > 0 %><br/>
+Shipping: <%= number_to_currency(@order.shipping_cost) %><br/>
+<%= "Promo Code: " + @order.promo_code + "<br/>" unless @order.promo_code.empty? -%>
+<%= "Promo Discount: -" + number_to_currency(@order.promo_discount) + "<br/>" unless @order.promo_code.empty? -%>
+<br/>Total: <%= number_to_currency(@order.total) %><br/>
+<br /><br/><br/>
+<h2>Shipping Address</h2>
+<%= @order.shipping_address.address_1 %><br/>
+<%= @order.shipping_address.address_2 -%><br/>
+<%= @order.shipping_address.city %>, <%= @order.shipping_address.state %> 
+<%= @order.shipping_address.postal_code %><br/>
+<%= @order.shipping_address.country %><br/>
+<br/><br/>
+<br/>
+<label><b>Shipping Method:</b></label>	
+<span><%= @order.shipping_method %></span>
+<br/><br/>
+<h2>Contact us:</h2>
+Please contact us at 
+<a href="mailto:customerservice@greenlabel.com">
+customerservice@greenlabel.com</a> for any questions.<br />
+
+<br/><br/>
+	Thanks!<br/>
+	GreenLabel Organic
+<br/><br/><br/>
+
+
+
+
+</body>
+
+</html>

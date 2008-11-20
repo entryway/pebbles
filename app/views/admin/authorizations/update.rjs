@@ -1,0 +1,4 @@
+ 
+page[:post_authorize].hide
+page[:order_transactions].replace_html :partial => 'admin/orders/order_transactions', 
+			                                 :object => @order

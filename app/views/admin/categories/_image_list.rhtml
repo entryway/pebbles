@@ -1,0 +1,12 @@
+<h3><%= "This Category has the following images: " if category.category_images.count > 0 %> </h3>
+
+<% category.category_images.each do |image| %>
+	<div id="<%= dom_id(image, 'id') %>" style="display:inline">
+		<%= image_tag image.public_filename, :name => "image_id" %>
+		<input type="hidden" name="image_id" value="<%= image.id %>"/>
+		<%= link_to_remote 'Remove Image', :submit => dom_id(image, 'id'), 
+							:update => 'image_list',
+							:confirm => "Are you sure you want to remove the image?", 
+							:url => { :action => 'remove_category_image', :id => category.id } %>
+	</div>
+<% end %>

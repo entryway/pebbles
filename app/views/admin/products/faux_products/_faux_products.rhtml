@@ -1,0 +1,50 @@
+
+<table>
+	<thead>
+		<th>Name</th>
+		<th>Image</th>
+		<th>Product Type</th>
+		<th>Category</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<% @product.faux_products.each do |faux_product| %>
+		<tr>
+			<td><input value="<%= faux_product.name %>" type="text" size="20" /></td>
+			<td><input value="<%= faux_product.image_name %>" type="text" size="30" /></td>
+			<td><input value="<%= faux_product.product_type %>" type="text" size="15" /></td>
+			<td>
+				<select name="category_select">
+				<% for category in @categories %>
+					<% if category.parent_id == 1 %>
+					  <option value="<%= category.id %>"><%= category.name %></option>
+					 <% if category.children.size > 0 %>
+						<% category.children.each { |subcat| %>
+					  		<option value="<%= subcat.id %>">&nbsp;&nbsp;&nbsp;&nbsp;<%= subcat.name %></option>
+					    <% } %>
+					<% end %>
+					<% end %>
+				<% end %>
+				</select>
+			</td>
+			<td>
+				<%= link_to 'Destroy', admin_product_faux_product_path(@product), 
+							:confirm => "Are you sure you want to delete #{ faux_product.name } ?", 
+							:method => :delete %>
+			</td>
+			<br/>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<br/>
+<%= link_to "Add New Faux Product", '' %>
+<br/><br/>
+<h3>Faux Description:</h3>
+<% form_for :product, @product, :url => admin_product_url(@product),
+            :html => { :class => 'gt-form', :method => :put } do |form| %>
+		<%= form.text_area :faux_description, :rows => 30, 
+						   :cols => 70, :class => 'gt-form-textarea' %><br/><br/>
+		<%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %> or <%= link_to "Cancel", admin_product_path %>
+<% end %>
+<br/>

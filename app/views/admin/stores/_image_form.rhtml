@@ -1,0 +1,16 @@
+<div id="images_form">
+	<% form_for :store_image, :url => { :action => 'add_store_image', :id => @store.id }, 
+	            :html => { :multipart => true, :target => 'upload_frame' } do |form| %>
+	  <p>
+	    <label for="uploaded_data">Upload Image:</label>
+	    <%= form.file_field :uploaded_data, :value => "Browse" %>
+	  </p>
+	  <p>
+	    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
+	  </p>
+	<% end %>
+	<iframe id='upload_frame' name="upload_frame" 
+			style="width:1px;height:1px;border:0px" src="about:blank">
+	</iframe>
+</div>
+

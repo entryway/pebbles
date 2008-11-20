@@ -1,0 +1,44 @@
+<h1>Listing Products</h1>
+<div class="gt-table-controls clearfix">
+	<table class="gt-list-table">
+		<thead>
+		  <tr>
+			<th>SKU</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Weight</t>
+			<th>ID</th>
+		  </tr>
+  		</thead>
+		<tbody>
+			<% count = 0 %>
+			 <% @products.each do |product| %>
+			 <tr <%= "class='even'" if (count % 2) == 0 %>>
+				<td><%= product.sku %></td>
+				<td><%= product.name %></td>
+				<td><%= product.price %></td>
+				<td><%= product.weight %></td>
+				<td><%= product.id %></td>
+			    <td class='blank'><%= link_to 'Show', admin_product_path(product.id) %></td>
+			    <td class='blank'><%= link_to 'Edit', edit_admin_product_path(product.id) %></td>
+			    <td class='blank'>
+					<%= link_to 'Destroy', admin_product_path(product.id), 
+								:confirm => 'Are you sure?', 
+								:method => :delete %>
+				</td>
+			  </tr>
+			  <% count += 1 %>
+			<% end %>
+	  	</tbody>
+	</table>
+</div>
+
+<br />
+
+
+<%= link_to image_tag('gt/btn-new.jpg'), new_admin_product_path %>
+<br/><br/><br/>
+<!-- Move to helper -->
+Products <%= @products.offset+1 %> - <%= @products.length * @products.current_page %> of <%= @products.total_entries %>
+
+<%= will_paginate @products %>
