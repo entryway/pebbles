@@ -1,0 +1,20 @@
+<h1>Search Engine Optimizations</h1>
+<div class="gt-table-controls clearfix">
+  <table class="gt-list-table">
+  	<tr>
+	  <th>Default Title</th>
+	  <th>Default Keywords</th>
+	  <th>Default Description</th>
+	</tr>
+
+	<tr>
+	  <td><%= @optimization.title %></td>
+      <td><%= @optimization.keywords %>
+   	  <td><%= @optimization.description %>
+	</tr>
+  </table>
+</div>
+
+<br />
+
+<%= link_to 'Edit', edit_admin_optimization_path(1) %>

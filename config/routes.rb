@@ -39,6 +39,7 @@
     admin.resources :stores
 
     admin.resources :vendors
+    admin.resources :optimizations
   end
               
   signup '/signup', :controller => 'users', :action => 'new'

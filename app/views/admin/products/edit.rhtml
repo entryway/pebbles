@@ -12,7 +12,8 @@
 	      <div id="p7tpb1_4"><a href="javascript:;">Categories</a></div>
 	      <div id="p7tpb1_5"><a href="javascript:;">Out of Stock Options</a></div>
 	      <div id="p7tpb1_6"><a href="javascript:;">Wholesale</a></div>
-	      <br class="p7TPclear" />
+	      <div id="p7tpb1_7"><a href="javascript:;">Search Engine Optimization </a></div>
+		 <br class="p7TPclear" />
 	    </div>
 	    <div class="p7TPcontent">
 	      <div id="p7tpc1_1">
@@ -34,6 +35,10 @@
 	      <div id="p7tpc1_6">
 	          <%#= render :partial => "/admin/products/wholesale/wholesale",
 	 				     :locals => { :product => @product } %>       		     		
+	      </div>
+		  <div id="p7tpc1_7">       
+	     	<%= render :partial => "/admin/products/optimizations",
+	 				   :locals => { :product => @product } %>
 	      </div>
 	    </div>
 	  </div>

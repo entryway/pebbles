@@ -1,6 +1,9 @@
 <%= stylesheet('product_detail') %>
 <%= stylesheet('lightbox') %>
 <%= javascript('lightbox') %>
+<% title(@product.title ? @product.title : @product.name) -%>
+<% meta_keywords(@product.keywords) unless @product.name -%>
+<% meta_description(@product.description) unless @product.long_description -%>
 
 <div class="box1"><div class="box2"><div class="box3"><div class="box4 clearfix">
 	<h1><%= @product.name %></h1>
