@@ -43,4 +43,31 @@ module ApplicationHelper
     end
   end
   
+  # the page title for each individual page
+   def title(page_title)
+     content_for(:title) { page_title }
+   end
+  
+   def default_title
+     Optimization.find(:first).title
+   end
+   
+   # meta keywards for each page
+   def meta_description(description)
+     content_for(:meta_description) { description }
+   end
+   
+   def default_description
+     Optimization.find(:first).description
+   end
+
+   # meta keywards for each page
+   def meta_keywords(keywords)
+     content_for(:meta_keywords) { keywords }
+   end
+  
+   def default_keywords
+     Optimization.find(:first).keywords
+   end
+  
 end
