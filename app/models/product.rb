@@ -12,6 +12,8 @@ class Product < ActiveRecord::Base
   has_many :product_option_instances, :dependent => :delete_all
   has_many :product_options, :through => :product_option_instances 
   
+  has_many :accessories
+  
   validates_presence_of :name
   validates_presence_of :sku
   validates_uniqueness_of :sku

@@ -1,4 +1,8 @@
-<h1>Editing product '<%= @product.name %>'</h1>
+<% content_for :sidebar do %>
+	<ul>
+		<li><%= link_to 'Accessories', edit_admin_product_accessory_path(@product) %></li>
+	</ul>
+<% end %><h1>Editing product '<%= @product.name %>'</h1>
 
 <%= error_messages_for :product %>
 

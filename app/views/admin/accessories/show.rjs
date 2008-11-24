@@ -1,0 +1,1 @@
+page[:product_list].replace_html :partial => 'product_list' 

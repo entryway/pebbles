@@ -33,13 +33,16 @@
 
     admin.resources :promo_codes
     admin.resources :products, :has_many => [:product_options, 
-                                             :out_of_stock_options]
+                                             :out_of_stock_options, 
+                                             :accessories]
+                                             
     admin.resources :regions, :has_many => :shipping_methods
     
     admin.resources :stores
 
     admin.resources :vendors
     admin.resources :optimizations
+  
   end
               
   signup '/signup', :controller => 'users', :action => 'new'
