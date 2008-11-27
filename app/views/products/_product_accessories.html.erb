@@ -1,0 +1,9 @@
+<% if product.accessories.size > 0 %>
+  Check any of the following accessories to also add to your cart: <br/><br/>
+  <% product.accessories.each do |accessory| %>
+  	<%= check_box 'accessory', accessory.id %>
+  	<%= accessory.name %>
+  	<%= number_to_currency(accessory.accessory_price(product)) %>
+  	<br/><br/>
+  <% end %>
+<% end %>

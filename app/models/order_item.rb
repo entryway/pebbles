@@ -34,6 +34,9 @@ class OrderItem < ActiveRecord::Base
       oi.order_item_selections << ois
     end
     
+    if oi.product_accessory
+      oi.adjusted_price = oi.product_accessory.price
+    end
     oi
   end
   

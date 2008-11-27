@@ -2,6 +2,7 @@
 class CartItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :product
+  belongs_to :product_accessory
   
   has_many :option_selections, 
            :class_name => 'CartItemSelection'
@@ -24,13 +25,16 @@ class CartItem < ActiveRecord::Base
         price += option.product_option_selection.price_adjustment
       end
     end
+    if product_accessory
+      price = product_accessory.price
+    end
     price
   end
   
   class << self 
     
-    # add the product to the cart
-    def add_product(cart, product_id, quantity, options)
+    # add the product to the cart with any accessories selected
+    def add_product(cart, product_id, quantity, options, accessories)
       options ||= Array.new
       cart_item = CartItem.find_product_with_options(cart, product_id, options)
       if cart_item
@@ -55,12 +59,14 @@ class CartItem < ActiveRecord::Base
           end
         end
       end
+      add_accessories(cart, accessories, product_id) 
     end
     
     # does the product with the exact options already exist?
-    def find_product_with_options(cart, product_id, options)
+    def find_product_with_options(cart, product_id, options, product_accessory = nil)
       cart_items = cart.cart_items.find(:all,
-                            :conditions => { :product_id => product_id },
+                            :conditions => { :product_id => product_id, 
+                                             :product_accessory_id => product_accessory },
                             :include => :option_selections)
       unless cart_items.nil?
         # go through cart_items
@@ -104,6 +110,35 @@ class CartItem < ActiveRecord::Base
         end
         # default to one
         quantity <= 0 ? 1 : quantity
+    end
+    
+    private
+    
+    def add_accessories(cart, accessories, product_id) 
+      for accessory in accessories
+        add_accessory(cart, accessory, product_id)
+      end   
+    end   
+    
+    def add_accessory(cart, accessory, product_id)
+      product_accessory = ProductAccessory.find(:first, :conditions => {
+                                                          :accessory_id => accessory.id, 
+                                                          :product_id  => product_id })
+      
+     
+      cart_item = CartItem.find_product_with_options(cart, product_id, nil, product_accessory)
+      if cart_item
+        # increase quantity, exists
+        cart_item.quantity += 1
+        cart_item.save!
+      else
+        # product does not exist add 1
+        cart_item = CartItem.new
+        cart_item.product_id = accessory.id
+        cart_item.product_accessory_id = product_accessory.id
+        cart_item.quantity = 1
+        cart.cart_items << cart_item
+      end
     end
     
   end
