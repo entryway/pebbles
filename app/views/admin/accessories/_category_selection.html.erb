@@ -1,6 +1,6 @@
 <% form_tag(admin_product_accessory_path(@product), :id => 'category_selection_form') do |f| %>	
 
-  <select id="category_selector" size="80" name="category_id" class=".selector">
+  <select id="category_selector" size="20" name="category_id" class=".selector">
 		<% for category in @categories %>
 			<option value="<%= category.id %>">
 		   	<% (category.level - 1).times do %> 

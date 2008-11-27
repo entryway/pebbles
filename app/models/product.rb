@@ -12,7 +12,8 @@ class Product < ActiveRecord::Base
   has_many :product_option_instances, :dependent => :delete_all
   has_many :product_options, :through => :product_option_instances 
   
-  has_many :accessories
+  has_many :product_accessories, :order => 'id'
+  has_many :accessories, :through => :product_accessories
   
   validates_presence_of :name
   validates_presence_of :sku
@@ -54,6 +55,8 @@ class Product < ActiveRecord::Base
     end
   end
   
+
+  
   # are these particlar option selections out of stock?
   def out_of_stock?(out_of_stock_option_selections)
     OutOfStockOption.out_of_stock?(self.id, out_of_stock_option_selections)
@@ -77,6 +80,13 @@ class Product < ActiveRecord::Base
       qd.save(false)
     end
   end
+  
+  # gets the price adjustment for the product when an accessory of a given product
+  def accessory_price_adjustment(product)
+    product_accessory = self.product_accessories.find(:first, :conditions => {:product => product})
+    price_adjustment = product_accessory.price_adjustment ||= 0
+  end
+  
   
   protected
   
