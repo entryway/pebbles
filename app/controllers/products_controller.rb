@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
+    #zipcode = session[:zipcode]
+    #@shipping = ShippingCalculations.quote(@product.id, 1, zipcode) if zipcode
   
     respond_to do |format|
       format.html # show.rhtml

@@ -20,6 +20,7 @@
   end
   
   resources :stores
+  resources :shippings
   
   namespace :admin do |admin|
     admin.resources :authorizations
@@ -42,6 +43,7 @@
 
     admin.resources :vendors
     admin.resources :optimizations
+    admin.resources :configurations
   
   end
               

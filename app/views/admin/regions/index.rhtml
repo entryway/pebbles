@@ -1,4 +1,8 @@
-<%#= render :partial => '/admin/shipping_methods/navigation' %>
+<% content_for :sidebar do %>
+	<ul>
+		<li><%= link_to 'Shipping Configuration', admin_configurations_path %></li>
+	</ul>
+<% end %><%#= render :partial => '/admin/shipping_methods/navigation' %>
 <h1>Shipping Methods</h1>
 <%= error_messages_for :shipping_region %>
 <%= error_messages_for :shipping_method %>

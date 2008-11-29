@@ -1,0 +1,12 @@
+<div id= 'shipping_quote'>
+  <% if @shipping %>
+    Shipping: <%= number_to_currency(@shipping) %>
+  <% else %>
+    Enter your zipcode to get a shiping price:
+    <%= text_field_tag :zipcode, '', :size => 5, :id => 'zipcode' %>
+    <%= link_to "Submit", shippings_path, :id => 'shipping_quote_link' %>
+  <% end %>
+</div>
+<span id= 'shipping_spinner' style="display:none" >Calculating shipping...
+  <img src='/images/spinner.gif'><br/>
+</span>

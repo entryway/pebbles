@@ -3,6 +3,7 @@
 <table class="listing-table">
   <tr>
 	<th>Name</th>
+	<th>Zipcode</th>
 	<th>Description</th>
 	<th>Active</th>
 	<th>Drop-Ship</th>
@@ -11,6 +12,7 @@
 <% for vendor in @vendors %>
  <tr>
 	<td><%= vendor.name %></td>
+	<td><%= vendor.zipcode %></td>
 	<td><%= vendor.description %>
 	<td><%= vendor.active %>
 	<td><%= vendor.drop_ship %>

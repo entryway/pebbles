@@ -11,6 +11,8 @@
 	<hr/>	
 	<label for="name">Name: </label>
 	<%= @vendor.name %>
+	<label for="zipcode">Zipcode: </label>
+	<%= @vendor.zipcode %>
 	<label for="active">Active: </label>
 	<%= @vendor.active %>
 	<hr/>
@@ -34,5 +36,5 @@
 </div>
 
 
-<%= link_to 'Edit', edit_admin_vendors_path(@vendor) %> |
+<%= link_to 'Edit', edit_admin_vendor_path(@vendor) %> |
 <%= link_to 'Back', admin_vendors_path %>

@@ -1,6 +1,6 @@
 <%= stylesheet('product_detail') %>
 <%= stylesheet('lightbox') %>
-<%= javascript('lightbox') %>
+<%= javascript('lightbox', 'shipping') %>
 <% title(@product.title ? @product.title : @product.name) -%>
 <% meta_keywords(@product.keywords) unless @product.name -%>
 <% meta_description(@product.description) unless @product.long_description -%>
@@ -31,6 +31,9 @@
 				<div id="add_to_cart">		
 					<input type="hidden" name="id" value="<%= @product.id %>"><br/><br/>
 					Quantity: <%= text_field_tag :quantity, '1', :size => 3 %><br/><br/>
+				<div id="shipping">
+					<%= render :partial => 'shipping' %>
+				</div>
 				<div id="product_accessories">
 					<%= render :partial => 'product_accessories', 
 					 		   :locals => { :product => @product } %>
@@ -43,9 +46,6 @@
 					</span>
 				</div>
 			<% end %>
-        	<%= observe_form "product",
-              				:update => "button", 
-              				:url => { :action => "check_out_of_stock" } %>
 		</div>
 		
 		<div class="clear"/>
