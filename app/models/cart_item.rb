@@ -59,7 +59,7 @@ class CartItem < ActiveRecord::Base
           end
         end
       end
-      add_accessories(cart, accessories, product_id) 
+      add_accessories(cart, accessories, product_id) if accessories
     end
     
     # does the product with the exact options already exist?

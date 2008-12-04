@@ -1,6 +1,7 @@
 class OrderItem < ActiveRecord::Base
   belongs_to :order 
   belongs_to :product
+  
   has_many :order_item_selections
     
   def self.from_cart_item(cart_item)
@@ -34,8 +35,8 @@ class OrderItem < ActiveRecord::Base
       oi.order_item_selections << ois
     end
     
-    if oi.product_accessory
-      oi.adjusted_price = oi.product_accessory.price
+    if cart_item.product_accessory
+      oi.adjusted_price = cart_item.product_accessory.price
     end
     oi
   end

@@ -1,21 +1,14 @@
 module OrderCalculations
- 
+  include ShippingCalculations
+   
   def calculate_shipping_cost
-    @price = 0
-    unless self.free_shipping
-      shipping_method = ShippingMethod.find(self.shipping_method_id)
-      if shipping_method && shipping_method.flat_rate_shipping
-        @price = shipping_method.flat_rate_shipping.base_price;
-        per_item = shipping_method.flat_rate_shipping.cost_per_item;
-        order_items.each do |order_item| 
-        @price += per_item * order_item.quantity 
-      end 
-        @price -= per_item # compensate for first item
-      end
+    if Configuration.first.shipping_type == Configuration::FLAT_RATE_SHIPPING
+      @price = calculate_flat_rate_shipping
+    elsif Configuration.first.shipping_type == Configuration::REAL_TIME_SHIPPING
+      @price = calculate_real_time_shipping(order_items, shipping_address.postal_code)
     end
-    @price
   end
-  
+    
   def sub_total
     self.order_items.inject(0) {|sum, n| n.price * n.quantity + sum}    
   end
@@ -90,6 +83,22 @@ module OrderCalculations
     end
     t
   end 
+  
+  def calculate flat_rate_shipping
+    price = 0
+    unless self.free_shipping
+      shipping_method = ShippingMethod.find(self.shipping_method_id)
+      if shipping_method && shipping_method.flat_rate_shipping
+        price = shipping_method.flat_rate_shipping.base_price;
+        per_item = shipping_method.flat_rate_shipping.cost_per_item;
+        order_items.each do |order_item| 
+        price += per_item * order_item.quantity 
+      end 
+        price -= per_item # compensate for first item
+      end
+    end
+    price
+  end
   
   
 end

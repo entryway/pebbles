@@ -14,7 +14,7 @@ class CartItemsController < ApplicationController
     product_id = params[:id]
     quantity = params[:quantity]
     options = params[:options]
-    accessories = Product.find(params[:accessory].keys)
+    accessories = Product.find(params[:accessory].keys) if params[:accessory]
     
     CartItem.add_product(@cart, product_id, quantity, options, accessories)
 

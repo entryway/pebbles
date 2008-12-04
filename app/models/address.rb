@@ -9,8 +9,9 @@ class Address < ActiveRecord::Base
   validates_presence_of :state
   
  # USA only support
- # validates_format_of :postal_code, :with => /^\d{5}([\-]\d{4})?$/,
- #                     :message => 'should be in the format "12345" or "12345-1234"'
+  validates_format_of :postal_code, :with => /^\d{5}([\-]\d{4})?$|^([A-Z]\d[A-Z]\s\d[A-Z]\d)$/,
+                      :message => 'must be valid US zipcode (in the format "12345" or "12345-1234")' + 
+                                  ' or valid Canadian postal code  (in the format A1A 1A1)'
   validates_presence_of :country
   
 end

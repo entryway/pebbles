@@ -3,13 +3,13 @@
               :html => { :class => 'accessory_update', :method => 'put', :id => dom_id(product_accessory, 'update') } do |form| %>
     <label for="name"><%= product_accessory.name %></label><br/><br/>
     <label for="price_adjustment">Price Adjustment:</label>
-  	<%= form.text_field :price_adjustment, :size => 4 %>
-  	<%= submit_tag "Update" %>
-  	<span id= <%= dom_id(product_accessory,'spinner_update') %> style="display:none" >
+    <%= form.text_field :price_adjustment, :size => 4 %>
+    <%= submit_tag "Update" %>
+    <span id= <%= dom_id(product_accessory,'spinner_update') %> style="display:none" >
       <img src='/images/spinner.gif'><br/>
     </span>
-  	<%= link_to "Remove", admin_product_accessory_path(@product, product_accessory),
-    	              :class => 'accessory_destroy' %>
+    <%= link_to "Remove", admin_product_accessory_path(@product, product_accessory),
+                    :class => 'accessory_destroy' %>
  <% end %>
  
     

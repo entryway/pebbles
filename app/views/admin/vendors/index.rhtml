@@ -1,27 +1,32 @@
 <h1>Listing Vendors</h1>
-
-<table class="listing-table">
-  <tr>
-	<th>Name</th>
-	<th>Zipcode</th>
-	<th>Description</th>
-	<th>Active</th>
-	<th>Drop-Ship</th>
-  </tr>
+<div class="gt-table-controls clearfix">
+  <table class="gt-list-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Zipcode</th>
+        <th>Description</th>
+        <th>Active</th>
+        <th>Drop-Ship</th>
+      </tr>
+    </thead>
   
-<% for vendor in @vendors %>
- <tr>
-	<td><%= vendor.name %></td>
-	<td><%= vendor.zipcode %></td>
-	<td><%= vendor.description %>
-	<td><%= vendor.active %>
-	<td><%= vendor.drop_ship %>
-    <td><%= link_to 'Show', admin_vendor_path(vendor) %></td>
-    <td><%= link_to 'Edit', edit_admin_vendor_path(vendor) %></td>
-    <td><%= link_to 'Destroy', admin_vendor_path(vendor), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <% for vendor in @vendors %>
+    <tbody>
+      <tr>
+        <td><%= vendor.name %></td>  
+        <td><%= vendor.zipcode %></td>
+        <td><%= vendor.description %>
+        <td><%= vendor.active %>
+        <td><%= vendor.drop_ship %>
+        <td><%= link_to 'Show', admin_vendor_path(vendor) %></td>
+        <td><%= link_to 'Edit', edit_admin_vendor_path(vendor) %></td>
+        <td><%= link_to 'Destroy', admin_vendor_path(vendor), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+</div>
 
 <br />
 
