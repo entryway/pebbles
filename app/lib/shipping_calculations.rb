@@ -1,6 +1,3 @@
-require 'shipping'
-require 'active_shipping'
-
 module ShippingCalculations
   
   include ActiveMerchant::Shipping
