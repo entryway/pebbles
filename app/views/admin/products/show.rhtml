@@ -22,7 +22,9 @@
     </div>
 	<div style="clear:both"/>
 	<hr/>	 
-		<%= check_box_tag :is_featured, @product.is_featured, @product.is_featured %>Featured Product
+	<%= check_box_tag :is_featured, @product.is_featured, @product.is_featured %>Featured Product
+	<label for="shipping_type">Shipping Type: </label>
+  <%= ShippingType::PRODUCT_SHIPPING_TYPES[@vendor.shipping_type] %>
 	<hr/>	
 	<label for="price">Price: $</label>
 	<%= @product.price %>

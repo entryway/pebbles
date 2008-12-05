@@ -3,12 +3,10 @@
   <table class="gt-list-table">
     <tr>
       <th>Shipping Type</th>
-      <th>Default Keywords</th>
-      <th>Default Description</th>
     </tr>
 
     <tr>
-      <td><%= Configuration::SHIPPING_TYPES[@configuration.shipping_type || 1] %></td>
+      <td><%= ShippingType::CONFIGURATION_SHIPPING_TYPES[@configuration.shipping_type || 1] %></td>
     </tr>
   </table>
 </div>

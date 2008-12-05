@@ -8,35 +8,69 @@ module ShippingCalculations
   # calculate cost for product item
   def self.product_quote(product_id, quantity, zipcode, accessory_ids = nil)
     product = Product.find(product_id)
-    if product.free_shipping
-      quote = 0
-    else 
-      accessories = []
-      accessories = Product.find(accessory_ids) if accessory_ids
-      vendor_zipcode = product.vendor.zipcode
-      weights = quantity_weights(product, quantity)
-      accessories.each do |accessory|
-        weights << accessory.weight 
+    accessories = Array.new
+    accessories = Product.find(accessory_ids) if accessory_ids
+    quote = case product.determined_shipping_type 
+    when ShippingType::FREE_SHIPPING
+      0
+    when ShippingType::FLAT_RATE_SHIPPING
+      self.flat_rate_shipping_quote(product, accessories, zipcode, quantity)
+    when ShippingType::REAL_TIME_SHIPPING
+      self.real_time_shipping_quote(product, accessories, zipcode, quantity)
+    end 
+    quote
+  end
+  
+  def self.flat_rate_shipping_quote(product, accessories, zipcode, quantity)
+    quote = product.flat_rate_shipping * quantity
+    weights = Array.new
+    quote += self.accessory_quote(weights, accessories, zipcode, product.vendor.zipcode)
+  end
+  
+  def self.real_time_shipping_quote(product, accessories, zipcode, quantity)
+    weights = quantity_weights(product, quantity)
+    quote = self.accessory_quote(weights, accessories, zipcode, product.vendor.zipcode)
+  end
+  
+  def self.accessory_quote(weights, accessories, zipcode, vendor_zipcode)
+    quote = 0
+    accessories.each do |accessory|
+      case accessory.determined_shipping_type
+      when ShippingType::FREE_SHIPPING
+        quote += 0
+      when ShippingType::FLAT_RATE_SHIPPING
+        quote += accessory.flat_rate_shipping
+      when ShippingType::REAL_TIME_SHIPPING 
+        # for now we are assuming that only one accessory is added otherwise this will need to 
+        # do something like quantity.times do...
+        weights << accessory.weight
       end
-      quote = self.shipping_quote(weights, zipcode, vendor_zipcode)
     end
+    quote += self.shipping_quote(weights, zipcode, vendor_zipcode) unless weights.empty?
     quote
   end
   
   def self.shipping_quote(weights, zipcode, vendor_zipcode)
+    packages = build_packages(weights)
+    quote = quote_packages(packages, zipcode, vendor_zipcode)
+  end
+  
+  def self.build_packages(weights)
     packages = Array.new
     weights.each do |weight|
       package = Package.new(weight * 16, nil, :units => :imperial)
       packages << package
     end
+    packages
+  end
     
+  def self.quote_packages(packages, zipcode, vendor_zipcode)
     origin = Location.new(:country => 'US', :zip => vendor_zipcode)
     country = /^\d{5}([\-]\d{4})?$/.match(zipcode)? 'US' : 'CA'
     destination = Location.new(:country => country, :postal_code => zipcode)
     ups = UPS.new(:login => APP_CONFIG['ups_login'], :password => APP_CONFIG['ups_password'], 
                   :key => APP_CONFIG['ups_key'])
     response = ups.find_rates(origin, destination, packages)
-    puts response.rates.inspect
     quote = response.rates.sort_by(&:price).first.price * 0.01
   end
   

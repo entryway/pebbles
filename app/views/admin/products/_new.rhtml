@@ -8,8 +8,11 @@
 	<hr/> 
 	<%= form.check_box :available %> Available<br/>
 	<%= form.check_box :is_featured %> Featured Product<br/>
-	<%= form.check_box :free_shipping %> Free Shipping
-	<hr/>
+	<label for="shipping_type">Shipping Type *:</label>
+	<%= form.select :shipping_type || 1, ShippingType::PRODUCT_SHIPPING_TYPES.invert %><br/>	
+  <label for="flat_rate_shipping">Flat Rate Shipping Price :</label>
+	<%= form.text_field :flat_rate_shipping, :size => 10 %><br/>
+  <hr/>
 	<label for="sku">Sku *</label>
 	<%= form.text_field :sku, :size => 10, :class => 'gt-form-text'  %><br/>
 	<label for="price">Price</label>

@@ -87,6 +87,15 @@ class Product < ActiveRecord::Base
     price = self.price + (product_accessory.price_adjustment || 0)
   end
   
+  #get the shipping type of the product or vendor shipping type if defaulting
+  def determined_shipping_type
+    if self.shipping_type == ShippingType::DEFAULT_SHIPPING
+      return self.vendor.shipping_type
+    else
+      return shipping_type
+    end
+  end
+    
   
   protected
   

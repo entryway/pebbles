@@ -15,6 +15,8 @@
 	<%= @vendor.zipcode %>
 	<label for="active">Active: </label>
 	<%= @vendor.active %>
+	<label for="shipping_type">Shipping Type: </label>
+	<%= ShippingType::VENDOR_SHIPPING_TYPES[@vendor.shipping_type] %>
 	<hr/>
 	<label for="description">Description: </label><%= @vendor.description %><br/>
 	<hr/>

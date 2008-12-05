@@ -3,7 +3,7 @@
 <% form_for :configuration, @configuration, :url => admin_configuration_path(1), :html => { :method => :put }  do |form| %>
   <p>
   <label for="shipping_configuration">Shipping Configuration *:</label>
-  <%= form.select :shipping_type || 1, Configuration::SHIPPING_TYPES.invert %><br/>	
+  <%= form.select :shipping_type || 1, ShippingType::CONFIGURATION_SHIPPING_TYPES.invert %><br/>	
   <%= submit_tag "Update" %>
  </p>
 <% end %>

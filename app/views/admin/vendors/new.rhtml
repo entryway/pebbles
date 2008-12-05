@@ -12,7 +12,10 @@
     <div class="p7TPcontent">
       <div id="p7tpc1_1">
         <h4>Details</h4>
-        	<%= render :partial => "details" %>
+        	 <% form_for :vendor, @vendor , :url => admin_vendor_path(@vendor) do |form|%>
+             <%= render :partial => "details", :locals => { :form => form }  %>
+             <%= submit_tag "Create" %>
+           <% end%>
       </div>  
     </div>
   </div>

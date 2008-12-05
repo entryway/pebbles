@@ -7,6 +7,7 @@
         <th>Zipcode</th>
         <th>Description</th>
         <th>Active</th>
+        <th>Shipping Type</th>
         <th>Drop-Ship</th>
       </tr>
     </thead>
@@ -16,9 +17,10 @@
       <tr>
         <td><%= vendor.name %></td>  
         <td><%= vendor.zipcode %></td>
-        <td><%= vendor.description %>
-        <td><%= vendor.active %>
-        <td><%= vendor.drop_ship %>
+        <td><%= vendor.description %></td>
+        <td><%= vendor.active %></td>
+        <td><%= ShippingType::VENDOR_SHIPPING_TYPES[vendor.shipping_type] %></td>
+        <td><%= vendor.drop_ship %></td>
         <td><%= link_to 'Show', admin_vendor_path(vendor) %></td>
         <td><%= link_to 'Edit', edit_admin_vendor_path(vendor) %></td>
         <td><%= link_to 'Destroy', admin_vendor_path(vendor), :confirm => 'Are you sure?', :method => :delete %></td>

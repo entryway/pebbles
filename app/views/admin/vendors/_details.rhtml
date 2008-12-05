@@ -1,7 +1,5 @@
 
 
-<% form_for :vendor, @vendor, :url => admin_vendors_path  do |form| %>
-  <p>
 	<label for="name">Name *:</label>
 	<%= form.text_field :name, :size => 20 %><br/>
 	<label for="zipcode">Zipcode *:</label>
@@ -9,6 +7,8 @@
 	<label for="active">Active *:</label>
 	<%= form.check_box :active %><br/>
 	<hr/>
+	<label for="shipping_type">Shipping Type *:</label>
+	<%= form.select :shipping_type || 1, ShippingType::VENDOR_SHIPPING_TYPES.invert %><br/>	
 	<label for="active">Drop-Ship *:</label>
 	<%= form.check_box :drop_ship %><br/>
 	<label for="active">Drop-Ship Fee *: $</label>
@@ -25,6 +25,3 @@
 	
 	<br/>
 	<br/><br/>
-    <%= submit_tag "Create" %>
-  </p>
-<% end %>
