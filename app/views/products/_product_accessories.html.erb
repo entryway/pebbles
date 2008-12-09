@@ -1,9 +1,11 @@
 <% if product.accessories.size > 0 %>
   Check any of the following accessories to also add to your cart: <br/><br/>
   <% product.accessories.each do |accessory| %>
-  	<%= check_box 'accessory', accessory.id, :class => 'shipping' %>
+  	<%= check_box "accessories[#{accessory.id}]", accessory.id, :class => 'shipping' %>
   	<%= accessory.name %>
   	<%= number_to_currency(accessory.accessory_price(product)) %>
+  	<%= render :partial => 'accessory_options',
+  	           :locals => { :accessory => accessory } %>
   	<br/><br/>
   <% end %>
 <% end %>

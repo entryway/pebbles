@@ -3,10 +3,8 @@ module ShippingCalculations
   include ActiveMerchant::Shipping
   
   # calculate cost for product item
-  def self.product_quote(product_id, quantity, zipcode, accessory_ids = nil)
+  def self.product_quote(product_id, quantity, zipcode, accessories = [])
     product = Product.find(product_id)
-    accessories = Array.new
-    accessories = Product.find(accessory_ids) if accessory_ids
     quote = case product.determined_shipping_type 
     when ShippingType::FREE_SHIPPING
       0
@@ -101,7 +99,7 @@ module ShippingCalculations
     weights = Array.new
     items.each do |item|
       product = item.product
-      unless product.free_shipping
+      unless product.determined_shipping_type == ShippingType::FREE_SHIPPING
         weights += ShippingCalculations.quantity_weights(product, item.quantity)
       end
     end

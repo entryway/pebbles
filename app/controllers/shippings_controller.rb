@@ -5,11 +5,10 @@ class ShippingsController < ApplicationController
     zipcode = session[:zipcode] 
     quantity = params[:quantity].to_i
     product_id = params[:id]
-    # create an array of selected accessory ids; note that it helps to reject the collected nils
-    if params[:accessory]
-      accessory_ids = params[:accessory].collect {|k, v| k.to_i if v == '1' }.reject {|i| i == nil}                            
-    end
-    @shipping = ShippingCalculations.product_quote(product_id, quantity, zipcode, accessory_ids)
+    # create an array of selected accessory ids; note that it helps to reject the collected nil
+    accessories = ProductAccessory.selected_accessories(params[:accessories]) if params[:accessories]                        
+    @shipping = ShippingCalculations.product_quote(product_id, quantity, zipcode, accessories)
+    puts "******#{@shipping}"
     render :partial => 'products/shipping'
   end
   
