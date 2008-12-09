@@ -41,6 +41,12 @@
     
     admin.resources :stores
 
+    admin.namespace :reporting do |report|
+      report.resources :reports
+      report.resources :order_reports, 
+                       :collection => { 'csv_list' => :get, 'pdf' => :get }
+    end
+    
     admin.resources :vendors
     admin.resources :optimizations
     admin.resources :configurations

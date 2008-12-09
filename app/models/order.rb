@@ -1,11 +1,10 @@
 
-require 'money'
-require 'shipping'
-
 class Order < ActiveRecord::Base
   include ActiveMerchant::Billing
   include OrderCalculations 
   include OrderProcessing
+  acts_as_reportable
+  
 
   belongs_to :billing_address,
              :class_name => 'Address',

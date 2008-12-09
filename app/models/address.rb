@@ -1,5 +1,6 @@
 class Address < ActiveRecord::Base
   #belongs_to :addressable, :polymorphic => true
+  acts_as_reportable 
   
   validates_length_of :address_1, :in => 2..100
   validates_length_of :city, :in => 2..50

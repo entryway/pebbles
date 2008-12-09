@@ -1,4 +1,4 @@
-module Factory
+module OrderFactory
   
   def self.create_order_item(attributes = {})
     default_attributes = {
