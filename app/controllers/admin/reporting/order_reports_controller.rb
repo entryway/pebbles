@@ -8,6 +8,7 @@ class Admin::Reporting::OrderReportsController < ApplicationController
     if generate_report
       session[:start_date] = params[:start_date]
       session[:end_date] = params[:end_date]
+      
       csv = render_order_report_as :csv
       send_data csv, :type => "text/csv",
                      :filename => "orders#{session[:start_date]}.csv"      

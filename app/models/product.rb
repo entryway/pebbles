@@ -1,5 +1,7 @@
 
 class Product < ActiveRecord::Base
+  acts_as_reportable
+  
   belongs_to :vendor
   has_many :product_images 
   has_many :product_large_images
@@ -9,6 +11,9 @@ class Product < ActiveRecord::Base
   
   has_many :out_of_stock_options, :dependent => :destroy
   
+  has_many :order_items
+  has_many :orders, :through => :order_items
+   
   has_many :product_option_instances, :dependent => :delete_all
   has_many :product_options, :through => :product_option_instances 
   

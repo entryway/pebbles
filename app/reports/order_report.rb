@@ -14,13 +14,12 @@ class OrderReport < Ruport::Controller
     
     self.data = Order.report_table(:all, 
                                    :only => ['created_at', 'order_number', 'full_name',
-                                             'business', 'product_cost', 'shipping_cost',
-                                             'shipping_method'],
-                                   :methods => [:total, :payment_method],
+                                             'business', 'product_cost', 'shipping_cost'],
+                                   :methods => [:total],
                                    :include =>
                                      { 
                                        :shipping_address => { :only => ['state', 'country'] },
-                                       :products => { :only => 'sku' },
+                                     #  :products => { :only => 'sku' },
                                        :order_items => { :only => ['product_name', 'quantity'] },
                                        :transactions => { :only => 'success' }
                                      },
@@ -29,22 +28,20 @@ class OrderReport < Ruport::Controller
                                                    "fulfilled"])
     if self.data.size > 0
       self.data.reorder('created_at', 'order_number', 'full_name', 'business', 'shipping_address.state',
-                  'shipping_address.country', 'product_cost', 'shipping_cost', 'shipping_method',
-                  'total', 'payment_method', 'order_items.quantity', 'products.sku', 
+                  'shipping_address.country', 'product_cost', 'shipping_cost', 
+                  'total','order_items.quantity', 'products.sku', 
                   'order_items.product_name')
     end
     self.data.rename_columns('created_at' => 'Order Date', 'order_number' => 'Order Number',
                         'full_name' => 'Full Name',
                         'business' => 'Company', 'product_cost' => 'SubTotal',
                         'shipping_cost' => 'Shipping Cost',
-                        'shipping_method' => 'Shipping Method',
                         'products.sku' => 'Sku', 
                         'total' => 'Total',
                         'order_items.product_name' => 'Product Name', 
                         'order_items.quantity' => 'Quantity',
                         'shipping_address.country' => 'Country',
-                        'shipping_address.state' => 'State',
-                        'payment_method' => 'Payment Method')
+                        'shipping_address.state' => 'State')
 
   end
 
