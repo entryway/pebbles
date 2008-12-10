@@ -16,6 +16,23 @@ module ShippingCalculations
     quote
   end
   
+  # calculates total shipping cost
+  def calculate_real_time_shipping(items, zipcode)
+    grouped_items = items.group_by { |item| item.product.vendor }
+    shipping_total = 0
+    grouped_items.keys.each do |vendor|
+      ## this might be useful if a vendor packages products together:
+      # if vendor.groups_packages
+      #     weight = total_weight(grouped_items[vendor])
+      #     shipping_total += shipping_quote([weight], zipcode, vendor.zipcode)
+      items = grouped_items[vendor]
+      vendor_total = calculate_shipping_per_vendor(items, zipcode, vendor.zipcode)
+      shipping_total += vendor_total
+    end
+    shipping_total
+  end
+  
+  private
   def self.flat_rate_shipping_quote(product, accessories, zipcode, quantity)
     quote = product.flat_rate_shipping * quantity
     weights = Array.new
@@ -78,32 +95,25 @@ module ShippingCalculations
     weights
   end
   
-  # calculates total shipping cost
-  def calculate_real_time_shipping(items, zipcode)
-    grouped_items = items.group_by { |item| item.product.vendor }
-    shipping_total = 0
-    grouped_items.keys.each do |vendor|
-      ## this might be useful if a vendor packages products together:
-      # if vendor.groups_packages
-      #     weight = total_weight(grouped_items[vendor])
-      #     shipping_total += shipping_quote([weight], zipcode, vendor.zipcode)
-      items = grouped_items[vendor]
-      vendor_total = calculate_shipping_per_vendor(items, zipcode, vendor.zipcode)
-      shipping_total += vendor_total
-    end
-    shipping_total
-  end
-  
   def calculate_shipping_per_vendor(items, zipcode, vendor_zipcode)
     # we create a separate package for each quantity of each item 
     weights = Array.new
+    shipping_total = 0
     items.each do |item|
       product = item.product
-      unless product.determined_shipping_type == ShippingType::FREE_SHIPPING
+      case product.determined_shipping_type
+      when ShippingType::FREE_SHIPPING
+        shipping_total += 0
+      when ShippingType::FLAT_RATE_SHIPPING
+        shipping_total += product.flat_rate_shipping
+      when ShippingType::REAL_TIME_SHIPPING 
         weights += ShippingCalculations.quantity_weights(product, item.quantity)
       end
     end
-    shipping_total = ShippingCalculations.shipping_quote(weights, zipcode, vendor_zipcode)
+    unless weights.empty?  
+      shipping_total += ShippingCalculations.shipping_quote(weights, zipcode, vendor_zipcode)
+    end
+    shipping_total
   end
   
   def total_weight(items)
