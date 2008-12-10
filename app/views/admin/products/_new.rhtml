@@ -19,7 +19,13 @@
 	<%= form.text_field :price, :size => 10, :class => 'gt-form-text'  %><br/>
 	<label for="weight">Weight * </label>
 	<%= form.text_field :weight, :size => 10, :class => 'gt-form-text'  %><br/>
-	<hr/>	
+	<label for="length">Length </label>
+	<%= form.text_field :length, :size => 10, :class => 'gt-form-text'  %>
+	<label for="width">Width </label>
+	<%= form.text_field :width, :size => 10, :class => 'gt-form-text'  %>
+	<label for="height">Height </label>
+	<%= form.text_field :height, :size => 10, :class => 'gt-form-text'  %>
+  <hr/>	
 	<label for="vendor_id">Vendor</label>
 	<%= form.collection_select :vendor_id, @vendors, :id, :name %><br/>
 	<hr/>

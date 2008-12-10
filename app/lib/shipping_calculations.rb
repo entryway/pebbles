@@ -35,16 +35,16 @@ module ShippingCalculations
   private
   def self.flat_rate_shipping_quote(product, accessories, zipcode, quantity)
     quote = product.flat_rate_shipping * quantity
-    weights = Array.new
-    quote += self.accessory_quote(weights, accessories, zipcode, product.vendor.zipcode)
+    specifications = Array.new
+    quote += self.accessory_quote(specifications, accessories, zipcode, product.vendor.zipcode)
   end
   
   def self.real_time_shipping_quote(product, accessories, zipcode, quantity)
-    weights = quantity_weights(product, quantity)
-    quote = self.accessory_quote(weights, accessories, zipcode, product.vendor.zipcode)
+    specifications = quantity_specifications(product, quantity)
+    quote = self.accessory_quote(specifications, accessories, zipcode, product.vendor.zipcode)
   end
   
-  def self.accessory_quote(weights, accessories, zipcode, vendor_zipcode)
+  def self.accessory_quote(specifications, accessories, zipcode, vendor_zipcode)
     quote = 0
     accessories.each do |accessory|
       case accessory.determined_shipping_type
@@ -55,22 +55,22 @@ module ShippingCalculations
       when ShippingType::REAL_TIME_SHIPPING 
         # for now we are assuming that only one accessory is added otherwise this will need to 
         # do something like quantity.times do...
-        weights << accessory.weight
+        specifications << accessory.specification
       end
     end
-    quote += self.shipping_quote(weights, zipcode, vendor_zipcode) unless weights.empty?
+    quote += self.shipping_quote(specifications, zipcode, vendor_zipcode) unless specifications.empty?
     quote
   end
   
-  def self.shipping_quote(weights, zipcode, vendor_zipcode)
-    packages = build_packages(weights)
+  def self.shipping_quote(specifications, zipcode, vendor_zipcode)
+    packages = build_packages(specifications)
     quote = quote_packages(packages, zipcode, vendor_zipcode)
   end
   
-  def self.build_packages(weights)
+  def self.build_packages(specifications)
     packages = Array.new
-    weights.each do |weight|
-      package = Package.new(weight * 16, nil, :units => :imperial)
+    specifications.each do |specification|
+      package = Package.new(specification[:weight] * 16, specification[:dimensions], :units => :imperial)
       packages << package
     end
     packages
@@ -86,18 +86,18 @@ module ShippingCalculations
     quote = response.rates.sort_by(&:price).first.price * 0.01
   end
   
-  def self.quantity_weights(product, quantity)
-    weights = Array.new
+  def self.quantity_specifications(product, quantity)
+    specifications = Array.new
     quantity.times do 
-      weight = product.weight
-      weights << weight
+      specification = product.specification
+      specifications << specification
     end
-    weights
+    specifications
   end
   
   def calculate_shipping_per_vendor(items, zipcode, vendor_zipcode)
     # we create a separate package for each quantity of each item 
-    weights = Array.new
+    specifications = Array.new
     shipping_total = 0
     items.each do |item|
       product = item.product
@@ -107,11 +107,11 @@ module ShippingCalculations
       when ShippingType::FLAT_RATE_SHIPPING
         shipping_total += product.flat_rate_shipping
       when ShippingType::REAL_TIME_SHIPPING 
-        weights += ShippingCalculations.quantity_weights(product, item.quantity)
+        specifications += ShippingCalculations.quantity_specifications(product, item.quantity)
       end
     end
-    unless weights.empty?  
-      shipping_total += ShippingCalculations.shipping_quote(weights, zipcode, vendor_zipcode)
+    unless specifications.empty?  
+      shipping_total += ShippingCalculations.shipping_quote(specifications, zipcode, vendor_zipcode)
     end
     shipping_total
   end
