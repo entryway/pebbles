@@ -19,8 +19,8 @@ class OrderReport < Ruport::Controller
                                    :include =>
                                      { 
                                        :shipping_address => { :only => ['state', 'country'] },
-                                      # :products => { :only => 'sku' },
-                                       :order_items => { :only => ['product_name', 'quantity'] },
+                                       :order_items => { :only => ['product_name', 'quantity'],
+                                                         :product => { :only => 'sku' } },
                                        :transactions => { :only => 'success' }
                                      },
                                    :order => 'created_at DESC',
