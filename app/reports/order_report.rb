@@ -20,8 +20,10 @@ class OrderReport < Ruport::Controller
                                      { 
                                        :shipping_address => { :only => ['state', 'country'] },
                                        :order_items => { :only => ['product_name', 'quantity'],
-                                                         :product => { :only => 'sku' } },
-                                       :transactions => { :only => 'success' }
+                                                         :include => {
+                                                           :product => { :only => 'sku'} }
+                                                         },
+                                        :transactions => { :only => 'success' }
                                      },
                                    :order => 'created_at DESC',
                                    :conditions => ["state = ? AND #{range}",
@@ -29,14 +31,14 @@ class OrderReport < Ruport::Controller
     if self.data.size > 0
       self.data.reorder('created_at', 'order_number', 'full_name', 'business', 'shipping_address.state',
                   'shipping_address.country', 'product_cost', 'shipping_cost', 
-                  'total','order_items.quantity', 'products.sku', 
+                  'total','order_items.quantity',  'product.sku', 
                   'order_items.product_name')
     end
     self.data.rename_columns('created_at' => 'Order Date', 'order_number' => 'Order Number',
                         'full_name' => 'Full Name',
                         'business' => 'Company', 'product_cost' => 'SubTotal',
                         'shipping_cost' => 'Shipping Cost',
-                        'products.sku' => 'Sku', 
+                        'product.sku' => 'Sku', 
                         'total' => 'Total',
                         'order_items.product_name' => 'Product Name', 
                         'order_items.quantity' => 'Quantity',

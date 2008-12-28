@@ -2,9 +2,9 @@ module OrderCalculations
   include ShippingCalculations
    
   def calculate_shipping_cost
-    if Configuration.first.shipping_type == Configuration::FLAT_RATE_SHIPPING
+    if Configuration.first.shipping_type == ShippingType::FLAT_RATE_SHIPPING
       @price = calculate_flat_rate_shipping
-    elsif Configuration.first.shipping_type == Configuration::REAL_TIME_SHIPPING
+    elsif Configuration.first.shipping_type == ShippingType::REAL_TIME_SHIPPING
       @price = calculate_real_time_shipping(order_items, shipping_address.postal_code)
     end
   end
