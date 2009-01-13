@@ -25,7 +25,7 @@
   namespace :admin do |admin|
     admin.resources :authorizations
 
-    admin.resources :categories
+    admin.resources :categories, :collection => { :reorder => :put }
     admin.resources :coupons
     admin.resources :ebay_orders
     

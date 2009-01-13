@@ -28,6 +28,12 @@ module Admin
         }
       end  
     end
+
+    def reorder
+      order = params[:category]
+      Category.order(order)
+      render :text => order.inspect
+    end
     
     def create
       @category = Category.new(params[:category])
@@ -100,6 +106,8 @@ module Admin
         format.html { redirect_to(categories_url) }
       end
     end
+
+
 
   end
 end
