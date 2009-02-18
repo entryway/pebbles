@@ -46,13 +46,11 @@ module OrderProcessing
     end
 
     # capture funds for this order
-    def capture_payment(amount = total, options = {})
+    def capture_payment(options = {})
       options = populate_options if options.size == 0
-      amount_in_cents = amount * 100
+      options[:amount] ||= self.total_in_cents
       transaction do
-        capture = OrderTransaction.capture(amount_in_cents, 
-                                           authorization_reference, options
-                  )
+        capture = OrderTransaction.capture(options[:amount], authorization_reference, options)
         self.transactions << capture
         if capture.success?
           payment_captured!
@@ -65,8 +63,7 @@ module OrderProcessing
       end
     end
     
-    
-    private
+private
     
     # TODO: move to acts_as_state_machine transitions
     def initialize_order
