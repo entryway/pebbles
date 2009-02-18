@@ -45,7 +45,11 @@ module OrderProcessing
       end
     end
 
-    # capture funds for this order
+    ##
+    # Capture funds for this order
+    #
+    # @params[Hash] Options hash that takes shipping_address, billing_address, etc.
+    #    amount is a member of the hash to overide to deafult self.total_in_cents
     def capture_payment(options = {})
       options = populate_options if options.size == 0
       options[:amount] ||= self.total_in_cents
