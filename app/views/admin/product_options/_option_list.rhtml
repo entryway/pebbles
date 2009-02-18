@@ -17,7 +17,7 @@
 			<td>
 				<%= option.product_option_selections.collect { |x| x.name + ', ' } %>
 			</td>
-			<td><%= ProductOption.to_s(option.selection_type) %></td>
+			<td><%= ProductOption.to_text(option.selection_type) %></td>
 			<td>
 				<%= option.description %>
 			</td>

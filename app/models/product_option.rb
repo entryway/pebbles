@@ -16,7 +16,7 @@ class ProductOption < ActiveRecord::Base
 					["Text Input", OrderDeliveryStatus::RETURNED]
           ]
 
-  def self.to_s(id)
+  def self.to_text(id)
     case id
     when 1
       return "Drop Down List"
