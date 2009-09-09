@@ -29,6 +29,6 @@ ActionMailer::Base.delivery_method = :sendmail
 
 require 'optimized'
 
-ExceptionNotifier.exception_recipients = %w(gustin@entryway.net)
-ExceptionNotifier.email_prefix = "[GREEN_LABEL] "
+#ExceptionNotifier.exception_recipients = %w(gustin@entryway.net)
+#ExceptionNotifier.email_prefix = "[GREEN_LABEL] "
 
