@@ -1,0 +1,15 @@
+<% javascript('lowpro', 'accessories' ) %>
+
+<h1> Manage Accessories for <%= @product.name %></h1>
+Select Category of accessory to add <br/>
+
+<div id='category_selection'>
+  <%= render :partial => 'category_selection' %>
+</div>
+
+<div id='product_list'>
+</div>
+  
+<div id='accessories'>
+  <%= render :partial =>'accessories' %>
+</div>

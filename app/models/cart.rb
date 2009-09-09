@@ -1,6 +1,8 @@
 # TODO: The duplicate nature of the order and cart is silly
 # should be extracted/abstracted out someway to share common impl
 class Cart < ActiveRecord::Base
+  include ShippingCalculations
+  
   has_many :cart_items
   has_many :products, :through => :cart_items
   
@@ -17,7 +19,15 @@ class Cart < ActiveRecord::Base
   end
   
   # shipping totals
-  def shipping_totals(region, shipping_method)
+  def shipping_totals(region, shipping_method, zipcode)
+    if Configuration.first.shipping_type == ShippingType::FLAT_RATE_SHIPPING
+      @price = calculate_flat_rate_shipping(region, shipping_method)
+    elsif Configuration.first.shipping_type == ShippingType::REAL_TIME_SHIPPING
+      @price = calculate_real_time_shipping(cart_items, zipcode)
+    end
+  end
+  
+  def calculate_flat_rate_shipping(region, shipping_method)
     @price = 0
     unless self.free_shipping
       if shipping_method && shipping_method.flat_rate_shipping
@@ -41,5 +51,6 @@ class Cart < ActiveRecord::Base
   def grand_total_in_cents(shipping_total)
      (sub_total + shipping_total) * 100
   end
+
   
 end 

@@ -39,7 +39,7 @@ class CartsController < ApplicationController
       
     @cart = current_cart
     @subtotal = @cart.sub_total
-    @shipping_total = @cart.shipping_totals(region, @default_method)
+    @shipping_total = @cart.shipping_totals(region, @default_method, session[:zipcode])
     @grand_total = @cart.grand_total(@shipping_total)
   end 
 

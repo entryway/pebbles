@@ -1,11 +1,10 @@
 
-require 'money'
-require 'shipping'
-
 class Order < ActiveRecord::Base
   include ActiveMerchant::Billing
   include OrderCalculations 
   include OrderProcessing
+  acts_as_reportable
+  
 
   belongs_to :billing_address,
              :class_name => 'Address',
@@ -18,6 +17,10 @@ class Order < ActiveRecord::Base
   has_many :transactions,
            :class_name => 'OrderTransaction',
            :dependent => :destroy
+           
+  has_many :order_items 
+  has_many :products, :through => :order_items
+         
 
   attr_accessor :payment_type  # not currently saved, future
   attr_accessor :credit_card

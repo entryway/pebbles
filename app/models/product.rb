@@ -1,5 +1,7 @@
 
 class Product < ActiveRecord::Base
+  acts_as_reportable
+  
   belongs_to :vendor
   has_many :product_images 
   has_many :product_large_images
@@ -9,8 +11,14 @@ class Product < ActiveRecord::Base
   
   has_many :out_of_stock_options, :dependent => :destroy
   
+  has_many :order_items
+  has_many :orders, :through => :order_items
+   
   has_many :product_option_instances, :dependent => :delete_all
   has_many :product_options, :through => :product_option_instances 
+  
+  has_many :product_accessories, :order => 'id'
+  has_many :accessories, :through => :product_accessories
   
   validates_presence_of :name
   validates_presence_of :sku
@@ -52,6 +60,8 @@ class Product < ActiveRecord::Base
     end
   end
   
+
+  
   # are these particlar option selections out of stock?
   def out_of_stock?(out_of_stock_option_selections)
     OutOfStockOption.out_of_stock?(self.id, out_of_stock_option_selections)
@@ -75,6 +85,26 @@ class Product < ActiveRecord::Base
       qd.save(false)
     end
   end
+  
+  # gets the price adjustment for the product when an accessory of a given product
+  def accessory_price(product)
+    product_accessory = product.product_accessories.find(:first, :conditions => {:accessory_id => self.id})
+    price = self.price + (product_accessory.price_adjustment || 0)
+  end
+  
+  #get the shipping type of the product or vendor shipping type if defaulting
+  def determined_shipping_type
+    if self.shipping_type == ShippingType::DEFAULT_SHIPPING
+      return self.vendor.shipping_type
+    else
+      return shipping_type
+    end
+  end
+  
+  def specification
+    { :weight => weight, :dimensions => [length || 0 , width || 0, height || 0 ] }
+  end
+    
   
   protected
   

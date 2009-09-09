@@ -20,11 +20,12 @@
   end
   
   resources :stores
+  resources :shippings
   
   namespace :admin do |admin|
     admin.resources :authorizations
 
-    admin.resources :categories
+    admin.resources :categories, :collection => { :reorder => :put }
     admin.resources :coupons
     admin.resources :ebay_orders
     
@@ -33,12 +34,23 @@
 
     admin.resources :promo_codes
     admin.resources :products, :has_many => [:product_options, 
-                                             :out_of_stock_options]
+                                             :out_of_stock_options, 
+                                             :accessories]
+                                             
     admin.resources :regions, :has_many => :shipping_methods
     
     admin.resources :stores
 
+    admin.namespace :reporting do |report|
+      report.resources :reports
+      report.resources :order_reports, 
+                       :collection => { 'csv_list' => :get, 'pdf' => :get }
+    end
+    
     admin.resources :vendors
+    admin.resources :optimizations
+    admin.resources :configurations
+  
   end
               
   signup '/signup', :controller => 'users', :action => 'new'

@@ -1,0 +1,97 @@
+/* SHOPPING CART
+--------------------------------------------------------------------------------------*/
+
+#shopping_cart {
+	height: 460px;
+	font-size: 100%;
+	color: #33517d;
+}
+
+#shipping_regions {
+	color: #33517d;	
+	margin-left: 280px;
+}
+
+#promo_code {
+	border-top: 1px dotted ;
+}
+
+#cart_total_label {
+	border-top: 1px dotted ;
+  	color: #33517d;
+  	font-weight: bold;
+}
+#cart_total {
+	border-top: 1px dotted ;
+  	color: #33517d;
+  	font-weight: bold;
+}
+
+
+div#shopping_cart h1 {
+	margin-bottom: 15px;
+}
+
+
+/* big rounded box */
+.bigroundbox {
+  width:596px;
+  padding:5px 0 0 0;
+  margin:5px 0 ;
+  font-size: 90%;
+}
+
+.bigroundbox .boxcontainer {
+  color: #33517d;
+  padding:0 10px;
+}
+
+table.shoptable {
+  padding:10px;
+  width:600px;
+}
+
+table.shoptable .prodcol {
+  width:268px;
+}
+
+table.shoptable .standcol {
+  width:61px;
+}
+
+table.shoptable tr.nop td {
+  padding:0 !important;
+}
+
+table.shoptable .breakdown {
+  color: #33517d;
+  width:81px;
+  padding:0;
+ }
+
+table.shoptable th {
+  color: #0A6891;
+  text-align:left;
+  font-weight: bold;
+  font-size: 120%;
+  margin:0 0 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+table.shoptable td {
+  color:#5a5a5a;
+  font-size:1.1em;
+  padding-bottom:5px;
+  padding-top: 4px;
+}
+ 
+.bigroundboxbottom {
+  width:596px;
+  height:8px;
+}
+
+.btnright {
+  float:right;
+}
+
+

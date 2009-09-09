@@ -55,9 +55,9 @@ class OrdersController < ApplicationController
     @order.region_id = active_shipping_region_id
     @order.add_order_items_from_cart(@cart)
     
-    #begin
+    begin
       Order.transaction do
-       # begin
+        begin
           @order.process
         rescue Exceptions::FulfillmentException => exception
           # shipping exceptions allow the customer to move onto 
@@ -77,12 +77,12 @@ class OrdersController < ApplicationController
         end
         #set_current_cart(nil)
       end
-#    rescue Exception => exception
-#      @processing_error_message = error_message(exception)
-#      refresh_cart
-#      ExceptionNotifier.deliver_exception_notification(exception, self, request, params)
-#      render :action => 'new' and return      
-#    end
+   rescue Exception => exception
+     @processing_error_message = error_message(exception)
+     refresh_cart
+     ExceptionNotifier.deliver_exception_notification(exception, self, request, params)
+     render :action => 'new' and return      
+   end
   end
   
 
@@ -114,7 +114,7 @@ class OrdersController < ApplicationController
 
     @cart = current_cart
     @subtotal = @cart.sub_total
-    @shipping_total = @cart.shipping_totals(region, @default_method)
+    @shipping_total = @cart.shipping_totals(region, @default_method, session[:zipcode])
     @grand_total = @cart.grand_total(@shipping_total)
   end
   

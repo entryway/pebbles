@@ -3,7 +3,7 @@ class CreateOptimizationsTable < ActiveRecord::Migration
     create_table :optimizations do |t|
       t.string :title
       t.text :keywords
-      t.description :description
+      t.text :description
     end
   end
 

@@ -12,7 +12,8 @@ class Category < ActiveRecord::Base
   # return the products paged
   def paged_products(page, product_per_page)
      products.available.paginate :per_page => product_per_page, 
-                       :page => page, :order => "name"
+                                 :page => page, 
+                                 :order => "name"
   end
   
   #
@@ -40,4 +41,9 @@ class Category < ActiveRecord::Base
   def active_children
     Category.active.find(:all, :conditions => {:parent_id => self.id})
   end
+
+  def self.order(ids)
+    update_all(['position = FIND_IN_SET(id, ?)', ids.join(',')], { :id => ids })
+  end
+
 end
