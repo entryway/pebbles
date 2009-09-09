@@ -1,0 +1,38 @@
+<b class="print-hide">Order Items</b>
+<div class="gt-table-controls clearfix">
+	<table class="gt-list-table">
+		<tr>
+			<th>Quantity</th>
+			<th>SKU</th>
+			<th>Product</th>
+			<th id='price-header' style='display:table-cell'>
+				Price
+			</th>
+			<th id='total-header' style='display:table-cell'>
+				Total
+			</th>
+		</tr>
+		<% @order.order_items.each do |order_item| %>
+		<tr>
+			<td>
+				<%= order_item.quantity %>
+			</td>
+			<td>
+				<%= order_item.product.sku %>
+			</td>
+			<td>
+				<%= order_item.product_name %>
+				<% if order_item.order_item_selections.size > 0 %>
+	   				(<%= render :partial => 'admin/orders/order_item_selections',
+						   		:collection => order_item.order_item_selections %>)
+				<% end %>
+			</td>
+			<td class='price-value' style='display:table-cell'>
+				<%= number_to_currency(order_item.price) %></td>
+			<td class='total-value' style='display:table-cell'>
+				<%= number_to_currency(order_item.price * order_item.quantity) %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

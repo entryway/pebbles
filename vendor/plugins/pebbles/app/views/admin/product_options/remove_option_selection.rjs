@@ -1,0 +1,12 @@
+page[:selection_list].replace_html :partial => '/admin/product_options/option_selection_list', 
+                                   :locals => { :product_option => @product_option,
+                                                :product => @product }
+
+page[:selection_form].replace_html render :partial => '/admin/product_options/option_selection_form', 
+ 		                                      :locals => { :product_option => @product_option,
+ 		                                                   :product => @product,
+ 		                                                   :product_option_selection => @selection }
+
+page[:option_list].replace_html :partial => '/admin/product_options/option_list', 
+                                :locals => { :product => @product }         
+                                

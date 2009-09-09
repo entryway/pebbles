@@ -1,0 +1,86 @@
+
+<%= stylesheet('shopping_cart') %>
+<div class="bigroundbox">
+  <div class="boxcontainer">
+	<table cellspacing="0" cellpadding="0" class="shoptable">
+	  <tr>
+	    <th class="prodcol">Product</th>
+		<th class="standcol">Quantity</th>
+		<th class="standcol">Price</th>
+		<th class="standcol">Total</th>
+		<th class="standcol"></th>
+	  </tr>
+	
+<% if @cart.cart_items.length > 0 %>
+  	<% form_tag cart_path(@cart.id), :method => :put, 
+									 :html => { :name => 'cart_form' } do %>
+		
+	  <%= render :partial => "/carts/cart_item", :locals => { :cart => @cart } %>
+	  <tr>
+	    <td class="prodcol"/>
+		<td class="standcol">
+ 			<%= image_submit_tag 'update_quantity_button.gif' %>
+		</td>
+		<td colspan="3"/>
+	  </tr>
+      <tr><td><br/></td></tr>
+	  <tr>
+	 	<td colspan="2"/>
+	 	<td colspan="3"><h4>Shipping Region:</h4></td>
+	  </tr>
+	  <tr id="shipping_regions">
+	 	<td colspan="3"/>
+		<td>
+	 		<%= render :partial => '/carts/shipping_regions',
+	 		 		   :locals => { :order_review => order_review } %>
+	 	</td>
+	  </tr>
+	  <tr>
+	 	<td colspan="2"/>
+	 	<td colspan="3"><h4>Shipping Method:</h4></td>
+	  </tr>
+	  <tr>
+	 	<td colspan="3"/>
+	 	<td id="shipping_methods">
+	 		<%= render :partial => '/carts/shipping_methods', 
+	 				   :locals => { :shipping_methods => @shipping_methods } %>
+	 	</td>
+	  </tr> 
+	  <tr>
+		<td colspan="5"/>
+	  </tr>
+	  <tr>
+		<td colspan="5"/>
+	  </tr>
+	  <tr class="nop">
+	    <td class="prodcol">&nbsp;</td>
+		<td class="standcol">&nbsp; </td>
+		<td class="standcol">&nbsp;</td>
+		<td class="">Subtotal</td>
+		<td class=""><%= number_to_currency(@subtotal) %></td>	
+	  </tr>
+	  <tr id="shipping_totals" class="nop">
+	  	<%= render :partial => "/carts/shipping_totals",
+				   :locals => { :shipping_total => @shipping_total }  %>
+	  </tr>
+ 	  <tr class='nop'>
+		<td class="prodcol">&nbsp;</td>
+		<td class="standcol">&nbsp; </td>
+		<td class="standcol">&nbsp;</td>
+		<td id="shipping_label" colspan="2">Tax (5% for Virginia residents)</td>
+	  </tr>
+      <tr id="cart_totals" class="nop">
+	  	<%= render :partial => "/carts/cart_totals", 
+				   :locals => { :grand_total => @grand_total }  %>
+	  </tr>
+	<% end %>
+<% else %>
+		<tr>
+			<td><h4>Your Cart Is Empty...</h4></td>
+		</tr>
+		
+<% end %>
+	</table>
+  </div> <!-- /boxcontainer -->
+  <div class="bigroundboxbottom">&nbsp;</div>
+</div> <!--bigroundbox -->

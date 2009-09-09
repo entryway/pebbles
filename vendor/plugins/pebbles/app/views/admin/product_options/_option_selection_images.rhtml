@@ -1,0 +1,8 @@
+
+<%= error_messages_for :option_selection_image %>
+<%= render :partial => '/admin/product_options/option_selection_image_form', 
+		   :locals => { :option_selection => option_selection } -%>
+<div id="image_list">
+	<%= render :partial => '/admin/product_options/option_selection_image_list', 
+			   :locals => { :option_selection => option_selection } -%>
+</div>

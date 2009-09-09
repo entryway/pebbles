@@ -1,0 +1,16 @@
+<h1>Configuration</h1>
+<div class="gt-table-controls clearfix">
+  <table class="gt-list-table">
+    <tr>
+      <th>Shipping Type</th>
+    </tr>
+
+    <tr>
+      <td><%= ShippingType::CONFIGURATION_SHIPPING_TYPES[@configuration.shipping_type || 1] %></td>
+    </tr>
+  </table>
+</div>
+
+<br />
+
+<%= link_to 'Edit', edit_admin_configuration_path(1) %>

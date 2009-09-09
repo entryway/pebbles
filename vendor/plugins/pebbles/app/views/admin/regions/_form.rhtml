@@ -1,0 +1,11 @@
+
+<% form_for :region, @region, :url => admin_regions_path  do |form| %>
+  <p>
+	<label for="name">Name *:</label>
+	<%= form.text_field :name, :size => 20 %><br/>
+	
+	<br/>
+	<br/><br/>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>

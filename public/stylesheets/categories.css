@@ -1,0 +1,13 @@
+
+
+div#category-pic {
+	float: left;
+	height: 1000px;
+}
+
+div.category-shirt {
+	float: left;
+	padding: 8px;
+	width: 129px;
+	text-align: center;
+}

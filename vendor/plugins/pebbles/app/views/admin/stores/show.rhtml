@@ -1,0 +1,61 @@
+<% render :partial => 'sidebar' %>	
+
+<h1><%=h @store.storename %></h1>
+<div id="p7TP1" class="p7TPpanel">
+
+  <div class="p7TPwrapper">
+    <div class="p7TP_tabs">
+      <div id="p7tpb1_1" class="down"><a class="down" href="javascript:;">Details</a></div>
+      <br class="p7TPclear" />
+    </div>
+    <div class="p7TPcontent">
+      <div id="p7tpc1_1">
+	<hr/>	
+	<label for="storename">Store Name: </label>
+	<%= @store.storename %>
+        <hr/>
+	<label for="address">Address: </label>
+	<%= @store.address %>
+        <hr/>
+        <label for="city">City: </label>
+	<%= @store.city %>
+        <hr/>
+        <label for="state">State: </label>
+	<%= @store.state %>	
+        <hr/>
+        <label for="zip">Zip: </label>
+	<%= @store.zip %>
+        <hr/>
+        <label for="country">Country: </label>
+	<%= @store.country %>
+        <hr/>
+        <label for="latitute">Latitude: </label>
+	<%= @store.lat %>
+        <hr/>
+        <label for="longitute">Longitude: </label>
+	<%= @store.lng %>
+        <hr/>
+        <label for="ul">Url: </label>
+	<%= @store.url %>
+        <hr/>
+        <label for="name">Phone: </label>
+	<%= @store.phone %>
+    <br/>
+	<br/>
+	<br/><br/>
+ 
+
+   </div>
+    </div>
+  </div>
+  <!--[if lte IE 6]>
+		<style type="text/css">.p7TPpanel div,.p7TPpanel a{zoom:100%;}.p7TP_tabs a{white-space:nowrap;}</style>
+	<![endif]-->
+  <!--[if IE 7]>
+		<style>.p7TPpanel div{zoom:100%;}</style>
+	<![endif]-->
+</div>
+
+
+<%= link_to 'Edit', edit_admin_store_path(@store) %> |
+<%= link_to 'Back', admin_stores_path %>

@@ -1,0 +1,109 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+   <title><%= yield(:title) ||  default_title %></title>
+   <meta name="keywords" content="<%= yield(:meta_keywords) || default_keywords %>" />
+   <meta name="description" content="<%= yield(:meta_description) || default_description %>" />
+   <meta name="author" content="Green Label" lang="en"/>
+   <meta name="copyright" content="Copyright 2008"/> 
+   <meta name="description" content="Green Label Organic: Sustainable Threads is a family owned and operated business located in the Blue Ridge Mountains of Virginia. The Green Label philosophy is one of respect; respect for our environment, respect for working people everywhere, and respect for ourselves through the choices we make."/>
+   <meta name="robots" content="index,follow"/>
+   <meta name="revisit-after" content="7 days"/>
+   <meta http-equiv="imagetoolbar" content="no"/>	
+   <meta name="language" content="en"/>
+   <%= stylesheet_link_tag "reset-fonts", :media => 'screen, projection' %>
+   <%= stylesheet_link_tag "main", :media => 'screen, projection' %>
+   <%= javascript_include_tag 'prototype' %>
+   <%= javascript_include_tag 'effects' %>
+   <%= javascript_include_tag 'lowpro' %>
+   <%= javascript_include_tag 'application' %>
+   <%= yield :head %>
+
+	<!--[if lte IE 6]>
+		<%= stylesheet_link_tag "ie6", :media => 'screen, projection' %>
+	<![endif]-->
+	
+   <%= GMap.header if @map %>
+   <%= @map.to_html if @map %>
+</head>
+	<body>
+		<!-- Head -->
+		<div id="hd">
+			<!-- logo -->
+			<h1 id="logo"><a href="/">Green Label Organic</a></h1>
+			
+			<!-- nav -->
+			<div id="nav">
+				<ul>
+					<li><a <%= current_style('home') %> href="/"><span>home</span></a></li>
+					<li><a <%= current_style('about') %> href="/index/about"><span>about</span></a></li>
+					<% if products_in_shopping_cart? %>
+					<li><a <%= current_style('cart') %> href="/carts/<%= current_cart.id %>"><span>shopping cart</span></a></li>
+					<% else %>
+					<li><a <%= current_style('cart') %> href="/categories"><span>shop</span></a></li>
+					<% end %>
+					<li><a <%= current_style('contact') %> href="/index/contact_us"><span>contact</span></a></li>
+					<li><a <%= current_style('retail') %> href="/stores"><span>find retailer</span></a></li>
+				</ul>
+			</div>
+			
+		</div>
+		<!-- / Head -->
+		
+		<!-- Body -->
+		<div id="bd" class="clearfix">
+		
+			<!-- left col -->
+			<div class="left">
+				<div class="sidebar-top"></div>
+				<div class="sidebar">
+					
+					<%= render :partial => '/shared/product_menu' %>
+					<br/>
+					<h2 class="inline">SUPPORT LOCAL</h2>
+					<div class="content">
+					<a href="/index/support_local"><img src="/images/support-local.png" alt="" /></a>
+					<p>At Green Label Organic we believe it is the spirit of intention that defines what we think and feel is “LOCAL”. <a href="/index/support_local">Read More >></a></p></div>
+					<h2 class="inline">Giving Back</h2>
+					<div class="content cushycms">
+						<p>While researching the environmental impact of conventional cotton we were astounded by the toxicity of the chemicals used. <br/> <a href="/index/charity">Read More >></a></p>
+						<a href="/index/charity"><img src="/images/coffee_kids_logo.gif" alt="" /></a>
+					</div>
+					<br/><br/><br/>
+					<h2 class="inline"><a class="plain" href="/index/wholesale">WHOLESALE/DEALERS</a></h2>
+					
+					<% if @is_wholesaler %>
+						<br/>
+					  	<a href="/TestingDownload.txt">Wholesale Price List >></a>
+					<% end %>
+					
+				</div>
+				<div class="sidebar-btm"></div>
+			</div><!-- /left col -->
+			
+			<!-- right col -->
+			<div class="right">
+				 <% if flash.any? %>
+				 	<div id="flash"><%= flash[:notice] %></div><% flash.clear %>
+				<% end %>
+				<%= yield %>
+				</div></div></div></div><!-- /box -->
+			</div><!-- /right col -->
+			
+		</div>
+		<!-- / Body -->
+		<%= render :partial => "/layouts/footer" %>
+		<!-- <script type="text/javascript" src="https://cetrk.com/pages/scripts/0009/0115.js"> </script>
+		<!-- <script type="text/javascript">
+				var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+				document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+				</script>
+		 -->		<!-- <script type="text/javascript">
+		 			var pageTracker = _gat._getTracker("UA-992687-1");
+		 			pageTracker._initData();
+		 			pageTracker._trackPageview();
+		 		</script> --> -->
+	</body>
+</html>

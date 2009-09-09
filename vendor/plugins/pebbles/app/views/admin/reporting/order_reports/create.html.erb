@@ -1,0 +1,21 @@
+<% content_for :sidebar do %>
+	<ul>
+		<li><%= link_to 'Export as CSV', csv_list_admin_reporting_order_reports_path %></li>
+	</ul>
+<% end %>
+
+<br/><br/><br/>
+<h1>Order Report</h1>
+
+<div id="day_select">
+	<% form_tag admin_reporting_order_reports_path(:generate_report => true) do %>
+        Start Date:&nbsp;&nbsp;<%= calendar_date_select_tag :start_date %><br/>
+		End Date:&nbsp;&nbsp;<%= calendar_date_select_tag :end_date %><br/>
+		<%= submit_tag "Export Orders" %><br/>
+		(Leave dates blank for orders over all time)
+	<% end %>
+</div>
+
+</fieldset>
+<br/><br/><br/><br/>
+<%= @order_report %>

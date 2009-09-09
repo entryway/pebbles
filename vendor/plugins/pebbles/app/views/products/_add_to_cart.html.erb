@@ -1,0 +1,8 @@
+
+<% if out_of_stock %>
+	<span id='so_sorry_out_of_stock'>
+		Sorry this option is <br> currently out of stock
+	</span>
+<% else %>
+  <%= image_submit_tag '/images/addtocart.jpg', :class => 'image-submit', :id => 'submit_button' %>
+<% end %>

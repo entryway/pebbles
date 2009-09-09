@@ -1,0 +1,61 @@
+
+<h1><%=h @product.name %></h1>
+<div id="p7TP1" class="p7TPpanel">
+
+  <div class="p7TPwrapper">
+    <div class="p7TP_tabs">
+      <div id="p7tpb1_1" class="down"><a class="down" href="javascript:;">Details</a></div>
+      <br class="p7TPclear" />
+    </div>
+    <div class="p7TPcontent">
+      <div id="p7tpc1_1">
+	
+
+  <p>
+	<div style="float:left">
+		<label for="name">Name:</label>
+	 	<%= @product.name %><br/>
+	</div>
+	<div style="float:right">
+	   <img src="<%= @product.product_images[0].public_filename unless @product.product_images.empty? %>" 
+	        width="62" height="62">
+    </div>
+	<div style="clear:both"/>
+	<hr/>	 
+	<%= check_box_tag :is_featured, @product.is_featured, @product.is_featured %>Featured Product
+	<label for="shipping_type">Shipping Type: </label>
+  <%= ShippingType::PRODUCT_SHIPPING_TYPES[@product.shipping_type] %>
+	<hr/>	
+	<label for="price">Price: $</label>
+	<%= @product.price %>
+    <label for="price">Wholesale Price: $</label>
+  	<%= @product.wholesale_price %>
+	<hr/>
+	<label for="description">Description:</label>
+	<%= @product.short_description %><br/>
+	<hr/>
+	<label for="admin_notes">Admin Notes:</label>
+	<%= @product.admin_notes %><br/>
+	
+	<br/><br/><hr/>
+	<b>Created at:</b>
+	<b>Updated at:</b>
+    <br/>
+	<br/>
+	<br/><br/>
+  </p>
+
+   </div>
+    </div>
+  </div>
+  <!--[if lte IE 6]>
+		<style type="text/css">.p7TPpanel div,.p7TPpanel a{zoom:100%;}.p7TP_tabs a{white-space:nowrap;}</style>
+	<![endif]-->
+  <!--[if IE 7]>
+		<style>.p7TPpanel div{zoom:100%;}</style>
+	<![endif]-->
+</div>
+
+
+<%= link_to 'Edit', edit_admin_product_path(@product) %> |
+<%= link_to 'Back', admin_products_path %>

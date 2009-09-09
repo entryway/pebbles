@@ -1,0 +1,23 @@
+<tr id='option_selection_form'>
+	<% product_options.each do |product_option| %>
+		<td><%= select_tag('selections[]', 						
+				options_from_collection_for_select(product_option.product_option_selections, 
+												   :id, :name)) 
+			%>
+		</td>
+	<% end %>
+	<td><%= link_to_remote "Add Out of Stock Selection", 
+					:url => { :controller => 'admin/out_of_stock_options', 
+							  :action => 'create',
+							  :product_id => product.id },
+					:submit => 'option_selection_form',
+					:update => 'out_of_stock_options',
+					:method => :post,
+					:before => "$('add_selection_spinner').show()",
+			        :complete => "$('add_selection_spinner').hide()"
+		 %>
+		<span id= 'add_selection_spinner' style="display:none" >
+	    	<img src='/images/wait.gif'><br/>
+	  	</span>
+	</td>
+</tr>

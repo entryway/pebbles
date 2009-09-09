@@ -1,0 +1,19 @@
+
+<div class="box1"><div class="box2"><div class="box3"><div class="box4 clearfix">
+	<div id ="shopping_cart">
+		<h1>Shopping Cart</h1>
+		<%= render :partial => 'cart',
+		 		   :locals => { :order_review => false } %>
+		<hr/>
+		<br/>
+		<% if @cart.ordered_cart_items.length > 0 %>
+			<span class="button" style="float:right;">
+				<%= link_to image_tag('checkout.jpg'), 
+							new_order_path %>
+			</span>
+		<% end %>
+
+		<br/><br/>
+	</div>
+
+</div></div></div></div>

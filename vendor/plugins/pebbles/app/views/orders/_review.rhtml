@@ -1,0 +1,36 @@
+<div id="checkout_review" class="bigroundbox">
+   <div class="boxcontainer">
+	<table cellspacing="0" cellpadding="0" width="80%" class="shoptable">
+		<tr>
+			<th class="standardcol">Qty</th>
+			<th class="prodcol" >Product </th>
+			<th class="standcol">Price</th>
+			<th class="standcol">Total</th>
+		</tr>
+		<%= render(:partial => 'order_item', :collection => @cart.cart_items)%>
+		<tr><td><br/></td></tr>
+	  	<tr class="nop">
+	    	<td class="prodcol">&nbsp;</td>
+			<td class="standcol">&nbsp; </td>
+			<td class="breakdown">Subtotal</td>
+			<td class="breakdown"><%= number_to_currency(@subtotal) %></td>	
+	  	</tr> 
+	    <tr>
+			<td>Shipping Region: <%= shipping_region(active_shipping_region_id) %><br/></td> 
+			<td>Shipping Method: <%= shipping_method(active_shipping_method_id) %></td>
+		</tr>
+		<tr>
+    		<td class="prodcol">&nbsp;</td>
+			<td class="standcol">&nbsp; </td>
+			<td class="breakdown">Shipping</td>
+			<td class="breakdown"><%= number_to_currency(@shipping_total) %></td>
+		<tr>
+    		<td class="prodcol">&nbsp;</td>
+			<td class="standcol">&nbsp; </td>
+			<td class="breakdown">Total</td>
+			<td class="breakdown"><%= number_to_currency(@grand_total) %></td>
+		</tr>
+	</table>
+  </div> <!-- /boxcontainer -->
+  <div class="bigroundboxbottom">&nbsp;</div>
+</div>

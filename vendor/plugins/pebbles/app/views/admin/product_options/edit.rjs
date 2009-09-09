@@ -1,0 +1,15 @@
+page[:options_form].replace_html :partial => '/admin/product_options/options_form',
+                                 :locals => { :product_option => @product_option,
+                                              :product => @product }
+                                 
+page[:product_option_selections].show
+
+page[:selection_form].replace_html render :partial => '/admin/product_options/option_selection_form', 
+		                                      :locals => { :product_option => @product_option,
+		                                                   :product => @product,
+		                                                   :product_option_selection => ProductOptionSelection.new }
+
+ 
+page[:selection_list].replace_html :partial => '/admin/product_options/option_selection_list', 
+                                  :locals => { :product_option => @product_option,
+                                               :product => @product }

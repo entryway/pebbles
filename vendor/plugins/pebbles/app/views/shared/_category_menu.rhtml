@@ -1,0 +1,11 @@
+	<div id="categories">
+		<h3><em><span></span>Categories</em></h3>
+		<ul>
+			<% for category in categories %>
+				<% if category.parent_id == 1 %>
+					<li><%#= link_to image_tag(category.category_images[0].public_filename()), category_products_path(category) %>
+						<%= link_to category.name, category_products_path(category) %></a></li>	
+				<% end %>	
+			<% end %>
+		</ul>
+	</div>

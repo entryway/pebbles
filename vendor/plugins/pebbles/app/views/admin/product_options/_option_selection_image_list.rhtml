@@ -1,0 +1,12 @@
+<% image = option_selection.images[0] %>
+<% if image %>
+	<div id="<%= dom_id(image, 'id') %>" style="display:inline">
+		<%= image_tag image.public_filename, :name => "image_id" %>
+		<input type="hidden" name="image_id" value="<%= image.id %>"/>
+		<%= link_to_remote 'Remove Image', :submit => dom_id(image, 'id'), 
+							:update => 'image_list',
+							:confirm => "Are you sure you want to remove the image?", 
+							:url => { :action => 'remove_option_selection_image', 
+									  :id => option_selection.id } %>
+	</div>
+<% end %>

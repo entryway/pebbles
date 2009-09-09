@@ -1,0 +1,39 @@
+/*
+Company:	Green Label
+File:		ie6.css - This contains all the IE6 styles for the website.
+*/
+
+div#nav ul li a {
+	background: url(../images/tab-right.gif) no-repeat 100% 0;
+}
+
+div.sidebar-btm {
+	background:none;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/sidebar-btm.png', sizingmethod='crop');
+}
+
+/* Box */
+div.box1 {
+	background: url(../images/box-bl.gif) no-repeat 0 100%;
+}
+div.box3 {
+	background: url(../images/box-tr.gif) no-repeat 100% 0;
+}
+div.box4 {
+	background: url(../images/box-br.gif) no-repeat 100% 100%;
+}
+
+div.left {
+	width: 220px;
+	margin-left: 10px;
+overflow: hidden;
+	float: left;
+	display: inline;
+}
+div.right {
+	width: 654px;
+	margin-right: 10px;
+overflow: hidden;
+	float: right;
+	display: inline;
+}

@@ -1,0 +1,6 @@
+
+page[:category_list].replace_html :partial => "category_list", 
+                                  :locals => { :product_id => @product.id,
+                                               :categories => @product.categories  }
+
+page[dom_id(@category, 'name')].visual_effect :highlight, :duration => 3

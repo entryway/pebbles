@@ -1,0 +1,12 @@
+
+<tr class='fulfillment_code'>
+	<% fields_for "shipping_method[fulfillment_code_attributes][]", fulfillment_code do |field| %>
+	   <td><%= field.text_field :item_low, :index => nil, :size => 5 %></td>
+	   <td><%= field.text_field :item_high, :index => nil, :size => 5 %></td>
+	   <td><%= field.text_field :code, :index => nil, :size => 5 %></td>
+		<td><%= link_to_function "remove", "this.up('.fulfillment_code').remove()" %></td>
+		<% unless fulfillment_code.new_record? %>
+			<%= field.hidden_field :id, :index => nil %>
+		<% end %>
+	<% end %>
+</tr>

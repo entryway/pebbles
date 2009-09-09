@@ -1,62 +1,49 @@
-# Add your custom routes here.  If in config/routes.rb you would 
-# add <tt>resources</tt>, here you would add just <tt>resources</tt>
+ActionController::Routing::Routes.draw do |map|
+   map.resources :users
+   map.resources :promo_codes
+   map.resources :stores
+   
+   map.resource :session, :controller => 'sessions'
+   map.connect '', :controller => 'index', :action => 'index'
+ 
+   map.resources :carts do |cart|
+     cart.resources :cart_items
+   end
+   
+   map.resources :orders
+   map.resources :categories do |categories|
+     categories.resources :products
+   end
+   
+   map.namespace :admin do |admin| 
+     admin.resources :authorizations
 
-# resources :ecommerces
+     admin.resources :categories
+     admin.resources :ebay_orders
+     
+     admin.resources :orders
+     admin.resources :order_items
+ 
+     admin.resources :promo_codes
+     admin.resources :products, :has_many => [:product_options, 
+                                              :out_of_stock_options]
+     admin.resources :regions, :has_many => :shipping_methods
+     
+     admin.resources :stores
 
-  resources :users
-  resources :promo_codes
-  resource :session, :controller => 'sessions'
-  resources :stores
-  connect '', :controller => 'index', :action => 'index'
-  connect '', :controller => 'catalog', :action => 'products'
-
-  resources :carts do |cart|
-    cart.resources :cart_items
-  end
+     admin.resources :vendors
+   end
+               
+   #map.signup '/signup', :controller => 'users', :action => 'new'
+   map.login  '/login', :controller => 'sessions', :action => 'new'
+   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+                  
+   map.connect '', :controller => 'index', :action => 'index'
+       
+  map.connect 'admin/:action', :controller => 'admin'
+                       
+  # Install the default route as the lowest priority.
+  map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action/:id'
   
-  resources :orders
-  resources :categories do |categories|
-    categories.resources :products
-  end
-  
-  resources :stores
-  resources :shippings
-  
-  namespace :admin do |admin|
-    admin.resources :authorizations
-
-    admin.resources :categories, :collection => { :reorder => :put }
-    admin.resources :coupons
-    admin.resources :ebay_orders
-    
-    admin.resources :orders
-    admin.resources :order_items
-
-    admin.resources :promo_codes
-    admin.resources :products, :has_many => [:product_options, 
-                                             :out_of_stock_options, 
-                                             :accessories]
-                                             
-    admin.resources :regions, :has_many => :shipping_methods
-    
-    admin.resources :stores
-
-    admin.namespace :reporting do |report|
-      report.resources :reports
-      report.resources :order_reports, 
-                       :collection => { 'csv_list' => :get, 'pdf' => :get }
-    end
-    
-    admin.resources :vendors
-    admin.resources :optimizations
-    admin.resources :configurations
-  
-  end
-              
-  signup '/signup', :controller => 'users', :action => 'new'
-  login  '/login', :controller => 'sessions', :action => 'new'
-  logout '/logout', :controller => 'sessions', :action => 'destroy'
-                 
- connect '', :controller => 'index', :action => 'index'
-      
- connect 'admin/:action', :controller => 'admin'
+end

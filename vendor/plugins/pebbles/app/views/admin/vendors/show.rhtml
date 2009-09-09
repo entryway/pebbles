@@ -1,0 +1,42 @@
+<h1><%=h @vendor.name %></h1>
+<div id="p7TP1" class="p7TPpanel">
+
+  <div class="p7TPwrapper">
+    <div class="p7TP_tabs">
+      <div id="p7tpb1_1" class="down"><a class="down" href="javascript:;">Details</a></div>
+      <br class="p7TPclear" />
+    </div>
+    <div class="p7TPcontent">
+      <div id="p7tpc1_1">
+	<hr/>	
+	<label for="name">Name: </label>
+	<%= @vendor.name %>
+	<label for="zipcode">Zipcode: </label>
+	<%= @vendor.zipcode %>
+	<label for="active">Active: </label>
+	<%= @vendor.active %>
+	<label for="shipping_type">Shipping Type: </label>
+	<%= ShippingType::VENDOR_SHIPPING_TYPES[@vendor.shipping_type] %>
+	<hr/>
+	<label for="description">Description: </label><%= @vendor.description %><br/>
+	<hr/>
+	<label for="admin_notes">Admin Notes: </label><%= @vendor.admin_notes %><br/>	
+    <br/>
+	<br/>
+	<br/><br/>
+  </p>
+
+   </div>
+    </div>
+  </div>
+  <!--[if lte IE 6]>
+		<style type="text/css">.p7TPpanel div,.p7TPpanel a{zoom:100%;}.p7TP_tabs a{white-space:nowrap;}</style>
+	<![endif]-->
+  <!--[if IE 7]>
+		<style>.p7TPpanel div{zoom:100%;}</style>
+	<![endif]-->
+</div>
+
+
+<%= link_to 'Edit', edit_admin_vendor_path(@vendor) %> |
+<%= link_to 'Back', admin_vendors_path %>

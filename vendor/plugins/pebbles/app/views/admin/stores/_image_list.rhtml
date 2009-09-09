@@ -1,0 +1,9 @@
+<% store.store_images.each do |image| %>
+	<div id="<%= dom_id(image, 'id') %>">
+		<%= image_tag image.public_filename, :name => "image_id" %>
+		<input type="hidden" name="image_id" value="<%= image.id %>"/>
+		<%= link_to_remote 'Remove Image', :submit => dom_id(image, 'id'), 
+							:confirm => "Are you sure you want to remove the image?", 
+							:url => { :action => 'remove_store_image', :id => store.id } %>
+	</div>
+<% end %>

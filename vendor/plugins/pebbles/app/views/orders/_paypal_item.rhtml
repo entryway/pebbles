@@ -1,0 +1,3 @@
+<%= hidden_field_tag sprintf("item_name_%d", paypal_item_counter + 1), h(paypal_item.product.name) %>
+<%= hidden_field_tag sprintf("quantity_%d", paypal_item_counter + 1), h(paypal_item.quantity) %>
+<%= hidden_field_tag sprintf("amount_%d", paypal_item_counter + 1), paypal_item.product.price %>

@@ -1,0 +1,19 @@
+<%= error_messages_for :address %>
+<label>Full Name</label>
+<label>Address 1: </label>
+<%= text_field "#{address_type}_address", 'address_1'  %>
+<br class="clear" />
+ <label>Address 2: </label>
+<%= text_field "#{address_type}_address", 'address_2'  %>
+<br class="clear" />
+ <label>State / Province / Region: </label>
+<%= text_field "#{address_type}_address", 'city'  %>
+<br class="clear" />
+<%= text_field "#{address_type}_address", 'state', 'class' => 'textbox twochar'  %>
+<input type="text" class="text"  />
+<br class="clear" />
+ <label>ZIP / Postal Code: </label>
+<%= text_field "#{address_type}_address", 'state', 'class' => 'textbox twochar'  %>
+<br class="clear" />
+ <label>Phone</label>
+<input type="text" class="text"  />
