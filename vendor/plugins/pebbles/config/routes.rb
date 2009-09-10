@@ -13,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
    map.resources :orders
    map.resources :categories do |categories|
      categories.resources :products
+   map.resources :shippings
+   
    end
    
    map.namespace :admin do |admin| 

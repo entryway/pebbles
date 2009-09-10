@@ -254,7 +254,7 @@ class InitialSchemaLoad < ActiveRecord::Migration
 
     create_table "products", :force => true do |t|
       t.string   "sku"
-      t.string   "name",              :limit => 50
+      t.string   "name",              :limit => 100
       t.string   "subname",           :limit => 50
       t.text     "short_description"
       t.decimal  "weight",                          :precision => 8, :scale => 2
@@ -267,6 +267,14 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.datetime "created_at"
       t.boolean  "available",                                                     :default => true
       t.decimal  "wholesale_price",                 :precision => 8, :scale => 2
+      t.text     "keywords"
+      t.text     "description"
+      t.string   "title"
+      t.decimal  "handling"
+      t.integer  "shipping_type",                                                  :default => 0
+      t.decimal  "length"
+      t.decimal  "width"
+      t.decimal  "height"
     end
 
     create_table "promo_codes", :force => true do |t|

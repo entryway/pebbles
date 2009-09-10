@@ -1,7 +1,7 @@
 <%= stylesheet('product_detail') %>
 <%= stylesheet('lightbox') %>
 <%= javascript('lightbox', 'shipping') %>
-<% title(@product.title ? @product.title : @product.name) -%>
+<% title(@product.title.blank? ? @product.name : @product.title) -%>
 <% meta_keywords(@product.keywords) unless @product.name -%>
 <% meta_description(@product.description) unless @product.long_description -%>
 
@@ -33,10 +33,6 @@
 					Quantity: <%= text_field_tag :quantity, '1', :size => 3 %><br/><br/>
 				<div id="shipping">
 					<%= render :partial => 'shipping' %>
-				</div>
-				<div id="product_accessories">
-					<%= render :partial => 'product_accessories', 
-					 		   :locals => { :product => @product } %>
 				</div>
 					<span class="button">
             			<div id="button"> 
