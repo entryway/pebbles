@@ -3,7 +3,7 @@ module Admin
 
 class ProductsController < ApplicationController
   layout "admin"
-  require_role "admin"
+#  require_role "admin"
   
   # add a product to the category
   def add_to_category
