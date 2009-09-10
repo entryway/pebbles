@@ -21,6 +21,8 @@ class XProduct < ActiveRecord::Base
   has_many :x_options, :through => :x_classes
   has_one :x_quick_prices, :foreign_key => 'productid'
   has_one :x_pricing, :through => :x_quick_prices
+  has_many :x_category_products, :foreign_key => 'productid'
+  has_many :x_categories, :through => :x_category_products
 end
 
 class XQuickPrices < ActiveRecord::Base
@@ -72,6 +74,22 @@ class XVariantItem < ActiveRecord::Base
   belongs_to :x_option, :foreign_key => 'optionid'
 end
 
+class XCategories < ActiveRecord::Base
+  set_table_name 'xcart_categories'
+  set_primary_key 'categoryid'
+  establish_legacy_connection
+  has_many :x_category_products, :foreign_key => 'categoryid'
+  has_many :x_products, :through => :x_category_products
+end
+
+class XCategoryProduct< ActiveRecord::Base
+  set_table_name 'xcart_products_categories'
+  establish_legacy_connection
+  belongs_to :x_product, :foreign_key => 'productid'
+  belongs_to :x_category, :foreign_key => 'categoryid'
+end
+
+
 XProduct.all.each do |xp|
   p = Product.new
   p.sku = xp.productcode
@@ -84,16 +102,18 @@ XProduct.all.each do |xp|
   p.available = xp.avail
   p.save!
   xp.x_classes.each do |xc|
-    po = ProductOption.new
-    po.name = xc.classname
-    po.description = xc.classtext
-    po.selection_type = 1
-    p.product_options << po
-    xc.x_options.each do |xo|
-      ps = ProductOptionSelection.new
-      ps.name = xo.option_name
-      ps.list_order = xo.orderby
-      po.product_option_selections << ps
+    if xc.avail
+      po = ProductOption.new
+      po.name = xc.classname
+      po.description = xc.classtext
+      po.selection_type = 1
+      p.product_options << po
+      xc.x_options.each do |xo|
+        ps = ProductOptionSelection.new
+        ps.name = xo.option_name
+        ps.list_order = xo.orderby
+        po.product_option_selections << ps
+      end
     end
-  end    
+  end
 end

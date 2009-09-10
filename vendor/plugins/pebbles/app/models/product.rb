@@ -1,7 +1,4 @@
-
 class Product < ActiveRecord::Base
-  acts_as_reportable
-  
   belongs_to :vendor
   has_many :product_images 
   has_many :product_large_images

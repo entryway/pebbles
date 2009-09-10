@@ -1,7 +1,4 @@
 class OrderTransaction < ActiveRecord::Base
-  
-  acts_as_reportable 
-  
   belongs_to :order
   serialize :params
   cattr_accessor :gateway
