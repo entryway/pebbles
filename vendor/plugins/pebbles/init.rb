@@ -1,7 +1,3 @@
-
-
-#puts config.load_paths
-
 config.gem 'collectiveidea-awesome_nested_set',
            :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
 

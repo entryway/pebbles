@@ -13,6 +13,8 @@ Rails::Initializer.run do |config|
   config.gem 'fastercsv', :lib => 'faster_csv'
   config.gem 'activemerchant', :lib => 'active_merchant'
   config.gem 'net-ssh', :lib => 'net/ssh'
+  config.gem 'collectiveidea-awesome_nested_set',
+           :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
 end
 
 

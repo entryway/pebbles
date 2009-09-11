@@ -4,8 +4,7 @@ class ActiveRecord::Base
        :adapter => "mysql", 
        :host => "localhost",
        :username => "root",
-       :password => "tussy2",
-       :database => "floydcountystore",
+       :database => "floyd_county_store",
        :encoding => 'utf8'
      )
   end
@@ -74,7 +73,7 @@ class XVariantItem < ActiveRecord::Base
   belongs_to :x_option, :foreign_key => 'optionid'
 end
 
-class XCategories < ActiveRecord::Base
+class XCategory < ActiveRecord::Base
   set_table_name 'xcart_categories'
   set_primary_key 'categoryid'
   establish_legacy_connection
@@ -116,4 +115,15 @@ XProduct.all.each do |xp|
       end
     end
   end
+end
+
+XCategory.find(:all, :order => 'parentid ASC').each do |xc|
+  c = Category.new
+  c.parent_id = xc.parentid == 0 ? nil : xc.parentid
+  c.name = xc.category
+  c.id = xc.categoryid
+  c.description = xc.description
+  c.position = xc.order_by
+  c.active = xc.avail
+  c.save!
 end
