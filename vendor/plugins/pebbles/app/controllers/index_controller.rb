@@ -5,6 +5,7 @@ class IndexController < ApplicationController
 
   def index
     @featured_products = Product.find(:all, :conditions => { :is_featured => true })
+    render :layout => 'splash'
   end
   
   def send_contact

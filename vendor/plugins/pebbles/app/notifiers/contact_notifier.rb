@@ -1,7 +1,7 @@
 class ContactNotifier < ActionMailer::Base
   
   def contact_confirmation(name, email, phone, extension, comment)
-    recipients APP_CONFIG['suport_email']
+    recipients APP_CONFIG['support_email']
     from APP_CONFIG['contact_email']
     sent_on Time.now
     subject 'Green Label: Contact Us'

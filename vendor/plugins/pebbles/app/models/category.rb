@@ -27,6 +27,7 @@ class Category < ActiveRecord::Base
   end
   
   def self.position_sorted
+    return [] if root.nil?
     root.children.sort_by { |a| a.position }
   end
   

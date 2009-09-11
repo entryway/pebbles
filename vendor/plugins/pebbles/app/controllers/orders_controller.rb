@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   include ActiveMerchant::Billing
   include ActiveMerchant::Billing::Integrations
 
- # ssl_required :new, :create
+  ssl_required :new, :create
        
   def new
     @order = Order.new

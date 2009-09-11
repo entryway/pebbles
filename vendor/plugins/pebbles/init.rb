@@ -4,5 +4,11 @@
 
 config.gem 'collectiveidea-awesome_nested_set',
            :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
-config.load_paths += %W(#{Rails.root}/vendor/plugins/pebbles/app/lib)
-config.load_paths += %W(#{Rails.root}/vendor/plugins/pebbles/app/notifiers)
+
+ActiveSupport::Dependencies.load_paths << RAILS_ROOT+ "/vendor/plugins/pebbles/app/lib"
+ActiveSupport::Dependencies.load_paths << RAILS_ROOT+ "/vendor/plugins/pebbles/app/notifiers"
+
+%w(controllers helpers lib models notifiers views ).each  do |path| 
+  ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), 'app', path) 
+end
+ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), 'lib')

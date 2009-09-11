@@ -2,9 +2,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
   include SslRequirement
-  include Wholesaler
   
-  before_filter :verify_wholesaler
   filter_parameter_logging :credit_card
   
   # the current shipping region

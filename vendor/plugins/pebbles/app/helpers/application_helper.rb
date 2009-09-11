@@ -49,7 +49,8 @@ module ApplicationHelper
    end
   
    def default_title
-     Optimization.first.title || "title"
+     "title"
+     #Optimization.first.title || "title"
    end
    
    # meta keywards for each page
@@ -58,7 +59,8 @@ module ApplicationHelper
    end
    
    def default_description
-     Optimization.first.description || "description"
+     "description"
+     #Optimization.first.description || "description"
    end
 
    # meta keywards for each page
@@ -67,7 +69,8 @@ module ApplicationHelper
    end
   
    def default_keywords
-     Optimization.first.keywords || "keywords"
+     "keywords"
+     #Optimization.first.keywords || "keywords"
    end
   
 end

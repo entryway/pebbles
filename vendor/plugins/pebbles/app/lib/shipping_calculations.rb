@@ -1,6 +1,6 @@
 module ShippingCalculations
   
-  include ActiveMerchant::Shipping
+  #include ActiveMerchant::Shipping
   
   # calculate cost for product item
   def self.product_quote(product_id, quantity, zipcode, accessories = [])
