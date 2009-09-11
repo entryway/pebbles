@@ -12,3 +12,9 @@ Category.create(:name     => 'hats',
 
 Product.create(:name => 'test',
                :sku  => '2342342')
+User.create(:login => 'admin', 
+            :password => 'admin',
+            :email => 'dev@entryway.net',
+            :password_confirmation => 'admin',
+            :role => 'admin'
+            )

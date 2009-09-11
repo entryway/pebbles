@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   include ActiveMerchant::Billing
   include OrderCalculations 
   include OrderProcessing
-  acts_as_reportable
+  #acts_as_reportable
   
 
   belongs_to :billing_address,
