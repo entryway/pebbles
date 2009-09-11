@@ -1,4 +1,3 @@
-
 <div class="box1"><div class="box2"><div class="box3"><div class="box4 clearfix">
 
 <h1>Contact Us</h1>
@@ -7,29 +6,28 @@ Green Label Organic<br/>
 PO Box 457<br/>
 Floyd, VA 24091<br/>
 (540) 745-6162<br/>
-For order inquiries, please email us at <%= enkode_mail('orders@greenlabel.com', 'orders@greenlabel.com') %>.<br/><br/>
-For all other inquiries, please email us at <%= enkode_mail('customerservice@greenlabel.com', 'customerservice@greenlabel.com') %> or use the form below:
+<br/><br/>
+For inquiries, please email us at <%= enkode_mail('sales@greenlabel.com', 'sales@greenlabel.com', 'contact sales', 'Green Label Sales') %> or use the form below:
 
 <br/>
 <br>
 
 <% form_tag :action => 'send_contact' do %>
-	Your Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="name"><br>
-	<br>
-	Email Address: <input type="text" name="email"><br>
-	<br>
-	Phone Number: <input type="text" name="phone">&nbsp;&nbsp;&nbsp; Extention: <input type="text" name="extension" style="width: 40px">
-	<br>
-	<br>
-	Comment/Question:<br>
+  Your Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="name"><br>
+  <br>
+  Email Address: <input type="text" name="email"><br>
+  <br>
+  Phone Number: <input type="text" name="phone">&nbsp;&nbsp;&nbsp; Extention: <input type="text" name="extension" style="width: 40px">
+  <br>
+  <br>
+  Comment/Question:<br>
 
-	<p><textarea name="comment" cols="55" rows="5"
-	id="Comment"></textarea></p>
+  <p><textarea name="comment" cols="55" rows="5"
+  id="Comment"></textarea></p>
 
-	<br>
+  <br>
 
-	<input type="submit"><br>
+  <input type="submit"><br>
 <% end %>
 <br/><br/>
 </div></div></div></div>
-
