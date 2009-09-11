@@ -8,11 +8,7 @@ Rails::Initializer.run do |config|
     :session_key => '_green_label_session', 
     :secret      => 'dfb76bc1f2fed160d2e0f49f1a2a514e2c4160c163298ca46372000da37bc20bd59408ad0a5e536f567cd3bbd8524bcd3a54b08ae7f639c5307896148cdf1507' 
   }
-  
-  config.load_paths += %W(#{RAILS_ROOT}/app/concerns)
-  config.load_paths += %W(#{RAILS_ROOT}/app/lib)
-  config.load_paths += %W(#{RAILS_ROOT}/app/notifiers)
-  
+    
   # only needed for import of addresses
   config.gem 'fastercsv', :lib => 'faster_csv'
   config.gem 'activemerchant', :lib => 'active_merchant'
