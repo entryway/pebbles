@@ -4,7 +4,8 @@ class ActiveRecord::Base
        :adapter => "mysql", 
        :host => "localhost",
        :username => "root",
-       :database => "floyd_county_store",
+       :password => "tussy2",
+       :database => "floydcountystore",
        :encoding => 'utf8'
      )
   end
@@ -88,6 +89,16 @@ class XCategoryProduct< ActiveRecord::Base
   belongs_to :x_category, :foreign_key => 'categoryid'
 end
 
+XCategory.find(:all, :order => 'parentid ASC').each do |xc|
+  c = Category.new
+  c.parent_id = xc.parentid == 0 ? nil : xc.parentid
+  c.name = xc.category
+  c.id = xc.categoryid
+  c.description = xc.description
+  c.position = xc.order_by
+  c.active = xc.avail
+  c.save!
+end
 
 XProduct.all.each do |xp|
   p = Product.new
@@ -115,15 +126,10 @@ XProduct.all.each do |xp|
       end
     end
   end
+  xp.x_categories.each do |xc|
+    c = Category.find(xc.categoryid)
+    p.categories << c
+  end
 end
 
-XCategory.find(:all, :order => 'parentid ASC').each do |xc|
-  c = Category.new
-  c.parent_id = xc.parentid == 0 ? nil : xc.parentid
-  c.name = xc.category
-  c.id = xc.categoryid
-  c.description = xc.description
-  c.position = xc.order_by
-  c.active = xc.avail
-  c.save!
-end
+
