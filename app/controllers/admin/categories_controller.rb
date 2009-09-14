@@ -75,8 +75,7 @@ module Admin
     end
     
     def index
-      @categories = Category.find(:all, :order => 'lft ASC')
-      
+      @categories = Category.find(:all, :conditions => {:parent_id => nil}, :order => 'lft ASC')
       respond_to do |format|
         format.html # index.rhtml
       end

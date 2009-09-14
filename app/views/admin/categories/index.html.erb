@@ -3,9 +3,5 @@
 <h1>Categories</h1>
 
 <ul id="category-list">
-  <% @categories.each do |category| %>
-    <li class="category_item" id="category=<%= category.id %>">
-      <%=link_to(category.name, admin_category_path(category)) %>
-    </li>
-  <% end %>
+  <%= render 'category_branch', :categories => @categories %>
 </ul>

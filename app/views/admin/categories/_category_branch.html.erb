@@ -1,0 +1,10 @@
+<% categories.each do |category| %>
+  <li class="category_item" id="category=<%= category.id %>">
+    <%=link_to(category.name, admin_category_path(category)) %>
+    <% unless category.leaf? %>
+      <ul>
+        <%= render 'category_branch', :categories => category.children %>
+      </ul>
+    <% end %>
+  </li>
+<% end %>
