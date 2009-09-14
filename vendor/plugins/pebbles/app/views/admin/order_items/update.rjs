@@ -1,6 +1,0 @@
-
-page[:order_totals].replace_html :partial => "admin/orders/order_totals", 
-			                           :object => @order
-			                           
-page[:order_items].replace_html :partial => "admin/orders/edit_order_items", 
-			                          :object => @order 
