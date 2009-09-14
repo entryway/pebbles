@@ -71,7 +71,7 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @vendors = Vendor.find(:all)
-    @categories = Category.root.all_children
+    @categories = Category.root.descendants
     @available_options = ProductOption.find(:all, :order => 'name')
     @product_option = ProductOption.new
   end

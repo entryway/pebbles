@@ -267,6 +267,7 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.datetime "created_at"
       t.boolean  "available",                                                     :default => true
       t.decimal  "wholesale_price",                 :precision => 8, :scale => 2
+      t.decimal  "flat_rate_shipping"
       t.text     "keywords"
       t.text     "description"
       t.string   "title"
