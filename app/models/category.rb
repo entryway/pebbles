@@ -9,6 +9,20 @@ class Category < ActiveRecord::Base
   
   attr_accessor :style
   
+  ##
+  # reorders a category to nest under a parent category and above a sibling category
+  # @param[Hash] options an options of relation ids for ordering
+  # @option options [String] :parent id of the parent category
+  # #option options [String] :right id of the sibling category to the right
+  def reorder(options = {})
+    if options[:parent] =~ /\d/
+      self.move_to_child_of options[:parent] 
+    else
+      self.move_to_root
+    end
+    self.move_to_left_of options[:right].to_i if options[:right] =~ /\d/
+  end
+   
   # return the products paged
   def paged_products(page, product_per_page)
      products.available.paginate :per_page => product_per_page, 

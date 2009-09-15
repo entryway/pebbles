@@ -105,6 +105,13 @@ module Admin
         format.html { redirect_to(categories_url) }
       end
     end
+    
+    def reorder
+      category = Category.find(params[:id])
+      category.reorder(params)
+      @categories = Category.find(:all, :conditions => { :parent_id => nil }, :order => 'lft ASC')
+      render :partial => 'category_branch', :locals => { :categories => @categories }
+    end
 
 
 
