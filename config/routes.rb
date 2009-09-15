@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
    map.namespace :admin do |admin| 
      admin.resources :authorizations
 
-     admin.resources :categories, :member => { :reorder => :post }
+     admin.resources :categories, :member => { :reorder => :put }
      admin.resources :ebay_orders
      
      admin.resources :orders
