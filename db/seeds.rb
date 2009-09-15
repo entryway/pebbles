@@ -18,3 +18,4 @@ User.create(:login => 'admin',
             :password_confirmation => 'admin',
             :role => 'admin'
             )
+Region.create(:name => 'United States')

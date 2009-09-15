@@ -75,8 +75,7 @@ module Admin
     end
     
     def index
-      @categories = Category.find(:all, :order => 'lft ASC')
-      
+      @categories = Category.find(:all, :conditions => {:parent_id => nil}, :order => 'lft ASC')
       respond_to do |format|
         format.html # index.rhtml
       end
@@ -105,6 +104,13 @@ module Admin
       respond_to do |format|
         format.html { redirect_to(categories_url) }
       end
+    end
+    
+    def reorder
+      category = Category.find(params[:id])
+      category.reorder(params)
+      @categories = Category.find(:all, :conditions => { :parent_id => nil }, :order => 'lft ASC')
+      render :partial => 'category_branch', :locals => { :categories => @categories }
     end
 
 

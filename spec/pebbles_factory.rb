@@ -32,3 +32,8 @@ Factory.define :configuration do |f|
   f.shipping_type  ShippingType::REAL_TIME_SHIPPING
 end
 
+Factory.define :tax_rate do |f|
+  f.rate            .02500
+  f.state           'VA'
+end
+
