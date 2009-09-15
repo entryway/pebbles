@@ -4,9 +4,9 @@ $(document).ready(function() {
     placeholder: 'ui-state-highlight',
     update: function(event, ui) {
       $('#category-list').load(
-        '/admin/categories/reorder',
+        '/admin/categories/' + $(ui.item).attr('id') + '/reorder',
         {
-          id: $(ui.item).attr('id'),
+          _method: 'PUT',
           parent: $(ui.item).parent().attr('id'),
           right: $(ui.item).next().attr('id') 
         }
