@@ -14,8 +14,9 @@ module OrderCalculations
   end
   
   def total
-    self.product_cost + self.shipping_cost + 
+    total = self.product_cost + self.shipping_cost + 
       self.drop_shipping_cost + self.tax - self.promo_discount
+    sprintf("%.2f", total)
   end
   
   def total_in_cents

@@ -33,7 +33,16 @@ Factory.define :configuration do |f|
 end
 
 Factory.define :tax_rate do |f|
-  f.rate            .02500
+  f.rate            0.05
   f.state           'VA'
+end
+
+Factory.define :address do |f|
+  f.address_1       "nowhere"
+  f.city            "Floyd"
+  f.postal_code     "24091"
+  f.is_shipping     true
+  f.country         "US"
+  f.state           "VA" 
 end
 

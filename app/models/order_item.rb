@@ -1,6 +1,6 @@
 class OrderItem < ActiveRecord::Base
   
-  acts_as_reportable 
+  #acts_as_reportable 
   
   belongs_to :order 
   belongs_to :product
