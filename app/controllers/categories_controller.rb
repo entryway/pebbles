@@ -1,5 +1,6 @@
 
 class CategoriesController < ApplicationController
+  layout 'shopping'
   
   # GET /categories
   def index
