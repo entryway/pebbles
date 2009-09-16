@@ -17,10 +17,9 @@
 	   	<%#= javascript_include_tag 'application' %>
 		<%= javascript_include_tag 'jquery', 'ui' %>
     <%= yield :head %>
+    
     <%= javascript_auto_include_tags %>
-      
-	
- 		<%#= javascript_include_tag "p7tpscripts" %>
+ 		<%= javascript_include_tag "p7tpscripts" %>
 	</head>
 	<body onload="P7_initTP(1,0)">
 		<!-- head -->
