@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090909191809) do
+ActiveRecord::Schema.define(:version => 20090916032132) do
 
   create_table "addresses", :force => true do |t|
     t.string  "address_1",   :limit => 50
@@ -265,24 +265,25 @@ ActiveRecord::Schema.define(:version => 20090909191809) do
 
   create_table "products", :force => true do |t|
     t.string   "sku"
-    t.string   "name",              :limit => 100
-    t.string   "subname",           :limit => 50
+    t.string   "name",               :limit => 100
+    t.string   "subname",            :limit => 50
     t.text     "short_description"
-    t.decimal  "weight",                           :precision => 8, :scale => 2
+    t.decimal  "weight",                            :precision => 8, :scale => 2
     t.text     "admin_notes"
     t.integer  "vendor_id"
-    t.decimal  "price",                            :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "price",                             :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "is_featured"
     t.text     "long_description"
     t.datetime "updated_at"
     t.datetime "created_at"
-    t.boolean  "available",                                                      :default => true
-    t.decimal  "wholesale_price",                  :precision => 8, :scale => 2
+    t.boolean  "available",                                                       :default => true
+    t.decimal  "wholesale_price",                   :precision => 8, :scale => 2
+    t.decimal  "flat_rate_shipping"
     t.text     "keywords"
     t.text     "description"
     t.string   "title"
     t.decimal  "handling"
-    t.integer  "shipping_type",                                                  :default => 0
+    t.integer  "shipping_type",                                                   :default => 0
     t.decimal  "length"
     t.decimal  "width"
     t.decimal  "height"
@@ -377,6 +378,22 @@ ActiveRecord::Schema.define(:version => 20090909191809) do
   end
 
   add_index "users", ["role"], :name => "index_users_on_role"
+
+  create_table "variant_selections", :force => true do |t|
+    t.integer  "variant_id"
+    t.integer  "product_option_selection_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "variants", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "inventory"
+    t.decimal  "weight"
+    t.string   "sku"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "vendors", :force => true do |t|
     t.string  "name",        :limit => 50,                                                :null => false
