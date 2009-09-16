@@ -1,10 +1,10 @@
 class ProductOption < ActiveRecord::Base 
   has_many :product_option_selections,
            :order => "list_order, name"
-  
-
+ 
   has_many :product_option_instances, :dependent => :delete_all
   has_many :product, :through => :product_option_instances
+  default_scope :order => :id
 
   # Options for selection type 
   DROP_DOWN_LIST = 1

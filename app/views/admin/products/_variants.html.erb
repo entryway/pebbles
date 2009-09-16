@@ -10,28 +10,22 @@
 			<th>SKU</th>
 			<th>Price</th>
 			<th>Weight</th>
-			<th>ID</th>
 		  </tr>
-  		</thead>
+  	</thead>
 		<tbody>
 			<% count = 0 %>
-			 <% @products.each do |product| %>
-			 <tr <%= "class='even'" if (count % 2) == 0 %>>
-				<td><%= product.sku %></td>
-				<td><%= product.name %></td>
-				<td><%= product.price %></td>
-				<td><%= product.weight %></td>
-				<td><%= product.id %></td>
-			    <td class='blank'><%= link_to 'Show', admin_product_path(product.id) %></td>
-			    <td class='blank'><%= link_to 'Edit', edit_admin_product_path(product.id) %></td>
-			    <td class='blank'>
-					<%= link_to 'Destroy', admin_product_path(product.id), 
-								:confirm => 'Are you sure?', 
-								:method => :delete %>
-				</td>
+		  <% variants.each do |variant| %>
+			  <tr <%= "class='even'" if (count % 2) == 0 %>>
+			    <% variant.product_option_selections.each do |selection| %>
+			      <td><%= selection.name %></td>
+			    <% end %>
+				  <td><%= variant.inventory %></td>
+				  <td><%= variant.sku %></td>
+				  <td><%= variant.price %></td>
+				  <td><%= variant.weight %></td>
 			  </tr>
 			  <% count += 1 %>
-			<% end %>
-	  	</tbody>
+  		<% end %>
+  	</tbody>
 	</table>
 </div>

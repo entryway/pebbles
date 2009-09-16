@@ -1,3 +1,4 @@
+
 class Product < ActiveRecord::Base
   belongs_to :vendor
   has_many :product_images 
@@ -27,9 +28,11 @@ class Product < ActiveRecord::Base
   named_scope :featured, :order => :name,
                 :conditions => { :is_featured => true,
                                  :available => true }
-                
+              
   named_scope :available, :order => :name,
                 :conditions => { :available => true }
+  
+  accepts_nested_attributes_for :variants
   
                 
   def product_image(thumb=false)

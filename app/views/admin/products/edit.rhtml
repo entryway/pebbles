@@ -18,8 +18,8 @@
         <div id="p7tpb1_5"><a href="javascript:;">Out of Stock Options</a></div>
         <div id="p7tpb1_6"><a href="javascript:;">Wholesale</a></div>
         <div id="p7tpb1_7"><a href="javascript:;">Search Engine Optimization </a></div>
-        <% unless product.variants.empty? %>
-          <div id="p7tpb1_8"><a href="javascript:;">Search Engine Optimization </a></div>
+        <% unless @product.variants.empty? %>
+          <div id="p7tpb1_8"><a href="javascript:;">Variants </a></div>
         <% end %>  
         <br class="p7TPclear" />
       </div>
@@ -48,10 +48,11 @@
           <%= render :partial => "/admin/products/optimizations",
                      :locals => { :product => @product } %>
         </div>
-        <% unless product.variants.empty? %>
-          <div id="p7tpc1_7">       
-            <%= render "variants" %>
+        <% unless @product.variants.empty? %>
+          <div id="p7tpc1_8">       
+            <%= render "variants", :variants => @product.variants, :product => @product %>
           </div>
+        <% end %>
       </div>
     </div>
     <!--[if lte IE 6]>
