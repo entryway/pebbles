@@ -13,19 +13,22 @@
 		  </tr>
   	</thead>
 		<tbody>
-			<% count = 0 %>
-		  <% variants.each do |variant| %>
-			  <tr <%= "class='even'" if (count % 2) == 0 %>>
-			    <% variant.product_option_selections.each do |selection| %>
-			      <td><%= selection.name %></td>
-			    <% end %>
-				  <td><%= variant.inventory %></td>
-				  <td><%= variant.sku %></td>
-				  <td><%= variant.price %></td>
-				  <td><%= variant.weight %></td>
-			  </tr>
-			  <% count += 1 %>
-  		<% end %>
+		  <% form_for [:admin, product] do |form|%>
+  		  <% form.fields_for :variants do |variant_form| %>
+  			  <tr>
+  			    <% variant_form.object.product_option_selections.each do |selection| %>
+  			      <td><%= selection.name %></td>
+  			    <% end %>
+  				  <td><%= variant_form.text_field :inventory, :size => 5 %></td>
+  				  <td><%= variant_form.text_field :sku, :size => 10 %></td>
+  				  <td><%= variant_form.text_field :price, :size => 5 %></td>
+  				  <td><%= variant_form.text_field :weight, :size => 5 %></td>
+  			  </tr>
+    		<% end %>
+    		<tr><td>
+    	  	<%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>
+    		</tr></td>
+    	<% end %>
   	</tbody>
 	</table>
 </div>

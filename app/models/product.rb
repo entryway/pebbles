@@ -34,7 +34,6 @@ class Product < ActiveRecord::Base
   
   accepts_nested_attributes_for :variants
   
-                
   def product_image(thumb=false)
     if thumb
       unless product_images.empty? || product_images[0].thumbnails.empty?

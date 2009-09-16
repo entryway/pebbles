@@ -92,16 +92,15 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-
-    respond_to do |format|
-      if @product.update_attributes!(params[:product])
-        flash[:notice] = "Product #{@product.name} was successfully updated."
-        format.html { redirect_to edit_admin_product_path(@product.id) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @product.errors.to_xml }
-      end
+    if @product.update_attributes(params[:product])
+      flash[:notice] = "Product #{@product.name} was successfully updated."
+      redirect_to edit_admin_product_path(@product.id) 
+    else
+      @vendors = Vendor.find(:all)
+      @categories = Category.root.descendants
+      @available_options = ProductOption.find(:all, :order => 'name')
+      @product_option = ProductOption.new
+      render :action => "edit"
     end
   end
 
@@ -109,11 +108,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-
-    respond_to do |format|
-      format.html { redirect_to admin_products_url }
-      format.xml  { head :ok }
-    end
+    redirect_to admin_products_url 
   end
 end
 
