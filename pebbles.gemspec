@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
   s.date = %q{2009-09-17}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
     ".gitignore",
@@ -322,6 +322,7 @@ Gem::Specification.new do |s|
      "lib/role_requirement_test_helper.rb",
      "lib/tasks/capistrano.rake",
      "lib/tasks/rails.rake",
+     "pebbles.gemspec",
      "public/.htaccess",
      "public/404.html",
      "public/500.html",
@@ -863,19 +864,19 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/entryway/pebbles}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.4}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.rubygems_version = %q{1.3.5}
+  s.summary = %q{ecommerce}
   s.test_files = [
-    "spec/factories/category.rb",
+    "spec/lib/shipping_calculations_spec.rb",
      "spec/lib/order_calculations_spec.rb",
-     "spec/lib/shipping_calculations_spec.rb",
-     "spec/models/category_spec.rb",
-     "spec/models/product_accessory_spec.rb",
-     "spec/models/shipping_fulfillment_spec.rb",
      "spec/order_builder.rb",
-     "spec/order_factory.rb",
+     "spec/spec_helper.rb",
+     "spec/models/product_accessory_spec.rb",
+     "spec/models/category_spec.rb",
+     "spec/models/shipping_fulfillment_spec.rb",
+     "spec/factories/category.rb",
      "spec/pebbles_factory.rb",
-     "spec/spec_helper.rb"
+     "spec/order_factory.rb"
   ]
 
   if s.respond_to? :specification_version then
