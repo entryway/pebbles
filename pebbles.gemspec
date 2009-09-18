@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-09-17}
+  s.date = %q{2009-09-18}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -37,7 +37,6 @@ Gem::Specification.new do |s|
      "app/controllers/admin/stores_controller.rb",
      "app/controllers/admin/ups_shipping_controller.rb",
      "app/controllers/admin/vendors_controller.rb",
-     "app/controllers/application_controller.rb",
      "app/controllers/cart_items_controller.rb",
      "app/controllers/carts_controller.rb",
      "app/controllers/categories_controller.rb",
@@ -311,13 +310,15 @@ Gem::Specification.new do |s|
      "db/migrate/20090916032132_create_table_variant_selections.rb",
      "db/schema.rb",
      "db/seeds.rb",
-     "init.rb",
      "lib/authenticated_system.rb",
      "lib/authenticated_test_helper.rb",
      "lib/hijacker.rb",
      "lib/optimized.rb",
      "lib/pebbles.rb",
      "lib/pebbles/asset_copier.rb",
+     "lib/pebbles/cart.rb",
+     "lib/pebbles/categories.rb",
+     "lib/pebbles/shipping.rb",
      "lib/role_requirement_system.rb",
      "lib/role_requirement_test_helper.rb",
      "lib/tasks/capistrano.rake",
@@ -534,6 +535,7 @@ Gem::Specification.new do |s|
      "public/stylesheets/p7tp/tabs01header.jpg",
      "public/stylesheets/print-base.css",
      "public/stylesheets/reset-fonts.css",
+     "rails/init.rb",
      "script/about",
      "script/autospec",
      "script/breakpointer",
