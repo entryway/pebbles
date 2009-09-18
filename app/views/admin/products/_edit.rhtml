@@ -13,7 +13,7 @@
 	<label for="flat_rate_shipping">Flat Rate Shipping Price :</label>
 	<%= form.text_field :flat_rate_shipping, :size => 10 %><br/>
   <hr/>
-  <% if product.variants.empty? %>
+  <% if @product.variants.empty? %>
     <label for="sku">Inventory *</label>
   	<%= form.text_field :inventory, :size => 10, :class => 'gt-form-text'  %><br/>	
   <% end %>

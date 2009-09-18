@@ -276,6 +276,7 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.decimal  "length"
       t.decimal  "width"
       t.decimal  "height"
+      t.integer  "inventory", :default => 0
     end
 
     create_table "promo_codes", :force => true do |t|
