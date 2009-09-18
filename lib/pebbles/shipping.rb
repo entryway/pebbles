@@ -1,8 +1,6 @@
 module Pebbles
   module Shipping
 
-    # the current shipping region
-    helper_method :active_shipping_region_id
     def active_shipping_region_id
       if session[:shipping_region_id].nil?
         # set default shipping region
@@ -15,8 +13,6 @@ module Pebbles
       session[:shipping_region_id] = region_value
     end
 
-    # the current shipping method
-    helper_method :active_shipping_method_id
     def active_shipping_method_id
       if session[:shipping_method_id].nil?
         # set default shipping rate

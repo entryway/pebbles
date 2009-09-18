@@ -1,7 +1,7 @@
 module Pebbles
   module Cart
     # obtain the current cart
-    helper_method :current_cart
+
     def current_cart
       cart = nil
       # not logged in, so we are a visitor
