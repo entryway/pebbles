@@ -1,8 +1,6 @@
 module Pebbles
   module Shipping
 
-    filter_parameter_logging :credit_card
-
     # the current shipping region
     helper_method :active_shipping_region_id
     def active_shipping_region_id

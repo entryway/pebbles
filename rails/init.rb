@@ -7,6 +7,8 @@ ActionController::Base
   include Pebbles::Shipping
   include Pebbles::Cart
   include Pebbles::Categories
+
+  filter_parameter_logging :credit_card
 end
 
 config.gem 'collectiveidea-awesome_nested_set',

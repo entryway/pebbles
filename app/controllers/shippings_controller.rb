@@ -1,8 +1,8 @@
 class ShippingsController < ApplicationController
-  
+
   def create
     session[:zipcode] = params[:zipcode] if !params[:zipcode].blank?
-    zipcode = session[:zipcode] 
+    zipcode = session[:zipcode]
     quantity = params[:quantity].to_i
     product_id = params[:id]
     # create an array of selected accessory ids; note that it helps to reject the collected nil
@@ -11,5 +11,5 @@ class ShippingsController < ApplicationController
     puts "******#{@shipping}"
     render :partial => 'products/shipping'
   end
-  
+
 end
