@@ -1,6 +1,6 @@
 require 'pebbles'
 
-ActionController::Base
+class ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
   include SslRequirement
