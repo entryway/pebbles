@@ -14,8 +14,8 @@ class Product < ActiveRecord::Base
    
   has_many :product_option_instances, :dependent => :destroy
   has_many :product_options, :through => :product_option_instances 
+
   has_many :variants, :dependent => :destroy
-  
   has_many :product_accessories, :order => 'id'
   has_many :accessories, :through => :product_accessories
   
@@ -35,7 +35,6 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :variants
   accepts_nested_attributes_for :product_options, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['name'].blank? }
-  
   
   def product_image(thumb=false)
     if thumb
@@ -107,7 +106,7 @@ class Product < ActiveRecord::Base
   def specification
     { :weight => weight, :dimensions => [length || 0 , width || 0, height || 0 ] }
   end
-  
+
   ##
   # regenerates all the variants for the product
   def generate_variants
@@ -175,6 +174,5 @@ private
     end
     result
   end
-  
    
 end

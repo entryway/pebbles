@@ -1,4 +1,4 @@
-module IndexHelper
+module Pebbles::IndexHelper
   
   # displays empty message or category contents
   def featured_products(products)

@@ -1,4 +1,4 @@
-module OrdersHelper
+module Pebbles::OrdersHelper
   
   
   def country(address, type)

@@ -26,5 +26,4 @@ class Variant < ActiveRecord::Base
     self.save!
   end
     
-    
 end

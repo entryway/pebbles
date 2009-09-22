@@ -1,4 +1,4 @@
-module ProductsHelper
+module Pebbles::ProductsHelper
   
   def product_images(product)
     images = ''

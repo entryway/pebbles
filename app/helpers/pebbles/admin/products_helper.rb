@@ -1,4 +1,4 @@
-module Admin::ProductsHelper
+module Pebbles::Admin::ProductsHelper
 	def add_discount_link(name)
 	  link_to_function name do |page|
 			page.insert_html :bottom, :quantity_discounts, 

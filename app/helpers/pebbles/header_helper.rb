@@ -1,4 +1,4 @@
-module HeaderHelper
+module Pebbles::HeaderHelper
 
   # the page title for each individual page
   def title(page_title)

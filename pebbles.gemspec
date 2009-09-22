@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.0.9"
+  s.version = "0.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
@@ -258,10 +258,9 @@ Gem::Specification.new do |s|
      "app/views/index/support_local.rhtml",
      "app/views/index/wholesale.rhtml",
      "app/views/index/why-organic.rhtml",
-     "app/views/layouts/_footer.html.erb",
+     "app/views/layouts/_footer.rhtml",
      "app/views/layouts/admin.html.erb",
-     "app/views/layouts/application.html.erb",
-     "app/views/layouts/shopping.html.erb",
+     "app/views/layouts/application.rhtml",
      "app/views/order_notifier/order_confirmation.html.erb",
      "app/views/order_notifier/supplier_confirmation.html.erb",
      "app/views/orders/_address.rhtml",

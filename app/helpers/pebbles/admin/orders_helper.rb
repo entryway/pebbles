@@ -1,4 +1,4 @@
-module Admin
+module Pebbles::Admin
   
   module OrdersHelper
     

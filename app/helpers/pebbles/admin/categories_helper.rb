@@ -1,4 +1,4 @@
-module Admin::CategoriesHelper
+module Pebbles::Admin::CategoriesHelper
   def dash_tree(item)
     return "<span class=\"category-tree\">&mdash;</span>" * item.level
   end
