@@ -37,7 +37,7 @@ module Admin::ProductsHelper
   
   def add_another_selection_link?(selection)
     if selection.new_record?
-      "<td colspan=3><a href='#' class=\"add-selection\">add another selection</a></td>"
+      "<a href='#' class=\"add-selection\">add another selection</a>"
     end
   end
 	  

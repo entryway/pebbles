@@ -8,17 +8,24 @@
       			<th>Name</th>
       			<th>Selection Type</th>
       			<th>Description</th>
+      			<th></th>
     		  </tr>
        		<tr>
       			<td>
       			  <%= option_form.text_field :name %>
       			</td>
       			<td>
-      			  <%= option_form.select :selection_type, ProductOption::LIST, 
-      			                         :include_blank => 'Choose one'%></td>
+      			  <%= option_form.select :selection_type, ProductOption::LIST %>
+      			</td>
       			<td>
       				<%= option_form.text_field :description %>
       			</td>
+      			<td>
+      			  <% unless option_form.object.new_record? %>
+                <%= option_form.check_box '_delete' %>
+                <%= option_form.label '_delete', 'Remove' %>
+              <% end %>
+            </td>
       		</tr>
       		<tr>
       		  <td></td>
@@ -28,11 +35,12 @@
             			<th>Name</th>
             			<th>Price Adjustment</th>
             			<th>Weight Adjustment</th>
+            			<th></th>
           		  </tr>
           		  <% @hide_selection = false %>
           		  <% option_form.fields_for :product_option_selections, 
           		       setup_selection(option_form.object).product_option_selections do |selection_form| %>
-         		    <tr <%=show_selection?(selection_form.object)%>>
+         		      <tr <%=show_selection?(selection_form.object)%>>
           		      <td>
           		        <%= selection_form.text_field :name %>
           		      </td>
@@ -42,9 +50,15 @@
           		      <td>
           		        <%= selection_form.text_field :weight_adjustment %>
           		      </td>
-          		      <%= add_another_selection_link?(selection_form.object) %>
+          		      <td>
+          		        <% unless selection_form.object.new_record? %>
+                        <%= selection_form.check_box '_delete' %>
+                        <%= selection_form.label '_delete', 'Remove' %>
+                      <% else %>
+                        <%= add_another_selection_link?(selection_form.object) %>
+                      <% end %>
+                    </td>
           		    </tr>
-          		    
           		  <% end%>
           		</table>
       		  </td>
