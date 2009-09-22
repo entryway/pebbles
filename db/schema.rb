@@ -389,6 +389,7 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
   create_table "variants", :force => true do |t|
     t.integer  "product_id"
     t.integer  "inventory"
+    t.integer
     t.decimal  "weight"
     t.string   "sku"
     t.datetime "created_at"

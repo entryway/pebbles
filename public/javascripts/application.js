@@ -4,6 +4,8 @@
 
 // This module is javascript specific to the ordering process
 
+jQuery.noConflict(true);
+
 function payment_credit_card_details_show()
 {
 	Element.toggle('paypal_details');

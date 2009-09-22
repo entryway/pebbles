@@ -93,14 +93,10 @@ module Admin
     # add a new product option
     def create
       @product = Product.find(params[:product_id])
-  
-      @product_option = ProductOption.new(params[:product_option])
-      product_option_instance = ProductOptionInstance.new(:product => @product, 
-                                                          :product_option => @product_option)
       @product_option_selection = ProductOptionSelection.new
       @available_options = ProductOption.find(:all, :order => 'name')
-    
-      if product_option_instance.save
+      if @product.update_attributes(params[:product])
+        @product_option = @product.product_options.last
         flash[:notice] = 'New Product Option Saved'
       else 
         flash[:notice] = 'Product Option Not Saved'

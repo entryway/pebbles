@@ -1,8 +1,9 @@
 class CreateTableVariants < ActiveRecord::Migration
   def self.up
     create_table :variants do |t| 
-      t.integer :product_id, :inventory
-      t.decimal :weight
+      t.integer :product_id
+      t.integer :inventory, :default => 0
+      t.decimal :weight, :price
       t.string :sku
       t.timestamps
     end

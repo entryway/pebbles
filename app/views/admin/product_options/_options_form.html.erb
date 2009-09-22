@@ -1,0 +1,57 @@
+	<hr/>
+	<h2>Current Options for this Product:</h2><br/>	
+	<% form_for [:admin, setup_option(@product)] do |form|%>
+    <% form.fields_for :product_options do |option_form| %>
+    	<div class="gt-table-controls clearfix">
+    		<table class="gt-list-table" <%=show_option?(option_form.object)%>>
+    		  <tr>
+      			<th>Name</th>
+      			<th>Selection Type</th>
+      			<th>Description</th>
+    		  </tr>
+       		<tr>
+      			<td>
+      			  <%= option_form.text_field :name %>
+      			</td>
+      			<td>
+      			  <%= option_form.select :selection_type, ProductOption::LIST, 
+      			                         :include_blank => 'Choose one'%></td>
+      			<td>
+      				<%= option_form.text_field :description %>
+      			</td>
+      		</tr>
+      		<tr>
+      		  <td></td>
+      		  <td colspan="2">
+      		    <table>
+      		      <tr>
+            			<th>Name</th>
+            			<th>Price Adjustment</th>
+            			<th>Weight Adjustment</th>
+          		  </tr>
+          		  <% @hide_selection = false %>
+          		  <% option_form.fields_for :product_option_selections, 
+          		       setup_selection(option_form.object).product_option_selections do |selection_form| %>
+         		    <tr <%=show_selection?(selection_form.object)%>>
+          		      <td>
+          		        <%= selection_form.text_field :name %>
+          		      </td>
+          		      <td>
+          		        <%= selection_form.text_field :price_adjustment %>
+          		      </td>
+          		      <td>
+          		        <%= selection_form.text_field :weight_adjustment %>
+          		      </td>
+          		      <%= add_another_selection_link?(selection_form.object) %>
+          		    </tr>
+          		    
+          		  <% end%>
+          		</table>
+      		  </td>
+      		</tr>
+		    </table>
+		  </div>
+	  <% end %>
+	  <%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>
+  <% end %>
+

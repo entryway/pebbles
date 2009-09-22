@@ -74,6 +74,7 @@ class ProductsController < ApplicationController
     @categories = Category.root.descendants
     @available_options = ProductOption.find(:all, :order => 'name')
     @product_option = ProductOption.new
+    @product_option_selection = ProductOptionSelection.new
   end
 
 

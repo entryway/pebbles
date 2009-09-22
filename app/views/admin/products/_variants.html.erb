@@ -4,7 +4,9 @@
 		<thead>
 		  <tr>
 		    <% product.product_options.each do |option| %>
-		      <th> Option: <%= option.name %></th>
+		      <% unless option.new_record? %>
+		        <th> Option: <%= option.name %></th>
+		      <% end %>
 		    <% end %>
 			<th>Inventory</th>
 			<th>SKU</th>
@@ -17,7 +19,7 @@
   		  <% form.fields_for :variants do |variant_form| %>
   			  <tr>
   			    <% variant_form.object.product_option_selections.each do |selection| %>
-  			      <td><%= selection.name %></td>
+  			        <td><%= selection.name %></td>
   			    <% end %>
   				  <td><%= variant_form.text_field :inventory, :size => 5 %></td>
   				  <td><%= variant_form.text_field :sku, :size => 10 %></td>
