@@ -45,3 +45,4 @@ Factory.define :address do |f|
   f.country         "US"
   f.state           "VA" 
 end
+

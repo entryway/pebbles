@@ -7,17 +7,5 @@ class Variant < ActiveRecord::Base
   
   validates_numericality_of :weight, :greater_than_or_equal_to => 0
   validates_numericality_of :price, :greater_than => 0
-  validates_numericality_of :inventory, :only_integer => true 
-  
-  def update_weight
-    self.weight = product.weight + product_option_selections.inject(0){|sum, s| sum + s.weight_adjustment }
-    self.save!
-  end
-  
-  def update_price
-    self.price = product.price + product_option_selections.inject(0){|sum, s| sum + s.price_adjustment }
-    self.save!
-  end
-    
-    
+  validates_numericality_of :inventory, :only_integer => true
 end
