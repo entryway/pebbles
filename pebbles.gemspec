@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.0.3"
+  s.version = "0.0.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-09-18}
+  s.date = %q{2009-09-21}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -258,9 +258,10 @@ Gem::Specification.new do |s|
      "app/views/index/support_local.rhtml",
      "app/views/index/wholesale.rhtml",
      "app/views/index/why-organic.rhtml",
-     "app/views/layouts/_footer.rhtml",
+     "app/views/layouts/_footer.html.erb",
      "app/views/layouts/admin.html.erb",
-     "app/views/layouts/application.rhtml",
+     "app/views/layouts/application.html.erb",
+     "app/views/layouts/shopping.html.erb",
      "app/views/order_notifier/order_confirmation.html.erb",
      "app/views/order_notifier/supplier_confirmation.html.erb",
      "app/views/orders/_address.rhtml",
@@ -566,7 +567,6 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "tasks/asset_copier.rake",
-     "tasks/pebbles_tasks.rake",
      "tmp/dump.sql",
      "vendor/plugins/active_record_base_without_table/CHANGELOG",
      "vendor/plugins/active_record_base_without_table/MIT-LICENSE",
@@ -887,10 +887,13 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
+      s.add_runtime_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
     else
       s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
+      s.add_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
     end
   else
     s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
+    s.add_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
   end
 end
