@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.0.8"
+  s.version = "0.0.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-09-21}
+  s.date = %q{2009-09-22}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -50,21 +50,18 @@ Gem::Specification.new do |s|
      "app/controllers/store_import_controller.rb",
      "app/controllers/stores_controller.rb",
      "app/controllers/users_controller.rb",
-     "app/helpers/admin/categories_helper.rb",
-     "app/helpers/admin/gt_control_helper.rb",
-     "app/helpers/admin/orders_helper.rb",
-     "app/helpers/admin/products_helper.rb",
-     "app/helpers/admin/shipping_methods_helper.rb",
-     "app/helpers/application_helper.rb",
-     "app/helpers/cart_helper.rb",
-     "app/helpers/featured_product.rb",
-     "app/helpers/header_helper.rb",
-     "app/helpers/index_helper.rb",
-     "app/helpers/orders_helper.rb",
-     "app/helpers/products_helper.rb",
-     "app/helpers/sessions_helper.rb",
-     "app/helpers/stores_helper.rb",
-     "app/helpers/users_helper.rb",
+     "app/helpers/pebbles/admin/categories_helper.rb",
+     "app/helpers/pebbles/admin/gt_control_helper.rb",
+     "app/helpers/pebbles/admin/orders_helper.rb",
+     "app/helpers/pebbles/admin/products_helper.rb",
+     "app/helpers/pebbles/admin/shipping_methods_helper.rb",
+     "app/helpers/pebbles/application_helper.rb",
+     "app/helpers/pebbles/cart_helper.rb",
+     "app/helpers/pebbles/header_helper.rb",
+     "app/helpers/pebbles/index_helper.rb",
+     "app/helpers/pebbles/orders_helper.rb",
+     "app/helpers/pebbles/products_helper.rb",
+     "app/helpers/pebbles/stores_helper.rb",
      "app/lib/exceptions.rb",
      "app/lib/order_calculations.rb",
      "app/lib/order_factory.rb",
@@ -165,6 +162,7 @@ Gem::Specification.new do |s|
      "app/views/admin/product_options/_option_selection_input.rhtml",
      "app/views/admin/product_options/_option_selection_list.rhtml",
      "app/views/admin/product_options/_options.rhtml",
+     "app/views/admin/product_options/_options_form.html.erb",
      "app/views/admin/product_options/_options_form.rhtml",
      "app/views/admin/product_options/_product_option_select.rhtml",
      "app/views/admin/product_options/add_option_selection.rjs",
@@ -258,9 +256,10 @@ Gem::Specification.new do |s|
      "app/views/index/support_local.rhtml",
      "app/views/index/wholesale.rhtml",
      "app/views/index/why-organic.rhtml",
-     "app/views/layouts/_footer.rhtml",
+     "app/views/layouts/_footer.html.erb",
      "app/views/layouts/admin.html.erb",
-     "app/views/layouts/application.rhtml",
+     "app/views/layouts/application.html.erb",
+     "app/views/layouts/shopping.html.erb",
      "app/views/order_notifier/order_confirmation.html.erb",
      "app/views/order_notifier/supplier_confirmation.html.erb",
      "app/views/orders/_address.rhtml",
@@ -512,6 +511,7 @@ Gem::Specification.new do |s|
      "public/javascripts/unittest.js",
      "public/javascripts/views/admin/categories/index.js",
      "public/javascripts/views/admin/orders/show.js",
+     "public/javascripts/views/admin/products/edit.js",
      "public/javascripts/wms-gs.js",
      "public/javascripts/ym4r-gm.js",
      "public/product_option_selection_images/0000/0001/10103-dc.jpg",
@@ -554,10 +554,13 @@ Gem::Specification.new do |s|
      "script/server",
      "script/spec_server",
      "spec/factories/category.rb",
+     "spec/factories/product_option.rb",
+     "spec/factories/product_option_selection.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/shipping_calculations_spec.rb",
      "spec/models/category_spec.rb",
      "spec/models/product_accessory_spec.rb",
+     "spec/models/product_spec.rb",
      "spec/models/shipping_fulfillment_spec.rb",
      "spec/order_builder.rb",
      "spec/order_factory.rb",
@@ -869,10 +872,13 @@ Gem::Specification.new do |s|
   s.summary = %q{ecommerce}
   s.test_files = [
     "spec/factories/category.rb",
+     "spec/factories/product_option.rb",
+     "spec/factories/product_option_selection.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/shipping_calculations_spec.rb",
      "spec/models/category_spec.rb",
      "spec/models/product_accessory_spec.rb",
+     "spec/models/product_spec.rb",
      "spec/models/shipping_fulfillment_spec.rb",
      "spec/order_builder.rb",
      "spec/order_factory.rb",
