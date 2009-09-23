@@ -6,9 +6,9 @@
    <title><%= yield(:title) %></title>
    <meta name="keywords" content="<%= yield(:meta_keywords) %>" />
    <meta name="description" content="<%= yield(:meta_description) %>" />
-   <meta name="author" content="Green Label" lang="en"/>
+   <meta name="author" content="" lang="en"/>
    <meta name="copyright" content="Copyright 2008"/> 
-   <meta name="description" content="Green Label Organic: Sustainable Threads is a family owned and operated business located in the Blue Ridge Mountains of Virginia. The Green Label philosophy is one of respect; respect for our environment, respect for working people everywhere, and respect for ourselves through the choices we make."/>
+   <meta name="description" content=""/>
    <meta name="robots" content="index,follow"/>
    <meta name="revisit-after" content="7 days"/>
    <meta http-equiv="imagetoolbar" content="no"/>	
@@ -32,7 +32,7 @@
 		<!-- Head -->
 		<div id="hd">
 			<!-- logo -->
-			<h1 id="logo"><a href="/">Green Label Organic</a></h1>
+			<h1 id="logo"><a href="/">Company Name</a></h1>
 			
 			<!-- nav -->
 			<div id="nav">
@@ -62,22 +62,6 @@
 					
 					<%= render :partial => '/shared/product_menu' %>
 					<br/>
-					<h2 class="inline">SUPPORT LOCAL</h2>
-					<div class="content">
-					<a href="/index/support_local"><img src="/images/support-local.png" alt="" /></a>
-					<p>At Green Label Organic we believe it is the spirit of intention that defines what we think and feel is “LOCAL”. <a href="/index/support_local">Read More >></a></p></div>
-					<h2 class="inline">Giving Back</h2>
-					<div class="content cushycms">
-						<p>While researching the environmental impact of conventional cotton we were astounded by the toxicity of the chemicals used. <br/> <a href="/index/charity">Read More >></a></p>
-						<a href="/index/charity"><img src="/images/coffee_kids_logo.gif" alt="" /></a>
-					</div>
-					<br/><br/><br/>
-					<h2 class="inline"><a class="plain" href="/index/wholesale">WHOLESALE/DEALERS</a></h2>
-					
-					<% if @is_wholesaler %>
-						<br/>
-					  	<a href="/TestingDownload.txt">Wholesale Price List >></a>
-					<% end %>
 					
 				</div>
 				<div class="sidebar-btm"></div>
