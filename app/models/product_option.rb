@@ -2,9 +2,12 @@ class ProductOption < ActiveRecord::Base
   has_many :product_option_selections,
            :order => "list_order, name"
  
-  has_many :product_option_instances, :dependent => :delete_all
-  has_many :product, :through => :product_option_instances
+  has_many :product_option_instances, :dependent => :destroy
+  has_many :products, :through => :product_option_instances
   default_scope :order => :id
+  
+  accepts_nested_attributes_for :product_option_selections, :allow_destroy => true,
+                                :reject_if => proc { |attributes| attributes['name'].blank? }
 
   # Options for selection type 
   DROP_DOWN_LIST = 1
