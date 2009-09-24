@@ -30,6 +30,8 @@ class Product < ActiveRecord::Base
               
   named_scope :available, :order => :name,
                 :conditions => { :available => true }
+                
+  named_scope :top_nine, :limit => 9
   
   accepts_nested_attributes_for :variants
   accepts_nested_attributes_for :product_options, :allow_destroy => true,
