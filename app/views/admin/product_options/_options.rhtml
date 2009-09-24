@@ -14,24 +14,4 @@
 		 		   :locals => { :product_option => @product_option,
 			 					:product => @product } %>
     </div>
-	<br/>
-	<div id='selection_list'>
-		<%= render :partial => '/admin/product_options/option_selection_list', 
-				   :locals => { :product_option => @product_option,
-					 			:product => @product } %>
-	</div>
-	<br/>
-	<div id="product_option_selections" style="display: none; margin-left: 20px">
-		<div id="selection_form">
-			<%= render :partial => '/admin/product_options/option_selection_form', 
-					   :locals => { :product_option => @product_option,
-						 			:product => @product,
-									:product_option_selection => ProductOptionSelection.new } %>			
-		</div>
-	</div>
-</div>
-<br/>
-<div id='option_list'>
-	<%= render :partial => '/admin/product_options/option_list', 
-			   :locals => { :product => @product } %>
 </div>

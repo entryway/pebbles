@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.position_sorted
+    @categories = Category.root
   end
 
   # GET /categories/1

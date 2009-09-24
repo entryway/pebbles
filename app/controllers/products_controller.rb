@@ -1,6 +1,7 @@
-
 class ProductsController < ApplicationController
   include ShippingCalculations
+  layout 'shopping'
+  
   
   # GET /products
   # GET /products.xml
@@ -18,6 +19,8 @@ class ProductsController < ApplicationController
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
+    @category = Category.find(params[:category_id])
+    @products = @category.products
     zipcode = session[:zipcode]
     @shipping = ShippingCalculations.product_quote(@product.id, 1 , zipcode) if zipcode
   

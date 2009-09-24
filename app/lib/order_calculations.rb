@@ -85,7 +85,7 @@ module OrderCalculations
     t
   end 
   
-  def calculate flat_rate_shipping
+  def calculate_flat_rate_shipping
     price = 0
     unless self.free_shipping
       shipping_method = ShippingMethod.find(self.shipping_method_id)

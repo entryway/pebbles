@@ -24,7 +24,7 @@ module Pebbles::ProductsHelper
   end
   
   def bread_crumb(category)
-    category.parent.name + " : " unless category.parent.name == 'products'
+    category.parent.name + " : " unless category.parent.nil?
   end
   
   # displays empty message or category contents

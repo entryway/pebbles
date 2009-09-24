@@ -13,7 +13,7 @@
 		<div id="product_image">
 			<%= light_box @product.product_large_image, @product.product_image %>
 			<br/>
-			<h4><%= number_to_currency(@product.price) %></h4>
+			<h4 id="price"><%= number_to_currency(@product.product_or_first_variant_price) %></h4>
 		</div>
 		
 		<div id="product_attributes">
@@ -29,7 +29,7 @@
 				</div>
 				
 				<div id="add_to_cart">		
-					<input type="hidden" name="id" value="<%= @product.id %>"><br/><br/>
+					<input type="hidden" name="id" value="<%= @product.id %>" id="product_id"><br/><br/>
 					Quantity: <%= text_field_tag :quantity, '1', :size => 3 %><br/><br/>
 				<div id="shipping">
 					<%= render :partial => 'shipping' %>
@@ -39,10 +39,10 @@
 					 		   :locals => { :product => @product } %>
 				</div>
 					<span class="button">
-            			<div id="button"> 
-                    <%= render :partial => 'add_to_cart',
-                				   	   :locals => { :out_of_stock => false } %>
-            			</div>
+      			<div id="button"> 
+              <%= render :partial => 'add_to_cart',
+          				   	   :locals => { :out_of_stock => false } %>
+      			</div>
 					</span>
 				</div>
 			<% end %>
