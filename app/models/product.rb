@@ -1,4 +1,3 @@
-
 class Product < ActiveRecord::Base
   belongs_to :vendor
   has_many :product_images 
@@ -106,6 +105,40 @@ class Product < ActiveRecord::Base
   def specification
     { :weight => weight, :dimensions => [length || 0 , width || 0, height || 0 ] }
   end
+  
+  def has_variants
+    !self.variants.empty?
+  end
+  
+  ##
+  # returns either the price of the product or for the first variant as ordered by product_options'
+  # selections' default order
+  # @return [Float] price
+  def product_or_first_variant_price
+    if self.has_variants
+      first_variant.price
+    else
+      price
+    end
+  end
+  
+  ##
+  # returns first variant as ordered by product_options' selections' default order
+  # @return [Variant] first variant
+  def first_variant
+    selection_ids = self.product_options.map { |o| o.product_option_selections.first.id }
+    find_variant_by_selection_ids(selection_ids)
+  end
+    
+  ##
+  # returns variant which associates with the Array of product_option_selection ids
+  #
+  # @param [Array] selection_ids ids for the selection_ids to match
+  # @return [Variant] matching variant
+  def find_variant_by_selection_ids(selection_ids)
+    self.variants.detect{ |v| v.product_option_selection_ids.sort == selection_ids.sort }
+  end
+        
 
   ##
   # regenerates all the variants for the product

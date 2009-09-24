@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
    map.resources :categories do |categories|
      categories.resources :products
    map.resources :shippings
+   map.resources :variants
    
    end
    
