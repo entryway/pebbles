@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.0.9"
+  s.version = "0.0.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-09-22}
+  s.date = %q{2009-09-24}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -50,6 +50,7 @@ Gem::Specification.new do |s|
      "app/controllers/store_import_controller.rb",
      "app/controllers/stores_controller.rb",
      "app/controllers/users_controller.rb",
+     "app/controllers/variants_controller.rb",
      "app/helpers/pebbles/admin/categories_helper.rb",
      "app/helpers/pebbles/admin/gt_control_helper.rb",
      "app/helpers/pebbles/admin/orders_helper.rb",
@@ -163,7 +164,7 @@ Gem::Specification.new do |s|
      "app/views/admin/product_options/_option_selection_list.rhtml",
      "app/views/admin/product_options/_options.rhtml",
      "app/views/admin/product_options/_options_form.html.erb",
-     "app/views/admin/product_options/_options_form.rhtml",
+     "app/views/admin/product_options/_options_form.rhtml.old",
      "app/views/admin/product_options/_product_option_select.rhtml",
      "app/views/admin/product_options/add_option_selection.rjs",
      "app/views/admin/product_options/apply_option_to_product.rjs",
@@ -289,8 +290,8 @@ Gem::Specification.new do |s|
      "app/views/products/show.rhtml",
      "app/views/promo_codes/create.rjs",
      "app/views/sessions/new.rhtml",
-     "app/views/shared/_category_menu.rhtml",
-     "app/views/shared/_product_menu.rhtml",
+     "app/views/shared/_category_menu.html.erb",
+     "app/views/shared/_product_menu.html.erb",
      "app/views/stores/_map.rhtml",
      "app/views/stores/_store.rhtml",
      "app/views/stores/index.rhtml",
@@ -321,6 +322,7 @@ Gem::Specification.new do |s|
      "lib/role_requirement_system.rb",
      "lib/role_requirement_test_helper.rb",
      "lib/tasks/capistrano.rake",
+     "lib/tasks/pebbles.rake",
      "lib/tasks/rails.rake",
      "pebbles.gemspec",
      "public/.htaccess",
@@ -512,13 +514,9 @@ Gem::Specification.new do |s|
      "public/javascripts/views/admin/categories/index.js",
      "public/javascripts/views/admin/orders/show.js",
      "public/javascripts/views/admin/products/edit.js",
+     "public/javascripts/views/products/show.js",
      "public/javascripts/wms-gs.js",
      "public/javascripts/ym4r-gm.js",
-     "public/product_option_selection_images/0000/0001/10103-dc.jpg",
-     "public/product_option_selection_images/0000/0002/10103-kh.jpg",
-     "public/product_option_selection_images/0000/0003/10105-bb.jpg",
-     "public/product_option_selection_images/0000/0004/10103-dc.jpg",
-     "public/product_option_selection_images/0000/0005/10103-br-flat.jpg",
      "public/robots.txt",
      "public/stylesheets/admin.css",
      "public/stylesheets/admin_print.css",
@@ -536,23 +534,6 @@ Gem::Specification.new do |s|
      "public/stylesheets/print-base.css",
      "public/stylesheets/reset-fonts.css",
      "rails/init.rb",
-     "script/about",
-     "script/autospec",
-     "script/breakpointer",
-     "script/console",
-     "script/dbconsole",
-     "script/destroy",
-     "script/generate",
-     "script/performance/benchmarker",
-     "script/performance/profiler",
-     "script/performance/request",
-     "script/plugin",
-     "script/process/inspector",
-     "script/process/reaper",
-     "script/process/spawner",
-     "script/runner",
-     "script/server",
-     "script/spec_server",
      "spec/factories/category.rb",
      "spec/factories/product_option.rb",
      "spec/factories/product_option_selection.rb",
@@ -893,12 +874,15 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
       s.add_runtime_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
+      s.add_development_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
     else
       s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
       s.add_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
+      s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
     end
   else
     s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
     s.add_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
+    s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
   end
 end
