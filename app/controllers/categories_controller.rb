@@ -9,10 +9,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   def show
     @category = Category.find(params[:id])
-    if @category.products.size > 0
+    if @category.leaf?
       redirect_to category_products_path(@category)
     else
-      @categories = @category.alpha_sorted
+      @categories = @category.children.active
+      @products = @category.products
     end
   end
 

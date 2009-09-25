@@ -67,22 +67,31 @@ describe ShippingCalculations do
     before(:each) do
       @shipping_method = Factory(:shipping_method)
       {0 => 2.99, 10.00 => 3.99, 20.00 => 4.99}.each do |k, v|
-        @shipping_method.flat_rate_shippings.create(:flat_rate => k, :order_total_low => v)
+        @shipping_method.flat_rate_shippings.create(:flat_rate => v, :order_total_low => k)
       end
       product1 = Factory(:product)
       product2 = Factory(:product)
       @cart = Cart.new
       CartItem.add_product(@cart, product1.id, 1, nil)
       CartItem.add_product(@cart, product2.id, 1, nil)
-      @order = Order.new(:shipping_method => @shipping_method)
+      @order = Order.new(:shipping_method_id => @shipping_method.id)
       @cart.cart_items.each do |item|
         oi = OrderItem.from_cart_item(item)
         @order.order_items << oi
       end
     end
-    
-    it "should calculate flat_rate shipping for an order" do
-      @order.calculate_flat_rate_shipping.should == 3.99
+
+    context "using flat rate by order total" do
+      it "should calculate flat_rate shipping for an order" do
+        @order.calculate_flat_rate_shipping.should == 3.99
+      end
+    end
+
+    context "using flat rate by base rate" do
+      it "should calculate flat_rate shipping for an order" do
+        @shipping_method.flat_rate_shippings.delete_all
+        @order.calculate_flat_rate_shipping.should == 6.00
+      end
     end
     
   end

@@ -8,18 +8,15 @@ module ShippingCalculations
     price = 0
     unless self.free_shipping
       shipping_method = ShippingMethod.find(self.shipping_method_id)
-      if shipping_method && shipping_method.flat_rate_shipping
-        price = shipping_method.flat_rate_shipping.base_price;
-        per_item = shipping_method.flat_rate_shipping.cost_per_item;
-        order_items.each do |order_item| 
-        price += per_item * order_item.quantity 
-      end 
-        price -= per_item # compensate for first item
+      if shipping_method.flat_rate_shippings.size > 0
+        price = shipping_method.flat_rate_by_order_total(self.sub_total)
+      else
+        price = shipping_method.flat_rate_by_base_rate(self)
       end
     end
     price
   end
-  
+
   #include ActiveMerchant::Shipping
   
   # calculate cost for product item

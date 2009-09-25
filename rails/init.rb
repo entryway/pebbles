@@ -18,7 +18,6 @@ end
 config.gem 'collectiveidea-awesome_nested_set',
            :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
 config.gem "carrierwave"
-config.gem "configatron"
 
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')

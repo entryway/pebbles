@@ -20,6 +20,15 @@ class ShippingMethod < ActiveRecord::Base
                                                                      :conditions => "order_total_low <= #{total}")
     shipping.flat_rate
   end
+
+  def flat_rate_by_base_rate(order)
+    price = self.base_price
+    per_item = self.cost_per_item
+    order.order_items.each do |order_item| 
+      price += per_item * order_item.quantity 
+    end 
+    price -= per_item # compensate for first item
+  end
     
     
 
