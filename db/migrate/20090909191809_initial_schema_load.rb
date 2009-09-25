@@ -273,6 +273,8 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.decimal  "width"
       t.decimal  "height"
       t.integer  "inventory", :default => 0
+      t.string   "image"
+      t.string   "thumbnail"
     end
 
     create_table "promo_codes", :force => true do |t|
