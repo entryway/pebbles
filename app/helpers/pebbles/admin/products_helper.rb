@@ -9,9 +9,7 @@ module Pebbles::Admin::ProductsHelper
 	
 	def setup_option(product)
     returning(product) do |p|
-      3.times do 
-        p.product_options.build
-      end
+      p.product_options.build
     end
   end
   
@@ -22,22 +20,10 @@ module Pebbles::Admin::ProductsHelper
       end
     end
   end
-
-  def show_option?(option)
-    display = @hide_option ? "style=display:none" : ""
-    @hide_option = option.new_record?
-    return display
-  end
   
-  def show_selection?(selection)
-    display = @hide_selection ? "style=display:none" : ""
-    @hide_selection = selection.new_record?
-    return display
-  end
-  
-  def add_another_selection_link?(selection)
-    if selection.new_record?
-      "<a href='#' class=\"add-selection\">add another selection</a>"
+  def add_another_link?(object, object_name)
+    if object.new_record?
+      "<a href='#' class=\"add-object\">add another #{object_name}</a>"
     end
   end
 	  

@@ -3,7 +3,8 @@
 	<% form_for [:admin, setup_option(@product)] do |form|%>
     <% form.fields_for :product_options do |option_form| %>
     	<div class="gt-table-controls clearfix">
-    		<table class="gt-list-table" <%=show_option?(option_form.object)%>>
+    	  <% @hide_object = false %>
+    		<table class="gt-list-table" <%=hide_unless_first_new_object(option_form.object)%>>
     		  <tr>
       			<th>Name</th>
       			<th>Selection Type</th>
@@ -37,10 +38,10 @@
             			<th>Weight Adjustment</th>
             			<th></th>
           		  </tr>
-          		  <% @hide_selection = false %>
+          		  <% @hide_object = false %>
           		  <% option_form.fields_for :product_option_selections, 
           		       setup_selection(option_form.object).product_option_selections do |selection_form| %>
-         		      <tr <%=show_selection?(selection_form.object)%>>
+         		      <tr <%=hide_unless_first_new_object(selection_form.object)%>>
           		      <td>
           		        <%= selection_form.text_field :name %>
           		      </td>
@@ -55,7 +56,7 @@
                         <%= selection_form.check_box '_delete' %>
                         <%= selection_form.label '_delete', 'Remove' %>
                       <% else %>
-                        <%= add_another_selection_link?(selection_form.object) %>
+                        <%= add_another_link?(selection_form.object, 'selection') %>
                       <% end %>
                     </td>
           		    </tr>

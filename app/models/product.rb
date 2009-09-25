@@ -36,6 +36,9 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :variants
   accepts_nested_attributes_for :product_options, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['name'].blank? }
+                                
+  mount_uploader :image, ImageUploader
+  mount_uploader :thumbnail, ThumbnailUploader
   
   def product_image(thumb=false)
     if thumb

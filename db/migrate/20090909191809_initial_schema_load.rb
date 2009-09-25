@@ -69,10 +69,6 @@ class InitialSchemaLoad < ActiveRecord::Migration
     end
 
     create_table "flat_rate_shippings", :force => true do |t|
-      t.string  "name",               :limit => 50
-      t.decimal "base_price"
-      t.integer "cost_of_subtotal"
-      t.integer "cost_per_weight"
       t.integer "item_low"
       t.integer "item_high"
       t.integer "weight_low"
@@ -80,7 +76,7 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.integer "order_total_low"
       t.integer "order_total_high"
       t.integer "shipping_method_id"
-      t.decimal "cost_per_item",                    :precision => 8, :scale => 2, :default => 0.0
+      t.decimal "flat_rate"
     end
 
     create_table "fulfillment_codes", :force => true do |t|
@@ -317,6 +313,10 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.boolean "default_selection"
       t.integer "region_id"
       t.string  "fulfillment_code"
+      t.decimal "base_price"
+      t.integer "cost_of_subtotal"
+      t.integer "cost_per_weight"
+      t.decimal "cost_per_item",                    :precision => 8, :scale => 2, :default => 0.0
     end
 
     create_table "shipping_providers", :force => true do |t|

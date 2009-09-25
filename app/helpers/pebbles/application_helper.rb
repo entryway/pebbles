@@ -2,6 +2,16 @@
     module ApplicationHelper
       include HeaderHelper
       
+      ## 
+      # this method returns a style to hide the element if it is a new_record unless the object is the 
+      # first new_record. One must reset the @hide_object to false if one wants to use this logic in
+      # several places on a page.
+      def hide_unless_first_new_object(object)
+        display = @hide_object ? "style=display:none" : ""
+        @hide_object = object.new_record?
+        return display
+      end
+      
       def button_to_remote name, options = {}
         button_to_function name, remote_function(options)
       end

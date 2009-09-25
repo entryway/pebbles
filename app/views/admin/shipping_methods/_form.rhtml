@@ -1,19 +1,43 @@
 
-<% form_for [:admin, :region, @shipping_method],
+<% form_for [:admin, :region, set_up_shippping_method(@shipping_method)],
 			:html => { :class => 'gt-form' } do |form| %>
 	<label for="name">Name *:</label>
 	<%= form.text_field :name, :size => 20 %><br/><br/>
-	<% fields_for :flat_rate_shipping, @flat_rate_shipping do |flat_shipping| %>
-		<label for="base_price">Shipping Price: </label>
-		$<%= flat_shipping.text_field :base_price, :size => 5 %><br/><br/>
-		<label for="cost_per_item">Additional Cost Per Item: </label>
-		$<%= flat_shipping.text_field :cost_per_item, :size => 5 %>
-	<% end %>
-	<br/><br/>
-	<%= form.check_box :default_selection %> Default Selection (initial option user selects)
-	<br/><br/>	
-
-	<%= image_submit_tag 'gt/btn-save.jpg' %>
+	<label for="base_price">Shipping Price: </label>
+	$<%= form.text_field :base_price, :size => 5 %><br/><br/>
+	<label for="cost_per_item">Additional Cost Per Item: </label>
+	$<%= form.text_field :cost_per_item, :size => 5 %><br/><br/>
+	<%= form.check_box :default_selection %> Default Selection (initial option user selects)<br/><br/>
+	<h1>Flat Rate Shippings</h1>
+  <div class="gt-table-controls clearfix">
+  	<table class="gt-list-table">
+  		<thead>
+  		  <tr>
+    			<th>Low Order Total</th>
+    			<th>Rate</th>
+  		  </tr>
+    	</thead>
+	    <% form.fields_for :flat_rate_shippings do |flat_rate_form| %>
+  	    <tr <%=hide_unless_first_new_object(flat_rate_form.object)%>>
+  	      <td>
+  	        $<%= flat_rate_form.text_field :order_total_low %>
+  	      </td>
+  	      <td>
+  	        <%= flat_rate_form.text_field :flat_rate %>
+  	      </td>
+  	      <td>
+  	        <% unless flat_rate_form.object.new_record? %>
+              <%= flat_rate_form.check_box '_delete' %>
+              <%= flat_rate_form.label '_delete', 'Remove' %>
+            <% else %>
+              <%= add_another_link?(flat_rate_form.object, 'flat rate range') %>
+            <% end %>
+          </td>
+  	    </tr>
+  	  <% end %>
+  	</table>
+	  <%= image_submit_tag 'gt/btn-save.jpg' %>
+	</div>
 <% end %>
 
 

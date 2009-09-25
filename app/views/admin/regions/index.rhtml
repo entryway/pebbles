@@ -35,10 +35,8 @@
 				<tr class='even'>
 					<td class='blank'></td>
 					<td><%= shipping_method.name %>
-					<% if shipping_method.flat_rate_shipping %>
-						<td><%= number_to_currency(shipping_method.flat_rate_shipping.base_price)  %>
-						<td><%= number_to_currency(shipping_method.flat_rate_shipping.cost_per_item) %>
-					<% end %>
+						<td><%= number_to_currency(shipping_method.base_price)  %>
+						<td><%= number_to_currency(shipping_method.cost_per_item) %>
 					<td><%= shipping_method.default_selection %>
 			    	<td><%= link_to 'Edit',
 						edit_admin_region_shipping_method_path(region, shipping_method) %></td>
