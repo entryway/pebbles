@@ -140,7 +140,7 @@ class Product < ActiveRecord::Base
   # @param [Array] selection_ids ids for the selection_ids to match
   # @return [Variant] matching variant
   def find_variant_by_selection_ids(selection_ids)
-    self.variants.detect{ |v| v.product_option_selection_ids.sort == selection_ids.sort }
+    self.variants.detect{ |v| v.product_option_selection_ids.sort == selection_ids.sort } if selection_ids
   end
         
 

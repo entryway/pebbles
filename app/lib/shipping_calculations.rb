@@ -1,10 +1,14 @@
 module ShippingCalculations
   
+  ##
+  # Calculates flat rate shipping cost
+  #
+  # @return [Float] price shipping price
   def calculate_flat_rate_shipping
     price = 0
     unless self.free_shipping
       shipping_method = ShippingMethod.find(self.shipping_method_id)
-      price = shipping_method.flat_rate_shipping(self)
+      price = shipping_method.flat_rate_shipping_cost(self)
     end
     price
   end
