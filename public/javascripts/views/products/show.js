@@ -1,5 +1,18 @@
 jQuery(document).ready(function() {
+  jQuery("#submit_button").click(function() {
+    var invalid = false;
+    jQuery(".selection-select").each(function(item) {
+      if (this.value == "") {
+        invalid = true;
+        jQuery(this).next(".error_message").show();
+      }
+    });
+    if (invalid) {
+      return false;
+    }  
+  });
   jQuery(".selection-select").change(function() {
+    jQuery(this).next(".error_message").hide();
     var product_id = jQuery("#product_id").val();
     var selection_ids = [];
     jQuery(".selection-select").each(function(item) {

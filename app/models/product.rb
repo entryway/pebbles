@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :vendor
   has_many :product_images 
-  has_many :product_large_images
+  has_many :product_large_images, :through => :product_images
   has_many :quantity_discounts 
   
   has_and_belongs_to_many  :categories
@@ -37,8 +37,6 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_options, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['name'].blank? }
                                 
-  mount_uploader :image, ImageUploader
-  mount_uploader :thumbnail, ThumbnailUploader
   
   def product_image(thumb=false)
     if thumb

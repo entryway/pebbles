@@ -188,25 +188,13 @@ class InitialSchemaLoad < ActiveRecord::Migration
     end
 
     create_table "product_images", :force => true do |t|
-      t.integer "parent_id"
-      t.string  "content_type"
       t.string  "filename"
-      t.string  "thumbnail"
-      t.integer "size"
-      t.integer "width"
-      t.integer "height"
       t.integer "product_id"
     end
 
     create_table "product_large_images", :force => true do |t|
-      t.integer "parent_id"
-      t.string  "content_type"
-      t.string  "filename"
-      t.string  "thumbnail"
-      t.integer "size"
-      t.integer "width"
-      t.integer "height"
-      t.integer "product_id"
+     t.integer "product_image_id"
+     t.string  "filename"
     end
 
     create_table "product_option_instances", :force => true do |t|
