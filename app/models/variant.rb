@@ -26,4 +26,12 @@ class Variant < ActiveRecord::Base
     self.save!
   end
     
+  def out_of_stock_check
+    if GeneralConfiguration.instance.inventory_management
+      self.inventory <= 0
+    else
+      self.out_of_stock
+    end
+  end
+  
 end

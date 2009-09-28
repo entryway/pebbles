@@ -18,6 +18,10 @@ end
 config.gem 'collectiveidea-awesome_nested_set',
            :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
 config.gem "carrierwave"
+config.gem "stephencelis-acts_as_singleton",
+    :lib => "acts_as_singleton",
+    :source => "http://gems.github.com"
+
 
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
