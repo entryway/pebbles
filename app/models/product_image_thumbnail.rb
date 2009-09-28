@@ -1,8 +1,6 @@
 class ProductImageThumbnail < ActiveRecord::Base
-    belongs_to :product_image, :foreign_key => 'parent_id'
+    belongs_to :product_image
     
-    has_attachment :content_type => :image, 
-                   :storage => :file_system
-  
-    validates_as_attachment
+    mount_uploader :filename, ImageUploader
+
 end

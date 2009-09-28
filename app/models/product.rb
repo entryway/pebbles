@@ -42,11 +42,11 @@ class Product < ActiveRecord::Base
   
   def product_image(thumb=false)
     if thumb
-      unless product_images.empty? || product_images[0].thumbnails.empty?
-        return product_images[0].thumbnails[0].public_filename 
+      unless product_images.empty? || product_images[0].product_image_thumbnail.nil?
+        return product_images[0].product_image_thumbnail.filename.url
       end
     else
-      return product_images[0].public_filename unless product_images.empty?
+      return product_images[0].filename.url unless product_images.empty?
     end
     ''
   end
