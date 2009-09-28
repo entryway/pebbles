@@ -1,18 +1,10 @@
 module ShippingCalculations
   
-  def calculate_shipping_cost
-    calculate_flat_rate_shipping
-  end
-  
   def calculate_flat_rate_shipping
     price = 0
     unless self.free_shipping
       shipping_method = ShippingMethod.find(self.shipping_method_id)
-      if shipping_method.flat_rate_shippings.size > 0
-        price = shipping_method.flat_rate_by_order_total(self.sub_total)
-      else
-        price = shipping_method.flat_rate_by_base_rate(self)
-      end
+      price = shipping_method.flat_rate_shipping(self)
     end
     price
   end

@@ -9,6 +9,15 @@ class ShippingMethod < ActiveRecord::Base
   accepts_nested_attributes_for :flat_rate_shippings, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['flat_rate'].blank? }
 
+ 
+  def flat_rate_shipping(cart_or_order)
+    if self.flat_rate_shippings.size > 0
+      flat_rate_by_order_total(cart_or_order.sub_total)
+    else
+      flat_rate_by_base_rate(cart_or_order.line_items)
+    end
+  end
+  
   ##
   # returns the shipping rate of the flat_rate_shippings with the highest order_total_low
   # that is less than or equal to the order_total for the shipping method
@@ -21,16 +30,14 @@ class ShippingMethod < ActiveRecord::Base
     shipping.flat_rate
   end
 
-  def flat_rate_by_base_rate(order)
+  def flat_rate_by_base_rate(line_items)
     price = self.base_price
     per_item = self.cost_per_item
-    order.order_items.each do |order_item| 
-      price += per_item * order_item.quantity 
+    line_items.each do |line_item| 
+      price += per_item * line_item.quantity 
     end 
     price -= per_item # compensate for first item
   end
-    
-    
 
 end
 
