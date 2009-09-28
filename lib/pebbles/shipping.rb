@@ -1,5 +1,14 @@
 module Pebbles
   module Shipping
+    
+    def self.included(base)
+      base.class_eval do 
+        helper_method :active_shipping_region_id
+        helper_method :active_shipping_region_id=
+        helper_method :active_shipping_method_id
+        helper_method :active_shipping_method_id=
+      end
+    end
 
     def active_shipping_region_id
       if session[:shipping_region_id].nil?
@@ -9,7 +18,7 @@ module Pebbles
       session[:shipping_region_id]
     end
     # grab active region
-    def set_active_shipping_region_id(region_value)
+    def active_shipping_region_id=(region_value)
       session[:shipping_region_id] = region_value
     end
 
@@ -24,9 +33,11 @@ module Pebbles
       session[:shipping_method_id]
     end
     # HACK: couldn't get active_shipping_method_id=() to work?
-    def set_active_shipping_method_id(method_value)
+    def active_shipping_method_id=(method_value)
       session[:shipping_method_id] = method_value
     end
+    
+    
 
   end
 end

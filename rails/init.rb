@@ -9,8 +9,7 @@ class ActionController::Base
   include Pebbles::Categories
 
   filter_parameter_logging :credit_card
-  helper_method :active_shipping_region_id
-  helper_method :active_shipping_method_id
+
   helper_method :current_cart
   helper_method :categories
 end

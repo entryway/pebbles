@@ -8,6 +8,12 @@ class Cart < ActiveRecord::Base
   
   validates_length_of :name, :in => 1..40
   
+  attr_accessor :shipping_method_id
+  
+  def line_items
+    cart_items
+  end
+  
   # order cart items
   def ordered_cart_items
     cart_items.find(:all, :order => 'product_id')
@@ -19,14 +25,11 @@ class Cart < ActiveRecord::Base
   end
   
   # shipping totals
-  def shipping_totals(region, shipping_method, zipcode)
-    if Configuration.first.shipping_type == ShippingType::FLAT_RATE_SHIPPING
-      @price = calculate_flat_rate_shipping(region, shipping_method)
-    elsif Configuration.first.shipping_type == ShippingType::REAL_TIME_SHIPPING
-      @price = calculate_real_time_shipping(cart_items, zipcode)
-    end
+  def shipping_total(shipping_method)
+    shipping_method_id = shipping_method
+    calculate_flat_rate_shipping
   end
-  
+ 
   def calculate_flat_rate_shipping(region, shipping_method)
     @price = 0
     unless self.free_shipping

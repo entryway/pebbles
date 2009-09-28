@@ -2,7 +2,7 @@
 class CartItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :product
-  belongs_to :product_accessory
+  belongs_to :variant
   
   has_many :option_selections, 
            :class_name => 'CartItemSelection'
@@ -20,10 +20,7 @@ class CartItem < ActiveRecord::Base
     # @price
     self.discounted = false
     price = self.product.price
-    # first do accessory adjustment
-    if product_accessory
-      price = product_accessory.price
-    end
+
     # include selection adjustments
     option_selections.each do |option|
       if option.product_option_selection.price_adjustment

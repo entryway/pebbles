@@ -10,18 +10,13 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.string  "state",       :limit => 50
     end
 
-    create_table "cart_item_selections", :force => true do |t|
-      t.integer "cart_item_id"
-      t.integer "product_option_selection_id"
-    end
-
     create_table "cart_items", :force => true do |t|
       t.integer  "product_id"
       t.integer  "cart_id"
       t.integer  "quantity"
       t.datetime "created_at"
       t.datetime "updated_at"
-      t.integer  "product_option_selection_id"
+      t.integer  "variant_id"
     end
 
     create_table "carts", :force => true do |t|

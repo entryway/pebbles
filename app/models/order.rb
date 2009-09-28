@@ -69,6 +69,9 @@ class Order < ActiveRecord::Base
   #                        {:association_name => 'billing_address', :field => 'country'},
   #                        {:association_name => 'billing_address', :field => 'postal_code'}]
   
+  def line_items
+    order_items
+  end
                                                
   def add_order_items_from_cart(cart)
     cart.cart_items.each do |item|
