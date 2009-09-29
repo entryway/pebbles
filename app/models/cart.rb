@@ -26,7 +26,7 @@ class Cart < ActiveRecord::Base
   
   # shipping totals
   def shipping_total(shipping_method)
-    shipping_method_id = shipping_method
+    self.shipping_method_id = shipping_method
     calculate_flat_rate_shipping
   end
   
@@ -64,7 +64,7 @@ class Cart < ActiveRecord::Base
       # cart_item does not exist with this product/variant, add
       cart_item = CartItem.new
       cart_item.product_id = product.id
-      cart_item.variant_id = variant.id
+      cart_item.variant_id = variant.id if variant
       cart_item.quantity = CartItem.valid_quantity(quantity)
       cart_items << cart_item
     end
