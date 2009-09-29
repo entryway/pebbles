@@ -1,10 +1,21 @@
-<h3>Regular Size:</h3><br/>
+
 
 <% product.product_images.each do |image| %>
+  <hr>
+  <h3>Regular Size:</h3><br/>
 	<div id="<%= dom_id(image, 'id') %>">
 		<%= image_tag image.filename.url, :name => "image_id" %>
-		<input type="hidden" name="image_id" value="<%= image.id %>"/>
 		<%= link_to 'Remove Image', admin_product_product_image_path(product, image), 
 		    :class => "destroy-product-image" %>
 	</div>
+	<div>
+	  <% if image.product_image_thumbnail %>
+  	  <%= render '/admin/products/images/image_thumbnail_list', 
+  	             :image => image, :thumbnail => image.product_image_thumbnail %>
+  	<% else %>
+  	  <%= render '/admin/products/images/image_thumbnail_form', 
+  	            :image => image, :thumbnail => image.build_product_image_thumbnail %>
+    <% end %>
+  </div>
+  
 <% end %>
