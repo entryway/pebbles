@@ -29,21 +29,6 @@ class Cart < ActiveRecord::Base
     shipping_method_id = shipping_method
     calculate_flat_rate_shipping
   end
- 
-  def calculate_flat_rate_shipping(region, shipping_method)
-    @price = 0
-    unless self.free_shipping
-      if shipping_method && shipping_method.flat_rate_shipping
-        @price = shipping_method.flat_rate_shipping.base_price;
-        per_item = shipping_method.flat_rate_shipping.cost_per_item;
-        cart_items.each do |cart_item| 
-          @price += per_item * cart_item.quantity 
-        end 
-        @price -= per_item # compensate for first item
-      end
-    end
-    @price
-  end
   
   # calculate total price
   def grand_total(shipping_total)
@@ -61,8 +46,8 @@ class Cart < ActiveRecord::Base
       options ||= Array.new
       product = Product.find(product_id)
       variant = product.find_variant_by_selection_ids(options)
-      cart_item = find_product_with_options(cart, product_id, options)
-      add_to_cart(cart, cart_item, product_id, quantity, options)
+      cart_item = find_product_or_variant(product, variant)
+      add_to_cart(cart_item, product, quantity, variant)
     end
   end
 
@@ -70,4 +55,19 @@ class Cart < ActiveRecord::Base
     cart_items.find(:first, :conditions => { :product_id => product, :variant_id => variant })
   end
   
+  def add_to_cart(cart_item, product, quantity, variant)
+    if cart_item
+      # increase quantity, exists
+      cart_item.quantity += CartItem.valid_quantity(quantity)
+      cart_item.save!
+    else
+      # cart_item does not exist with this product/variant, add
+      cart_item = CartItem.new
+      cart_item.product_id = product.id
+      cart_item.variant_id = variant.id
+      cart_item.quantity = CartItem.valid_quantity(quantity)
+      cart_items << cart_item
+    end
+  end
+
 end 

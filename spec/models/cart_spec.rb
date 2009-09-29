@@ -15,15 +15,23 @@ describe Cart do
       @product.product_options << [size, color]
     end
     
-    it "should return a cart item" do
+    it "should return a cart item when one containts same product" do
       @cart_item = @cart.cart_items.create(:product_id => @product.id)
       @cart.find_product_or_variant(@product, nil).should == @cart_item
     end
 
-    it "should return a cart item" do
+    it "should return a cart item when one contains same variant" do
       variant = @product.find_variant_by_selection_ids([@large.id, @red.id])
       @cart_item = @cart.cart_items.create(:product_id => @product.id, :variant_id => variant.id)
       @cart.find_product_or_variant(@product, variant).should == @cart_item
     end
+    
+    it "should return nil when the variant is not in the cart" do
+      variant = @product.find_variant_by_selection_ids([@large.id, @red.id])
+      @cart_item = @cart.cart_items.create(:product_id => @product.id, :variant_id => variant.id)
+      new_variant = @product.find_variant_by_selection_ids([@large.id, @blue.id])
+      @cart.find_product_or_variant(@product, new_variant).should be_nil
+    end
+            
   end
 end
