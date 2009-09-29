@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-
+  layout 'shopping'
 
   # refresh the shipping methods depending on region selected
   def refresh_shipping_methods
@@ -9,7 +9,7 @@ class CartsController < ApplicationController
 
     @cart = current_cart
     @subtotal = @cart.sub_total
-    @shipping_total = @cart.shipping_totals(region, @default_method)
+    @shipping_total = @cart.shipping_total(region, @default_method)
     @grand_total = @cart.grand_total(@shipping_total)
 
     # change the active region
@@ -24,7 +24,7 @@ class CartsController < ApplicationController
 
     @cart = current_cart
     @subtotal = @cart.sub_total
-    @shipping_total = @cart.shipping_totals(region, method)
+    @shipping_total = @cart.shipping_total(region, method)
     @grand_total = @cart.grand_total(@shipping_total)
 
     # change active shipping rate depending on selection
@@ -39,7 +39,7 @@ class CartsController < ApplicationController
 
     @cart = current_cart
     @subtotal = @cart.sub_total
-    @shipping_total = @cart.shipping_totals(@default_method)
+    @shipping_total = @cart.shipping_total(@default_method)
     @grand_total = @cart.grand_total(@shipping_total)
   end
 

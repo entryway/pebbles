@@ -1,4 +1,9 @@
-<%= render :partial => '/admin/shipping_methods/navigation' %>
+<% content_for :breadcrumbs do %>
+<a href="">Shipping ></a> <span class="gt-separator"></span>
+
+<a href="">Regions</a> <span class="gt-separator"></span>
+
+<% end %>
 <h1>New Region</h1>
 
 <%= error_messages_for :regions %>

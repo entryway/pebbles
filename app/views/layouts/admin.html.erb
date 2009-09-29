@@ -43,10 +43,8 @@
 				<ul>
 					<li><%= link_to "Orders", admin_orders_path() %></li>
 					<li><%= link_to "Categories", admin_categories_path() %></li>
-					<li><%= link_to "Vendors", admin_vendors_path() %></li>
 					<li><%= link_to "Products", admin_products_path() %></li>
 					<li><%= link_to "Shipping", admin_regions_path() %></li>
-					<li><%= link_to "Stores", admin_stores_path() %></li>
 				</ul>
 			</div>
 			<!-- / navigation -->
@@ -58,7 +56,9 @@
 		<div class="gt-bd gt-cols clearfix">
 			<!-- breadcrumb -->
 			<div class="gt-breadcrumb">
-				<p><a href="">Home</a> <span class="gt-separator"></span></p>
+				<p>
+				<%= yield :breadcrumbs %>
+				</p>
 			</div>
 			<!-- / breadcrumb -->
 			
@@ -75,7 +75,7 @@
 			<div class="gt-sidebar">
 				<!-- Sidebar Navigation -->
 				<div class="gt-sidebar-nav">
-					<h3>Quick Links</h3>
+					<h3>Menu</h3>
 					<%= yield :sidebar %>
 				</div><!-- /Sidebar Navigation -->
 			</div>

@@ -19,16 +19,11 @@ class CartItem < ActiveRecord::Base
     # end
     # @price
     self.discounted = false
-    price = self.product.price
-
-    # include selection adjustments
-    option_selections.each do |option|
-      if option.product_option_selection.price_adjustment
-        price += option.product_option_selection.price_adjustment
-      end
+    if variant
+      self.variant.price 
+    else
+      self.product.price
     end
-    
-    price
   end
 
  class << self
