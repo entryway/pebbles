@@ -49,13 +49,7 @@ class InitialSchemaLoad < ActiveRecord::Migration
     add_index "categories_products", ["product_id"], :name => "index_categories_suppliers_on_supplier_id"
 
     create_table "category_images", :force => true do |t|
-      t.integer "parent_id"
-      t.string  "content_type"
       t.string  "filename"
-      t.string  "thumbnail"
-      t.integer "size"
-      t.integer "width"
-      t.integer "height"
       t.integer "category_id"
     end
 

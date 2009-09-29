@@ -1,0 +1,28 @@
+<%= javascript('jquery/form', 'jquery/livequery') %>
+
+<%= link_to "Delete the Category '#{@category.name}'", admin_category_path(@category), :confirm => 'Are you sure you want to delete the category #{category.name}?', :method => :delete %>
+<br/><br/>
+
+<h2>Editing Category: <%= @category.name %></h2>
+<br/><label>Parent Category:</label>
+
+<%#= select_tag 'parent_category',
+		options_for_select(nested_set_options_for_select(Category.root), @category.parent_id ) %>
+
+
+<br/><label for="name">Category Name:</label>
+<%= text_field :category, :name, :size => 20, :value => @category.name  %>
+<br/>
+<br/>
+<%= check_box :category, :active, :checked => @category.active  %>
+<label for="active">Active</label>
+<br/>
+<label>Description: </label>
+			 <%= text_area :category, :description, 
+						   :cols => 70, :rows => 10, :value => @category.description %>
+<br/>
+<%= button_to_remote "Save Category", :url => admin_category_path(@category.id),
+					:submit => 'category_edit',
+ 			        :method => :put %>
+<br/>
+<%= render :partial => "images", :locals => { :category => @category, :image => @category_image } %>

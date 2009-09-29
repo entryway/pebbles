@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
       redirect_to category_products_path(@category)
     else
       @categories = @category.children.active
-      @products = @category.products
+      @products = @category.paged_products(params[:page], 15)
     end
   end
 

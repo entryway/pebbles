@@ -16,16 +16,28 @@ jQuery(document).ready(function() {
       return false; 
     })
   });
+  jQuery('.image_large_add').livequery( function() {
+    jQuery(this).submit(function() { 
+      jQuery(this).ajaxSubmit(product_image_options); 
+      return false; 
+    })
+  });
   jQuery(".destroy-product-image").live("click", function() {
     if (confirm( "Are you sure you want to remove the image?")) {
       jQuery("#image_list").load(jQuery(this).attr('href'), { _method: "DELETE" });
     }
     return false;
-  })
+  });
   jQuery(".destroy-product-image-thumbnail").live("click", function() {
     if (confirm( "Are you sure you want to remove the thumbnail?")) {
       jQuery("#image_list").load(jQuery(this).attr('href'), { _method: "DELETE" });
     }
     return false;
-  })
+  });
+  jQuery(".destroy-product-large-image").live("click", function() {
+    if (confirm( "Are you sure you want to remove the large image?")) {
+      jQuery("#image_list").load(jQuery(this).attr('href'), { _method: "DELETE" });
+    }
+    return false;
+  });
 })

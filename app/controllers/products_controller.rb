@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @category = Category.find(params[:category_id])
-    @products = @category.products.top_nine
+    @products = @category.products.available.top_nine
     @cart_item = CartItem.new
     zipcode = session[:zipcode]
     @shipping = ShippingCalculations.product_quote(@product.id, 1 , zipcode) if zipcode
