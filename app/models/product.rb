@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
   belongs_to :vendor
-  has_many :product_images 
-  has_many :product_large_images, :through => :product_images
+  has_many :product_images, :dependent => :destroy
+  has_many :product_large_images, :through => :product_images 
+
   has_many :quantity_discounts 
   
   has_and_belongs_to_many  :categories

@@ -1,10 +1,9 @@
 <h3>Thumbnails:</h3><br/>
 
-<% image = product.product_images[0] %>
-<% unless image.nil? %>
-	<% image.thumbnails.each do |thumbnail| %>
+<% thumbnail = product.product_images[0].product_image_thumbnail %>
+<% unless thumbnail.nil? %>
 		<div id="<%= dom_id(thumbnail, 'id') %>">
-			<%= image_tag thumbnail.public_filename %>
+			<%= image_tag thumbnail.filename.url %>
 			<input type="hidden" name="image_id" value="<%= thumbnail.id %>"/>
 			<%= link_to_remote 'Remove Image', :submit => dom_id(thumbnail, 'id'), 
 								:update => 'image_thumbnail_list',
@@ -13,5 +12,4 @@
 										  :controller => 'product_images',
 									 	  :id => product.id } %>
 		</div>
-	<% end %>
 <% end %>
