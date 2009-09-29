@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
   include ShippingCalculations
   layout 'shopping'
-  
-  
+
   # GET /products
   # GET /products.xml
   def index
