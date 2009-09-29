@@ -1,17 +1,12 @@
-<div id="images_large_form">
-	<% form_for :product_large_image, 
-				:url => { :action => 'add_product_large_image', :controller => 'product_images', 
-						  :id => @product.id }, 
-	            :html => { :multipart => true, :target => 'upload_large_image_frame' } do |form| %>
+<div class="images_large_form">
+	<% form_for [:admin, image, large_image], 
+	            :html => { :multipart => true, :class => 'image_large_add' } do |form| %>
 	  <p>
-	    <label for="uploaded_data">Upload Image:</label>
-	    <%= form.file_field :uploaded_data, :value => "Browse" %>
+	    <label for="uploaded_data">Upload Large Image:</label>
+	    <%= form.file_field :filename, :value => "Browse" %>
 	  </p>
 	  <p>
 	    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
 	  </p>
 	<% end %>
-    <iframe id='upload_large_image_frame' name="upload_large_image_frame" 
-			style="width:1px;height:1px;border:0px" src="about:blank">
-	</iframe>
 </div>	

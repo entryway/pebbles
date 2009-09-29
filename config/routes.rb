@@ -30,7 +30,7 @@ ActionController::Routing::Routes.draw do |map|
      admin.resources :promo_codes
      admin.resources :products, :has_many => [:product_options, :out_of_stock_options, :variants, 
                                               :product_images]
-     admin.resources :product_images, :has_many => [:product_image_thumbnails]
+     admin.resources :product_images, :has_many => [:product_image_thumbnails, :product_large_images]
      admin.resources :regions, :has_many => :shipping_methods
      
      admin.resources :stores

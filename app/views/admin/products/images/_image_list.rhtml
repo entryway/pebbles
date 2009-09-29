@@ -1,5 +1,3 @@
-
-
 <% product.product_images.each do |image| %>
   <hr>
   <h3>Regular Size:</h3><br/>
@@ -15,6 +13,15 @@
   	<% else %>
   	  <%= render '/admin/products/images/image_thumbnail_form', 
   	            :image => image, :thumbnail => image.build_product_image_thumbnail %>
+    <% end %>
+  </div>
+  <div>
+	  <% if image.product_large_image %>
+  	  <%= render '/admin/products/images/image_large_list', 
+  	             :image => image, :large_image => image.product_large_image %>
+  	<% else %>
+  	  <%= render '/admin/products/images/image_large_form', 
+  	             :image => image, :large_image => image.build_product_large_image %>
     <% end %>
   </div>
   
