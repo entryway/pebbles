@@ -52,6 +52,11 @@ describe Product do
         [@red.id, @small.id].should include(s.id)
       end
     end
+    
+    it "should return nil if there isn't any selection_ids" do
+      variant = @product.find_variant_by_selection_ids(nil)
+      variant.should == nil
+    end
   end
   
   describe "#product_or_first_variant_price" do

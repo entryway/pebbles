@@ -55,5 +55,19 @@ class Cart < ActiveRecord::Base
      (sub_total + shipping_total) * 100
   end
 
+  # add the product to the cart with any accessories selected
+  def add_product(product_id, quantity, options)
+    Cart.transaction do
+      options ||= Array.new
+      product = Product.find(product_id)
+      variant = product.find_variant_by_selection_ids(options)
+      cart_item = find_product_with_options(cart, product_id, options)
+      add_to_cart(cart, cart_item, product_id, quantity, options)
+    end
+  end
+
+  def find_product_or_variant(product, variant)
+    cart_items.find(:first, :conditions => { :product_id => product, :variant_id => variant })
+  end
   
 end 

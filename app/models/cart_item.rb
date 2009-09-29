@@ -30,13 +30,15 @@ class CartItem < ActiveRecord::Base
     
     price
   end
-  
-  class << self 
-    
+
+  class << self
+
     # add the product to the cart with any accessories selected
-    def add_product(cart, product_id, quantity, options)
+    def add_product(product_id, quantity, options)
       Cart.transaction do
         options ||= Array.new
+        product = Product.find(product_id)
+        variant = product.find_variant_by_selection_ids(options)
         cart_item = CartItem.find_product_with_options(cart, product_id, options)
         add_to_cart(cart, cart_item, product_id, quantity, options)
       end
