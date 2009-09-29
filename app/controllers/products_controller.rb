@@ -1,13 +1,12 @@
-
 class ProductsController < ApplicationController
   include ShippingCalculations
   layout 'shopping'
-  
+
   # GET /products
   # GET /products.xml
   def index
     @category = Category.find(params[:category_id])
-    @products = @category.paged_products(params[:page], 8)
+    @products = @category.paged_products(params[:page], 15)
 
     respond_to do |format|
       format.html # index.rhtml
@@ -19,6 +18,9 @@ class ProductsController < ApplicationController
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
+    @category = Category.find(params[:category_id])
+    @products = @category.products.top_nine
+    @cart_item = CartItem.new
     zipcode = session[:zipcode]
     @shipping = ShippingCalculations.product_quote(@product.id, 1 , zipcode) if zipcode
   

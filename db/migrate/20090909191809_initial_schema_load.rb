@@ -10,18 +10,13 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.string  "state",       :limit => 50
     end
 
-    create_table "cart_item_selections", :force => true do |t|
-      t.integer "cart_item_id"
-      t.integer "product_option_selection_id"
-    end
-
     create_table "cart_items", :force => true do |t|
       t.integer  "product_id"
       t.integer  "cart_id"
       t.integer  "quantity"
       t.datetime "created_at"
       t.datetime "updated_at"
-      t.integer  "product_option_selection_id"
+      t.integer  "variant_id"
     end
 
     create_table "carts", :force => true do |t|
@@ -69,10 +64,6 @@ class InitialSchemaLoad < ActiveRecord::Migration
     end
 
     create_table "flat_rate_shippings", :force => true do |t|
-      t.string  "name",               :limit => 50
-      t.decimal "base_price"
-      t.integer "cost_of_subtotal"
-      t.integer "cost_per_weight"
       t.integer "item_low"
       t.integer "item_high"
       t.integer "weight_low"
@@ -80,7 +71,7 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.integer "order_total_low"
       t.integer "order_total_high"
       t.integer "shipping_method_id"
-      t.decimal "cost_per_item",                    :precision => 8, :scale => 2, :default => 0.0
+      t.decimal "flat_rate"
     end
 
     create_table "fulfillment_codes", :force => true do |t|
@@ -187,35 +178,18 @@ class InitialSchemaLoad < ActiveRecord::Migration
     end
 
     create_table "product_image_thumbnails", :force => true do |t|
-      t.integer "parent_id"
-      t.string  "content_type"
+      t.integer "product_image_id"
       t.string  "filename"
-      t.string  "thumbnail"
-      t.integer "size"
-      t.integer "width"
-      t.integer "height"
     end
 
     create_table "product_images", :force => true do |t|
-      t.integer "parent_id"
-      t.string  "content_type"
       t.string  "filename"
-      t.string  "thumbnail"
-      t.integer "size"
-      t.integer "width"
-      t.integer "height"
       t.integer "product_id"
     end
 
     create_table "product_large_images", :force => true do |t|
-      t.integer "parent_id"
-      t.string  "content_type"
-      t.string  "filename"
-      t.string  "thumbnail"
-      t.integer "size"
-      t.integer "width"
-      t.integer "height"
-      t.integer "product_id"
+     t.integer "product_image_id"
+     t.string  "filename"
     end
 
     create_table "product_option_instances", :force => true do |t|
@@ -276,6 +250,9 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.decimal  "length"
       t.decimal  "width"
       t.decimal  "height"
+      t.integer  "inventory", :default => 0
+      t.string   "image"
+      t.string   "thumbnail"
     end
 
     create_table "promo_codes", :force => true do |t|
@@ -316,6 +293,10 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.boolean "default_selection"
       t.integer "region_id"
       t.string  "fulfillment_code"
+      t.decimal "base_price"
+      t.integer "cost_of_subtotal"
+      t.integer "cost_per_weight"
+      t.decimal "cost_per_item",                    :precision => 8, :scale => 2, :default => 0.0
     end
 
     create_table "shipping_providers", :force => true do |t|

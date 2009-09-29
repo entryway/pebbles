@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.0.0"
+  s.version = "0.0.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-09-17}
-  s.description = %q{TODO: longer description of your gem}
+  s.date = %q{2009-09-24}
+  s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
     ".gitignore",
@@ -37,7 +37,6 @@ Gem::Specification.new do |s|
      "app/controllers/admin/stores_controller.rb",
      "app/controllers/admin/ups_shipping_controller.rb",
      "app/controllers/admin/vendors_controller.rb",
-     "app/controllers/application_controller.rb",
      "app/controllers/cart_items_controller.rb",
      "app/controllers/carts_controller.rb",
      "app/controllers/categories_controller.rb",
@@ -51,21 +50,19 @@ Gem::Specification.new do |s|
      "app/controllers/store_import_controller.rb",
      "app/controllers/stores_controller.rb",
      "app/controllers/users_controller.rb",
-     "app/helpers/admin/categories_helper.rb",
-     "app/helpers/admin/gt_control_helper.rb",
-     "app/helpers/admin/orders_helper.rb",
-     "app/helpers/admin/products_helper.rb",
-     "app/helpers/admin/shipping_methods_helper.rb",
-     "app/helpers/application_helper.rb",
-     "app/helpers/cart_helper.rb",
-     "app/helpers/featured_product.rb",
-     "app/helpers/header_helper.rb",
-     "app/helpers/index_helper.rb",
-     "app/helpers/orders_helper.rb",
-     "app/helpers/products_helper.rb",
-     "app/helpers/sessions_helper.rb",
-     "app/helpers/stores_helper.rb",
-     "app/helpers/users_helper.rb",
+     "app/controllers/variants_controller.rb",
+     "app/helpers/pebbles/admin/categories_helper.rb",
+     "app/helpers/pebbles/admin/gt_control_helper.rb",
+     "app/helpers/pebbles/admin/orders_helper.rb",
+     "app/helpers/pebbles/admin/products_helper.rb",
+     "app/helpers/pebbles/admin/shipping_methods_helper.rb",
+     "app/helpers/pebbles/application_helper.rb",
+     "app/helpers/pebbles/cart_helper.rb",
+     "app/helpers/pebbles/header_helper.rb",
+     "app/helpers/pebbles/index_helper.rb",
+     "app/helpers/pebbles/orders_helper.rb",
+     "app/helpers/pebbles/products_helper.rb",
+     "app/helpers/pebbles/stores_helper.rb",
      "app/lib/exceptions.rb",
      "app/lib/order_calculations.rb",
      "app/lib/order_factory.rb",
@@ -166,7 +163,8 @@ Gem::Specification.new do |s|
      "app/views/admin/product_options/_option_selection_input.rhtml",
      "app/views/admin/product_options/_option_selection_list.rhtml",
      "app/views/admin/product_options/_options.rhtml",
-     "app/views/admin/product_options/_options_form.rhtml",
+     "app/views/admin/product_options/_options_form.html.erb",
+     "app/views/admin/product_options/_options_form.rhtml.old",
      "app/views/admin/product_options/_product_option_select.rhtml",
      "app/views/admin/product_options/add_option_selection.rjs",
      "app/views/admin/product_options/apply_option_to_product.rjs",
@@ -259,9 +257,10 @@ Gem::Specification.new do |s|
      "app/views/index/support_local.rhtml",
      "app/views/index/wholesale.rhtml",
      "app/views/index/why-organic.rhtml",
-     "app/views/layouts/_footer.rhtml",
+     "app/views/layouts/_footer.html.erb",
      "app/views/layouts/admin.html.erb",
-     "app/views/layouts/application.rhtml",
+     "app/views/layouts/application.html.erb",
+     "app/views/layouts/shopping.html.erb",
      "app/views/order_notifier/order_confirmation.html.erb",
      "app/views/order_notifier/supplier_confirmation.html.erb",
      "app/views/orders/_address.rhtml",
@@ -291,8 +290,8 @@ Gem::Specification.new do |s|
      "app/views/products/show.rhtml",
      "app/views/promo_codes/create.rjs",
      "app/views/sessions/new.rhtml",
-     "app/views/shared/_category_menu.rhtml",
-     "app/views/shared/_product_menu.rhtml",
+     "app/views/shared/_category_menu.html.erb",
+     "app/views/shared/_product_menu.html.erb",
      "app/views/stores/_map.rhtml",
      "app/views/stores/_store.rhtml",
      "app/views/stores/index.rhtml",
@@ -311,17 +310,21 @@ Gem::Specification.new do |s|
      "db/migrate/20090916032132_create_table_variant_selections.rb",
      "db/schema.rb",
      "db/seeds.rb",
-     "init.rb",
      "lib/authenticated_system.rb",
      "lib/authenticated_test_helper.rb",
      "lib/hijacker.rb",
      "lib/optimized.rb",
      "lib/pebbles.rb",
      "lib/pebbles/asset_copier.rb",
+     "lib/pebbles/cart.rb",
+     "lib/pebbles/categories.rb",
+     "lib/pebbles/shipping.rb",
      "lib/role_requirement_system.rb",
      "lib/role_requirement_test_helper.rb",
      "lib/tasks/capistrano.rake",
+     "lib/tasks/pebbles.rake",
      "lib/tasks/rails.rake",
+     "pebbles.gemspec",
      "public/.htaccess",
      "public/404.html",
      "public/500.html",
@@ -510,13 +513,10 @@ Gem::Specification.new do |s|
      "public/javascripts/unittest.js",
      "public/javascripts/views/admin/categories/index.js",
      "public/javascripts/views/admin/orders/show.js",
+     "public/javascripts/views/admin/products/edit.js",
+     "public/javascripts/views/products/show.js",
      "public/javascripts/wms-gs.js",
      "public/javascripts/ym4r-gm.js",
-     "public/product_option_selection_images/0000/0001/10103-dc.jpg",
-     "public/product_option_selection_images/0000/0002/10103-kh.jpg",
-     "public/product_option_selection_images/0000/0003/10105-bb.jpg",
-     "public/product_option_selection_images/0000/0004/10103-dc.jpg",
-     "public/product_option_selection_images/0000/0005/10103-br-flat.jpg",
      "public/robots.txt",
      "public/stylesheets/admin.css",
      "public/stylesheets/admin_print.css",
@@ -533,28 +533,15 @@ Gem::Specification.new do |s|
      "public/stylesheets/p7tp/tabs01header.jpg",
      "public/stylesheets/print-base.css",
      "public/stylesheets/reset-fonts.css",
-     "script/about",
-     "script/autospec",
-     "script/breakpointer",
-     "script/console",
-     "script/dbconsole",
-     "script/destroy",
-     "script/generate",
-     "script/performance/benchmarker",
-     "script/performance/profiler",
-     "script/performance/request",
-     "script/plugin",
-     "script/process/inspector",
-     "script/process/reaper",
-     "script/process/spawner",
-     "script/runner",
-     "script/server",
-     "script/spec_server",
+     "rails/init.rb",
      "spec/factories/category.rb",
+     "spec/factories/product_option.rb",
+     "spec/factories/product_option_selection.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/shipping_calculations_spec.rb",
      "spec/models/category_spec.rb",
      "spec/models/product_accessory_spec.rb",
+     "spec/models/product_spec.rb",
      "spec/models/shipping_fulfillment_spec.rb",
      "spec/order_builder.rb",
      "spec/order_factory.rb",
@@ -563,7 +550,6 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "tasks/asset_copier.rake",
-     "tasks/pebbles_tasks.rake",
      "tmp/dump.sql",
      "vendor/plugins/active_record_base_without_table/CHANGELOG",
      "vendor/plugins/active_record_base_without_table/MIT-LICENSE",
@@ -864,13 +850,16 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.4}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{ecommerce}
   s.test_files = [
     "spec/factories/category.rb",
+     "spec/factories/product_option.rb",
+     "spec/factories/product_option_selection.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/shipping_calculations_spec.rb",
      "spec/models/category_spec.rb",
      "spec/models/product_accessory_spec.rb",
+     "spec/models/product_spec.rb",
      "spec/models/shipping_fulfillment_spec.rb",
      "spec/order_builder.rb",
      "spec/order_factory.rb",
@@ -884,10 +873,16 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
+      s.add_runtime_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
+      s.add_development_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
     else
       s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
+      s.add_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
+      s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
     end
   else
     s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
+    s.add_dependency(%q<bcurren-ssl_requirement>, [">= 0"])
+    s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
   end
 end

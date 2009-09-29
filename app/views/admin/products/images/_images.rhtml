@@ -1,22 +1,10 @@
 <%= error_messages_for :product_image %>
 
-<div id="image_list">
-	<%= render :partial => '/admin/products/images/image_list', :locals => { :product => @product } -%>
-</div>
 <%= render :partial => '/admin/products/images/image_form', :object => @product %>
 
-<hr/>
-<div id="image_thumbnail_list">
-	<%= render :partial => '/admin/products/images/image_thumbnail_list', :locals => { :product => @product } -%>
-</div>
-<%= render :partial => '/admin/products/images/image_thumbnail_form', :object => @product %>
+<% unless @product.product_images.empty? %>
+  <div id="image_list">
+  	<%= render :partial => '/admin/products/images/image_list', :locals => { :product => @product } -%>
+  </div>
+<% end %>
 	
-
-<hr/>
-<div id="image_large_list">
-	<%= render :partial => '/admin/products/images/image_large_list', :locals => { :product => @product } -%>
-</div>
-<%= render :partial => '/admin/products/images/image_large_form', :object => @product %>
-
-<div id="notes">
-</div>

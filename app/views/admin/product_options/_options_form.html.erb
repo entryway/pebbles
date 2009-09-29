@@ -1,0 +1,72 @@
+	<hr/>
+	<h2>Current Options for this Product:</h2><br/>	
+	<% form_for [:admin, setup_option(@product)] do |form|%>
+    <% form.fields_for :product_options do |option_form| %>
+    	<div class="gt-table-controls clearfix">
+    	  <% @hide_object = false %>
+    		<table class="gt-list-table" <%=hide_unless_first_new_object(option_form.object)%>>
+    		  <tr>
+      			<th>Name</th>
+      			<th>Selection Type</th>
+      			<th>Description</th>
+      			<th></th>
+    		  </tr>
+       		<tr>
+      			<td>
+      			  <%= option_form.text_field :name %>
+      			</td>
+      			<td>
+      			  <%= option_form.select :selection_type, ProductOption::LIST %>
+      			</td>
+      			<td>
+      				<%= option_form.text_field :description %>
+      			</td>
+      			<td>
+      			  <% unless option_form.object.new_record? %>
+                <%= option_form.check_box '_delete' %>
+                <%= option_form.label '_delete', 'Remove' %>
+              <% end %>
+            </td>
+      		</tr>
+      		<tr>
+      		  <td></td>
+      		  <td colspan="2">
+      		    <table>
+      		      <tr>
+            			<th>Name</th>
+            			<th>Price Adjustment</th>
+            			<th>Weight Adjustment</th>
+            			<th></th>
+          		  </tr>
+          		  <% @hide_object = false %>
+          		  <% option_form.fields_for :product_option_selections, 
+          		       setup_selection(option_form.object).product_option_selections do |selection_form| %>
+         		      <tr <%=hide_unless_first_new_object(selection_form.object)%>>
+          		      <td>
+          		        <%= selection_form.text_field :name %>
+          		      </td>
+          		      <td>
+          		        <%= selection_form.text_field :price_adjustment %>
+          		      </td>
+          		      <td>
+          		        <%= selection_form.text_field :weight_adjustment %>
+          		      </td>
+          		      <td>
+          		        <% unless selection_form.object.new_record? %>
+                        <%= selection_form.check_box '_delete' %>
+                        <%= selection_form.label '_delete', 'Remove' %>
+                      <% else %>
+                        <%= add_another_link?(selection_form.object, 'selection') %>
+                      <% end %>
+                    </td>
+          		    </tr>
+          		  <% end%>
+          		</table>
+      		  </td>
+      		</tr>
+		    </table>
+		  </div>
+	  <% end %>
+	  <%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>
+  <% end %>
+

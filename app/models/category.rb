@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   has_and_belongs_to_many :products
   #has_and_belongs_to_many :faux_products
   named_scope :active, :conditions => {:active => true}
+  named_scope :position_sorted, :order => 'position'
   
   acts_as_nested_set 
   
@@ -42,7 +43,7 @@ class Category < ActiveRecord::Base
   
   def self.position_sorted
     return [] if root.nil?
-    root.children.sort_by { |a| a.position }
+    root.children.position_sorted.active
   end
   
   def alpha_sorted

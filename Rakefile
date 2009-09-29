@@ -1,16 +1,26 @@
 require 'rubygems'
 require 'rake'
 
+namespace :pebbles do
+  desc "Synching migration hackety hack"
+  task :sync do
+    system "rsync -ruv #{File.dirname(__FILE__)}/db/migrate ../../../db"
+    system "rsync -ruv #{File.dirname(__FILE__)}/public ../../../"
+  end
+end
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "pebbles"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{ecommerce}
+    gem.description = %Q{entryway's ecommerce solution}
     gem.email = "bobbywilson0@gmail.com"
     gem.homepage = "http://github.com/entryway/pebbles"
     gem.authors = ["gustin", "jonsgreen", "bobbyw"]
     gem.add_dependency "collectiveidea-awesome_nested_set"
+    gem.add_dependency "bcurren-ssl_requirement"
+    gem.add_development_dependency "thoughtbot-factory_girl"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

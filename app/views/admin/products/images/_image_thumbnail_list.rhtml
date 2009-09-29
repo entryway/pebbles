@@ -1,17 +1,7 @@
-<h3>Thumbnails:</h3><br/>
+<h3>Thumbnail:</h3><br/>
 
-<% image = product.product_images[0] %>
-<% unless image.nil? %>
-	<% image.thumbnails.each do |thumbnail| %>
-		<div id="<%= dom_id(thumbnail, 'id') %>">
-			<%= image_tag thumbnail.public_filename %>
-			<input type="hidden" name="image_id" value="<%= thumbnail.id %>"/>
-			<%= link_to_remote 'Remove Image', :submit => dom_id(thumbnail, 'id'), 
-								:update => 'image_thumbnail_list',
-								:confirm => "Are you sure you want to remove the image?", 
-								:url => { :action => 'remove_product_thumbnail',
-										  :controller => 'product_images',
-									 	  :id => product.id } %>
-		</div>
-	<% end %>
-<% end %>
+<div id="<%= dom_id(thumbnail, 'id') %>">
+	<%= image_tag thumbnail.filename.url %>
+	<%= link_to 'Remove Thumbnail', admin_product_image_product_image_thumbnail_path(image, thumbnail), 
+	    :class => "destroy-product-image-thumbnail" %>
+</div>
