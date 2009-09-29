@@ -1,3 +1,5 @@
+<%= render 'sidebar' %>
+
 <h1>Listing Products</h1>
 <div class="gt-table-controls clearfix">
 	<table class="gt-list-table">
@@ -33,11 +35,6 @@
 	</table>
 </div>
 
-<br />
-
-
-<%= link_to image_tag('gt/btn-new.jpg'), new_admin_product_path %>
-<br/><br/><br/>
 <!-- Move to helper -->
 Products <%= @products.offset+1 %> - <%= @products.length * @products.current_page %> of <%= @products.total_entries %>
 
