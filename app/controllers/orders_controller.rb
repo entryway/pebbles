@@ -3,6 +3,8 @@ class OrdersController < ApplicationController
   include ActiveMerchant::Billing
   include ActiveMerchant::Billing::Integrations
 
+  layout 'shopping'
+
   ssl_required :new, :create
   
   layout 'shopping'

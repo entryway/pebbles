@@ -20,6 +20,7 @@ config.gem "carrierwave"
 config.gem "stephencelis-acts_as_singleton",
     :lib => "acts_as_singleton",
     :source => "http://gems.github.com"
+config.gem "ssl_requirement"
 
 
 
