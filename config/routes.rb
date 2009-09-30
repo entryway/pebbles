@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
      categories.resources :products
    map.resources :shippings
    map.resources :variants
+   map.resources :regions, :has_many => [:shipping_methods]
    
    end
    

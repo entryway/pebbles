@@ -45,16 +45,10 @@ class CartsController < ApplicationController
 
   def update
     cart = current_cart
-    cart.cart_items.each do |cart_item|
-      quantity = CartItem.valid_quantity(params['qty' + cart_item.id.to_s])
-      if cart_item.quantity != quantity || quantity == 1
-        cart_item.quantity = quantity
-        cart_item.save
-      end
+    if cart.update_attributes!(params[:cart])
+      flash[:notice] = "Your cart was updated."
+      redirect_to current_cart
     end
-    flash[:notice] = "Your cart was updated."
-
-    redirect_to current_cart
   end
 
 end

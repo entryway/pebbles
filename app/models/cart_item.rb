@@ -6,6 +6,8 @@ class CartItem < ActiveRecord::Base
   
   has_many :option_selections, 
            :class_name => 'CartItemSelection'
+           
+  validates_numericality_of :quantity, :only_integer => true, :greater_than_or_equal_to => 1 
   
   cattr_accessor :discounted
  

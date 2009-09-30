@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   include ActiveMerchant::Billing::Integrations
 
   ssl_required :new, :create
+  
+  layout 'shopping'
        
   def new
     @order = Order.new
@@ -114,7 +116,7 @@ class OrdersController < ApplicationController
 
     @cart = current_cart
     @subtotal = @cart.sub_total
-    @shipping_total = @cart.shipping_totals(region, @default_method, session[:zipcode])
+    @shipping_total = @cart.shipping_total(@default_method)
     @grand_total = @cart.grand_total(@shipping_total)
   end
   

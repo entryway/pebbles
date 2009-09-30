@@ -11,5 +11,6 @@ class ShippingsController < ApplicationController
     puts "******#{@shipping}"
     render :partial => 'products/shipping'
   end
+    
 
 end

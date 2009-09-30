@@ -8,9 +8,17 @@ module ShippingCalculations
     price = 0
     unless self.free_shipping
       shipping_method = ShippingMethod.find(self.shipping_method_id)
-      price = shipping_method.flat_rate_shipping_cost(self)
+      price = flat_rate_shipping_cost(shipping_method)
     end
     price
+  end
+  
+  def flat_rate_shipping_cost(shipping_method)
+    if shipping_method.flat_rate_shippings.size > 0
+      shipping_method.flat_rate_by_order_total(self.sub_total)
+    else
+      shipping_method.flat_rate_by_base_rate(self.line_items)
+    end
   end
 
   #include ActiveMerchant::Shipping

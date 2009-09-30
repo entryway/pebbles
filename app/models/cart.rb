@@ -3,10 +3,12 @@
 class Cart < ActiveRecord::Base
   include ShippingCalculations
   
-  has_many :cart_items
+  has_many :cart_items, :order => 'product_id, variant_id'
   has_many :products, :through => :cart_items
   
   validates_length_of :name, :in => 1..40
+  
+  accepts_nested_attributes_for :cart_items
   
   attr_accessor :shipping_method_id
   

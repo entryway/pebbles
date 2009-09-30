@@ -72,8 +72,8 @@ describe ShippingCalculations do
       product1 = Factory(:product)
       product2 = Factory(:product)
       @cart = Cart.new
-      CartItem.add_product(@cart, product1.id, 1, nil)
-      CartItem.add_product(@cart, product2.id, 1, nil)
+      @cart.add_product(product1.id, 1, nil)
+      @cart.add_product(product2.id, 1, nil)
       @order = Order.new(:shipping_method_id => @shipping_method.id)
       @cart.cart_items.each do |item|
         oi = OrderItem.from_cart_item(item)

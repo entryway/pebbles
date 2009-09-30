@@ -12,7 +12,7 @@
 	  </tr>
 	
 <% if @cart.cart_items.length > 0 %>
-  	<% form_tag cart_path(@cart.id), :method => :put, 
+  	<% form_for @cart 
 									 :html => { :name => 'cart_form' } do %>
 		
 	  <%= render :partial => "/carts/cart_item", :locals => { :cart => @cart } %>
