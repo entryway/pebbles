@@ -1,15 +1,15 @@
 <div id="images_form" style="display:inline">
 	
-	<% form_for :category_image, :url => { :action => 'add_category_image', :id => category.id }, 
-	            :html => { :multipart => true, :target => 'upload_frame' } do |form| %>
+	<% form_for [:admin, category, CategoryImage.new],
+              :html => { :multipart => true, :id => 'category_image_add' } do |form| %>
 	  <p>
 	    <label for="uploaded_data">Upload Image:</label>
-	    <%= form.file_field :uploaded_data, :value => "Browse", :size => 15 %>
+	    <%= form.file_field :filename, :value => "Browse", :size => 15 %>
 	  </p>
 	  <p>
 	    <%= submit_tag 'Upload' %>
 	  </p>
 	<% end %>
-	<iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+  <!-- <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe> -->
 
 </div>
