@@ -7,5 +7,9 @@ module Pebbles::CategoryHelper
     end
   end
 
+  def category_image(category)
+    image_tag("icon-#{category.name.split.first.downcase}.gif", :alt => 'icon')
+  end
+
 end
 
