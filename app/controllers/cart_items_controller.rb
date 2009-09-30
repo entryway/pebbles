@@ -13,7 +13,7 @@ class CartItemsController < ApplicationController
     @cart = current_cart
     product_id = params[:id]
     quantity = params[:quantity]
-    options = params[:options].map{|id| id.to_i}
+    options = params[:options].map{|id| id.to_i} if params[:options]
     @cart.add_product(product_id, quantity, options)
     redirect_to cart_path(@cart)
     

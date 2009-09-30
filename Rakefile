@@ -19,7 +19,7 @@ begin
     gem.homepage = "http://github.com/entryway/pebbles"
     gem.authors = ["gustin", "jonsgreen", "bobbyw"]
     gem.add_dependency "collectiveidea-awesome_nested_set"
-    gem.add_dependency "bcurren-ssl_requirement"
+    gem.add_dependency "entryway-ssl_requirement"
     gem.add_development_dependency "thoughtbot-factory_girl"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
