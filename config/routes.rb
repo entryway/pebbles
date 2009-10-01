@@ -4,7 +4,6 @@ ActionController::Routing::Routes.draw do |map|
    map.resources :stores
    
    map.resource :session, :controller => 'sessions'
-   map.connect '', :controller => 'index', :action => 'index'
  
    map.resources :carts do |cart|
      cart.resources :cart_items
