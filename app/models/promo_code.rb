@@ -40,7 +40,7 @@ class PromoCode < ActiveRecord::Base
       if self.percent_discount && self.percent_discount > 0
         discount = self.calculate_percent_discount(order)
       else
-        discount = self.dollar_discount          
+        discount = self.dollar_discount 
       end
       discount ||= 0
       self.message = SUCCESS_MESSAGE

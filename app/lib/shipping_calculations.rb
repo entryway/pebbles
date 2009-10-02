@@ -1,4 +1,8 @@
 module ShippingCalculations
+
+  def calculate_shipping_costs
+    calculate_flat_rate_shipping
+  end
   
   ##
   # Calculates flat rate shipping cost

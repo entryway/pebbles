@@ -1,6 +1,7 @@
 
 
 class OrderFactory
+  WEB_ORDER_DEFAULTS = { :order_type => OrderType::WEB, :payment_type => 'credit_card', :delivery_status => 1 }
   
   class << self
     
@@ -124,8 +125,44 @@ class OrderFactory
     
     
     # build a web order
-    def create_web_order
+    def create_web_order(cart, options = {})
       
+      order = Order.new(WEB_ORDER_DEFAULTS.merge(options[:order]))
+      
+      billing_address = Address.new(options[:billing_address])
+      
+      # piece-meal validation so user sees validation in steps
+      
+      # shipping address?
+      shipping_same = true unless options[:address_choice].nil?
+      unless shipping_same
+        shipping_address = Address.new(options[:shipping_address])
+      else
+        shipping_address = billing_address.clone
+      end
+      
+      order.shipping_address = shipping_address 
+      order.billing_address = billing_address
+
+      # CC validation 
+      credit_card = CreditCard.new(options[:credit_card])
+      credit_card.require_verification_value = true
+      order.credit_card = credit_card
+      valid = credit_card.valid? && order.valid? &&
+        billing_address.valid? && shipping_address.valid?
+      
+      if valid
+        order.credit_card_display = order.credit_card.display_number
+        
+        promo = PromoCode.find_by_code(options[:order][:promo_code])
+        promo.apply(order) if promo
+        
+        order.shipping_method_id = options[:active_shipping_method_id]
+        order.region_id = options[:active_shipping_region_id]
+        order.add_order_items_from_cart(cart)
+      end
+
+      order
     end
     
     private 

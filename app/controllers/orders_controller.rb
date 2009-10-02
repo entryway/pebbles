@@ -21,43 +21,10 @@ class OrdersController < ApplicationController
   def create
     @cart = current_cart
     # move to factory, little funky with validation, maybe builder?
-    @order = Order.new(params[:order])
-    @order.order_type = OrderType::WEB
-    @order.payment_type = 'credit_card'
-    @order.delivery_status = 1
-  
-    @billing_address = Address.new(params[:billing_address])
-    
-    # piece-meal validation so user sees validation in steps
-    
-    # shipping address?
-    shipping_same = true unless params[:address_choice].nil?
-    unless shipping_same
-      @shipping_address = Address.new(params[:shipping_address])
-    else
-      @shipping_address = @billing_address.clone
-    end
- 
-    # CC validation 
-    @credit_card = CreditCard.new(params[:credit_card])
-    @credit_card.require_verification_value = true
-    valid = @credit_card.valid? && @order.valid? &&
-            @billing_address.valid? && @shipping_address.valid?
-    unless valid
-      refresh_cart
-      render :action => 'new' and return
-    end
-    @order.shipping_address = @shipping_address 
-    @order.billing_address = @billing_address
-    @order.credit_card = @credit_card
-    @order.credit_card_display = @order.credit_card.display_number
-    
-    promo = PromoCode.find_by_code(params[:order][:promo_code])
-    promo.apply(@order) if promo
-     
-    @order.shipping_method_id = active_shipping_method_id
-    @order.region_id = active_shipping_region_id
-    @order.add_order_items_from_cart(@cart)
+    @order = OrderFactory.create_web_order(current_cart, params.merge(:active_shipping_method_id => active_shipping_method_id, :active_shipping_region_id => active_shipping_region_id))
+
+        refresh_cart
+        render :action => 'new' and return
     
     begin
       Order.transaction do
