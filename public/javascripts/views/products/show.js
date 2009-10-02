@@ -1,4 +1,5 @@
 jQuery(document).ready(function() {
+    var current_variant_id = '';
   jQuery("#submit_button").click(function() {
     var invalid = false;
     jQuery(".selection-select").each(function(item) {
@@ -20,7 +21,11 @@ jQuery(document).ready(function() {
     });
     jQuery.getJSON("/variants/1?product_id=" + product_id + "&selection_ids=" + selection_ids, 
                    function(data){
-                     jQuery('#price').html(data.price);
+                       current_variant_id = data.variant_image_id;
+                       jQuery('#price').html(data.price);
+                       jQuery('#variant_images div:visible').hide();
+                       jQuery('#variant_image_' + current_variant_id).show();
+                       jQuery('#product_image').hide();
                      if (data.out_of_stock) {
                        jQuery('#so_sorry_out_of_stock').show();
                        jQuery('#submit_button').hide();
@@ -35,15 +40,20 @@ jQuery(document).ready(function() {
   jQuery('#variant_images').load('/variant_images?product_id=' + jQuery("#product_id").val());
   jQuery('.thumbnail').hover( 
     function() {
-      jQuery('#variant_image').load('/variant_images/' + jQuery(this).attr('id'), 
-        function() {
-          jQuery(this).show();
-        });
-      jQuery('#product_image').hide();    
+        if(current_variant_id != '') {
+            jQuery('#variant_image_' + current_variant_id).hide();           
+        } else {
+            jQuery('#product_image').hide();   
+        }
+        jQuery('#variant_image_' + jQuery(this).attr('id')).show();
     },
     function() {
-      jQuery('#variant_image').hide();
-      jQuery('#product_image').show();
+      jQuery('#variant_image_' + jQuery(this).attr('id')).hide();
+        if(current_variant_id != '') {
+            jQuery('#variant_image_' + current_variant_id).show();           
+        } else {
+            jQuery('#product_image').show();   
+        }
     }
   );
 })
