@@ -8,7 +8,6 @@ class ShippingMethod < ActiveRecord::Base
   
   accepts_nested_attributes_for :flat_rate_shippings, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['flat_rate'].blank? }
-
   ##
   # flat rate shipping cost
   #

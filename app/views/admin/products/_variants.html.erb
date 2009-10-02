@@ -31,7 +31,9 @@
   				      <%= link_to image_tag(variant.variant_image.filename.url, :height => 30),
   				                  admin_variant_image_path(variant.variant_image), 
   				                  :class => 'show-variant-image' %>
-  				    <% end %>
+               	<%= link_to 'Remove', admin_variant_path(variant), 
+                            :class => "remove-variant-image" %>  				   
+              <% end %>
   				  </td>
   			  </tr>
     		<% end %>

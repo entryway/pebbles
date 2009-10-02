@@ -13,6 +13,11 @@ module ShippingCalculations
     price
   end
   
+  ##
+  # flat rate shipping cost
+  #
+  # @param [ShippingMethod] the selected shipping_method
+  # @return [Float] shipping cost
   def flat_rate_shipping_cost(shipping_method)
     if shipping_method.flat_rate_shippings.size > 0
       shipping_method.flat_rate_by_order_total(self.sub_total)

@@ -23,11 +23,11 @@ jQuery(document).ready(function() {
                      jQuery('#price').html(data.price);
                      if (data.out_of_stock) {
                        jQuery('#so_sorry_out_of_stock').show();
-                       jQuery('#submit_button').hide();
+                       jQuery('#submit_button').attr('disabled', 'disabled'); 
                      }
                      else {
                       jQuery('#so_sorry_out_of_stock').hide();
-                      jQuery('#submit_button').show();
+                      jQuery('#submit_button').removeAttr('disabled');
                      }
                    }
     );

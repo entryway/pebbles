@@ -90,4 +90,11 @@ jQuery(document).ready(function() {
     jQuery('#variant_image').load(jQuery(this).attr('href'));
     return false;
   });
+  jQuery(".remove-variant-image").live("click", function() {
+    if (confirm( "Are you sure you want to remove the variant image?")) {
+      jQuery("#variants").load(jQuery(this).attr('href'), { _method: "PUT" });
+    }
+    return false;
+  });
+  
 })
