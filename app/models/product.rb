@@ -38,6 +38,10 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_options, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['name'].blank? }
                                 
+  def created_product_options
+    product_options.select {|o| !o.new_record? }
+  end
+                                
   
   def product_image(thumb=false)
     if thumb

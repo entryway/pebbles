@@ -8,6 +8,8 @@ class ProductOption < ActiveRecord::Base
   
   accepts_nested_attributes_for :product_option_selections, :allow_destroy => true,
                                 :reject_if => proc { |attributes| attributes['name'].blank? }
+                                
+ 
 
   # Options for selection type 
   DROP_DOWN_LIST = 1

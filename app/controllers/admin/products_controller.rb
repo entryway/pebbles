@@ -75,6 +75,7 @@ class ProductsController < ApplicationController
     @available_options = ProductOption.find(:all, :order => 'name')
     @product_option = ProductOption.new
     @product_image = ProductImage.new
+    @variant_image = VariantImage.new
   end
 
 

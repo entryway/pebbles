@@ -37,6 +37,7 @@ ActionController::Routing::Routes.draw do |map|
      admin.resources :stores
 
      admin.resources :vendors
+     admin.resources :variant_images, :has_many => [:variant_image_thumbnails, :variant_large_images]
    end
                
   map.signup '/signup', :controller => 'users', :action => 'new'

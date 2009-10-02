@@ -50,8 +50,11 @@
                      :locals => { :product => @product } %>
         </div>
         <% unless @product.variants.empty? %>
-          <div id="p7tpc1_8">       
-            <%= render "variants", :variants => @product.variants, :product => @product %>
+          <div id="p7tpc1_8">
+            <div id="variants">       
+              <%= render "variants", :variants => @product.variants, :product => @product, 
+                                     :variant_image => @variant_image %>
+            </div>
           </div>
         <% end %>
       </div>

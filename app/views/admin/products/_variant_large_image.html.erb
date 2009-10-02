@@ -1,0 +1,19 @@
+<% if large_image.new_record? %>
+  <% form_for [:admin, variant_image, large_image], 
+              :html => { :multipart => true, :class => 'variant_image_large_add' } do |form| %>
+    <p>
+      <label for="uploaded_data">Upload Large Image:</label>
+      <%= form.file_field :filename, :value => "Browse" %>
+    </p>
+    <p>
+      <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
+    </p>
+  <% end %>
+<% else %>
+  <h3>Large Image:</h3><br/>
+  <div>
+  	<%= image_tag large_image.filename.url %>
+  	<%= link_to 'Remove Large Image', admin_variant_image_variant_large_image_path(variant_image, large_image), 
+  	    :class => "destroy-variant-large-image" %>
+  </div>
+<% end %>

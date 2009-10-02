@@ -1,34 +1,48 @@
 <h1>Listing Variants</h1>
 <div class="gt-table-controls clearfix">
-	<table class="gt-list-table">
-		<thead>
-		  <tr>
-		    <% product.product_options.each do |option| %>
-		      <th> Option: <%= option.name %></th>
-		    <% end %>
-			<th>Inventory</th>
-			<th>SKU</th>
-			<th>Price</th>
-			<th>Weight</th>
-		  </tr>
-  	</thead>
-		<tbody>
-		  <% form_for [:admin, product] do |form|%>
-  		  <% form.fields_for :variants do |variant_form| %>
+  <% form_for [:admin, product] do |form|%>
+  	<table class="gt-list-table">
+  		<thead>
+  		  <tr>
+  		    <% product.created_product_options.each do |option| %>
+  		      <th> Option: <%= option.name %></th>
+  		    <% end %>
+  			<th>Inventory</th>
+  			<th>SKU</th>
+  			<th>Price</th>
+  			<th>Weight</th>
+  			<th>Image</th>
+  		  </tr>
+    	</thead>
+  		<tbody>
+  		  <% form.fields_for :variants, variants do |variant_form| %>
   			  <tr>
-  			    <% variant_form.object.product_option_selections.each do |selection| %>
+  			    <% variant = variant_form.object%>
+  			    <% variant.product_option_selections.each do |selection| %>
   			      <td><%= selection.name %></td>
   			    <% end %>
   				  <td><%= variant_form.text_field :inventory, :size => 5 %></td>
   				  <td><%= variant_form.text_field :sku, :size => 10 %></td>
   				  <td><%= variant_form.text_field :price, :size => 5 %></td>
   				  <td><%= variant_form.text_field :weight, :size => 5 %></td>
+  				  <td>
+  				    <%= check_box_tag "variant_checkbox", variant.id, false, :class => "variant_image_upload" %>
+  				    <% if variant.variant_image %>
+  				      <%= link_to image_tag(variant.variant_image.filename.url, :height => 30),
+  				                  admin_variant_image_path(variant.variant_image), 
+  				                  :class => 'show-variant-image' %>
+  				    <% end %>
+  				  </td>
   			  </tr>
     		<% end %>
     		<tr><td>
     	  	<%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>
     		</tr></td>
-    	<% end %>
-  	</tbody>
-	</table>
+    	</tbody>
+  	</table>
+	<% end %>
+	
+	<div id="variant_image"> 
+	  <%= render "admin/products/variant_image", :variant_image => variant_image %>
+	</div>
 </div>

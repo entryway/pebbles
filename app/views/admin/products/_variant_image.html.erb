@@ -1,0 +1,28 @@
+<% if variant_image.new_record? %>
+  <% form_for [:admin, variant_image], 
+               :html => { :multipart => true, :id => 'variant_image_add' } do |form|%>
+	  <p>
+	    <label for="uploaded_data">Upload Regular Image:</label>
+	    <%= form.file_field :filename, :value => "Browse" %>
+	    <%= hidden_field_tag "variant_ids" %>
+	  </p>
+	  <p>
+	    <%= image_submit_tag 'gt/btn-upload.jpg', :id=> 'variant_upload_button' %>
+	  </p>
+  <% end %>
+<% else %>
+  <h3>Regular Size:</h3><br/>
+  <div>
+	  <%= image_tag variant_image.filename.url %>
+	  <%= link_to 'Remove Variant Image', admin_variant_image_path(variant_image), 
+	    :class => "destroy-variant-image" %>
+  </div>
+  <div id="variant_large_image">
+    <%= render "admin/products/variant_large_image", :large_image => variant_image.variant_large_image,
+                                                     :variant_image => variant_image  %>
+  </div>
+  <div id="variant_thumbnail">
+    <%= render "admin/products/variant_thumbnail", :thumbnail => variant_image.variant_image_thumbnail,
+                                                   :variant_image => variant_image  %>
+  </div>
+<% end %>
