@@ -32,4 +32,18 @@ jQuery(document).ready(function() {
                    }
     );
   });
+  jQuery('#variant_images').load('/variant_images?product_id=' + jQuery("#product_id").val());
+  jQuery('.thumbnail').hover( 
+    function() {
+      jQuery('#variant_image').load('/variant_images/' + jQuery(this).attr('id'), 
+        function() {
+          jQuery(this).show();
+        });
+      jQuery('#product_image').hide();    
+    },
+    function() {
+      jQuery('#variant_image').hide();
+      jQuery('#product_image').show();
+    }
+  );
 })

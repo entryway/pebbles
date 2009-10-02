@@ -9,11 +9,12 @@
 	<h1><%= @product.name %></h1>
 	<h2><%= @product.subname %></h2>
 	<div id="product-detail">
-		
 		<div id="product_image">
-			<%= light_box @product.product_large_image, @product.product_image %>
-			<br/>
-			<h4 id="price"><%= number_to_currency(@product.product_or_first_variant_price) %></h4>
+		  <%= render "product_image", :image => @product.product_image %>
+		</div>
+
+		<br/>
+		<h4 id="price"><%= number_to_currency(@product.product_or_first_variant_price) %></h4>
 		</div>
 		
 		<div id="product_attributes">

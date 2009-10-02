@@ -1,5 +1,11 @@
 module Pebbles::ProductsHelper
   
+  def find_or_create_thumbnail(image)
+    thumbnail = image.variant_image_thumbnail || image
+    link_to (image_tag image.filename.url, :height => 30, :class => 'thumbnail', :id => image.id), 
+            variant_image_path(image)
+  end
+  
   def product_images(product)
     images = ''
     unless product.product_images.empty?

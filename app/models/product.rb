@@ -16,6 +16,7 @@ class Product < ActiveRecord::Base
   has_many :product_options, :through => :product_option_instances 
 
   has_many :variants, :dependent => :destroy
+  has_many :variant_images, :through => :variants, :uniq => true
   has_many :product_accessories, :order => 'id'
   has_many :accessories, :through => :product_accessories
   
