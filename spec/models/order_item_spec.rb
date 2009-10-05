@@ -1,5 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require File.dirname(__FILE__) + '/../pebbles_factory'
+require File.dirname(__FILE__) + '/../cart_builder'
+
+include CartBuilder
 
 describe OrderItem do
   describe "#from_cart_item" do
@@ -20,18 +23,7 @@ describe OrderItem do
 
     context "variant product" do
       before(:each) do
-        @product = Factory(:product)
-        @variant_product = Factory(:product)
-        size = Factory(:product_option)
-        color = Factory(:product_option, :name => 'color') 
-        @large = Factory(:product_option_selection, :name => 'large', :product_option => size)
-        @small = Factory(:product_option_selection, :name => 'small', :product_option => size)
-        @red = Factory(:product_option_selection, :name => 'red', :product_option => color)
-        @blue = Factory(:product_option_selection, :name => 'blue', :product_option => color)
-        @variant_product.product_options << [size, color]
-        @cart = Cart.create(:name => 'test')
-        @cart.add_product(@variant_product.id, 1, [@large.id, @red.id])
-        @order_item = OrderItem.from_cart_item(CartItem.first)
+        build_variant_order_item      
       end
 
       it "should create an order item from a cart item for a variant product" do

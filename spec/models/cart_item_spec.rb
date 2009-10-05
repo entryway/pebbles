@@ -1,19 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require File.dirname(__FILE__) + '/../pebbles_factory'
+require File.dirname(__FILE__) + '/../cart_builder'
+
+include CartBuilder
 
 describe CartItem do
   
   before(:each) do
-    @product = Factory(:product)
-    @variant_product = Factory(:product)
-    size = Factory(:product_option)
-    color = Factory(:product_option, :name => 'color') 
-    @large = Factory(:product_option_selection, :name => 'large', :product_option => size)
-    @small = Factory(:product_option_selection, :name => 'small', :product_option => size)
-    @red = Factory(:product_option_selection, :name => 'red', :product_option => color)
-    @blue = Factory(:product_option_selection, :name => 'blue', :product_option => color)
-    @variant_product.product_options << [size, color]
-    @cart = Cart.create(:name => 'test')
+    build_variant_cart
   end
   
   describe "#add_product" do

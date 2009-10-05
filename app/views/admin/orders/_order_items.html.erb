@@ -22,9 +22,9 @@
 			</td>
 			<td>
 				<%= order_item.product_name %>
-				<% if order_item.order_item_selections.size > 0 %>
+				<% if order_item.variant %>
 	   				(<%= render :partial => 'admin/orders/order_item_selections',
-						   		:collection => order_item.order_item_selections %>)
+						   		:collection => order_item.variant.product_option_selections %>)
 				<% end %>
 			</td>
 			<td class='price-value' style='display:table-cell'>

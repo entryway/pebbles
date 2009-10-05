@@ -1,14 +1,27 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 require File.dirname(__FILE__) + '/../pebbles_factory'
 include ActionView::Helpers::NumberHelper
+require File.dirname(__FILE__) + '/../cart_builder'
+
+include CartBuilder
+
 
 describe OrderCalculations do
 
-  describe "@subtotal" do
+  describe "#subtotal" do
+    before(:each) do
+      build_variant_cart
+      build_order
+    end
+    
+    it "should add the total of the order_items prices" do
+      puts @order.order_items.inspect
+      @order.sub_total.should == 13.00
+    end
     
   end
 
-  describe "@calculate_tax" do
+  describe "#calculate_tax" do
       before(:each) do
         rate = Factory(:tax_rate)
       @address = Factory(:address)
@@ -29,7 +42,7 @@ describe OrderCalculations do
     end
     
     context "person lives in state without tax rate" do
-      before (:each) do
+      before(:each) do
         @address.state = "CO"
       end
 
