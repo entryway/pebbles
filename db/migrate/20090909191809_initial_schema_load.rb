@@ -88,26 +88,16 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.datetime "created_at"
     end
 
-    create_table "order_item_selections", :force => true do |t|
-      t.integer "order_item_id"
-      t.string  "product_option_name",   :limit => 50
-      t.string  "option_selection_name", :limit => 50
-      t.decimal "weight_adjustment",                   :precision => 8, :scale => 2, :default => 0.0
-      t.string  "sku_adjustment"
-      t.decimal "price_adjustment",                    :precision => 8, :scale => 2, :default => 0.0
-    end
-
     create_table "order_items", :force => true do |t|
       t.integer  "product_id"
+      t.integer  "variant_id"
       t.integer  "order_id"
       t.integer  "quantity"
       t.decimal  "weight",                           :precision => 8, :scale => 2, :default => 0.0
-      t.decimal  "adjusted_weight",                  :precision => 8, :scale => 2, :default => 0.0
       t.boolean  "drop_ship"
       t.integer  "supplier_id"
       t.string   "product_name",       :limit => 50
       t.decimal  "price",                            :precision => 8, :scale => 2, :default => 0.0
-      t.decimal  "adjusted_price",                   :precision => 8, :scale => 2, :default => 0.0
       t.decimal  "drop_shipping_cost",               :precision => 8, :scale => 2, :default => 0.0
       t.datetime "updated_at"
       t.datetime "created_at"
