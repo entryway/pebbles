@@ -22,12 +22,12 @@ describe OrderCalculations do
   end
 
   describe "#calculate_tax" do
-      before(:each) do
-        rate = Factory(:tax_rate)
+    before(:each) do
+      rate = Factory(:tax_rate)
       @address = Factory(:address)
-        @order = Order.new(:product_cost => 39.90, :shipping_cost => 6.45, :billing_address => @address)
-        @order.tax = @order.calculate_tax
-      end
+      @order = Order.new(:product_cost => 39.90, :shipping_cost => 6.45, :billing_address => @address)
+      @order.tax = @order.calculate_tax
+    end
 
     context "person lives in state with tax rate" do 
 
