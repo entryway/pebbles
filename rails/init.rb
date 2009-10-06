@@ -1,6 +1,7 @@
 require 'pebbles'
 
 class ActionController::Base
+
   include AuthenticatedSystem
   include RoleRequirementSystem
   include SslRequirement
@@ -11,7 +12,6 @@ class ActionController::Base
   filter_parameter_logging :credit_card
 
   helper_method :current_cart
-  helper_method :categories
 end
 
 class ActionController::Routing::RouteSet
@@ -28,7 +28,6 @@ class ActionController::Routing::RouteSet
 end
 
 config.gem 'activemerchant', :lib => 'active_merchant'
-
 config.gem 'collectiveidea-awesome_nested_set',
            :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
 config.gem "carrierwave"
@@ -36,6 +35,9 @@ config.gem "stephencelis-acts_as_singleton",
     :lib => "acts_as_singleton",
     :source => "http://gems.github.com"
 config.gem "ssl_requirement"
+config.gem 'rubyist-aasm', :version => '~> 2.0.2', :lib => 'aasm', 
+                           :source => "http://gems.github.com"
+
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')

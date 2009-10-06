@@ -24,7 +24,7 @@ module OrderCalculations
     self.product_cost = sub_total
     self.drop_shipping_cost = 0
     self.tax = calculate_tax
-    self.shipping_cost = calculate_shipping_cost
+    self.shipping_cost = calculate_shipping_costs
 
     # drop_ship_vendors = Array.new
     #     self.order_items.each do |item|

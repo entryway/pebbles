@@ -2,6 +2,10 @@
     module ApplicationHelper
       include HeaderHelper
       
+      def categories
+        Category.position_sorted
+      end
+      
       ## 
       # this method returns a style to hide the element if it is a new_record unless the object is the 
       # first new_record. One must reset the @hide_object to false if one wants to use this logic in

@@ -3,6 +3,8 @@ class Order < ActiveRecord::Base
   include ActiveMerchant::Billing
   include OrderCalculations 
   include OrderProcessing
+  include AASM
+  
   #acts_as_reportable
   
 
@@ -107,21 +109,22 @@ class Order < ActiveRecord::Base
   end
   
   ## Order States
-  acts_as_state_machine :initial => :pending
+  aasm_column :state
+  aasm_initial_state :pending
 
-  state :pending 
-  state :authorized
-  state :paid 
-  state :payment_declined 
-  state :refunded
-  state :disputed
-  state :shipping_delayed
-  state :fulfilled
-  state :shipped
-  state :issue
+  aasm_state :pending 
+  aasm_state :authorized
+  aasm_state :paid 
+  aasm_state :payment_declined 
+  aasm_state :refunded
+  aasm_state :disputed
+  aasm_state :shipping_delayed
+  aasm_state :fulfilled
+  aasm_state :shipped
+  aasm_state :issue
   
   # state events 
-  event :payment_authorized do
+  aasm_event :payment_authorized do
     transitions :from => :pending,
                 :to => :authorized
                           
@@ -129,12 +132,12 @@ class Order < ActiveRecord::Base
                 :to => :authorized
   end
   
-  event :payment_captured do
+  aasm_event :payment_captured do
     transitions :from => :authorized,
                 :to   => :paid
   end
   
-  event :transaction_declined do
+  aasm_event :transaction_declined do
     transitions :from => :pending,
                 :to   => :payment_declined
                 
@@ -142,7 +145,7 @@ class Order < ActiveRecord::Base
                 :to   => :payment_declined
   end
   
-  event :issue_raised do
+  aasm_event :issue_raised do
     transitions :from => :pending,
                 :to => :issue
                 
@@ -153,15 +156,21 @@ class Order < ActiveRecord::Base
                 :to => :issue
   end
   
-  event :shipping_fulfilled do
+  aasm_event :shipping_fulfilled do
     transitions :from => :paid,
                 :to => :fulfilled
           
     transitions :from => :pending,
                 :to => :fulfilled
+                
+    transitions :from => :fulfilled,
+                :to => :fulfilled
+                
+    transitions :from => :shipping_delayed,
+                :to => :fulfilled
   end
   
-  event :shipping_delayed do
+  aasm_event :shipping_delayed do
     transitions :from => :pending,
                 :to => :shipping_delayed
                 

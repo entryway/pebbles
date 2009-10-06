@@ -1,6 +1,7 @@
-
+include ActiveMerchant::Billing
 
 class OrderFactory
+  
   WEB_ORDER_DEFAULTS = { :order_type => OrderType::WEB, :payment_type => 'credit_card', :delivery_status => 1 }
   
   class << self
@@ -150,7 +151,6 @@ class OrderFactory
       order.credit_card = credit_card
       valid = credit_card.valid? && order.valid? &&
         billing_address.valid? && shipping_address.valid?
-      
       if valid
         order.credit_card_display = order.credit_card.display_number
         
