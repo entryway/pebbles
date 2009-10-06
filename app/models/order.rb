@@ -27,6 +27,7 @@ class Order < ActiveRecord::Base
   attr_accessor :payment_type  # not currently saved, future
   attr_accessor :credit_card
   attr_accessor :region_id
+  attr_accessor :invalid
   
   #protect these fields from values that were
   #inserted into the request intentionally

@@ -1,5 +1,13 @@
 module Pebbles::OrdersHelper
   
+  def previous_address_choice?
+    if controller.action_name == 'create'
+      params[:address_choice]
+    else
+      true
+    end
+  end
+  
   
   def country(address, type)
     region_name = shipping_region(active_shipping_region_id)

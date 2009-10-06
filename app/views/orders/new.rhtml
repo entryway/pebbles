@@ -20,13 +20,13 @@
 		
 			<% if @cart.sub_total > 0 %>
 				<h3><span>3</span> Payment</h3>
-				    <%= render :partial => 'payment_method' %>
+				    <%= render :partial => 'payment_method', :credit_card => @order.credit_card %>
 					<br/>
 				<div id="billing_shipping_info">
 					<h3><span>4</span> Information </h3>
 					<%= render :partial => 'billing_shipping_info', 
-							   :locals => { :billing_address => @billing_address,
-								 			:shipping_address => @shipping_address,
+							   :locals => { :billing_address => @order.billing_address,
+								 			:shipping_address => @order.shipping_address,
 								 			:form => form } %>
 				</div>	
 				<hr/>

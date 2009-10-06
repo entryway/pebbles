@@ -9,9 +9,9 @@ class OrdersController < ApplicationController
          
   def new
     @order = Order.new
-    @credit_card = CreditCard.new
-    @billing_address = Address.new
-    @shipping_address = Address.new
+    @order.credit_card = CreditCard.new
+    @order.billing_address = Address.new
+    @order.shipping_address = Address.new
     
     refresh_cart
   end
@@ -20,13 +20,8 @@ class OrdersController < ApplicationController
     @cart = current_cart
     # move to factory, little funky with validation, maybe builder?
     @order = OrderFactory.create_web_order(current_cart, params.merge(:active_shipping_method_id => active_shipping_method_id, :active_shipping_region_id => active_shipping_region_id))
-    unless @order.valid? && @order.credit_card.valid? &&
-      @order.billing_address.valid? && @order.shipping_address.valid?
-      refresh_cart
-      @credit_card = @order.credit_card
-      @billing_address = @order.billing_address
-      @shipping_address = @order.shipping_address
-      
+    if @order.invalid
+      refresh_cart      
       render :action => 'new' and return
     else
       begin
@@ -41,15 +36,15 @@ class OrdersController < ApplicationController
             @processing_error_message = error_message(exception)
             refresh_cart
             ExceptionNotifier.deliver_exception_notification(exception, self, request, params) 
-            render :action => 'new' and return
+           render :action => 'new' and return
           end
           # drop current cart
           begin
-            #@cart.destroy
+            @cart.destroy
           rescue
             # cart wasn't destroyed, so what
           end
-          #set_current_cart(nil)
+          set_current_cart(nil)
         end
       rescue Exception => exception
         @processing_error_message = error_message(exception)

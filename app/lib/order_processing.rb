@@ -28,9 +28,7 @@ module OrderProcessing
           # TODO: something seems odd with acts_as_state_machine and
           # 2.0.2, saving twice works?????
           payment_authorized!
-          payment_authorized!
         else
-          transaction_declined!
           transaction_declined!
         end
         authorization
@@ -58,9 +56,7 @@ module OrderProcessing
         self.transactions << capture
         if capture.success?
           payment_captured!
-          payment_captured!
         else
-          transaction_declined!
           transaction_declined!
         end
         capture
@@ -91,6 +87,8 @@ private
      
     def process_web_order
       initialize_order
+      puts "*"*80
+      puts "in here"
       
       if self.payment_type == 'credit_card'
         process_with_active_merchant

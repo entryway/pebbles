@@ -160,8 +160,11 @@ class OrderFactory
         order.shipping_method_id = options[:active_shipping_method_id]
         order.region_id = options[:active_shipping_region_id]
         order.add_order_items_from_cart(cart)
+      else
+        order.invalid = true
       end
-
+      puts "*"*80
+      puts order.credit_card.errors.inspect
       order
     end
     
