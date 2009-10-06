@@ -14,6 +14,19 @@ class ActionController::Base
   helper_method :categories
 end
 
+class ActionController::Routing::RouteSet
+  def load_routes_with_clearance!
+    clearance_routes = File.join(File.dirname(__FILE__), 
+                       *%w[.. config pebbles_routes.rb])
+    unless configuration_files.include? clearance_routes
+      add_configuration_file(clearance_routes)
+    end
+    load_routes_without_clearance!
+  end
+
+  alias_method_chain :load_routes!, :clearance
+end
+
 config.gem 'activemerchant', :lib => 'active_merchant'
 
 config.gem 'collectiveidea-awesome_nested_set',
@@ -24,8 +37,6 @@ config.gem "stephencelis-acts_as_singleton",
     :source => "http://gems.github.com"
 config.gem "ssl_requirement"
 
-
-
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", "app", "uploaders")
@@ -33,8 +44,6 @@ ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), ".."
   ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'app', path) 
 end
 ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'lib')
-
-
 
 config.to_prepare do
   helpers = Dir.glob(File.join(File.dirname(__FILE__), '..','app','helpers','pebbles', '**', '*.rb'))
