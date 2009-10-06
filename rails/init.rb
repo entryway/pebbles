@@ -14,6 +14,8 @@ class ActionController::Base
   helper_method :categories
 end
 
+config.gem 'activemerchant', :lib => 'active_merchant'
+
 config.gem 'collectiveidea-awesome_nested_set',
            :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
 config.gem "carrierwave"
