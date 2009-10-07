@@ -65,16 +65,10 @@ module OrderCalculations
   def calculate_tax
     t = 0
     unless billing_address.nil?
-      taxrate = TaxRate.find(:first, :conditions => 
-                           { :state => billing_address.state })
-            
-      unless taxrate.nil?
-        t = (taxrate.rate * self.product_cost)
-      end
-    
+      t = TaxRate.calculate_tax(billing_address.state, product_cost)
       self.tax = t
     end
     t
-  end 
-  
+  end
+
 end

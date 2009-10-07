@@ -26,6 +26,7 @@ class InitialSchemaLoad < ActiveRecord::Migration
       t.string   "promo_code",     :limit => 30,                               :default => ""
       t.decimal  "promo_discount",               :precision => 8, :scale => 2, :default => 0.0
       t.boolean  "free_shipping",                                              :default => false
+      t.string   "billing_state"
     end
 
     create_table "categories", :force => true do |t|

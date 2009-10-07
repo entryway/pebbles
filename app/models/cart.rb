@@ -23,7 +23,7 @@ class Cart < ActiveRecord::Base
   
   # subtotal price
   def sub_total
-   cart_items.inject(0) {|sum, n| n.price * n.quantity + sum}
+    cart_items.inject(0) {|sum, n| n.price * n.quantity + sum}
   end
   
   # shipping totals
@@ -34,7 +34,7 @@ class Cart < ActiveRecord::Base
   
   # calculate total price
   def grand_total(shipping_total)
-     sub_total + shipping_total - self.promo_discount
+     sub_total + shipping_total + tax_total - self.promo_discount
   end
   
   # calculate total price in cents
@@ -70,6 +70,12 @@ class Cart < ActiveRecord::Base
       cart_item.quantity = CartItem.valid_quantity(quantity)
       cart_items << cart_item
     end
+  end
+  
+  def tax_total
+    tax = 0
+    tax = TaxRate.calculate_tax(billing_state, sub_total) if billing_state
+    tax
   end
 
 end 

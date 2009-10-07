@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
    map.resources :variants
    map.resources :variant_images, :only => :show
    map.resources :regions, :has_many => [:shipping_methods]
+   map.resources :taxes, :only => :update
    
    end
    

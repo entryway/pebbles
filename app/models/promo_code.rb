@@ -15,6 +15,8 @@ class PromoCode < ActiveRecord::Base
     begin
       promo_code = promo_code.upcase 
       promo = PromoCode.find_by_code(promo_code)
+      puts "*"*80
+      puts promo.inspect
     rescue
       order.promo_code = ''
       order.free_shipping = false

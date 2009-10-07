@@ -1,8 +1,12 @@
 module Pebbles::OrdersHelper
   
+  def cart_is_taxed?(tax_total)
+    tax_total == 0 ? "display:none" : ""
+  end
+    
   def previous_address_choice?
     if controller.action_name == 'create'
-      params[:address_choice]
+      !params[:address_choice].nil?
     else
       true
     end
