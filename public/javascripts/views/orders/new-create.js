@@ -11,6 +11,7 @@ function ShowHideShipping() {
   };  
 
   $(document).ready(function(){
+    $('#order_form').validate();
     $('#promo_code_link').click(function() {
       $.postJSON(
         $(this).attr('href'),
@@ -30,6 +31,7 @@ function ShowHideShipping() {
       );
       return false;
     });
+    
     $('#billing_address_state').change(function() {
       var billing_state = $(this).val();
       $.postJSON(
