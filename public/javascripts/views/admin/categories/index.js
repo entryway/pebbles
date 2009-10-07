@@ -1,7 +1,8 @@
 $(document).ready(function() {
-  $("#category-list").sortable({ 
+  $('#category-list').sortable({ 
     items: 'li', 
     placeholder: 'ui-state-highlight',
+    forcePlaceholderSize: 'true',
     update: function(event, ui) {
       $('#category-list').load(
         '/admin/categories/' + $(ui.item).attr('id') + '/reorder',
