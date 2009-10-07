@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-10-06}
+  s.date = %q{2009-10-07}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -57,6 +57,7 @@ Gem::Specification.new do |s|
      "app/controllers/shippings_controller.rb",
      "app/controllers/store_import_controller.rb",
      "app/controllers/stores_controller.rb",
+     "app/controllers/taxes_controller.rb",
      "app/controllers/users_controller.rb",
      "app/controllers/variant_images_controller.rb",
      "app/controllers/variants_controller.rb",
@@ -87,7 +88,6 @@ Gem::Specification.new do |s|
      "app/models/category.rb",
      "app/models/category_image.rb",
      "app/models/configuration.rb",
-     "app/models/credit_card.rb",
      "app/models/flat_rate_shipping.rb",
      "app/models/fulfilllment_code.rb",
      "app/models/general_configuration.rb",
@@ -522,6 +522,7 @@ Gem::Specification.new do |s|
      "public/javascripts/jquery/jquery.js",
      "public/javascripts/jquery/livequery.js",
      "public/javascripts/jquery/spinner.js",
+     "public/javascripts/jquery/ui.js",
      "public/javascripts/jquery/validate.js",
      "public/javascripts/lightbox.js",
      "public/javascripts/lowpro.js",
@@ -532,20 +533,22 @@ Gem::Specification.new do |s|
      "public/javascripts/scriptaculous.js",
      "public/javascripts/slider.js",
      "public/javascripts/sound.js",
-     "public/javascripts/ui.js",
      "public/javascripts/unittest.js",
      "public/javascripts/views/admin/categories/edit.js",
      "public/javascripts/views/admin/categories/index.js",
+     "public/javascripts/views/admin/orders/new.js",
      "public/javascripts/views/admin/orders/show.js",
      "public/javascripts/views/admin/products/edit.js",
      "public/javascripts/views/admin/shipping_methods/new-edit.js",
      "public/javascripts/views/carts/show.js",
+     "public/javascripts/views/orders/new-create.js",
      "public/javascripts/views/products/show.js",
      "public/javascripts/wms-gs.js",
      "public/javascripts/ym4r-gm.js",
      "public/robots.txt",
      "public/stylesheets/admin.css",
      "public/stylesheets/admin_print.css",
+     "public/stylesheets/category-table.css",
      "public/stylesheets/custom.css",
      "public/stylesheets/gt-styles.css",
      "public/stylesheets/lightbox.css",
