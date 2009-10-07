@@ -74,6 +74,7 @@ describe ShippingCalculations do
       @cart = Cart.new
       @cart.add_product(product1.id, 1, nil)
       @cart.add_product(product2.id, 1, nil)
+      @cart.shipping_method_id = @shipping_method.id
       @order = Order.new(:shipping_method_id => @shipping_method.id)
       @cart.cart_items.each do |item|
         oi = OrderItem.from_cart_item(item)
@@ -85,6 +86,21 @@ describe ShippingCalculations do
       it "should calculate flat_rate shipping for an order" do
         @order.calculate_flat_rate_shipping.should == 3.99
       end
+
+      it "should calculate flat_rate shipping for a discounted order" do
+        @order.promo_discount = 2.00
+        @order.calculate_flat_rate_shipping.should == 2.99
+      end
+
+      it "should calculate flat_rate shipping for a cart" do
+        @cart.calculate_flat_rate_shipping.should == 3.99
+      end
+
+      it "should calculate flat_rate shipping for a discounted cart" do
+        @cart.promo_discount = 2.00
+        @cart.calculate_flat_rate_shipping.should == 2.99
+      end
+
     end
 
     context "using flat rate by base rate" do

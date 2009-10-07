@@ -21,9 +21,12 @@ class Cart < ActiveRecord::Base
     cart_items.find(:all, :order => 'product_id')
   end
   
-  # subtotal price
-  def sub_total
+  def product_total
     cart_items.inject(0) {|sum, n| n.price * n.quantity + sum}
+  end
+
+  def sub_total
+    product_total - promo_discount
   end
   
   # shipping totals

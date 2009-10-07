@@ -1,8 +1,12 @@
 module OrderCalculations
   include ShippingCalculations
 
+  def product_total
+    self.order_items.inject(0) {|sum, n| n.price * n.quantity + sum}
+  end
+
   def sub_total
-    self.order_items.inject(0) {|sum, n| n.price * n.quantity + sum}    
+    product_total - promo_discount
   end
   
   def total
@@ -21,7 +25,7 @@ module OrderCalculations
   
   def calculate_order_costs
     self.shipment_weight_total = 1.0 # default to one right now
-    self.product_cost = sub_total
+    self.product_cost = product_total
     self.drop_shipping_cost = 0
     self.tax = calculate_tax
     self.shipping_cost = calculate_shipping_costs
@@ -65,7 +69,7 @@ module OrderCalculations
   def calculate_tax
     t = 0
     unless billing_address.nil?
-      t = TaxRate.calculate_tax(billing_address.state, product_cost)
+      t = TaxRate.calculate_tax(billing_address.state, sub_total)
       self.tax = t
     end
     t

@@ -11,6 +11,7 @@ class PromoCodesController < ApplicationController
 
     promo_code_message = promo.message
     promo_code_note = promo.note
+    product_total = cart.product_total
     tax_total = cart.tax_total
     method = ShippingMethod.find(active_shipping_method_id)
     shipping_total = cart.shipping_total(method)

@@ -15,8 +15,12 @@ describe OrderCalculations do
     end
     
     it "should add the total of the order_items prices" do
-      puts @order.order_items.inspect
       @order.sub_total.should == 13.00
+    end
+
+    it "should subtract the discount from the product cost" do
+      @order.promo_discount = 1.00
+      @order.sub_total.should == 12.00
     end
     
   end
@@ -26,6 +30,7 @@ describe OrderCalculations do
       rate = Factory(:tax_rate)
       @address = Factory(:address)
       @order = Order.new(:product_cost => 39.90, :shipping_cost => 6.45, :billing_address => @address)
+      @order.stub!(:product_total).and_return(39.90)
       @order.tax = @order.calculate_tax
     end
 
@@ -37,6 +42,11 @@ describe OrderCalculations do
 
       it "should charge the correct amount of tax" do
         @order.calculate_tax.should == 0.05 * 39.90
+      end
+
+      it "should calculate tax on the discounted price" do
+        @order.promo_discount = 1.00
+        @order.calculate_tax.should == 0.05 * 38.90
       end
 
     end
