@@ -12,6 +12,7 @@ class PromoCodesController < ApplicationController
     promo_code_message = promo.message
     promo_code_note = promo.note
     product_total = cart.product_total
+    discount = cart.promo_discount
     tax_total = cart.tax_total
     method = ShippingMethod.find(active_shipping_method_id)
     shipping_total = cart.shipping_total(method)
@@ -19,6 +20,8 @@ class PromoCodesController < ApplicationController
     
     render :json => { :promo_code_message => promo_code_message,
                       :promo_code_note => promo_code_note,
+                      :no_discount => discount == 0, 
+                      :discount => number_to_currency(discount),                      
                       :no_tax => tax_total == 0,
                       :tax_total => number_to_currency(tax_total), 
                       :shipping_total => number_to_currency(shipping_total),

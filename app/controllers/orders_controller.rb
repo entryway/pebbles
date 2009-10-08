@@ -19,7 +19,9 @@ class OrdersController < ApplicationController
   def create
     @cart = current_cart
     # move to factory, little funky with validation, maybe builder?
-    @order = OrderFactory.create_web_order(current_cart, params.merge(:active_shipping_method_id => active_shipping_method_id, :active_shipping_region_id => active_shipping_region_id))
+    @order = OrderFactory.create_web_order(current_cart, 
+                                           params.merge(:active_shipping_method_id => active_shipping_method_id,
+                                                        :active_shipping_region_id => active_shipping_region_id))
     if @order.invalid
       refresh_cart      
       render :action => 'new' and return
@@ -83,7 +85,9 @@ class OrdersController < ApplicationController
     @default_method = ShippingMethod.find(active_shipping_method_id)
 
     @cart = current_cart
-    @subtotal = @cart.sub_total
+    @product_total = @cart.product_total
+    PromoCode.apply(@cart, @cart.promo_code) if @cart.promo_code
+    @discount = @cart.promo_discount
     @shipping_total = @cart.shipping_total(@default_method)
     @grand_total = @cart.grand_total(@shipping_total)
   end

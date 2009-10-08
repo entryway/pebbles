@@ -1,5 +1,9 @@
 module Pebbles::OrdersHelper
   
+  def cart_is_discounted?(discount)
+    discount == 0 ? "display:none" : ""
+  end
+  
   def cart_is_taxed?(tax_total)
     tax_total == 0 ? "display:none" : ""
   end
@@ -32,7 +36,7 @@ module Pebbles::OrdersHelper
                    "Heard and McDonald Islands", "Holy See (Vatican City State)",
                    "Northern Mariana Islands", "French Southern Territories",
                    "Turks and Caicos Islands", "Taiwan, Province of China" ]
-   	  address.select :country, countries, { :prompt => 'Select Country' }
+   	  address.select :country, countries, { :prompt => 'Select Country' }, :class => 'required'
     end
   end
   
@@ -91,9 +95,9 @@ module Pebbles::OrdersHelper
       	['Washington', 'WA'], 
       	['West Virginia', 'WV'], 
       	['Wisconsin', 'WI'], 
-      	['Wyoming', 'WY']]
+      	['Wyoming', 'WY']], {}, :class => 'required'
     else
-      address.text_field :state, :size => 20 
+      address.text_field :state, :size => 20, :class => 'required' 
     end
   end
 end

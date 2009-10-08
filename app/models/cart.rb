@@ -37,7 +37,7 @@ class Cart < ActiveRecord::Base
   
   # calculate total price
   def grand_total(shipping_total)
-     sub_total + shipping_total + tax_total - self.promo_discount
+     product_total + shipping_total + tax_total - self.promo_discount
   end
   
   # calculate total price in cents

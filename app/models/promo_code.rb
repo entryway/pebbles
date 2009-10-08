@@ -61,7 +61,7 @@ class PromoCode < ActiveRecord::Base
   end
   
   def calculate_percent_discount(order)
-    (self.percent_discount / 100) * order.sub_total
+    (self.percent_discount / 100) * order.product_total
   end
    
   def minimum_amount_required_message
