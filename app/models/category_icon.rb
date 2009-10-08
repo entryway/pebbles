@@ -1,4 +1,4 @@
-class CategoryImage < ActiveRecord::Base
+class CategoryIcon < ActiveRecord::Base
   
   belongs_to :category
     

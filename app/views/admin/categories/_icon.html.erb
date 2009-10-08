@@ -1,0 +1,8 @@
+<% if category.category_icon %>
+  <div style="display:inline">
+    <%= render 'admin/categories/icon_list', :category => category, :icon => category.category_icon -%>
+  </div>
+<% else %>
+  <%= render 'admin/categories/icon_form', :category => category  -%>
+  <br/><br/>
+<% end %>

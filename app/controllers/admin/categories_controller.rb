@@ -2,37 +2,15 @@ module Admin
   class CategoriesController < ApplicationController
     layout "admin"
     #  require_role "admin"
-    
-    # add an image to a category
-    def add_category_image
-      image = CategoryImage.new(params[:category_image])
-      category = Category.find(params[:id])
-      category.category_images << image
-      
-      responds_to_parent do
-        render :update do |page| 
-          page[:image_list].replace_html :partial => 'image_list', :locals => { :category => category }
-        end
-      end
-    end  
-    
-    # remove an image from the category
-    def remove_category_image
-      @category = Category.find(params[:id])
-      @image = CategoryImage.find(params[:image_id])
-      @category.category_images.delete(@image)  
-      
+    def index
+      @categories = Category.root.children
       respond_to do |format|
-        format.js { 
-          render :partial => 'image_list', :locals => { :category => @category }
-        }
-      end  
+        format.html # index.rhtml
+      end
     end
 
-    def reorder
-      order = params[:category]
-      Category.order(order)
-      render :text => order.inspect
+    def new
+      @category = Category.new
     end
     
     def create
@@ -74,14 +52,7 @@ module Admin
       end
     end
     
-    def index
-      @categories = Category.find(:all, :conditions => {:parent_id => nil}, :order => 'lft ASC')
-      respond_to do |format|
-        format.html # index.rhtml
-      end
-    end
-
-    def show
+   def show
       @category = Category.find(params[:id])
 
       respond_to do |format|
@@ -89,15 +60,8 @@ module Admin
       end
     end
 
-    def new
-      @category = Category.new
-    end
 
-    def edit
-      @category = Category.find(params[:id])
-    end
-
-    def destroy
+   def destroy
       category = Category.find(params[:id])
       category.destroy
       
@@ -109,7 +73,7 @@ module Admin
     def reorder
       category = Category.find(params[:id])
       category.reorder(params)
-      @categories = Category.find(:all, :conditions => { :parent_id => nil }, :order => 'lft ASC')
+      @categories = Category.root.children
       render :partial => 'category_branch', :locals => { :categories => @categories }
     end
 

@@ -163,8 +163,6 @@ class OrderFactory
       else
         order.invalid = true
       end
-      puts "*"*80
-      puts order.credit_card.errors.inspect
       order
     end
     

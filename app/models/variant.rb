@@ -14,7 +14,7 @@ class Variant < ActiveRecord::Base
   
   validates_numericality_of :weight, :greater_than_or_equal_to => 0
   validates_numericality_of :price, :greater_than => 0
-  validates_numericality_of :inventory, :only_integer => true 
+  validates_numericality_of :inventory, :only_integer => true, :greater_than_or_equal_to => 0 
   
   ##
   # updates the weight of the variant by combining product weight with the sum of the 

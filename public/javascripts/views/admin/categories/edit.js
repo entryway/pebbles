@@ -14,5 +14,17 @@ jQuery(document).ready(function() {
     }
     return false;
   })
+  
+  jQuery('#category_icon_add').submit(function() { 
+    jQuery(this).ajaxSubmit({ target: "#category_icon"}); 
+    return false; 
+  });
+
+  jQuery(".destroy-category-icon").live("click", function() {
+    if (confirm( "Are you sure you want to remove the icon?")) {
+      jQuery("#category_icon").load(jQuery(this).attr('href'), { _method: "DELETE" });
+    }
+    return false;
+  })
 
 })

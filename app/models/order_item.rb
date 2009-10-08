@@ -6,6 +6,8 @@ class OrderItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :variant
   
+  before_create { |order_item| order_item.decrease_inventory if GeneralConfiguration.instance.inventory_management }
+  
   def self.from_cart_item(cart_item)
     oi = self.new
     
@@ -31,5 +33,20 @@ class OrderItem < ActiveRecord::Base
     
     oi
   end
+  
+private
+   
+   def decrease_inventory
+     if variant
+       Variant.find(variant_id, :lock => true)
+       variant.inventory -= quantity
+       variant.save!
+     else
+       Product.find(product_id, :lock => true)
+       product.inventory -= quantity
+       product.save!
+     end
+   end
+       
     
 end

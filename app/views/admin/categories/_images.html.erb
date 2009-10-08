@@ -1,10 +1,13 @@
-<%= error_messages_for :category_image %>
 <br/><br/>
+<h2>Category Icon</h2>
+<div id='category_icon'>
+  <%= render 'admin/categories/icon', :category => category %>
+</div>
+<%= error_messages_for :category_image %>
+
 <h2>Category Images</h2>
 <%= render :partial => 'image_form', :locals => { :category => category } -%>
 <br/><br/>
 <div id="image_list" style="display:inline">
 	<%= render :partial => 'image_list', :locals => { :category => category } -%>
-</div>
-<div id="notes">
 </div>

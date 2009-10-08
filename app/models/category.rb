@@ -1,6 +1,8 @@
-
 class Category < ActiveRecord::Base
-  has_many :category_images
+  
+  has_many :category_images, :dependent => :destroy
+  has_one :category_icon, :dependent => :destroy
+  
   has_and_belongs_to_many :products
   #has_and_belongs_to_many :faux_products
   named_scope :active, :conditions => {:active => true}

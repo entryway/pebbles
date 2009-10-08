@@ -23,7 +23,9 @@ ActionController::Routing::Routes.draw do |map|
    map.namespace :admin do |admin| 
      admin.resources :authorizations
 
-     admin.resources :categories, :has_many => [:category_images], :member => { :reorder => :put }
+     admin.resources :categories, :has_many => [:category_images, :category_icons], 
+                                  :member => { :reorder => :put }
+     
      admin.resources :ebay_orders
      
      admin.resources :orders
