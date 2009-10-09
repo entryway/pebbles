@@ -1,5 +1,6 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
+  layout "shopping"
  # ssl_required :new, :create
   
   # render new.rhtml
