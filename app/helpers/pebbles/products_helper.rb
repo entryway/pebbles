@@ -1,5 +1,18 @@
 module Pebbles::ProductsHelper
   
+  def validate_inventory?
+    if GeneralConfiguration.instance.inventory_management?
+      "inventory"
+    end
+  end
+    
+  
+  def inventory_management_hidden_field(inventory)
+    if GeneralConfiguration.instance.inventory_management?
+      hidden_field_tag 'inventory', inventory, :id => 'inventory'
+    end
+  end
+  
   def find_or_create_thumbnail(image)
     thumbnail = image.variant_image_thumbnail || image
     link_to (image_tag image.filename.url, :height => 30, :class => 'thumbnail', :id => image.id), 

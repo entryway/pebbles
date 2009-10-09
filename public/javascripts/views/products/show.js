@@ -1,5 +1,11 @@
 jQuery(document).ready(function() {
-    var current_variant_id = '';
+  jQuery.validator.addMethod('inventory', function(value){
+    return (parseInt(value) <= parseInt(jQuery('#inventory').val()));
+  },   'sorry there is only ' + jQuery('#inventory').val() + ' left');
+  jQuery('#cart_item_form').validate({ 
+    rules: {
+      '#quantity': "inventory"}});
+  var current_variant_id = '';
   jQuery("#submit_button").click(function() {
     var invalid = false;
     jQuery(".selection-select").each(function(item) {
@@ -26,13 +32,23 @@ jQuery(document).ready(function() {
                        jQuery('#variant_images div:visible').hide();
                        jQuery('#variant_image_' + current_variant_id).show();
                        jQuery('#product_image').hide();
-                     if (data.out_of_stock) {
+                     if (data.out_of_stock || data.inventory == 0) {
                        jQuery('#so_sorry_out_of_stock').show();
                        jQuery('#submit_button').attr('disabled', 'disabled'); 
                      }
                      else {
                       jQuery('#so_sorry_out_of_stock').hide();
                       jQuery('#submit_button').removeAttr('disabled');
+                     }
+                     if (jQuery('#inventory').length > 0) {
+                       jQuery('#quantity').rules("remove", "inventory");
+                       jQuery('#inventory').val(data.inventory);
+                       jQuery('#quantity').rules("add", { 
+                         "inventory": true, 
+                         messages: {
+                           inventory: 'sorry there is only ' + jQuery('#inventory').val() + ' left'
+                         }
+                       });
                      }
                    }
     );

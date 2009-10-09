@@ -15,8 +15,6 @@ class PromoCode < ActiveRecord::Base
     begin
       promo_code = promo_code.upcase 
       promo = PromoCode.find_by_code(promo_code)
-      puts "*"*80
-      puts promo.inspect
     rescue
       order.promo_code = ''
       order.free_shipping = false
@@ -51,7 +49,7 @@ class PromoCode < ActiveRecord::Base
         order.promo_code = self.code.upcase
         order.free_shipping = true if self.free_shipping
         order.promo_discount = discount
-        order.save!
+        order.save(false)
       end
     else
       self.message = minimum_amount_required_message

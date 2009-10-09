@@ -7,6 +7,14 @@ module Pebbles::OrdersHelper
   def cart_is_taxed?(tax_total)
     tax_total == 0 ? "display:none" : ""
   end
+  
+  def credit_card_date(credit_card)
+    if credit_card.month && credit_card.year
+      Date.new(credit_card.year.to_i, credit_card.month.to_i)
+    else
+      nil
+    end
+  end
     
   def previous_address_choice?
     if controller.action_name == 'create'
@@ -44,7 +52,7 @@ module Pebbles::OrdersHelper
     region_name = shipping_region(active_shipping_region_id)
     if region_name == "United States"
    	  address.select :state, 
-   	    [['Select a State', ''],
+   	    options_for_select([['Select a State', ''],
       	['Alabama', 'AL'], 
       	['Alaska', 'AK'],
       	['Arizona', 'AZ'],
@@ -95,7 +103,7 @@ module Pebbles::OrdersHelper
       	['Washington', 'WA'], 
       	['West Virginia', 'WV'], 
       	['Wisconsin', 'WI'], 
-      	['Wyoming', 'WY']], {}, :class => 'required'
+      	['Wyoming', 'WY']], @cart.billing_state), {}, :class => 'required'
     else
       address.text_field :state, :size => 20, :class => 'required' 
     end

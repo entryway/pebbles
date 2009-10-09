@@ -7,7 +7,7 @@ module OrderStateMachine
 
       aasm_state :pending 
       aasm_state :authorized
-      aasm_state :paid 
+      aasm_state :paid, :enter => :decrease_inventory 
       aasm_state :payment_declined 
       aasm_state :refunded
       aasm_state :disputed
@@ -69,6 +69,14 @@ module OrderStateMachine
 
         transitions :from => :paid,
                     :to => :shipping_delayed
+      end
+    end
+  end
+  
+  def decrease_inventory
+    if GeneralConfiguration.instance.inventory_management
+      order_items.each do |order_item|
+        order_item.decrease_inventory
       end
     end
   end

@@ -12,6 +12,22 @@ class Cart < ActiveRecord::Base
   
   attr_accessor :shipping_method_id
   
+  def validate
+    if GeneralConfiguration.instance.inventory_management?
+      cart_items.each do |cart_item|
+        if cart_item.invalid?
+          errors.clear
+          if product_total <= 0
+            errors.add_to_base("Our apologies, all items in your cart were no longer available.")
+          else
+            errors.add_to_base("The quantity of certain items in your cart exceeded availability" +
+                                " and were adjusted")
+          end
+        end
+      end
+    end
+  end
+  
   def line_items
     cart_items
   end
@@ -79,6 +95,17 @@ class Cart < ActiveRecord::Base
     tax = 0
     tax = TaxRate.calculate_tax(billing_state, sub_total) if billing_state
     tax
+  end
+  
+  def inventory_remaining(product, variant = nil)
+    if GeneralConfiguration.instance.inventory_management? 
+      inventory = (variant || product).inventory 
+      existing_cart_item = find_product_or_variant(product, variant)
+      inventory -= existing_cart_item.quantity if existing_cart_item
+      inventory
+    else
+      nil
+    end
   end
 
 end 

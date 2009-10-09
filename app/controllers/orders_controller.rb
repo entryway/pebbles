@@ -12,6 +12,8 @@ class OrdersController < ApplicationController
     @order.credit_card = CreditCard.new
     @order.billing_address = Address.new
     @order.shipping_address = Address.new
+    @cart = current_cart
+    @cart.validate
     
     refresh_cart
   end
@@ -19,10 +21,11 @@ class OrdersController < ApplicationController
   def create
     @cart = current_cart
     # move to factory, little funky with validation, maybe builder?
-    @order = OrderFactory.create_web_order(current_cart, 
+    @order = OrderFactory.create_web_order(@cart, 
                                            params.merge(:active_shipping_method_id => active_shipping_method_id,
                                                         :active_shipping_region_id => active_shipping_region_id))
     if @order.invalid
+      puts "errors in controller #{@cart.errors.on_base}"
       refresh_cart      
       render :action => 'new' and return
     else
@@ -83,8 +86,8 @@ class OrdersController < ApplicationController
     region = Region.find(active_shipping_region_id)
     @shipping_methods = region.shipping_methods
     @default_method = ShippingMethod.find(active_shipping_method_id)
-
-    @cart = current_cart
+   
+    @cart ||= current_cart
     @product_total = @cart.product_total
     PromoCode.apply(@cart, @cart.promo_code) if @cart.promo_code
     @discount = @cart.promo_discount

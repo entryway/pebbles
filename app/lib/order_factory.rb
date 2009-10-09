@@ -127,9 +127,8 @@ class OrderFactory
     
     # build a web order
     def create_web_order(cart, options = {})
-      
-      order = Order.new(WEB_ORDER_DEFAULTS.merge(options[:order]))
-      
+        
+      order = Order.new(WEB_ORDER_DEFAULTS.merge(options[:order]))     
       billing_address = Address.new(options[:billing_address])
       
       # piece-meal validation so user sees validation in steps
@@ -149,7 +148,7 @@ class OrderFactory
       credit_card = CreditCard.new(options[:credit_card])
       credit_card.require_verification_value = true
       order.credit_card = credit_card
-      valid = credit_card.valid? && order.valid? &&
+      valid = cart.valid? && credit_card.valid? && order.valid? &&
         billing_address.valid? && shipping_address.valid?
       if valid
         order.credit_card_display = order.credit_card.display_number
@@ -166,8 +165,8 @@ class OrderFactory
       order
     end
     
-    private 
-    
+  private 
+   
       # set the region and shipping method by region
       def shipping_method_translation(order, country, notify)
         # shipping method is same as standard shipping, United States

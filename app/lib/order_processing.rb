@@ -25,9 +25,7 @@ module OrderProcessing
                         )
         self.transactions << authorization
         if authorization.success?
-          # TODO: something seems odd with acts_as_state_machine and
-          # 2.0.2, saving twice works?????
-          payment_authorized!
+         payment_authorized!
         else
           transaction_declined!
         end

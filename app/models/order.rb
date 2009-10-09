@@ -78,12 +78,10 @@ class Order < ActiveRecord::Base
   end
                                                
   def add_order_items_from_cart(cart)
-    OrderItem.transaction do
-      cart.cart_items.each do |item|
-        oi = OrderItem.from_cart_item(item)
-        self.order_items << oi
-      end    
-    end
+    cart.cart_items.each do |item|
+      oi = OrderItem.from_cart_item(item)
+      self.order_items << oi
+    end    
     
     self.calculate_order_costs
   end

@@ -6,7 +6,7 @@ class TaxesController < ApplicationController
   def update
     cart = current_cart
     cart.billing_state = params[:billing_state]
-    cart.save!
+    cart.save(false)
     method = ShippingMethod.find(active_shipping_method_id)
     shipping_total = cart.shipping_total(method)
     

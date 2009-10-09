@@ -21,6 +21,8 @@ class ProductsController < ApplicationController
     @category = Category.find(params[:category_id])
     @products = @category.products.available.top_nine
     @cart_item = CartItem.new
+    @cart = current_cart
+    @inventory = @cart.inventory_remaining(@product)
     zipcode = session[:zipcode]
     @shipping = ShippingCalculations.product_quote(@product.id, 1 , zipcode) if zipcode
   
@@ -30,7 +32,7 @@ class ProductsController < ApplicationController
       format.xml  { render :xml => @product.to_xml }
     end
   end
-  
+    
   def check_out_of_stock
     # send the param options selections array and id to see if that product_id 
     # is out_of_stock
