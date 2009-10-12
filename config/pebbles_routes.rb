@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
 
      admin.resources :categories, :has_many => [:category_images, :category_icons], 
                                   :member => { :reorder => :put }
+     admin.resources :category_icons, :has_many => :category_icon_hovers
      
      admin.resources :ebay_orders
      

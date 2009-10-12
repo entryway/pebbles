@@ -26,5 +26,17 @@ jQuery(document).ready(function() {
     }
     return false;
   })
+  
+  jQuery('#category_icon_hover_add').submit(function() { 
+    jQuery(this).ajaxSubmit({ target: "#icon_hover"}); 
+    return false; 
+  });
+
+  jQuery("#destroy-category-icon-hover").live("click", function() {
+    if (confirm( "Are you sure you want to remove the icon hover?")) {
+      jQuery("#icon_hover").load(jQuery(this).attr('href'), { _method: "DELETE" });
+    }
+    return false;
+  })
 
 })

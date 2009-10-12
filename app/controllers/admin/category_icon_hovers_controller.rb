@@ -4,17 +4,17 @@ class Admin::CategoryIconHoversController < ApplicationController
   
   def create 
     category_icon = CategoryIcon.find(params[:category_icon_id])
-    category.create_category_icon_hover(params[:category_icon_hover])
+    category_icon.create_category_icon_hover(params[:category_icon_hover])
     render :partial => '/admin/categories/icon_hover', 
-           :locals => { :category_icon_hover => category }
+           :locals => { :icon => category_icon }
   end
   
   def destroy
-    category = Category.find(params[:category_icon_id])
-    category_icon = CategoryIcon.find(params[:id])
-    category_icon.destroy
-    render :partial => '/admin/categories/icon', 
-           :locals => { :category => category }
+    category_icon = CategoryIcon.find(params[:category_icon_id])
+    category_icon_hover = CategoryIconHover.find(params[:id])
+    category_icon_hover.destroy
+    render :partial => '/admin/categories/icon_hover', 
+           :locals => { :icon => category_icon }
   end   
 
 end

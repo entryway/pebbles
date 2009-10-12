@@ -1,0 +1,22 @@
+<% if icon.category_icon_hover %>
+  <div style="display:inline">
+  	<%= image_tag icon.category_icon_hover.filename.url %>
+  	<%= link_to 'Remove Image', admin_category_icon_category_icon_hover_path(icon, icon.category_icon_hover), 
+  	    :id => "destroy-category-icon-hover" %>
+  </div>
+<% else %>
+  <div style="display:inline">
+
+  	<% form_for [:admin, icon, CategoryIconHover.new],
+                :html => { :multipart => true, :id => 'category_icon_hover_add' } do |form| %>
+  	  <p>
+  	    <label for="uploaded_data">Upload Image:</label>
+  	    <%= form.file_field :filename, :value => "Browse", :size => 15 %>
+  	  </p>
+  	  <p>
+  	    <%= submit_tag 'Upload' %>
+  	  </p>
+  	<% end %>
+
+  </div>
+<% end %>
