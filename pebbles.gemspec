@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-10-07}
+  s.date = %q{2009-10-12}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
      "app/controllers/admin/accessories_controller.rb",
      "app/controllers/admin/authorizations_controller.rb",
      "app/controllers/admin/categories_controller.rb",
+     "app/controllers/admin/category_icons_controller.rb",
      "app/controllers/admin/category_images_controller.rb",
      "app/controllers/admin/configurations_controller.rb",
      "app/controllers/admin/flat_rate_shipping_controller.rb",
@@ -78,6 +79,7 @@ Gem::Specification.new do |s|
      "app/lib/order_calculations.rb",
      "app/lib/order_factory.rb",
      "app/lib/order_processing.rb",
+     "app/lib/order_state_machine.rb",
      "app/lib/shipping_calculations.rb",
      "app/lib/shipping_type.rb",
      "app/lib/wholesaler.rb",
@@ -86,6 +88,7 @@ Gem::Specification.new do |s|
      "app/models/cart_item.rb",
      "app/models/cart_item_selection.rb",
      "app/models/category.rb",
+     "app/models/category_icon.rb",
      "app/models/category_image.rb",
      "app/models/configuration.rb",
      "app/models/flat_rate_shipping.rb",
@@ -129,6 +132,7 @@ Gem::Specification.new do |s|
      "app/notifiers/order_notifier.rb",
      "app/reports/order_report.rb",
      "app/reports/templates.rb",
+     "app/uploaders/category_icon_uploader.rb",
      "app/uploaders/image_uploader.rb",
      "app/views/admin/accessories/_accessories.html.erb",
      "app/views/admin/accessories/_category_selection.html.erb",
@@ -139,6 +143,9 @@ Gem::Specification.new do |s|
      "app/views/admin/authorizations/update.rjs",
      "app/views/admin/categories/_category_branch.html.erb",
      "app/views/admin/categories/_category_selection.html.erb",
+     "app/views/admin/categories/_icon.html.erb",
+     "app/views/admin/categories/_icon_form.html.erb",
+     "app/views/admin/categories/_icon_list.html.erb",
      "app/views/admin/categories/_image_form.html.erb",
      "app/views/admin/categories/_image_list.html.erb",
      "app/views/admin/categories/_images.html.erb",
@@ -325,8 +332,10 @@ Gem::Specification.new do |s|
      "db/migrate/20090909191809_initial_schema_load.rb",
      "db/migrate/20090916031338_create_table_variants.rb",
      "db/migrate/20090916032132_create_table_variant_selections.rb",
+     "db/migrate/20090928030909_add_general_configuration_table.rb",
      "db/migrate/20091001212916_add_variant_image_table.rb",
      "db/migrate/20091002033255_add_variant_image_thumbnail_and_large_tables.rb",
+     "db/migrate/20091008143231_add_category_icon_table.rb",
      "db/schema.rb",
      "db/seeds.rb",
      "lib/authenticated_system.rb",
@@ -518,6 +527,7 @@ Gem::Specification.new do |s|
      "public/javascripts/dragdrop.js",
      "public/javascripts/effects.js",
      "public/javascripts/geoRssOverlay.js",
+     "public/javascripts/jquery/creditcard2.js",
      "public/javascripts/jquery/form.js",
      "public/javascripts/jquery/jquery.js",
      "public/javascripts/jquery/livequery.js",
@@ -929,14 +939,17 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
       s.add_runtime_dependency(%q<ssl_requirement>, [">= 0"])
       s.add_development_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
+      s.add_runtime_dependency(%q<carrierwave>, [">= 0"])
     else
       s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
       s.add_dependency(%q<ssl_requirement>, [">= 0"])
       s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
+      s.add_dependency(%q<carrierwave>, [">= 0"])
     end
   else
     s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
     s.add_dependency(%q<ssl_requirement>, [">= 0"])
     s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
+    s.add_dependency(%q<carrierwave>, [">= 0"])
   end
 end
