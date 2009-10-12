@@ -45,11 +45,20 @@ class CartsController < ApplicationController
   end
 
   def update
-    cart = current_cart
-    if cart.update_attributes(params[:cart])
+    @cart = current_cart
+    if @cart.update_attributes(params[:cart])
       flash[:notice] = "Your cart was updated."
+      redirect_to cart
+    else
+      region = Region.find(active_shipping_region_id)
+      method = active_shipping_method_id
+      @shipping_methods = region.shipping_methods
+      @default_method = ShippingMethod.find(method)
+      @subtotal = @cart.sub_total
+      @shipping_total = @cart.shipping_total(@default_method)
+      @grand_total = @cart.grand_total(@shipping_total)
+      render :action => 'show'
     end
-    redirect_to cart
   end
 
 end

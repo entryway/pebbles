@@ -4,3 +4,6 @@
 	<%= link_to 'Remove Image', admin_category_category_icon_path(category, icon), 
 	    :class => "destroy-category-icon" %>
 </div>
+<div id="icon_hover">
+  <%= render 'icon_hover', :icon => icon %>
+</div>

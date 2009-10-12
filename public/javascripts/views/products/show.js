@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
   jQuery.validator.addMethod('inventory', function(value){
     return (parseInt(value) <= parseInt(jQuery('#inventory').val()));
-  },   'sorry there is only ' + jQuery('#inventory').val() + ' left');
+  },   'sorry there are only ' + jQuery('#inventory').val() + ' left');
   jQuery('#cart_item_form').validate({ 
     rules: {
       '#quantity': "inventory"}});

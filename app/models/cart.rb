@@ -15,7 +15,7 @@ class Cart < ActiveRecord::Base
   def validate
     if GeneralConfiguration.instance.inventory_management?
       cart_items.each do |cart_item|
-        if cart_item.invalid?
+        unless cart_item.validate_quantity
           errors.clear
           if product_total <= 0
             errors.add_to_base("Our apologies, all items in your cart were no longer available.")

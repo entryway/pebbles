@@ -11,15 +11,16 @@ class CartItem < ActiveRecord::Base
   
   cattr_accessor :discounted
   
-  def validate
-    if GeneralConfiguration.instance.inventory_management?
-      item = variant || product
-      if quantity > item.inventory
-        self.quantity = item.inventory < 0 ? 0 : item.inventory
-        save!
-        errors.add(:quantity, "Your quantity exceeded inventory availability" +
-                              " and was adjusted to #{item.inventory}")
-      end
+  def validate_quantity
+    item = variant || product
+    if quantity > item.inventory
+      self.quantity = item.inventory < 0 ? 0 : item.inventory
+      save!
+      errors.add(:quantity, "Your quantity exceeded inventory availability" +
+                            " and was adjusted to #{item.inventory}")
+      return false
+    else
+      return true
     end
   end      
  

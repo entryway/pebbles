@@ -29,9 +29,7 @@ module ShippingCalculations
       shipping_method.flat_rate_by_base_rate(self.line_items)
     end
   end
-
-  #include ActiveMerchant::Shipping
-  
+ 
   # calculate cost for product item
   def self.product_quote(product_id, quantity, zipcode, accessories = [])
     product = Product.find(product_id)

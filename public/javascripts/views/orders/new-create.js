@@ -11,8 +11,7 @@ function ShowHideShipping() {
   };  
   $.validator.addMethod('zipcode', function(value){
     return /^\d{5}([\-]\d{4})?$|^([A-Z]\d[A-Z]\s\d[A-Z]\d)$/.test(value)
-  },   'must be valid US zipcode (in the format "12345" or "12345-1234")' + 
-       ' or valid Canadian postal code  (in the format A1A 1A1)');
+  },   'must be valid US zipcode (in the format "12345" or "12345-1234")');
   $.validator.addMethod('email', function(value){
     return /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.test(value)
   },   'should be in the form of someone@somewhere.com');

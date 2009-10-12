@@ -41,7 +41,7 @@ class Product < ActiveRecord::Base
                               
   validates_numericality_of :inventory, :only_integer => true, :greater_than_or_equal_to => 0 
   
-                                
+  # this should be moved to admin product_helper                              
   def created_product_options
     product_options.select {|o| !o.new_record? }
   end
