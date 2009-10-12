@@ -1,10 +1,10 @@
 require 'pebbles'
 
-class ActionController::Base
 
+class ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
-  include SslRequirement
+ # include SslRequirement
   include Pebbles::Shipping
   include Pebbles::Cart
   include Pebbles::Categories
@@ -15,29 +15,27 @@ class ActionController::Base
 end
 
 class ActionController::Routing::RouteSet
-  def load_routes_with_clearance!
-    clearance_routes = File.join(File.dirname(__FILE__), 
-                       *%w[.. config pebbles_routes.rb])
-    unless configuration_files.include? clearance_routes
-      add_configuration_file(clearance_routes)
+  def load_routes_with_pebbles!
+    pebbles_routes = File.join(File.dirname(__FILE__), 
+                               *%w[.. config pebbles_routes.rb])
+    unless configuration_files.include? pebbles_routes
+      add_configuration_file(pebbles_routes)
     end
-    load_routes_without_clearance!
+    load_routes_without_pebbles!
   end
 
-  alias_method_chain :load_routes!, :clearance
+  alias_method_chain :load_routes!, :pebbles
 end
 
 config.gem 'activemerchant', :lib => 'active_merchant'
 config.gem 'collectiveidea-awesome_nested_set',
            :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
-config.gem "carrierwave"
-config.gem "stephencelis-acts_as_singleton",
-    :lib => "acts_as_singleton",
-    :source => "http://gems.github.com"
-config.gem "ssl_requirement"
+config.gem 'carrierwave'
+config.gem 'stephencelis-acts_as_singleton',
+           :lib => 'acts_as_singleton', :source => 'http://gems.github.com'
+#onfig.gem 'ssl_requirement', :source => 'http://74.207.230.57'
 config.gem 'rubyist-aasm', :version => '~> 2.0.2', :lib => 'aasm', 
-                           :source => "http://gems.github.com"
-
+                           :source => 'http://gems.github.com'
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')

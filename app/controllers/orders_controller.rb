@@ -21,9 +21,9 @@ class OrdersController < ApplicationController
   def create
     @cart = current_cart
     # move to factory, little funky with validation, maybe builder?
-    @order = OrderFactory.create_web_order(@cart, 
-                                           params.merge(:active_shipping_method_id => active_shipping_method_id,
-                                                        :active_shipping_region_id => active_shipping_region_id))
+    options = params.merge(:active_shipping_method_id => active_shipping_method_id,
+                           :active_shipping_region_id => active_shipping_region_id)
+    @order = OrderFactory.create_web_order(@cart, options)
     if @order.invalid
       puts "errors in controller #{@cart.errors.on_base}"
       refresh_cart      
