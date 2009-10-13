@@ -1,10 +1,9 @@
 require 'pebbles'
 
-
 class ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
- # include SslRequirement
+  include SslRequirement
   include Pebbles::Shipping
   include Pebbles::Cart
   include Pebbles::Categories
@@ -33,7 +32,7 @@ config.gem 'collectiveidea-awesome_nested_set',
 config.gem 'carrierwave'
 config.gem 'stephencelis-acts_as_singleton',
            :lib => 'acts_as_singleton', :source => 'http://gems.github.com'
-#onfig.gem 'ssl_requirement', :source => 'http://74.207.230.57'
+config.gem 'ssl_requirement', :source => 'http://74.207.230.57'
 config.gem 'rubyist-aasm', :version => '~> 2.0.2', :lib => 'aasm', 
                            :source => 'http://gems.github.com'
 

@@ -16,6 +16,7 @@ Factory.define :product do |f|
   f.available          true
   f.price              5.50
   f.admin_notes        'adminnotes'
+  f.inventory          10
 end
 
 Factory.define :vendor do |f|

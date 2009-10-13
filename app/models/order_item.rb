@@ -36,15 +36,4 @@ class OrderItem < ActiveRecord::Base
     oi
   end
    
-  def decrease_inventory
-    if variant
-      variant.inventory -= quantity
-      variant.save!
-    else
-      product.inventory -= quantity
-      product.save!
-    end
-  end
-   
-    
 end

@@ -17,7 +17,7 @@ describe "OrderFactory" do
       @options = Hash.new
       @options[:billing_address] = @address.attributes
       @options[:credit_card] = {:first_name => "testing", :last_name => "tester", 
-                                :number => "4111111111111111", :month => "12", :year => "2011", 
+                                :number => "1", :month => "12", :year => "2011", 
                                 :verification_value => "234" }
       @options[:order] = @order.attributes
       @options[:address_choice] = true
