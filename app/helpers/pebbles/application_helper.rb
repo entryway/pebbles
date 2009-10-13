@@ -2,6 +2,12 @@
     module ApplicationHelper
       include HeaderHelper
       
+      def production_environment? 
+        if Rails.env.production?
+          yield
+        end
+      end
+      
       def categories
         Category.position_sorted
       end
