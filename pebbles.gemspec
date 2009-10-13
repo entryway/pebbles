@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-10-12}
+  s.date = %q{2009-10-13}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
      "app/controllers/admin/accessories_controller.rb",
      "app/controllers/admin/authorizations_controller.rb",
      "app/controllers/admin/categories_controller.rb",
+     "app/controllers/admin/category_icon_hovers_controller.rb",
      "app/controllers/admin/category_icons_controller.rb",
      "app/controllers/admin/category_images_controller.rb",
      "app/controllers/admin/configurations_controller.rb",
@@ -76,6 +77,7 @@ Gem::Specification.new do |s|
      "app/helpers/pebbles/products_helper.rb",
      "app/helpers/pebbles/stores_helper.rb",
      "app/lib/exceptions.rb",
+     "app/lib/inventory.rb",
      "app/lib/order_calculations.rb",
      "app/lib/order_factory.rb",
      "app/lib/order_processing.rb",
@@ -89,6 +91,7 @@ Gem::Specification.new do |s|
      "app/models/cart_item_selection.rb",
      "app/models/category.rb",
      "app/models/category_icon.rb",
+     "app/models/category_icon_hover.rb",
      "app/models/category_image.rb",
      "app/models/configuration.rb",
      "app/models/flat_rate_shipping.rb",
@@ -145,6 +148,7 @@ Gem::Specification.new do |s|
      "app/views/admin/categories/_category_selection.html.erb",
      "app/views/admin/categories/_icon.html.erb",
      "app/views/admin/categories/_icon_form.html.erb",
+     "app/views/admin/categories/_icon_hover.html.erb",
      "app/views/admin/categories/_icon_list.html.erb",
      "app/views/admin/categories/_image_form.html.erb",
      "app/views/admin/categories/_image_list.html.erb",
@@ -336,6 +340,7 @@ Gem::Specification.new do |s|
      "db/migrate/20091001212916_add_variant_image_table.rb",
      "db/migrate/20091002033255_add_variant_image_thumbnail_and_large_tables.rb",
      "db/migrate/20091008143231_add_category_icon_table.rb",
+     "db/migrate/20091012193601_add_category_icon_hovers_table.rb",
      "db/schema.rb",
      "db/seeds.rb",
      "lib/authenticated_system.rb",
@@ -546,6 +551,7 @@ Gem::Specification.new do |s|
      "public/javascripts/unittest.js",
      "public/javascripts/views/admin/categories/edit.js",
      "public/javascripts/views/admin/categories/index.js",
+     "public/javascripts/views/admin/orders/index.js",
      "public/javascripts/views/admin/orders/new.js",
      "public/javascripts/views/admin/orders/show.js",
      "public/javascripts/views/admin/products/edit.js",
@@ -583,6 +589,7 @@ Gem::Specification.new do |s|
      "spec/factories/product_option_selection.rb",
      "spec/factories/promo_code.rb",
      "spec/factories/shipping_method.rb",
+     "spec/lib/inventory_spec.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/order_factory_spec.rb",
      "spec/lib/shipping_calculations_spec.rb",
@@ -913,6 +920,7 @@ Gem::Specification.new do |s|
      "spec/factories/product_option_selection.rb",
      "spec/factories/promo_code.rb",
      "spec/factories/shipping_method.rb",
+     "spec/lib/inventory_spec.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/order_factory_spec.rb",
      "spec/lib/shipping_calculations_spec.rb",
