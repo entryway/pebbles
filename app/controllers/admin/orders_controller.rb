@@ -84,8 +84,8 @@ class OrdersController < ApplicationController
   end
   
   def change_delivery_status
-    @order = Order.find(params[:id])
-    @order.delivery_status = params['delivery_status_' + params[:id]]
+    @order = Order.find(params[:order_id])
+    @order.delivery_status = params['delivery_status']
     @order.save!
     
     render :nothing => true
