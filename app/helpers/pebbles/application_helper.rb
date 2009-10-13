@@ -8,6 +8,10 @@
         end
       end
       
+      def inventory_managed?
+        GeneralConfiguration.instance.inventory_management?
+      end
+      
       def categories
         Category.position_sorted
       end

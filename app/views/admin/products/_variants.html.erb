@@ -7,7 +7,13 @@
   		    <% product.created_product_options.each do |option| %>
   		      <th> Option: <%= option.name %></th>
   		    <% end %>
-  			<th>Inventory</th>
+  			<th>
+  			  <% if inventory_managed? %>
+			      Inventory
+			    <% else %>
+			      Out Of Stock
+			    <% end %>
+			  </th>
   			<th>SKU</th>
   			<th>Price</th>
   			<th>Weight</th>
@@ -21,7 +27,14 @@
   			    <% variant.product_option_selections.each do |selection| %>
   			      <td><%= selection.name %></td>
   			    <% end %>
-  				  <td><%= variant_form.text_field :inventory, :size => 5 %></td>
+  			    
+  				  <td>
+  				    <% if inventory_managed? %>
+  				      <%= variant_form.text_field :inventory, :size => 5 %>
+  				    <% else %>
+  				      <%= variant_form.check_box :out_of_stock, :size => 5 %>
+  				    <% end %>
+  				  </td>
   				  <td><%= variant_form.text_field :sku, :size => 10 %></td>
   				  <td><%= variant_form.text_field :price, :size => 5 %></td>
   				  <td><%= variant_form.text_field :weight, :size => 5 %></td>
