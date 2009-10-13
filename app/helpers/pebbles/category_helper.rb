@@ -1,4 +1,5 @@
 module Pebbles::CategoryHelper
+
   def category_link(category)
     if category.leaf?
       category_products_path(category)
@@ -8,11 +9,11 @@ module Pebbles::CategoryHelper
   end
 
   def category_image(category)
-    image_tag(category.category_images[0].filename.url, :alt => 'icon')
+    image_tag(category.category_images[0].filename.url, :alt => "#{category.name}")
   end
   
   def category_icon(category)
-     image_tag(category.category_icon.filename.url, :alt => 'icon' )
+     image_tag(category.category_icon.filename.url, :alt => "#{category.name}" )
    end
 
   def category_li(category)

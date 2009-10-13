@@ -13,7 +13,8 @@ class Category < ActiveRecord::Base
   attr_accessor :style
   
   ##
-  # reorders a category to nest under a parent category and above a sibling category
+  # Reorders a category to nest under a parent category and above a sibling category
+  #
   # @param[Hash] options an options of relation ids for ordering
   # @option options [String] :parent id of the parent category
   # #option options [String] :right id of the sibling category to the right
@@ -36,11 +37,6 @@ class Category < ActiveRecord::Base
   #
   def level
     self.ancestors.size
-  end
-  
-  def category_image
-    return category_images[0].public_filename unless category_images.empty?
-    ''
   end
   
   def self.position_sorted
