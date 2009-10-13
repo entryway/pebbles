@@ -2,6 +2,16 @@
     module ApplicationHelper
       include HeaderHelper
       
+      def production_environment? 
+        if Rails.env.production?
+          yield
+        end
+      end
+      
+      def inventory_managed?
+        GeneralConfiguration.instance.inventory_management?
+      end
+      
       def categories
         Category.position_sorted
       end

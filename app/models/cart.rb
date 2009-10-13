@@ -13,19 +13,7 @@ class Cart < ActiveRecord::Base
   attr_accessor :shipping_method_id
   
   def validate
-    if GeneralConfiguration.instance.inventory_management?
-      cart_items.each do |cart_item|
-        unless cart_item.validate_quantity
-          errors.clear
-          if product_total <= 0
-            errors.add_to_base("Our apologies, all items in your cart were no longer available.")
-          else
-            errors.add_to_base("The quantity of certain items in your cart exceeded availability" +
-                                " and were adjusted")
-          end
-        end
-      end
-    end
+    Inventory.new.validate_cart(self)
   end
   
   def line_items

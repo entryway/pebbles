@@ -215,3 +215,14 @@ div.pagination span.current {
 div.pagination span.disabled {
 	display:none;
 }
+
+/* jQuery Spinner */
+
+.spinner {
+  background: #fff url('../../images/spinner_white.gif') no-repeat center center;
+  opacity: 0.75;
+  z-index: 2000;
+  filter: alpha(opacity: 75);
+  -moz-opacity: 0.75;
+  -khtml-opacity: 0.75;
+}

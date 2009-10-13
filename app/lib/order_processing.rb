@@ -85,9 +85,6 @@ private
      
     def process_web_order
       initialize_order
-      puts "*"*80
-      puts "in here"
-      
       if self.payment_type == 'credit_card'
         process_with_active_merchant
 

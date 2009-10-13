@@ -9,20 +9,7 @@ class CartItem < ActiveRecord::Base
            
   validates_numericality_of :quantity, :only_integer => true, :greater_than_or_equal_to => 0 
   
-  cattr_accessor :discounted
-  
-  def validate_quantity
-    item = variant || product
-    if quantity > item.inventory
-      self.quantity = item.inventory < 0 ? 0 : item.inventory
-      save!
-      errors.add(:quantity, "Your quantity exceeded inventory availability" +
-                            " and was adjusted to #{item.inventory}")
-      return false
-    else
-      return true
-    end
-  end      
+  cattr_accessor :discounted  
  
   def price
     # take quantity discount into consideration

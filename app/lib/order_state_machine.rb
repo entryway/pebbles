@@ -74,11 +74,7 @@ module OrderStateMachine
   end
   
   def decrease_inventory
-    if GeneralConfiguration.instance.inventory_management
-      order_items.each do |order_item|
-        order_item.decrease_inventory
-      end
-    end
+    Inventory.new.decrease_order_inventory(self)
   end
   
 end
