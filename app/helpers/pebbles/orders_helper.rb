@@ -28,7 +28,7 @@ module Pebbles::OrdersHelper
   def country(address, type)
     region_name = shipping_region(active_shipping_region_id)
     if region_name == "United States"
-      "United States" + hidden_field_tag(type + "[country]", "United States")
+      "<span>United States</span>" + hidden_field_tag(type + "[country]", "United States")
     elsif region_name == "Canada"
       "Canada" + hidden_field_tag(type + "[country]", "Canada")
     else

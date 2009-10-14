@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
   jQuery('#cart_item_form').validate({ 
     rules: {
       '#quantity': "inventory"}});
-  var current_variant_id = '';
+  var current_variant_id = null;
   jQuery("#submit_button").click(function() {
     var invalid = false;
     jQuery(".selection-select").each(function(item) {
@@ -27,11 +27,13 @@ jQuery(document).ready(function() {
     });
     jQuery.getJSON("/variants/1?product_id=" + product_id + "&selection_ids=" + selection_ids, 
                    function(data){
-                       current_variant_id = data.variant_image_id;
-                       jQuery('#price').html(data.price);
-                       jQuery('#variant_images div:visible').hide();
+                     current_variant_id = data.variant_image_id;
+                     jQuery('#price').html(data.price);
+                     jQuery('#variant_images div:visible').hide();
+                     if (current_variant_id != null) {
                        jQuery('#variant_image_' + current_variant_id).show();
                        jQuery('#product_image').hide();
+                     }
                      if (data.out_of_stock || data.inventory == 0) {
                        jQuery('#so_sorry_out_of_stock').show();
                        jQuery('#submit_button').attr('disabled', 'disabled'); 
@@ -56,7 +58,7 @@ jQuery(document).ready(function() {
   jQuery('#variant_images').load('/variant_images?product_id=' + jQuery("#product_id").val());
   jQuery('.thumbnail').hover( 
     function() {
-        if(current_variant_id != '') {
+        if(current_variant_id != null) {
             jQuery('#variant_image_' + current_variant_id).hide();           
         } else {
             jQuery('#product_image').hide();   
@@ -67,7 +69,7 @@ jQuery(document).ready(function() {
     function() {
       jQuery('#variant_images').hide();
       jQuery('#variant_image_' + jQuery(this).attr('id')).hide();
-        if(current_variant_id != '') {
+        if(current_variant_id != null) {
             jQuery('#variant_images').show();
             jQuery('#variant_image_' + current_variant_id).show();           
         } else {

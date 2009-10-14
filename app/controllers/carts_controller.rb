@@ -48,7 +48,7 @@ class CartsController < ApplicationController
     @cart = current_cart
     if @cart.update_attributes(params[:cart])
       flash[:notice] = "Your cart was updated."
-      redirect_to cart
+      redirect_to @cart
     else
       region = Region.find(active_shipping_region_id)
       method = active_shipping_method_id
