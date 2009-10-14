@@ -8,13 +8,15 @@ module Pebbles::CategoryHelper
     end
   end
 
-  def category_image(category)
-    image_tag(category.category_images[0].filename.url, :alt => "#{category.name}")
+  def category_image(category, css_class='')
+    image_tag(category.category_images[0].filename.url, 
+              :class => css_class,
+              :alt => "#{category.name}")
   end
   
   def category_icon(category)
      image_tag(category.category_icon.filename.url, :alt => "#{category.name}" )
-   end
+  end
 
   def category_li(category)
     if category.leaf?
