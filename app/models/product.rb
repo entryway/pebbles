@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  include ProductVariants 
+  include ProductVariant
 
   belongs_to :vendor
   has_many :product_images, :dependent => :destroy

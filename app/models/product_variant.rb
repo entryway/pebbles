@@ -1,3 +1,5 @@
+##
+# A mix-in with a product to add product variant specific functionality.
 module ProductVariant
 
   ##
