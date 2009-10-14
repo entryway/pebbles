@@ -6,6 +6,9 @@ function ShowHideShipping() {
   }
 }
 (function($) { 
+  $.postJSON = function(url, data, callback) {
+    $.post( url, data, callback, "json") ;
+  };
   $.validator.addMethod('zipcode', function(value){
     return /^\d{5}([\-]\d{4})?$|^([A-Z]\d[A-Z]\s\d[A-Z]\d)$/.test(value)
   },   'must be valid US zipcode (in the format "12345" or "12345-1234")');
