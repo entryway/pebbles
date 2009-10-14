@@ -1,7 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :vendor
   has_many :product_images, :dependent => :destroy
-  has_many :product_large_images, :through => :product_images 
 
   has_many :quantity_discounts 
   
@@ -33,34 +32,44 @@ class Product < ActiveRecord::Base
   named_scope :available, :order => :name,
                 :conditions => { :available => true }
                 
-  named_scope :top_nine, :limit => 9
-  
   accepts_nested_attributes_for :variants
   accepts_nested_attributes_for :product_options, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['name'].blank? }
                               
   validates_numericality_of :inventory, :only_integer => true, :greater_than_or_equal_to => 0 
   
+  #
   # this should be moved to admin product_helper                              
   def created_product_options
     product_options.select {|o| !o.new_record? }
   end
                                 
   
-  def product_image(thumb=false)
-    if thumb
-      unless product_images.empty? || product_images[0].product_image_thumbnail.nil?
-        return product_images[0].product_image_thumbnail.filename.url
-      end
-    else
-      return product_images[0].filename.url unless product_images.empty?
-    end
-    ''
+  ##
+  # Grab the first available product image. 
+  #
+  # @return [String] The image url for the product or an empty string if one doesn't exist.  
+  def image_url
+    return '' if product_images.empty?
+    product_images[0].filename.url 
   end
   
-  def product_large_image
-    return product_large_images[0].public_filename unless product_large_images.empty?
-    ''
+  ##
+  # Grab the first available thumbnail for the product image.
+  #
+  # @return[String] The thumbnail url for the product or an empty string if one doesn't exist.
+  def thumbnail_url
+    return '' if self.image_url.empty? || self.product_images[0].product_image_thumbnail.blank?
+    self.product_images[0].product_image_thumbnail.filename.url
+  end
+
+  ##
+  # Grab the first available product large image
+  #
+  # @return [String] The url of the large product or empty string if one doesn't exist. 
+  def large_image_url
+    return '' if self.image_url.empty? || self.product_images[0].product_large_image.blank?
+    self.product_images[0].product_large_image.filename.url
   end
   
   # return the active product category

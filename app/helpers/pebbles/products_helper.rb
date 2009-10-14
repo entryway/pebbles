@@ -16,58 +16,39 @@ module Pebbles::ProductsHelper
   def find_or_create_thumbnail(image)
     thumbnail = image.variant_image_thumbnail || image
     link_to (image_tag image.filename.url, :height => 30, :class => 'thumbnail', :id => image.id), 
-            variant_image_path(image)
+             variant_image_path(image)
   end
   
-  def product_images(product)
-    images = ''
-    unless product.product_images.empty?
-      product.product_images.each do |image|
-        images += image_tag image.public_filename
-      end
+  ##
+  # Add a image magnifier if the large image exists.
+  #
+  # @param[String] image The name of the image to use as a magnifier.
+  # @param[String] image_url The url of the image being magnifed. 
+  # @param[Hash] options Additonal options, class, etc. 
+  def image_magnify(image, image_url, options={}) 
+    if image_url.present?
+      image_tag image, options
     end
-    images
-  end 
-  
-  def light_box(image_to_lightbox, image_to_link_from)
-    tag = ''
-    if image_to_lightbox.blank?
+  end
+
+  ##
+  # Creates a light boxed image link if the image to lightbox exists. 
+  #
+  # @param[String] image The image url to link to a lightbox. 
+  # @param[String] light_boxed_image The image url of the image to lightbox. 
+  def light_box(image, light_boxed_image)
+    if light_boxed_image.blank?
       # just show image
-      tag += image_tag image_to_link_from
+      image_tag image
     else
       # lightbox link
-      tag += link_to image_tag(image_to_link_from), image_to_lightbox,
-             :rel => 'lightbox', :class => 'highlight'
+      link_to image_tag(image), light_boxed_image,
+              :rel => 'lightbox', :class => 'highlight'
     end
-    tag
   end
   
   def bread_crumb(category)
     category.parent.name + " : " unless category.parent.nil?
   end
   
-  # displays empty message or category contents
-  def category_products(products)
-    if products.length > 0
-      count = 1
-      cell = "<table cellpadding='0' cellspacing='0'' class='category_detail'>"
-      cell += "<tr>"
-      products.each do |product|
-        # give-me an HTML abstraction/builder!
-        cell += "<td>"
-        if !product.product_images.empty?
-          cell += link_to \
-                  image_tag(product.product_images[0].public_filename(), \
-                  :width => '146', :height => '141'), \
-                  product_path(product.categories[0], product)
-        end
-        cell += "</td>"
-			  cell += "</tr>" if (count % 4 == 0) 
-				count += 1 
-				cell += "<tr>" if (count % 4 == 0 < products.length)      
-      end
-      cell += "</table>"
-      return cell
-    end
-  end
 end
