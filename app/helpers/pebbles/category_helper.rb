@@ -9,9 +9,11 @@ module Pebbles::CategoryHelper
   end
 
   def category_image(category, css_class='')
-    image_tag(category.category_images[0].filename.url, 
-              :class => css_class,
-              :alt => "#{category.name}")
+    category_image = category.category_images[0]
+    if category_image
+      category_image = category_image.filename.url 
+      image_tag(category_image, :class => css_class, :alt => "#{category.name}")
+    end
   end
   
   def category_icon(category)

@@ -10,12 +10,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   def show
     @category = Category.find(params[:id])
-    if @category.leaf?
-      redirect_to category_products_path(@category)
-    else
-      @categories = @category.children.active
-      @products = @category.paged_products(params[:page], 15)
-    end
+    @categories = @category.children.active
+    @products = @category.paged_products(params[:page], 15)
   end
 
 end
