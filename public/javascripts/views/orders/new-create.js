@@ -50,6 +50,9 @@ function ShowHideShipping() {
         }
       }
     });
+    if ($('#order_card_type').length == 0) { 
+      $('#credit_card_number').rules("remove", "creditcard2");
+    }
     $('#promo_code_link').click(function() {
       $.postJSON(
         $(this).attr('href'),

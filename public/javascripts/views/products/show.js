@@ -61,11 +61,14 @@ jQuery(document).ready(function() {
         } else {
             jQuery('#product_image').hide();   
         }
+        jQuery('#variant_images').show();
         jQuery('#variant_image_' + jQuery(this).attr('id')).show();
     },
     function() {
+      jQuery('#variant_images').hide();
       jQuery('#variant_image_' + jQuery(this).attr('id')).hide();
         if(current_variant_id != '') {
+            jQuery('#variant_images').show();
             jQuery('#variant_image_' + current_variant_id).show();           
         } else {
             jQuery('#product_image').show();   

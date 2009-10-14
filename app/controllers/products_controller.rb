@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @category = Category.find(params[:category_id])
-    @products = @category.products.available.top_nine
+    @products = @category.paged_products(params[:page], 15)
     @cart_item = CartItem.new
     @cart = current_cart
     @inventory = @cart.inventory_remaining(@product)

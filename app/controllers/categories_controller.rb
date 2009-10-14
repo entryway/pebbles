@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = Category.position_sorted
+    @products = Product.featured
   end
 
   # GET /categories/1
