@@ -31,6 +31,7 @@ jQuery(document).ready(function() {
                      jQuery('#price').html(data.price);
                      jQuery('#variant_images div:visible').hide();
                      if (current_variant_id != null) {
+                       jQuery('#variant_images').show();
                        jQuery('#variant_image_' + current_variant_id).show();
                        jQuery('#product_image').hide();
                      }
