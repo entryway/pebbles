@@ -2,6 +2,10 @@
     module ApplicationHelper
       include HeaderHelper
       
+      def bread_crumb(category)
+        category.parent.name + " : " unless category.parent.nil?
+      end
+
       def production_environment? 
         if Rails.env.production?
           yield

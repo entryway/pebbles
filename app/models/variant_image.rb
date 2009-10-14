@@ -11,7 +11,15 @@ class VariantImage < ActiveRecord::Base
   end
   
   ##
-  # Grab the first available thumbnail for the variant image.
+  # The url for the variant image.
+  #
+  # @return [String] The image url for the variant or an empty string if one doesn't exist.  
+  def image_url
+    self.filename.url 
+  end
+
+  ##
+  # The url for the thumbnail for the variant image.
   #
   # @return[String] The thumbnail url for the variant or an empty string if one doesn't exist.
   def thumbnail_url
@@ -20,7 +28,7 @@ class VariantImage < ActiveRecord::Base
   end
 
   ##
-  # Grab the first available variant large image
+  # The url for the variant large image.
   #
   # @return [String] The url of the large variant or empty string if one doesn't exist. 
   def large_image_url
