@@ -41,7 +41,7 @@ jQuery(document).ready(function() {
     return false;
   });
   jQuery(".variant_image_upload").livequery("click", function() {
-    jQuery("#variant_image").load("/admin/variant_images/new", function() {
+    jQuery("#variant_image").load("../admin/variant_images/new", function() {
       var variant_ids = [];
       jQuery(".variant_image_upload:checked").each( function() {
         variant_ids.push(jQuery(this).val());

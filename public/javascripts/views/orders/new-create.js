@@ -86,7 +86,7 @@ function ShowHideShipping() {
     $('#billing_address_state').change(function() {
       var billing_state = $(this).val();
       $.postJSON(
-        "/taxes/1",
+        "../taxes/1",
         { billing_state: billing_state, _method: "PUT"}, 
         function(json){
           if (json.no_tax) {
@@ -104,7 +104,7 @@ function ShowHideShipping() {
     });
   $('#methods').livequery('change', function() {
       $(this).spin();
-      $.postJSON("/regions/1/shipping_methods/" + $(this).val(),
+      $.postJSON("../regions/1/shipping_methods/" + $(this).val(),
                  { _method: "PUT"}, 
                  function(json){
                    $('#shipping_total').html(json.shipping_total);

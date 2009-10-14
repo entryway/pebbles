@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       end
       flash[:notice] = "Logged in successfully"
       if self.current_user.role == 'admin'
-        redirect_to '/admin/orders'
+        redirect_to admin_orders_path
       else
         redirect_back_or_default('/')
       end

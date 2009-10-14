@@ -5,7 +5,7 @@ $(document).ready(function() {
     forcePlaceholderSize: 'true',
     update: function(event, ui) {
       $('#category-list').load(
-        '/admin/categories/' + $(ui.item).attr('id') + '/reorder',
+        '../admin/categories/' + $(ui.item).attr('id') + '/reorder',
         {
           _method: 'PUT',
           parent: $(ui.item).parent().attr('id'),
