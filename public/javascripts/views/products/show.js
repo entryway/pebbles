@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
     jQuery(".selection-select").each(function(item) {
       selection_ids.push(this.value);
     });
-    jQuery.getJSON("/variants/1?product_id=" + product_id + "&selection_ids=" + selection_ids, 
+    jQuery.getJSON(jQuery('#variant_images_path').val() + "/1?product_id=" + product_id + "&selection_ids=" + selection_ids, 
                    function(data){
                      current_variant_id = data.variant_image_id;
                      jQuery('#price').html(data.price);
@@ -56,7 +56,7 @@ jQuery(document).ready(function() {
                    }
     );
   });
-  jQuery('#variant_images').load('/variant_images?product_id=' + jQuery("#product_id").val());
+  jQuery('#variant_images').load(jQuery('#variant_images_path').val() + '?product_id=' + jQuery("#product_id").val());
   jQuery('.thumbnail').hover( 
     function() {
         if(current_variant_id != null) {
