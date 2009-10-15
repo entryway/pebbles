@@ -8,7 +8,7 @@
       <th>SKU</th>
       <th>Name</th>
       <th>Price</th>
-      <th>Weight</th>
+      <th>Quantity</th>
       <th>ID</th>
       </tr>
       </thead>
@@ -19,12 +19,11 @@
         <td><%= product.sku %></td>
         <td><%= product.name %></td>
         <td><%= product.price %></td>
-        <td><%= product.weight %></td>
+        <td><%= product.inventory %></td>
         <td><%= product.id %></td>
-          <td class='blank'><%= link_to 'Show', admin_product_path(product.id) %></td>
           <td class='blank'><%= link_to 'Edit', edit_admin_product_path(product.id) %></td>
           <td class='blank'>
-          <%= link_to 'Destroy', admin_product_path(product.id), 
+          <%= link_to 'Delete', admin_product_path(product.id), 
                 :confirm => 'Are you sure?', 
                 :method => :delete %>
         </td>

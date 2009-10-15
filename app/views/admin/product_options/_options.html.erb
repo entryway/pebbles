@@ -6,12 +6,9 @@
 								:available_options => @available_options } %>
 <!--	</div>  -->
 <%# end %>
-<hr/>
-<label>Product Option:</label>
-<div id="product_options">
-	<div id="options_form" style="margin-left: 20px">
+<h2>Product Option:</h2>
+	<div id="options_form">
 		<%= render :partial => '/admin/product_options/options_form',
 		 		   :locals => { :product_option => @product_option,
 			 					:product => @product } %>
-    </div>
-</div>
+  </div>
