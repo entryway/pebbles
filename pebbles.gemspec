@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.1.11"
+  s.version = "0.1.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
@@ -362,6 +362,7 @@ Gem::Specification.new do |s|
      "lib/tasks/pebbles.rake",
      "lib/tasks/rails.rake",
      "pebbles.gemspec",
+     "pkg/pebbles-0.1.9.gem",
      "public/.htaccess",
      "public/404.html",
      "public/500.html",
