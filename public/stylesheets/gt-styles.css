@@ -488,7 +488,6 @@ ul li {
 }
 textarea.product_short_description {
   overflow: auto;
-  width: 95%;
 }
 .gt-form label {
 	font-size: 116%;
