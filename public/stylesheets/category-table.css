@@ -10,6 +10,7 @@ ul {
 li {
     margin: 0;
     padding: 0;
+    cursor: move;
 }
 
 p.category_title {
