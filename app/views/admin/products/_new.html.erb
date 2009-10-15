@@ -22,6 +22,7 @@
   <label for="price">Price</label>
   <%= form.text_field :price, :size => 10, :class => 'gt-form-text'  %><br/>
   <label for="weight">Weight * </label>
+  <hr/>
   <%= form.text_field :weight, :size => 10, :class => 'gt-form-text'  %><br/>
   <label for="length">Length </label>
   <%= form.text_field :length, :size => 10, :class => 'gt-form-text'  %>
@@ -43,5 +44,5 @@
   
   <br/>
   </p>
-<%= image_submit_tag 'gt/btn-add.jpg' %>
+<%= image_submit_tag 'gt/btn-add.jpg' %> or <%= link_to 'Cancel', admin_products_path %>
 <% end %>
