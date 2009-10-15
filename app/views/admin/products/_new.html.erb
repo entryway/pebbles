@@ -1,43 +1,47 @@
 <% form_for :product, @product, :url => admin_products_url,
             :html => { :class => 'gt-form' } do |form| %>
   <p>
-	<label for="name">Name *</label>
-	<%= form.text_field :name, :size => 20, :class => 'gt-form-text'  %><br/>
-	<label for="subname">SubName</label>
-	<%= form.text_field :subname, :size => 10, :class => 'gt-form-text'  %><br/>
-	<hr/> 
-	<%= form.check_box :available %> Available<br/>
-	<%= form.check_box :is_featured %> Featured Product<br/>
-	<label for="shipping_type">Shipping Type *:</label>
-	<%= form.select :shipping_type || 1, ShippingType::PRODUCT_SHIPPING_TYPES.invert %><br/>	
+  <label for="name">Name *</label>
+  <%= form.text_field :name, :size => 20, :class => 'gt-form-text'  %><br/>
+  <label for="subname">SubName</label>
+  <%= form.text_field :subname, :size => 10, :class => 'gt-form-text'  %><br/>
+  <hr/> 
+  <%= form.check_box :available %> Available<br/>
+  <%= form.check_box :is_featured %> Featured Product<br/>
+
+  <!-- TODO: Per Product Shipping Override, not fully implemented
+  <label for="shipping_type">Shipping Type *:</label>
+  <%#= form.select :shipping_type || 1, ShippingType::PRODUCT_SHIPPING_TYPES.invert %><br/>  
   <label for="flat_rate_shipping">Flat Rate Shipping Price :</label>
-	<%= form.text_field :flat_rate_shipping, :size => 10 %><br/>
+  <%#= form.text_field :flat_rate_shipping, :size => 10 %><br/>
+  -->
+
   <hr/>
-	<label for="sku">Sku *</label>
-	<%= form.text_field :sku, :size => 10, :class => 'gt-form-text'  %><br/>
-	<label for="price">Price</label>
-	<%= form.text_field :price, :size => 10, :class => 'gt-form-text'  %><br/>
-	<label for="weight">Weight * </label>
-	<%= form.text_field :weight, :size => 10, :class => 'gt-form-text'  %><br/>
-	<label for="length">Length </label>
-	<%= form.text_field :length, :size => 10, :class => 'gt-form-text'  %>
-	<label for="width">Width </label>
-	<%= form.text_field :width, :size => 10, :class => 'gt-form-text'  %>
-	<label for="height">Height </label>
-	<%= form.text_field :height, :size => 10, :class => 'gt-form-text'  %>
-  <hr/>	
-	<label for="vendor_id">Vendor</label>
-	<%= form.collection_select :vendor_id, @vendors, :id, :name %><br/>
-	<hr/>
-	<label for="short_description">Short Description</label>
-	<%= form.text_area :short_description, :rows => 10, :class => 'gt-form-textarea'  %><br/>
-	<hr/>
-	<label for="admin_notes">Admin Notes</label>
-	<%= form.text_area :admin_notes, :rows => 10, :class => 'gt-form-textarea'  %><br/>
-	
-	<hr/>
-	
-	<br/>
+  <label for="sku">Sku *</label>
+  <%= form.text_field :sku, :size => 10, :class => 'gt-form-text'  %><br/>
+  <label for="price">Price</label>
+  <%= form.text_field :price, :size => 10, :class => 'gt-form-text'  %><br/>
+  <label for="weight">Weight * </label>
+  <%= form.text_field :weight, :size => 10, :class => 'gt-form-text'  %><br/>
+  <label for="length">Length </label>
+  <%= form.text_field :length, :size => 10, :class => 'gt-form-text'  %>
+  <label for="width">Width </label>
+  <%= form.text_field :width, :size => 10, :class => 'gt-form-text'  %>
+  <label for="height">Height </label>
+  <%= form.text_field :height, :size => 10, :class => 'gt-form-text'  %>
+  <hr/> 
+  <label for="vendor_id">Vendor</label>
+  <%= form.collection_select :vendor_id, @vendors, :id, :name %><br/>
+  <hr/>
+  <label for="short_description">Short Description</label>
+  <%= form.text_area :short_description, :rows => 10, :class => 'gt-form-textarea'  %><br/>
+  <hr/>
+  <label for="admin_notes">Admin Notes</label>
+  <%= form.text_area :admin_notes, :rows => 10, :class => 'gt-form-textarea'  %><br/>
+  
+  <hr/>
+  
+  <br/>
   </p>
 <%= image_submit_tag 'gt/btn-add.jpg' %>
 <% end %>
