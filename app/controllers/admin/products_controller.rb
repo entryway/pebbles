@@ -93,15 +93,19 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    if @product.update_attributes(params[:product])
-      flash[:notice] = "Product #{@product.name} was successfully updated."
-      redirect_to edit_admin_product_path(@product.id) 
-    else
-      @vendors = Vendor.find(:all)
-      @categories = Category.root.descendants
-      @available_options = ProductOption.find(:all, :order => 'name')
-      @product_option = ProductOption.new
-      render :action => "edit"
+    respond_to do |format|
+      if @product.update_attributes(params[:product])
+        flash[:notice] = "Product #{@product.name} was successfully updated."
+        #format.html { redirect_to edit_admin_product_path(@product.id) }
+        format.js { render 'update.js.erb' }
+      else
+        @vendors = Vendor.find(:all)
+        @categories = Category.root.descendants
+        @available_options = ProductOption.find(:all, :order => 'name')
+        @product_option = ProductOption.new
+        format.html { render :action => "edit" }
+      end
+
     end
   end
 
