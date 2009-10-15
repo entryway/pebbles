@@ -67,6 +67,7 @@ staging:
     support_phone: '1.540.745.6162'
     site_address: 'http://greenlabel.entryway.net.com/'
     pre_and_post_authorization: false
+    title
                   
 production:   
     paypal_login: ''

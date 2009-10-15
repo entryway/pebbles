@@ -25,9 +25,9 @@
 			<% region.shipping_methods.each do |shipping_method| %>
 				<tr class='even'>
 					<td><%= shipping_method.name %>
-					<% if shipping_method.flat_rate_shipping %>
-						<td><%= number_to_currency(shipping_method.flat_rate_shipping.base_price)  %>
-						<td><%= number_to_currency(shipping_method.flat_rate_shipping.cost_per_item) %>
+					<% if shipping_method.flat_rate_shippings.count == 0 %>
+						<td><%= number_to_currency(shipping_method.base_price)  %>
+						<td><%= number_to_currency(shipping_method.cost_per_item) %>
 					<% end %>
 					<td><%= shipping_method.default_selection %>
 			    	<td><%= link_to 'Edit',

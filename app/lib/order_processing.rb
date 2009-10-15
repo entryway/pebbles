@@ -90,6 +90,7 @@ private
 
         unless self.paid? || self.authorized?
           msg = self.transactions[0].params['error']
+          puts self.transactions[0].inspect
           raise Exceptions::OrderException, msg, caller
         end
                 
