@@ -28,5 +28,9 @@ module Pebbles::ProductsHelper
               :rel => 'lightbox', :class => 'highlight'
     end
   end
+
+  def disable(category, product)
+    'disabled="disabled"' if product.category_ids.include?(category.id)
+  end
   
 end

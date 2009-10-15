@@ -1,21 +1,22 @@
-
-
 <div id="category-drop-down">
-	<br/><h2>Category:</h2>
-	<select id="category_select" name="category_ids[]">
-	<% for category in @categories %>
-		<% if category.level == 1 %>
-		  <option value="<%= category.id %>" <%= 'disabled="disabled"' if @product.category_ids.include?(category.id) %>><%= category.name %></option>
-		 <% if category.children.size > 0 %>
-			<% category.children.each { |subcat| %>
-		  		<option value="<%= subcat.id %>" <%= 'disabled="disabled"' if @product.category_ids.include?(subcat.id) %>>&nbsp;&nbsp;&nbsp;&nbsp;<%= subcat.name %></option>
-		    <% } %>
-		<% end %>
-		<% end %>
+  <br/><h2>Category:</h2>
+  <select id="category_select" name="category_ids[]">
+    <% for category in @categories %>
+      <% if category.level == 1 %>
+	<option value="<%= category.id %>" <%= disable(category, @product) %>>
+          <%= category.name %>
+        </option>
+	<% if category.children.size > 0 %>
+	  <% category.children.each do |subcat| %>
+	    <option value="<%= subcat.id %>" <%= disable(subcat, @product) %>>
+              &nbsp;&nbsp;&nbsp;&nbsp;<%= subcat.name %>
+            </option>
+	  <% end %>
 	<% end %>
-	</select>
-	<%= link_to "Add Category", admin_product_path(@product), :id => 'add_category' %>
-        <%= hidden_field_tag 'category_ids', @product.category_ids.inspect %>
+      <% end %>
+    <% end %>
+  </select>
+  <%= link_to "Add Category", admin_product_path(@product), :id => 'add_category' %>
 </div>
 <br/><br/>
 

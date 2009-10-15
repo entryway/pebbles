@@ -106,4 +106,15 @@ jQuery(document).ready(function() {
                                              _method: 'PUT'});
         return false;
     });
+
+    jQuery(".remove_category").live("click", function() {
+        var category_to_remove = parseInt(jQuery(this).next("input:hidden").val());
+        var category_ids = eval(jQuery("#category_ids").val());
+        var href = jQuery(this).attr('href');
+        var category_index = category_ids.indexOf(category_to_remove);
+        category_ids.splice(category_index, 1);
+        jQuery("#category_list").load(href, {'product[category_ids][]': category_ids, 
+                                             _method: 'PUT'});
+        return false;
+    });
 })
