@@ -152,11 +152,15 @@ body {
 }
 
 /* Default List Table */
-.gt-list-table {
-	width: 100%;
+ .gt-list-table {
+   width: 100%;
+   background: url(../images/gt/th-top-fade.gif) repeat-x 0 0;
+   margin-bottom: 2em;
 }
+.gt-list-table th.region{
+   font-size: 150%;
+ }
 .gt-list-table th {
-	background: url(../images/gt/table-hd-bkg.gif) no-repeat 50% 0;
 	font-weight: bold;
 	font-size: 123.1%;
 	padding: 10px;
@@ -170,22 +174,22 @@ body {
 }
 .gt-list-table tbody td {
 	padding: 7px 10px;
-	background-color: #f5f9ea;
-	border-bottom: 1px solid #fff;
+	background-color: #fff;
+  border-bottom: 1px solid #eee;
 	color: #333;
 }
 .gt-table-buttons {
 	margin: 10px 0 20px 0;
 }
 .gt-list-table a:link, .gt-list-table a:visited {
-	color: #333;
-	text-decoration: none;
+	color:#6CAA00;
+  text-decoration: underline;
 }
 .gt-list-table td a {
 	font-weight: bold;
 }
 .gt-list-table td a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 /* Table Pager, Table Select Box */
@@ -471,16 +475,22 @@ ul li {
 }
 .gt-form .gt-form-text, .gt-form .gt-form-textarea {
 	border: 1px solid #aaa;
-	background-color: #f5f9ea;
-	padding: 1%;
+	background-color: #ffffff;
+	padding: 5px;
 	font-size: 108%;
-	width: 98%;
+}
+.gt-form input:focus, .gt-form textarea:focus {
+  background-color: #eeffce;
+	border:1px solid #6CAA00;
+}
+textarea#product_short_description {
+  overflow: auto;
 }
 .gt-form label {
 	font-size: 116%;
 	color: #454545;
 	display: block;
-	margin-bottom: 3px;
+	margin: 3px 0;
 }
 .gt-form option {
 	font-size: 108%;
@@ -488,7 +498,14 @@ ul li {
 .gt-form .gt-form-row {
 	margin-bottom: 10px;
 }
-
+.required {
+  float: left;
+  width: 50%;
+}
+.optional {
+  float: left;
+  width: 50%;
+}
 /* Auto clear the form row */
 .gt-form .gt-form-row:after {
     content: "."; 
@@ -554,6 +571,12 @@ a:hover {
 /* @end */
 
 /* @group Misc */
+.left{
+  float: left;
+}
+.right {
+  float: right;
+}
 .clear {
 	clear: both;
 }

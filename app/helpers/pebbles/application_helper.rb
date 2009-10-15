@@ -2,20 +2,31 @@
     module ApplicationHelper
       include HeaderHelper
       
+      ##
+      # Generate a bread crumb. 
+      # 
+      # @param[Category] category The category to reference for a breadcrumb.
       def bread_crumb(category)
-        category.parent.name + " : " unless category.parent.nil?
+        crumb = link_to category.name, category_path(category)
+        parent_category = category.parent
+        if parent_category 
+          crumb = link_to(parent_category.name, category_path(parent_category)) +
+                  content_tag(:span, '>') +
+                  link_to(category.name, category_path(category))
+        end
+        crumb
       end
 
+      ##
+      #
       def production_environment? 
         if Rails.env.production?
           yield
         end
       end
       
-      def inventory_managed?
-        GeneralConfiguration.instance.inventory_management?
-      end
-      
+      ##
+      #
       def categories
         Category.position_sorted
       end

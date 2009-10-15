@@ -7,12 +7,12 @@
   </p>
 <% @regions.each do |region| %>
 <div class="gt-table-controls clearfix">
-	<table class="gt-list-table">
-		<body>
-		 <tr>
-			<th class="region"><%= region.name %></th>
-			<th class="edit"><%= link_to 'Edit Region', edit_admin_region_path(region) %></th>
-		 </tr>
+  <table class="gt-list-table">
+    <body>
+     <tr>
+      <th class="region"><%= region.name %></th>
+      <th class="edit"><%= link_to 'Edit Region', edit_admin_region_path(region) %></th>
+     </tr>
      
 		<% if region.shipping_methods.length > 0 %>
 			<tr class='even'>
@@ -47,6 +47,7 @@
 		</tr>
 		</tbody>
 	</table>
+
 </div>
 <% end %>
 

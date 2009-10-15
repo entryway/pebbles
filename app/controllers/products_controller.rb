@@ -2,8 +2,6 @@ class ProductsController < ApplicationController
   include ShippingCalculations
   layout 'shopping'
 
-  # GET /products
-  # GET /products.xml
   def index
     @category = Category.find(params[:category_id])
     @products = @category.paged_products(params[:page], 15)
@@ -14,8 +12,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # GET /products/1
-  # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
     @category = Category.find(params[:category_id])
@@ -33,12 +29,5 @@ class ProductsController < ApplicationController
     end
   end
     
-  def check_out_of_stock
-    # send the param options selections array and id to see if that product_id 
-    # is out_of_stock
-    out_of_stock = OutOfStockOption.out_of_stock?(params[:id], params[:options])
-    render :partial => 'add_to_cart', :locals => { :out_of_stock => out_of_stock }
-  end
-
 end
 

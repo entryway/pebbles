@@ -24,6 +24,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :sku
   validates_uniqueness_of :sku
+  validates_numericality_of :inventory, :only_integer => true, :greater_than_or_equal_to => 0 
 
   after_update :save_quantity_discounts 
   
@@ -38,7 +39,6 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_options, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['name'].blank? }
                               
-  validates_numericality_of :inventory, :only_integer => true, :greater_than_or_equal_to => 0 
   
   #
   # TODO: this should be moved to admin product_helper                              

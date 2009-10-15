@@ -13,13 +13,13 @@
     		  </tr>
        		<tr>
       			<td>
-      			  <%= option_form.text_field :name %>
+      			  <%= option_form.text_field :name, :size => 10 %>
       			</td>
       			<td>
       			  <%= option_form.select :selection_type, ProductOption::LIST %>
       			</td>
       			<td>
-      				<%= option_form.text_field :description %>
+      				<%= option_form.text_field :description, :size => 20 %>
       			</td>
       			<td>
       			  <% unless option_form.object.new_record? %>
@@ -43,13 +43,13 @@
           		       setup_selection(option_form.object).product_option_selections do |selection_form| %>
          		      <tr <%=hide_unless_first_new_object(selection_form.object)%>>
           		      <td>
-          		        <%= selection_form.text_field :name %>
+          		        <%= selection_form.text_field :name, :size => 10 %>
           		      </td>
           		      <td>
-          		        <%= selection_form.text_field :price_adjustment %>
+          		        <%= selection_form.text_field :price_adjustment, :size => 10 %>
           		      </td>
           		      <td>
-          		        <%= selection_form.text_field :weight_adjustment %>
+          		        <%= selection_form.text_field :weight_adjustment, :size => 10 %>
           		      </td>
           		      <td>
           		        <% unless selection_form.object.new_record? %>
