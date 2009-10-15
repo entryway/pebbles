@@ -1,12 +1,14 @@
 
-<% form_for [:admin, :region, set_up_shippping_method(@shipping_method)],
+<% form_for [:admin, @region, set_up_shippping_method(@shipping_method)],
 			:html => { :class => 'gt-form' } do |form| %>
 	<label for="name">Name *:</label>
 	<%= form.text_field :name, :size => 20 %><br/><br/>
-	<label for="base_price">Shipping Price: </label>
-	$<%= form.text_field :base_price, :size => 5 %><br/><br/>
-	<label for="cost_per_item">Additional Cost Per Item: </label>
-	$<%= form.text_field :cost_per_item, :size => 5 %><br/><br/>
+	<% unless @shipping_method.is_flat_rate? %>
+  	<label for="base_price">Shipping Price: </label>
+  	$<%= form.text_field :base_price, :size => 5 %><br/><br/>
+  	<label for="cost_per_item">Additional Cost Per Item: </label>
+  	$<%= form.text_field :cost_per_item, :size => 5 %><br/><br/>
+  <% end %>
 	<%= form.check_box :default_selection %> Default Selection (initial option user selects)<br/><br/>
 	<h1>Flat Rate Shippings</h1>
   <div class="gt-table-controls clearfix">

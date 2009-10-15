@@ -17,7 +17,8 @@ module Pebbles::CategoryHelper
   end
   
   def category_icon(category)
-     image_tag(category.category_icon.filename.url, :alt => "#{category.name}" )
+     image_tag(category.category_icon.filename.url, :alt => "#{category.name}", 
+                                                    :class => "hover_child" )
   end
 
   def category_li(category)

@@ -1,5 +1,5 @@
 class ShippingMethod < ActiveRecord::Base
-  belongs_to :regions
+  belongs_to :region
   
   has_many :flat_rate_shippings, :dependent => :destroy
   has_many :fulfillment_codes
@@ -8,6 +8,13 @@ class ShippingMethod < ActiveRecord::Base
   
   accepts_nested_attributes_for :flat_rate_shippings, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['flat_rate'].blank? }
+  
+  ##
+  # determines whether shipping_method uses flat rate (otherwise uses base rate)                              
+  def is_flat_rate?
+    flat_rate_shippings.select{|rate| !rate.new_record? }.size > 0
+  end
+  
   ##
   # flat rate shipping cost
   #

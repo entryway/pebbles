@@ -27,13 +27,14 @@ class ShippingMethodsController < ApplicationController
     end
 
     def edit
+      @region = Region.find(params[:region_id])
       @shipping_method = ShippingMethod.find(params[:id])
     end
 
     def create
       @region = Region.find(params[:region_id])
-      @shipping_method = ShippingMethod.new(params[:shipping_method])
-     
+      @shipping_method =  ShippingMethod.new(params[:shipping_method])
+      @shipping_method.region = @region
       if @shipping_method.save
         flash[:notice] = 'You have just created a new shipping method...'
         redirect_to admin_regions_path
