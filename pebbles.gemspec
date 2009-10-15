@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.1.8"
+  s.version = "0.1.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
@@ -229,6 +229,7 @@ Gem::Specification.new do |s|
      "app/views/admin/products/out_of_stock_options/_out_of_stock_options.html.erb",
      "app/views/admin/products/out_of_stock_options/_product_options.html.erb",
      "app/views/admin/products/show.html.erb",
+     "app/views/admin/products/update.js.erb",
      "app/views/admin/products/wholesale/_quantity_discount.html.erb",
      "app/views/admin/products/wholesale/_wholesale.html.erb",
      "app/views/admin/promo_codes/_form.html.erb",
@@ -907,11 +908,10 @@ Gem::Specification.new do |s|
      "vendor/plugins/ym4r_gm/tasks/gm_tasks.rake",
      "vendor/plugins/ym4r_gm/test/gm_test.rb"
   ]
-  s.has_rdoc = true
   s.homepage = %q{http://github.com/entryway/pebbles}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.1}
+  s.rubygems_version = %q{1.3.4}
   s.summary = %q{ecommerce}
   s.test_files = [
     "spec/cart_builder.rb",
@@ -945,7 +945,7 @@ Gem::Specification.new do |s|
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
-    s.specification_version = 2
+    s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
