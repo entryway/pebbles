@@ -1,5 +1,5 @@
 class ShippingMethod < ActiveRecord::Base
-  belongs_to :regions
+  belongs_to :region
   
   has_many :flat_rate_shippings, :dependent => :destroy
   has_many :fulfillment_codes
