@@ -5,6 +5,10 @@
   <%= form.text_field :name, :size => 20, :class => 'gt-form-text'  %><br/>
   <label for="subname">SubName</label>
   <%= form.text_field :subname, :size => 10, :class => 'gt-form-text'  %><br/>
+  <% if @product.variants.empty? %>
+    <label for="sku">Quantity *</label>
+    <%= form.text_field :inventory, :size => 10, :class => 'gt-form-text'  %><br/>  
+  <% end %>
   <hr/> 
   <%= form.check_box :available %> Available<br/>
   <%= form.check_box :is_featured %> Featured Product<br/>
@@ -21,8 +25,10 @@
   <%= form.text_field :sku, :size => 10, :class => 'gt-form-text'  %><br/>
   <label for="price">Price</label>
   <%= form.text_field :price, :size => 10, :class => 'gt-form-text'  %><br/>
+  <label for="wholesale_price">Wholesale Price</label>
+  <%= form.text_field :wholesale_price, :size => 10, :class => 'gt-form-text'  %>
+  <hr/> 
   <label for="weight">Weight * </label>
-  <hr/>
   <%= form.text_field :weight, :size => 10, :class => 'gt-form-text'  %><br/>
   <label for="length">Length </label>
   <%= form.text_field :length, :size => 10, :class => 'gt-form-text'  %>
