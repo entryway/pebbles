@@ -1,2 +1,3 @@
-<%= ', ' if order_item_selections_counter != 1 -%>
-<%= order_item_selections.option_selection_name -%>
+<%= ', ' unless order_item_selections_counter == 0 -%>
+<%= selection.product_option.name -%>:
+<%= selection.name -%>

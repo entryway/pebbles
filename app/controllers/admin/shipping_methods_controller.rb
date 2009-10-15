@@ -27,6 +27,7 @@ class ShippingMethodsController < ApplicationController
     end
 
     def edit
+      @region = Region.find(params[:region_id])
       @shipping_method = ShippingMethod.find(params[:id])
     end
 
