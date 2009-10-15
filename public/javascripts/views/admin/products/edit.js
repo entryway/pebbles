@@ -92,9 +92,18 @@ jQuery(document).ready(function() {
   });
   jQuery(".remove-variant-image").live("click", function() {
     if (confirm( "Are you sure you want to remove the variant image?")) {
-      jQuery("#variants").load(jQuery(this).attr('href'), { _method: "PUT" });
+      jQuery("#variants").load(jQuery(this).attr('href'), { _method: "DELETE" });
     }
     return false;
   });
-  
+
+    jQuery("#add_category").live("click", function() {
+        var selected_category = parseInt(jQuery("#category_select").val());
+        var category_ids = eval(jQuery("#category_ids").val());
+        var href = jQuery(this).attr('href');
+        category_ids.push(selected_category);
+        jQuery("#category_list").load(href, {'product[category_ids][]': category_ids, 
+                                             _method: 'PUT'});
+        return false;
+    });
 })
