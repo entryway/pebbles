@@ -34,7 +34,6 @@ class ProductsController < ApplicationController
       else
         render :action => :new
       end
-      puts 'upload'
   end
   
   # The REST:

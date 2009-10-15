@@ -1,9 +1,10 @@
 <%= javascript('jquery/form', 'jquery/livequery') %>
 <% content_for :sidebar do %>
-	<ul>
-		<li><%#= link_to 'Accessories', edit_admin_product_accessory_path(@product) %></li>
-	</ul>
+  <ul>
+    <li><%#= link_to 'Accessories', edit_admin_product_accessory_path(@product) %></li>
+  </ul>
 <% end %>
+
 <h1>Editing product '<%= @product.name %>'</h1>
 
 <%= error_messages_for :product %>
@@ -41,7 +42,7 @@
         </div>
         <div id="p7tpc1_6">
               <%#= render :partial => "/admin/products/wholesale/wholesale",
-              :locals => { :product => @product } %>       		     		
+              :locals => { :product => @product } %>                  
         </div>
         <div id="p7tpc1_7">       
           <%= render :partial => "/admin/products/optimizations",
