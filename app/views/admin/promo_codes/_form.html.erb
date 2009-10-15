@@ -18,7 +18,7 @@
 	<label for="free_shipping">Free Shipping: </label>
 	<%= form.check_box :free_shipping, :class => 'gt-form-checkbox' %>
 	<label for="free_shipping_note">Free Shipping Note: </label>
-	<%= form.text_area :free_shipping_note, :rows => 5, 
+	<%= form.text_area :note, :rows => 5, 
 					   :cols => 80, :class => 'gt-form-textarea' %>
 	<br/><br/>
 	<%= image_submit_tag 'gt/btn-save.jpg' %> or <%= link_to 'Back', admin_promo_codes_path %>

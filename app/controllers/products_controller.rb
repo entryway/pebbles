@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
     @products = @category.paged_products(params[:page], 15)
     @cart_item = CartItem.new
     @cart = current_cart
-    @inventory = @cart.inventory_remaining(@product)
+    @inventory = Inventory.new.inventory_remaining(@cart, @product)
     zipcode = session[:zipcode]
     @shipping = ShippingCalculations.product_quote(@product.id, 1 , zipcode) if zipcode
   

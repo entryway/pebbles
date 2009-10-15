@@ -39,6 +39,25 @@ class Inventory
       end
     end
   end
+  
+  ##
+  # returns the inventory remaining for a product or variant minus any existing cart_item quantities
+  #
+  # @param [Cart] cart the cart to inspect for existing matching product or variant cart_items
+  # @param [Product] product the product for inventory count
+  # @param [Variant] variant the variant for inventory count
+  #
+  # @return [<Integer, nil>] the inventory remaining or nil if no inventory is being managed
+  def inventory_remaining(cart, product, variant = nil)
+    if @inventory_managed
+      inventory = (variant || product).inventory 
+      existing_cart_item = cart.find_product_or_variant(product, variant)
+      inventory -= existing_cart_item.quantity if existing_cart_item
+      inventory
+    else
+      nil
+    end
+  end
 
 private
   

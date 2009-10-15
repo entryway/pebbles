@@ -59,7 +59,14 @@ class Cart < ActiveRecord::Base
       add_to_cart(cart_item, product, quantity, variant)
     end
   end
-
+  
+  ##
+  # returns the cart item that matches the product or variant
+  #
+  # @param [Product] product the product to match
+  # @param [<Variant, nil>] variant the variant if the product has variants otherwise nil
+  #
+  # @return [CartItem] the matching cart_item
   def find_product_or_variant(product, variant)
     cart_items.find(:first, :conditions => { :product_id => product, :variant_id => variant })
   end
@@ -83,17 +90,6 @@ class Cart < ActiveRecord::Base
     tax = 0
     tax = TaxRate.calculate_tax(billing_state, sub_total) if billing_state
     tax
-  end
-  
-  def inventory_remaining(product, variant = nil)
-    if GeneralConfiguration.instance.inventory_management? 
-      inventory = (variant || product).inventory 
-      existing_cart_item = find_product_or_variant(product, variant)
-      inventory -= existing_cart_item.quantity if existing_cart_item
-      inventory
-    else
-      nil
-    end
   end
 
 end 

@@ -4,7 +4,7 @@ class VariantsController < ApplicationController
   def show
     product = Product.find(params[:product_id])
     variant = product.find_variant_by_selection_ids(params[:selection_ids].split(',').map{|s| s.to_i})
-    inventory = current_cart.inventory_remaining(product, variant)
+    inventory = Inventory.new.inventory_remaining(current_cart, product, variant)
     render :json => { :price => number_to_currency(variant.price), 
                       :out_of_stock => variant.out_of_stock_check,
                       :variant_image_id => variant.variant_image_id, 
