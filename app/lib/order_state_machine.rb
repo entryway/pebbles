@@ -36,6 +36,10 @@ module OrderStateMachine
 
         transitions :from => :payment_declined,
                     :to   => :payment_declined
+                    
+        transitions :from => :authorized,
+                    :to   => :payment_declined
+        
       end
 
       aasm_event :issue_raised do

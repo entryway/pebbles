@@ -25,7 +25,7 @@ module OrderProcessing
                         )
         self.transactions << authorization
         if authorization.success?
-         payment_authorized!
+          payment_authorized!
         else
           transaction_declined!
         end
@@ -87,10 +87,11 @@ private
       initialize_order
       if self.payment_type == 'credit_card'
         process_with_active_merchant
+        puts self.transactions.inspect
+        
 
         unless self.paid? || self.authorized?
           msg = self.transactions[0].params['error']
-          puts self.transactions[0].inspect
           raise Exceptions::OrderException, msg, caller
         end
                 

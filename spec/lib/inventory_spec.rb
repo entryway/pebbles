@@ -57,7 +57,7 @@ describe "Inventory" do
     end
 
     it "should decrease the inventory for order_item products of a web order" do
-      @order.paid?.should be_true
+      @order.state.should == 'paid'
       @variant.reload.inventory.should == 9
       @product.reload.inventory.should == 9
     end
