@@ -96,8 +96,8 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.update_attributes(params[:product])
         flash[:notice] = "Product #{@product.name} was successfully updated."
-        #format.html { redirect_to edit_admin_product_path(@product.id) }
-        format.js { render 'update.js.erb' }
+        format.html { redirect_to edit_admin_product_path(@product.id) }
+        format.js 
       else
         @vendors = Vendor.find(:all)
         @categories = Category.root.descendants

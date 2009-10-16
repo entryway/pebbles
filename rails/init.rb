@@ -35,6 +35,7 @@ config.gem 'stephencelis-acts_as_singleton',
 config.gem 'ssl_requirement', :source => 'http://74.207.230.57'
 config.gem 'rubyist-aasm', :version => '~> 2.0.2', :lib => 'aasm', 
                            :source => 'http://gems.github.com'
+config.gem "friendly_id", :source => 'http://gemcutter.org/'
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')
@@ -51,4 +52,6 @@ config.to_prepare do
     ApplicationController.helper(class_name)
   end
 end
+
+
 

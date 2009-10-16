@@ -38,7 +38,8 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :variants
   accepts_nested_attributes_for :product_options, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['name'].blank? }
-                              
+  
+  has_friendly_id :name, :use_slug => true
   
   #
   # TODO: this should be moved to admin product_helper                              

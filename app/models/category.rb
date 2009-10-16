@@ -9,6 +9,8 @@ class Category < ActiveRecord::Base
   named_scope :position_sorted, :order => 'position'
   
   acts_as_nested_set 
+
+  has_friendly_id :name, :use_slug => true
   
   attr_accessor :style
   
