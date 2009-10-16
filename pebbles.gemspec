@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.1.23"
+  s.version = "0.1.24"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
@@ -348,6 +348,7 @@ Gem::Specification.new do |s|
      "db/migrate/20091002033255_add_variant_image_thumbnail_and_large_tables.rb",
      "db/migrate/20091008143231_add_category_icon_table.rb",
      "db/migrate/20091012193601_add_category_icon_hovers_table.rb",
+     "db/migrate/20091016182942_create_slugs.rb",
      "db/schema.rb",
      "db/seeds.rb",
      "lib/authenticated_system.rb",
@@ -362,6 +363,7 @@ Gem::Specification.new do |s|
      "lib/role_requirement_system.rb",
      "lib/role_requirement_test_helper.rb",
      "lib/tasks/capistrano.rake",
+     "lib/tasks/friendly_id.rake",
      "lib/tasks/pebbles.rake",
      "lib/tasks/rails.rake",
      "pebbles.gemspec",
@@ -911,10 +913,11 @@ Gem::Specification.new do |s|
      "vendor/plugins/ym4r_gm/tasks/gm_tasks.rake",
      "vendor/plugins/ym4r_gm/test/gm_test.rb"
   ]
+  s.has_rdoc = true
   s.homepage = %q{http://github.com/entryway/pebbles}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.4}
+  s.rubygems_version = %q{1.3.1}
   s.summary = %q{ecommerce}
   s.test_files = [
     "spec/cart_builder.rb",
@@ -948,23 +951,26 @@ Gem::Specification.new do |s|
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
-    s.specification_version = 3
+    s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
       s.add_runtime_dependency(%q<ssl_requirement>, [">= 0"])
       s.add_development_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
       s.add_runtime_dependency(%q<carrierwave>, [">= 0"])
+      s.add_runtime_dependency(%q<friendly_id>, [">= 0"])
     else
       s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
       s.add_dependency(%q<ssl_requirement>, [">= 0"])
       s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
       s.add_dependency(%q<carrierwave>, [">= 0"])
+      s.add_dependency(%q<friendly_id>, [">= 0"])
     end
   else
     s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
     s.add_dependency(%q<ssl_requirement>, [">= 0"])
     s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
     s.add_dependency(%q<carrierwave>, [">= 0"])
+    s.add_dependency(%q<friendly_id>, [">= 0"])
   end
 end
