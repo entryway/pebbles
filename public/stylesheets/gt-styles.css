@@ -479,11 +479,14 @@ ul li {
 	padding: 5px;
 	font-size: 108%;
 }
+.gt-form .gt-form-textarea {
+  width: 95%;
+}
 .gt-form input:focus, .gt-form textarea:focus {
   background-color: #eeffce;
 	border:1px solid #6CAA00;
 }
-textarea#product_short_description {
+textarea.product_short_description {
   overflow: auto;
 }
 .gt-form label {

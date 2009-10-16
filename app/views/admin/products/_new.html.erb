@@ -2,9 +2,9 @@
             :html => { :class => 'gt-form' } do |form| %>
   <p>
   <label for="name">Name *</label>
-  <%= form.text_field :name, :size => 20, :class => 'gt-form-text'  %><br/>
+  <%= form.text_field :name, :size => 40, :class => 'gt-form-text'  %><br/>
   <label for="subname">SubName</label>
-  <%= form.text_field :subname, :size => 10, :class => 'gt-form-text'  %><br/>
+  <%= form.text_field :subname, :size => 40, :class => 'gt-form-text'  %><br/>
   <% if @product.variants.empty? %>
     <label for="sku">Quantity *</label>
     <%= form.text_field :inventory, :size => 10, :class => 'gt-form-text'  %><br/>  
@@ -21,30 +21,38 @@
   -->
 
   <hr/>
-  <label for="sku">Sku *</label>
-  <%= form.text_field :sku, :size => 10, :class => 'gt-form-text'  %><br/>
-  <label for="price">Price</label>
-  <%= form.text_field :price, :size => 10, :class => 'gt-form-text'  %><br/>
-  <label for="wholesale_price">Wholesale Price</label>
-  <%= form.text_field :wholesale_price, :size => 10, :class => 'gt-form-text'  %>
+  <div class="required">
+    <label for="sku">Sku *</label>
+    <%= form.text_field :sku, :size => 10, :class => 'gt-form-text'  %><br/>
+    <label for="price">Price *</label>
+    <%= form.text_field :price, :size => 10, :class => 'gt-form-text'  %><br/>
+    <label for="weight">Weight * </label>
+    <%= form.text_field :weight, :size => 10, :class => 'gt-form-text'  %><br/>
+    </div>
+  <div class="optional">  
+    <label for="wholesale_price">Wholesale Price</label>
+    <%= form.text_field :wholesale_price, :size => 10, :class => 'gt-form-text'  %>
+    <label for="length">Length </label>
+    <%= form.text_field :length, :size => 10, :class => 'gt-form-text'  %>
+    <label for="width">Width </label>
+    <%= form.text_field :width, :size => 10, :class => 'gt-form-text'  %>
+    <label for="height">Height </label>
+    <%= form.text_field :height, :size => 10, :class => 'gt-form-text'  %>
+  </div>
+  <div class="clear"></div>
   <hr/> 
-  <label for="weight">Weight * </label>
-  <%= form.text_field :weight, :size => 10, :class => 'gt-form-text'  %><br/>
-  <label for="length">Length </label>
-  <%= form.text_field :length, :size => 10, :class => 'gt-form-text'  %>
-  <label for="width">Width </label>
-  <%= form.text_field :width, :size => 10, :class => 'gt-form-text'  %>
-  <label for="height">Height </label>
-  <%= form.text_field :height, :size => 10, :class => 'gt-form-text'  %>
-  <hr/> 
-  <label for="vendor_id">Vendor</label>
+  
+  <!--><label for="vendor_id">Vendor</label>
   <%= form.collection_select :vendor_id, @vendors, :id, :name %><br/>
-  <hr/>
+  <hr/>-->
   <label for="short_description">Short Description</label>
-  <%= form.text_area :short_description, :rows => 10, :class => 'gt-form-textarea'  %><br/>
+  <%= form.text_area :short_description, :rows => 3, :cols => 90, :class => 'gt-form-textarea'  %><br/>
+  <label for="short_description">Description</label>
+  <%= form.text_area :long_description, :rows => 7, 
+             :cols => 90, :class => 'gt-form-textarea' %><br/>
   <hr/>
   <label for="admin_notes">Admin Notes</label>
-  <%= form.text_area :admin_notes, :rows => 10, :class => 'gt-form-textarea'  %><br/>
+  <%= form.text_area :admin_notes, :rows => 2, :cols => 90, :class => 'gt-form-textarea'  %><br/>
   
   <hr/>
   

@@ -82,6 +82,11 @@ function ShowHideShipping() {
       );
       return false;
     });
+      $('#what_is_link').live('click', function() {
+          $('#what_is_this').toggle();
+          return false;
+      });
+
     
     $('#billing_address_state').change(function() {
       var billing_state = $(this).val();

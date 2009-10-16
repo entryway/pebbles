@@ -1,13 +1,11 @@
-	<hr/>
-	<h2>Current Options for this Product:</h2><br/>	
 	<% form_for [:admin, setup_option(@product)] do |form|%>
     <% form.fields_for :product_options do |option_form| %>
     	<div class="gt-table-controls clearfix">
     	  <% @hide_object = false %>
     		<table class="gt-list-table" <%=hide_unless_first_new_object(option_form.object)%>>
     		  <tr>
-      			<th>Name</th>
-      			<th>Selection Type</th>
+      			<th>Option</th>
+      			<th>Selector</th>
       			<th>Description</th>
       			<th></th>
     		  </tr>
@@ -33,10 +31,10 @@
       		  <td colspan="2">
       		    <table>
       		      <tr>
-            			<th>Name</th>
+            			<th>Selection</th>
             			<th>Price Adjustment</th>
             			<th>Weight Adjustment</th>
-            			<th></th>
+            			<th>Remove</th>
           		  </tr>
           		  <% @hide_object = false %>
           		  <% option_form.fields_for :product_option_selections, 

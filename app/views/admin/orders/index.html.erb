@@ -12,7 +12,7 @@ Orders <%= @orders.offset+1 %> - <%= @orders.length * @orders.current_page %> of
 	<table class="gt-list-table">
 	  <thead>
 		  <tr>
-      <th class="gt-first">Number</td>
+      <th>Number</td>
 			<th>Payment Status</td>
 	      	<th>Delivery Status</td>
 			<th>Full Name</th>
@@ -35,7 +35,6 @@ Orders <%= @orders.offset+1 %> - <%= @orders.length * @orders.current_page %> of
 		    <td class='blank'><%= link_to 'Show', admin_order_path(order) %></td>
 		  </tr>
 		  <tr class="sorted">
-			<td colspan="6" class='blank'>
 		  </tr>
 		<% end %>
 	  </tbody>

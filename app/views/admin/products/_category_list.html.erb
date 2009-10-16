@@ -2,27 +2,28 @@
 <br/>
 
 <div class="gt-table-controls clearfix">
-	<table class="gt-list-table">
-	  <thead>
-		  <tr>
-			<th>Name</th>
-			<th>ID</th>
-		  </tr>
-	  </thead>
-	  <tbody>
-		<% for category in categories %>
-		<tr>
-			<td id="<%= dom_id(category, 'name')%>"><%= category.name %></td>
-			<td id="<%= dom_id(category, 'id')%>">
-				<input type="hidden" name="category_id" value="<%= category.id %>"/><%= category.id %>
-			</td>
-		    <td><%= link_to_remote 'Remove', :submit => dom_id(category, 'id'), 
-								:update => 'category_list',
-								:confirm => "Are you sure you want to remove the product from #{category.name}", 
-								:url => { :action => 'remove_from_category', 
-										  :id => product_id } %></td>
-		</tr>
-		<% end %>
- 	</tbody>
-	</table>
+  <%= hidden_field_tag 'category_ids', @product.category_ids.inspect %>
+  <table class="gt-list-table">
+    <thead>
+      <tr>
+	<th>Name</th>
+	<th>ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for category in categories %>
+	<tr>
+	  <td id="<%= dom_id(category, 'name')%>"><%= category.name %></td>
+	  <td id="<%= dom_id(category, 'id')%>">
+	    <%= category.id %>
+	  </td>
+	  <td>
+            <%= link_to 'Remove', admin_product_path(@product), :class => 'remove_category',
+		  :confirm => "Are you sure you want to remove the product from #{category.name}" %>
+            <input type="hidden" name="category_id" value="<%= category.id %>"/>
+          </td>
+	</tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

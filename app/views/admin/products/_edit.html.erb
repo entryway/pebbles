@@ -1,3 +1,5 @@
+<%= render 'sidebar' %>
+
 <% form_for :product, @product, :url => admin_product_url(@product.id),
             :html => { :class => 'gt-form', :method => :put } do |form| %>
   <p>
