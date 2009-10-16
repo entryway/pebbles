@@ -1,57 +1,56 @@
 ﻿<br/>
 <div id="payment_info">
-	 <div id="payment_methods">
-		<%#= error_messages_for :credit_card %>
-		<%#= radio_button_tag 'payment_method', 'credit_card', true,
-		 						 :onclick => "payment_credit_card_details_show()" %>
-		Pay with Credit Card: <br/>
-		<span id="cards">
-			<img src='/images/visa.png'/>
-			<img src='/images/amex.png'/>
-			<img src='/images/mastercard.png'/>
-			<img src='/images/discover.png'/>
-		</span>
-		<br/>
-		<%= error_messages_for :credit_card %>
-		<%#= radio_button_tag 'payment_method', 'pay_pay', false,
-		 						 :onclick => "payment_credit_card_details_hide()" %>
-		<!-- Pay with <img src='/images/paypal.png' /> -->
-	</div> 
-	
-	<div id="credit_card_details">
-		<b>Credit Card</b>
-		<br/>
-		<div id="what_is_this" style="display:none">
-			<p>A three- or four-digit security code that is printed on the back of credit cards in  signature panel (or on the front for American Express cards).</p>
-		</div>
-		
-		<div id="field_details">
-	      <% fields_for :credit_card, credit_card do |credit_card| %>
-			<label for="order_card_name">First Name: </label><%= credit_card.text_field :first_name, :size => 29  %><br/>			
-			<label for="order_card_name">Last Name: </label><%= credit_card.text_field :last_name, :size => 29  %><br/>			
-			<label for="order_card_number">Card Number: </label><%= credit_card.text_field :number, :size => 29 %><br/>
-			<label for="order_card_type">Card Type: </label>
-			         <select name="credit_card[type]" id="order_card_type"> 
-				    	<%= options_for_select([["Visa", "visa" ],
-					 						["Master Card", "master"],
-											["Discover", "discover"],
-											["American Express", "american_express"]],
-										   credit_card.type) %>
-				     </select><br/>			
-				<label for="order_card_expiration_month" class="contrast">Expiration Date: </label><%= select_month(credit_card.month, :prefix => "credit_card[month]", 
-								 :discard_type => true, :add_month_numbers => true ) %>			
-					&nbsp;/&nbsp;
-				<%= select_year(credit_card.year, :prefix => "credit_card[year]", 
-								:discard_type => true, 		
-								:start_year => 2008, :end_year => 2015 ) %>	
-				<br/><br/>					
-				<label for="order_card_security_code" class="contrast">Security Code: </label><%= credit_card.text_field :verification_value, :size => 4  %>		
-				 <a href="#" onclick="Effect.toggle('what_is_this', 'appear');return false;" 	
-							class="action">What is this?</a><br/>			
-			 <% end %>	
-		 </div>
-		
-		<span class="clear"/> 
-	</div>
+  <div id="payment_methods">
+    <%#= error_messages_for :credit_card %>
+    <%#= radio_button_tag 'payment_method', 'credit_card', true,
+       :onclick => "payment_credit_card_details_show()" %>
+    Pay with Credit Card: <br/>
+    <span id="cards">
+      <img src='/images/visa.png'/>
+      <img src='/images/amex.png'/>
+      <img src='/images/mastercard.png'/>
+      <img src='/images/discover.png'/>
+    </span>
+    <br/>
+    <%= error_messages_for :credit_card %>
+    <%#= radio_button_tag 'payment_method', 'pay_pay', false,
+       :onclick => "payment_credit_card_details_hide()" %>
+    <!-- Pay with <img src='/images/paypal.png' /> -->
+  </div> 
+  
+  <div id="credit_card_details">
+    <b>Credit Card</b>
+    <br/>
+    <div id="what_is_this" style="display:none">
+      <p>A three- or four-digit security code that is printed on the back of credit cards in  signature panel (or on the front for American Express cards).</p>
+    </div>
+    
+    <div id="field_details">
+      <% fields_for :credit_card, credit_card do |credit_card| %>
+	<label for="order_card_name">First Name: </label><%= credit_card.text_field :first_name, :size => 29  %><br/>			
+	<label for="order_card_name">Last Name: </label><%= credit_card.text_field :last_name, :size => 29  %><br/>			
+	<label for="order_card_number">Card Number: </label><%= credit_card.text_field :number, :size => 29 %><br/>
+	<label for="order_card_type">Card Type: </label>
+	<select name="credit_card[type]" id="order_card_type"> 
+	  <%= options_for_select([["Visa", "visa" ],
+				  ["Master Card", "master"],
+				  ["Discover", "discover"],
+				  ["American Express", "american_express"]],
+				 credit_card.type) %>
+	</select><br/>			
+	<label for="order_card_expiration_month" class="contrast">Expiration Date: </label><%= select_month(credit_card.month, :prefix => "credit_card[month]", 
+								                                            :discard_type => true, :add_month_numbers => true ) %>			
+	&nbsp;/&nbsp;
+	<%= select_year(credit_card.year, :prefix => "credit_card[year]", 
+			:discard_type => true, 		
+			:start_year => 2008, :end_year => 2015 ) %>	
+	<br/><br/>					
+	<label for="order_card_security_code" class="contrast">Security Code: </label><%= credit_card.text_field :verification_value, :size => 4  %>		
+	<a href="#" id="what_is_link">What is this?</a><br/>			
+      <% end %>	
+    </div>
+    
+    <span class="clear"/> 
+  </div>
 </div>
 <p class="clear"></p>
