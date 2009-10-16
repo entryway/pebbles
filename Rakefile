@@ -7,6 +7,15 @@ namespace :pebbles do
     system "rsync -ruv #{File.dirname(__FILE__)}/db/migrate ../../../db"
     system "rsync -ruv #{File.dirname(__FILE__)}/public ../../../"
   end
+  desc "Building new gem on server"
+  task :release do
+    Rake::Task["version:bump:#{ENV['level'] || 'patch'}"].invoke
+    Rake::Task["gemspec"]
+    system "git add ."
+    system "git commit -m 'updating gem version'"
+    system "git push origin master"
+    system "git push gem_server master"
+  end
 end
 
 begin
