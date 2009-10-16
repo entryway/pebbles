@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.1.24"
+  s.version = "0.1.30"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
@@ -618,6 +618,7 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "tasks/asset_copier.rake",
+     "test.rb",
      "vendor/plugins/active_record_base_without_table/CHANGELOG",
      "vendor/plugins/active_record_base_without_table/MIT-LICENSE",
      "vendor/plugins/active_record_base_without_table/README",

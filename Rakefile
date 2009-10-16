@@ -10,7 +10,7 @@ namespace :pebbles do
   desc "Building new gem on server"
   task :release do
     Rake::Task["version:bump:#{ENV['level'] || 'patch'}"].invoke
-    Rake::Task["gemspec"]
+    Rake::Task["gemspec"].invoke
     system "git add ."
     system "git commit -m 'updating gem version'"
     system "git push origin master"
