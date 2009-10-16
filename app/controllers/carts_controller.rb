@@ -34,14 +34,7 @@ class CartsController < ApplicationController
   def show
     @cart = current_cart
     @cart.validate 
-    region = Region.find(active_shipping_region_id)
-    method = active_shipping_method_id
-    @shipping_methods = region.shipping_methods
-    @default_method = ShippingMethod.find(method)
-
-    @subtotal = @cart.sub_total
-    @shipping_total = @cart.shipping_total(@default_method)
-    @grand_total = @cart.grand_total(@shipping_total)
+    refresh_cart
   end
 
   def update
@@ -50,15 +43,20 @@ class CartsController < ApplicationController
       flash[:notice] = "Your cart was updated."
       redirect_to @cart
     else
-      region = Region.find(active_shipping_region_id)
-      method = active_shipping_method_id
-      @shipping_methods = region.shipping_methods
-      @default_method = ShippingMethod.find(method)
-      @subtotal = @cart.sub_total
-      @shipping_total = @cart.shipping_total(@default_method)
-      @grand_total = @cart.grand_total(@shipping_total)
+      refresh_cart
       render :action => 'show'
     end
+  end
+  
+  def refresh_cart
+    region = Region.find(active_shipping_region_id)
+    method = active_shipping_method_id
+    @shipping_methods = region.shipping_methods
+    @default_method = ShippingMethod.find(method)
+    PromoCode.apply(@cart, @cart.promo_code) if @cart.promo_code
+    @subtotal = @cart.product_total
+    @shipping_total = @cart.shipping_total(@default_method)
+    @grand_total = @cart.grand_total(@shipping_total)
   end
 
 end
