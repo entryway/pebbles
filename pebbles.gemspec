@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.1.20"
+  s.version = "0.1.23"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-10-15}
+  s.date = %q{2009-10-16}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -149,6 +149,7 @@ Gem::Specification.new do |s|
      "app/views/admin/authorizations/update.rjs",
      "app/views/admin/categories/_category_branch.html.erb",
      "app/views/admin/categories/_category_selection.html.erb",
+     "app/views/admin/categories/_form.html.erb",
      "app/views/admin/categories/_icon.html.erb",
      "app/views/admin/categories/_icon_form.html.erb",
      "app/views/admin/categories/_icon_hover.html.erb",
@@ -156,9 +157,10 @@ Gem::Specification.new do |s|
      "app/views/admin/categories/_image_form.html.erb",
      "app/views/admin/categories/_image_list.html.erb",
      "app/views/admin/categories/_images.html.erb",
-     "app/views/admin/categories/_new.html.erb",
+     "app/views/admin/categories/_sidebar.html.erb",
      "app/views/admin/categories/edit.html.erb",
      "app/views/admin/categories/index.html.erb",
+     "app/views/admin/categories/new.html.erb",
      "app/views/admin/categories/show.html.erb",
      "app/views/admin/config.html.erb",
      "app/views/admin/configurations/_details.html.erb",
@@ -172,6 +174,7 @@ Gem::Specification.new do |s|
      "app/views/admin/order_items/update.rjs",
      "app/views/admin/orders/_delivery_status.html.erb",
      "app/views/admin/orders/_edit_order_items.html.erb",
+     "app/views/admin/orders/_logo.html.erb",
      "app/views/admin/orders/_order_item_selections.html.erb",
      "app/views/admin/orders/_order_items.html.erb",
      "app/views/admin/orders/_order_totals.html.erb",
@@ -362,7 +365,6 @@ Gem::Specification.new do |s|
      "lib/tasks/pebbles.rake",
      "lib/tasks/rails.rake",
      "pebbles.gemspec",
-     "pkg/pebbles-0.1.9.gem",
      "public/.htaccess",
      "public/404.html",
      "public/500.html",
