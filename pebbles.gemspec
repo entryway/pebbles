@@ -365,7 +365,6 @@ Gem::Specification.new do |s|
      "lib/tasks/pebbles.rake",
      "lib/tasks/rails.rake",
      "pebbles.gemspec",
-     "pkg/pebbles-0.1.9.gem",
      "public/.htaccess",
      "public/404.html",
      "public/500.html",
