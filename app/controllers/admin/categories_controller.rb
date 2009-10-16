@@ -15,16 +15,13 @@ module Admin
     
     def create
       @category = Category.new(params[:category])
-      @category.position = Category
-      
       respond_to do |format|
         if @category.save
-
           parent_category = Category.find(params[:category][:parent_id])
           @category.move_to_child_of parent_category
 
           flash[:notice] = 'Category was successfully created.'
-          format.html { redirect_to(@category) }
+          format.html { render :action => "edit" }
         else
           format.html { render :action => "new" }
         end
@@ -40,15 +37,12 @@ module Admin
 
       respond_to do |format|
         if @category.update_attributes(params[:category])
-
           parent = Category.find(params[:category][:parent_id])
           @category.move_to_child_of parent
-
           flash[:notice] = 'Category was successfully updated.'
-          format.html { redirect_to(@category) }
-        else
-          format.html { render :action => "edit" }
         end
+        format.html { render :action => "edit" }
+        
       end
     end
     
@@ -66,7 +60,7 @@ module Admin
       category.destroy
       
       respond_to do |format|
-        format.html { redirect_to(categories_url) }
+        format.html { redirect_to(admin_categories_url) }
       end
     end
     

@@ -4,7 +4,7 @@ class OrderNotifier < ActionMailer::Base
     recipients "#{email}"
     from APP_CONFIG['order_email']
     sent_on Time.now
-    subject 'Green Label: Order Receipt'
+    subject APP_CONFIG['order_subject']
     content_type "text/html"
     body :order => order, :ip => ip, :site_address => APP_CONFIG['site_address']
   end 
@@ -16,7 +16,7 @@ class OrderNotifier < ActionMailer::Base
     # enable replying to the customer 
     reply_to customer
     sent_on Time.now
-    subject 'Green Label: Order Receipt'
+    subject APP_CONFIG['order_subject']
     content_type "text/html"
     body :order => order, :ip => ip, :site_address => APP_CONFIG['site_address']
   end

@@ -1,0 +1,19 @@
+<% form_for [:admin, category] do |form| %>
+  <h2>Editing Category: <%= category.name %></h2>
+  <br/><label>Parent Category:</label>
+  <%= form.select :parent_id, (nested_set_options Category, category do |i|
+     "#{'–' * i.level} #{i.name}"
+    end) %>
+  <br/><label for="name">Category Name:</label>
+  <%= form.text_field :name, :size => 20, :value => category.name  %>
+  <br/>
+  <br/>
+  <%= form.check_box :active, :checked => category.active  %>
+  <label for="active">Active</label>
+  <br/>
+  <label>Description: </label>
+  <%= form.text_area :description, :cols => 70, :rows => 10, :value => category.description %>
+  <br/>
+  <%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>
+  <br/>
+<% end %>
