@@ -36,6 +36,8 @@ config.gem 'ssl_requirement', :source => 'http://74.207.230.57'
 config.gem 'rubyist-aasm', :version => '~> 2.0.2', :lib => 'aasm', 
                            :source => 'http://gems.github.com'
 config.gem "friendly_id", :source => 'http://gemcutter.org/'
+config.gem 'mislav-will_paginate', :lib => 'will_paginate',
+                                   :source => 'http://gems.github.com'
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')
