@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
             @processing_error_message = error_message(exception)
             refresh_cart
             ExceptionNotifier.deliver_exception_notification(exception, self, request, params) 
-           render :action => 'new' and return
+            render :action => 'new' and return
           end
           # drop current cart
           begin
