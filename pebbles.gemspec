@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-10-16}
+  s.date = %q{2009-10-20}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -228,9 +228,6 @@ Gem::Specification.new do |s|
      "app/views/admin/products/images/_images.html.erb",
      "app/views/admin/products/index.html.erb",
      "app/views/admin/products/new.html.erb",
-     "app/views/admin/products/out_of_stock_options/_out_of_stock.html.erb",
-     "app/views/admin/products/out_of_stock_options/_out_of_stock_options.html.erb",
-     "app/views/admin/products/out_of_stock_options/_product_options.html.erb",
      "app/views/admin/products/show.html.erb",
      "app/views/admin/products/update.js.erb",
      "app/views/admin/products/wholesale/_quantity_discount.html.erb",
@@ -356,7 +353,6 @@ Gem::Specification.new do |s|
      "lib/hijacker.rb",
      "lib/optimized.rb",
      "lib/pebbles.rb",
-     "lib/pebbles/asset_copier.rb",
      "lib/pebbles/cart.rb",
      "lib/pebbles/categories.rb",
      "lib/pebbles/shipping.rb",
@@ -386,56 +382,18 @@ Gem::Specification.new do |s|
      "public/dispatch.fcgi",
      "public/dispatch.rb",
      "public/favicon.ico",
-     "public/images/addtocart-hover.jpg",
      "public/images/addtocart.jpg",
      "public/images/amex.png",
-     "public/images/bd-bkg.gif",
-     "public/images/box-bl.gif",
-     "public/images/box-bl.png",
-     "public/images/box-br.gif",
-     "public/images/box-br.png",
-     "public/images/box-tl.gif",
-     "public/images/box-tr-small.jpg",
-     "public/images/box-tr.gif",
-     "public/images/box-tr.png",
-     "public/images/brown_town.gif",
-     "public/images/c-kids.gif",
-     "public/images/c-links.gif",
-     "public/images/c-men.gif",
-     "public/images/c-tshirts.gif",
-     "public/images/c-women.gif",
-     "public/images/cart_button_img.png",
      "public/images/categories/kids.jpg",
      "public/images/categories/men.jpg",
      "public/images/categories/t-shirts.jpg",
      "public/images/categories/women.jpg",
-     "public/images/category-green sale.jpg",
-     "public/images/category-kids.jpg",
-     "public/images/category-mens.jpg",
-     "public/images/category-womens.jpg",
-     "public/images/checkout-hover.jpg",
      "public/images/checkout.jpg",
      "public/images/close.gif",
-     "public/images/co-op-america.png",
-     "public/images/coffee_kids.gif",
-     "public/images/coffee_kids_logo.gif",
-     "public/images/contact_button_img.png",
-     "public/images/diners_club.png",
      "public/images/discover.png",
      "public/images/entryway.gif",
      "public/images/entryway.png",
-     "public/images/find-hover.jpg",
      "public/images/find.jpg",
-     "public/images/footerbox-bkg.gif",
-     "public/images/footerbox-btm.gif",
-     "public/images/footerbox-img.gif",
-     "public/images/footerbox-top.gif",
-     "public/images/ft-placeholder.gif",
-     "public/images/giving_back.jpg",
-     "public/images/green-hosting.png",
-     "public/images/green-label_logo.png",
-     "public/images/green_basket_3.html",
-     "public/images/greenlabel-logo.gif",
      "public/images/gt/bd-top-fade.gif",
      "public/images/gt/btn-add-comment.jpg",
      "public/images/gt/btn-add.jpg",
@@ -472,67 +430,18 @@ Gem::Specification.new do |s|
      "public/images/gt/table-hd-bkg.gif",
      "public/images/gt/util-box-left-bkg.gif",
      "public/images/gt/util-box-right-bkg.gif",
-     "public/images/hd-bkg.gif",
-     "public/images/header_logo.png",
-     "public/images/header_slice.png",
-     "public/images/help_button_img.png",
-     "public/images/highest-quality.gif",
-     "public/images/image_50.gif",
      "public/images/indicator.gif",
-     "public/images/jcb.png",
-     "public/images/kids.jpg",
-     "public/images/left_nav_menu_bottom.png",
-     "public/images/left_nav_menu_slice.png",
-     "public/images/left_nav_menu_title_slice.png",
-     "public/images/left_nav_menu_top.png",
      "public/images/loading.gif",
      "public/images/login-hover.jpg",
      "public/images/login.jpg",
      "public/images/mastercard.png",
-     "public/images/menu_bar_left.png",
-     "public/images/menu_bar_right.png",
-     "public/images/menu_bar_slice.png",
-     "public/images/misty.jpg",
-     "public/images/obama-splash.jpg",
-     "public/images/organic-cotton.gif",
-     "public/images/organic-trade.png",
-     "public/images/ota.gif",
-     "public/images/ota.png",
-     "public/images/overlay.png",
-     "public/images/page-bkg.gif",
-     "public/images/parkway.jpg",
      "public/images/paypal.png",
      "public/images/paypal_button.gif",
-     "public/images/placeorder-hover.jpg",
      "public/images/placeorder.jpg",
-     "public/images/r-kids.gif",
-     "public/images/r-links.gif",
-     "public/images/r-men.gif",
-     "public/images/r-shirts.gif",
-     "public/images/r-women.gif",
-     "public/images/respect.gif",
-     "public/images/script-hd.gif",
-     "public/images/shirt-left.gif",
-     "public/images/shirt-right.gif",
-     "public/images/sidebar-bkg.gif",
-     "public/images/sidebar-btm.png",
-     "public/images/sidebar-img.gif",
-     "public/images/sidebar-top.gif",
-     "public/images/spacer.gif",
      "public/images/spinner.gif",
-     "public/images/support-local.png",
-     "public/images/t-shirts.jpg",
-     "public/images/tab-active-left.gif",
-     "public/images/tab-active-right.png",
-     "public/images/tab-left.gif",
-     "public/images/tab-right.gif",
-     "public/images/tab-right.png",
-     "public/images/the_coffee_kids.jpg",
-     "public/images/track_button_img.png",
      "public/images/update_quantity_button.gif",
      "public/images/visa.png",
      "public/images/wait.gif",
-     "public/images/women.jpg",
      "public/javascripts/application.js",
      "public/javascripts/builder.js",
      "public/javascripts/checkout.js",
@@ -617,7 +526,6 @@ Gem::Specification.new do |s|
      "spec/rcov.opts",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "tasks/asset_copier.rake",
      "test.rb",
      "vendor/plugins/active_record_base_without_table/CHANGELOG",
      "vendor/plugins/active_record_base_without_table/MIT-LICENSE",
@@ -917,7 +825,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/entryway/pebbles}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.4}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{ecommerce}
   s.test_files = [
     "spec/cart_builder.rb",
@@ -959,12 +867,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
       s.add_runtime_dependency(%q<carrierwave>, [">= 0"])
       s.add_runtime_dependency(%q<friendly_id>, [">= 0"])
+      s.add_runtime_dependency(%q<mislav-will_paginate>, [">= 0"])
     else
       s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
       s.add_dependency(%q<ssl_requirement>, [">= 0"])
       s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
       s.add_dependency(%q<carrierwave>, [">= 0"])
       s.add_dependency(%q<friendly_id>, [">= 0"])
+      s.add_dependency(%q<mislav-will_paginate>, [">= 0"])
     end
   else
     s.add_dependency(%q<collectiveidea-awesome_nested_set>, [">= 0"])
@@ -972,5 +882,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
     s.add_dependency(%q<carrierwave>, [">= 0"])
     s.add_dependency(%q<friendly_id>, [">= 0"])
+    s.add_dependency(%q<mislav-will_paginate>, [">= 0"])
   end
 end
