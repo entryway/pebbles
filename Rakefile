@@ -32,6 +32,7 @@ begin
     gem.add_development_dependency "thoughtbot-factory_girl"
     gem.add_dependency 'carrierwave'
     gem.add_dependency 'friendly_id'
+    gem.add_dependency 'mislav-will_paginate'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

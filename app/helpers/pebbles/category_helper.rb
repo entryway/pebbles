@@ -8,8 +8,9 @@ module Pebbles::CategoryHelper
     end
   end
 
-  def category_image(category, css_class='')
-    category_image = category.category_images[0]
+  def category_image(category, css_class='', options = {})
+    index = options[:index] || 0
+    category_image = category.category_images[index]
     if category_image
       category_image = category_image.filename.url 
       image_tag(category_image, :class => css_class, :alt => "#{category.name}")
