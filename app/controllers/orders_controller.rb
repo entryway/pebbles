@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
          
   def new
     @order = Order.new
-    @order.credit_card = CreditCard.new
+    @order.credit_card = CreditCard.new(:month => Date.today.month, :year => Date.today.year)
     @order.billing_address = Address.new
     @order.shipping_address = Address.new
     @cart = current_cart
