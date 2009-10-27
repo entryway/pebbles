@@ -86,9 +86,7 @@ private
     def process_web_order
       initialize_order
       if self.payment_type == 'credit_card'
-        process_with_active_merchant
-        puts self.transactions.inspect
-        
+        process_with_active_merchant 
 
         unless self.paid? || self.authorized?
           msg = self.transactions[0].params['error']
