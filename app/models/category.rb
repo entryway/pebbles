@@ -35,6 +35,19 @@ class Category < ActiveRecord::Base
                                  :page => page, 
                                  :order => "name"
   end
+
+  ##
+  # A random set of products from all the children.
+  
+ 
+  def descended_paged_products(page, product_per_page)
+
+    products = Array.new
+    descendants.active.each do |category|
+      products += category.products.available
+    end
+    products.uniq.paginate(:page => page, :per_page => product_per_page)
+  end
   
   #
   def level
