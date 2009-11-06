@@ -24,9 +24,9 @@ class Category < ActiveRecord::Base
     if options[:parent] =~ /\d/
       self.move_to_child_of options[:parent] 
     else
-      self.move_to_root
+      self.move_to_child_of Category.root
     end
-    #self.move_to_left_of options[:right].to_i if options[:right] =~ /\d/
+    self.move_to_left_of options[:right].to_i if options[:right] =~ /\d/
   end
    
   # return the products paged

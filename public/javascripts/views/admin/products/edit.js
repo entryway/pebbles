@@ -99,7 +99,7 @@ jQuery(document).ready(function() {
 
     jQuery("#add_category").live("click", function() {
         var selected_category = parseInt(jQuery("#category_select").val());
-        var category_ids = eval(jQuery("#category_ids").val());
+        var category_ids = eval(jQuery("#category_ids").val() || []);
         var href = jQuery(this).attr('href');
         category_ids.push(selected_category);
         jQuery("#category_list").load(href, {'product[category_ids][]': category_ids, 
@@ -113,6 +113,9 @@ jQuery(document).ready(function() {
         var href = jQuery(this).attr('href');
         var category_index = category_ids.indexOf(category_to_remove);
         category_ids.splice(category_index, 1);
+        if (category_ids == "") { 
+          category_ids = [""];
+          }
         jQuery("#category_list").load(href, {'product[category_ids][]': category_ids, 
                                              _method: 'PUT'});
         return false;
