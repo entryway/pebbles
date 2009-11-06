@@ -3,4 +3,8 @@ class ProductLargeImage < ActiveRecord::Base
     
   mount_uploader :filename, ImageUploader
   
+  def product 
+    product_image.product
+  end
+  
 end
