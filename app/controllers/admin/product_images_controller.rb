@@ -10,6 +10,15 @@ class Admin::ProductImagesController < ApplicationController
            :locals => { :product => product }
   end
   
+  def update
+    product = Product.find(params[:product_id])
+    product_image = ProductImage.find(params[:id])
+    product_image.update_attributes(params[:product_image])
+    render :partial => '/admin/products/images/image_list', 
+           :locals => { :product => product }
+  end
+    
+  
   def destroy
     product = Product.find(params[:product_id])
     product_image = ProductImage.find(params[:id])

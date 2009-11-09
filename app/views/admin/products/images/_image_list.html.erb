@@ -3,8 +3,13 @@
   <h3>Regular Size:</h3><br/>
   <div id="<%= dom_id(image, 'id') %>">
     <%= image_tag image.filename.url, :name => "image_id" %>
+    <%= link_to 'Change Image', '#', :class => "edit-product-image" %>
     <%= link_to 'Remove Image', admin_product_product_image_path(product, image), 
         :class => "destroy-product-image" %>
+    <div class='change-image' style="display:none">
+      </br>
+      <%= render '/admin/products/images/change_image', :product => product, :image => image %>
+    </div>
   </div>
   <div>
     <% if image.product_image_thumbnail %>

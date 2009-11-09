@@ -10,6 +10,16 @@ jQuery(document).ready(function() {
     jQuery(this).ajaxSubmit(product_image_options); 
     return false; 
   });
+  jQuery('.edit-product-image').live('click', function() {
+    jQuery(this).nextAll('div.change-image').show();
+    return false;
+  });
+  jQuery('#product_image_edit').livequery( function() { 
+    jQuery(this).submit(function() { 
+      jQuery(this).ajaxSubmit(product_image_options); 
+      return false; 
+    })
+  });
   jQuery('.image_thumbnail_add').livequery( function() {
     jQuery(this).submit(function() { 
       jQuery(this).ajaxSubmit(product_image_options); 
