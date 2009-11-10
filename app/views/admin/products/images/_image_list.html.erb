@@ -1,6 +1,7 @@
 <% product.product_images.each do |image| %>
   <hr>
-  <h3>Regular Size:</h3><br/>
+  <h3>Regular Size:</h3>
+  <br/>
   <div id="<%= dom_id(image, 'id') %>">
     <%= image_tag image.filename.url, :name => "image_id" %>
     <%= link_to 'Change Image', '#', :class => "edit-product-image" %>
