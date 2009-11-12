@@ -1,6 +1,6 @@
 <% if thumbnail.new_record? %>
   <% form_for [:admin, variant_image, thumbnail], 
-              :html => { :multipart => true, :class => 'variant_thumbnail_add' } do |form| %>
+              :html => { :multipart => true, :id => 'variant_thumbnail_add' } do |form| %>
     <p>
       <label for="uploaded_data">Upload Thumbnail:</label>
       <%= form.file_field :filename, :value => "Browse" %>
@@ -13,7 +13,7 @@
   <h3>Thumbnail:</h3><br/>
   <div>
   	<%= image_tag thumbnail.filename.url %>
-  	<%= link_to 'Remove Large Image', admin_variant_image_variant_image_thumbnail_path(variant_image, thumbnail), 
+  	<%= link_to 'Remove Thumbnail Image', admin_variant_image_variant_image_thumbnail_path(variant_image, thumbnail), 
   	    :class => "destroy-variant-thumbnail" %>
   </div>
 <% end %>
