@@ -85,13 +85,16 @@ class Category < ActiveRecord::Base
   # TODO: Adapt to return a tree positioned, alphabetical, or natural ordered by
   # passing a paramenter hash.
   #
-  # @param[String] category_name The name of the category to be the root of the tree.
+  # @param[String, Category] category_name The name of the category or the category to be the root of the tree.
   # @return[Category[]] The array of children and nested children categories. 
-  def self.subtree(category_name=ROOT_NAME)
-    category = Category.find_by_name(category_name)
+  def self.subtree(category=Category.root)
+    if category.is_a?(String)
+      category = Category.find_by_name(category)
+    end
+
     return Array.new unless category 
  
-    category.descendants.active
+    category.children.active
   end
 
   ##
