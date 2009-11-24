@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.2.6"
+  s.version = "0.2.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-11-04}
+  s.date = %q{2009-11-24}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -39,7 +39,6 @@ Gem::Specification.new do |s|
      "app/controllers/admin/reporting/reports_controller.rb",
      "app/controllers/admin/shipping_methods_controller.rb",
      "app/controllers/admin/shipping_rates_controller.rb",
-     "app/controllers/admin/stores_controller.rb",
      "app/controllers/admin/ups_shipping_controller.rb",
      "app/controllers/admin/variant_image_thumbnails_controller.rb",
      "app/controllers/admin/variant_images_controller.rb",
@@ -57,8 +56,6 @@ Gem::Specification.new do |s|
      "app/controllers/sessions_controller.rb",
      "app/controllers/shipping_methods_controller.rb",
      "app/controllers/shippings_controller.rb",
-     "app/controllers/store_import_controller.rb",
-     "app/controllers/stores_controller.rb",
      "app/controllers/taxes_controller.rb",
      "app/controllers/users_controller.rb",
      "app/controllers/variant_images_controller.rb",
@@ -124,8 +121,6 @@ Gem::Specification.new do |s|
      "app/models/region.rb",
      "app/models/shipping_method.rb",
      "app/models/shipping_provider.rb",
-     "app/models/store.rb",
-     "app/models/store_image.rb",
      "app/models/tax_rate.rb",
      "app/models/user.rb",
      "app/models/variant.rb",
@@ -219,6 +214,8 @@ Gem::Specification.new do |s|
      "app/views/admin/products/add_to_category.rjs",
      "app/views/admin/products/edit.html.erb",
      "app/views/admin/products/faux_products/_faux_products.html.erb",
+     "app/views/admin/products/images/_change_image.html.erb",
+     "app/views/admin/products/images/_dimensions.html.erb",
      "app/views/admin/products/images/_image_form.html.erb",
      "app/views/admin/products/images/_image_large_form.html.erb",
      "app/views/admin/products/images/_image_large_list.html.erb",
@@ -249,15 +246,6 @@ Gem::Specification.new do |s|
      "app/views/admin/shipping_methods/edit.html.erb",
      "app/views/admin/shipping_methods/index.html.erb",
      "app/views/admin/shipping_methods/new.html.erb",
-     "app/views/admin/stores/_details.html.erb",
-     "app/views/admin/stores/_image_form.html.erb",
-     "app/views/admin/stores/_image_list.html.erb",
-     "app/views/admin/stores/_images.html.erb",
-     "app/views/admin/stores/_sidebar.html.erb",
-     "app/views/admin/stores/edit.html.erb",
-     "app/views/admin/stores/index.html.erb",
-     "app/views/admin/stores/new.html.erb",
-     "app/views/admin/stores/show.html.erb",
      "app/views/admin/vendors/_details.html.erb",
      "app/views/admin/vendors/edit.html.erb",
      "app/views/admin/vendors/index.html.erb",
@@ -292,6 +280,7 @@ Gem::Specification.new do |s|
      "app/views/index/support_local.html.erb",
      "app/views/index/wholesale.html.erb",
      "app/views/index/why-organic.html.erb",
+     "app/views/layouts/_admin_tabs.html.erb",
      "app/views/layouts/_footer.html.erb",
      "app/views/layouts/admin.html.erb",
      "app/views/layouts/application.html.erb",
@@ -327,9 +316,6 @@ Gem::Specification.new do |s|
      "app/views/sessions/new.html.erb",
      "app/views/shared/_category_menu.html.erb",
      "app/views/shared/_product_menu.html.erb",
-     "app/views/stores/_map.html.erb",
-     "app/views/stores/_store.html.erb",
-     "app/views/stores/index.html.erb",
      "app/views/users/new.html.erb",
      "config/boot.rb",
      "config/config.yml",
