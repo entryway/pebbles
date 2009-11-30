@@ -108,7 +108,11 @@ class Category < ActiveRecord::Base
   end
 
   def category_image
-    category_images.first.filename.url
+    unless category_images.empty? || category_images.nil?
+      category_images.first.filename.url
+    else
+      ''
+    end
   end
 
 end
