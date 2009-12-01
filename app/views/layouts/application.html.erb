@@ -1,93 +1,80 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-   <title><%= yield(:title) %></title>
-   <meta name="keywords" content="<%= yield(:meta_keywords) %>" />
-   <meta name="description" content="<%= yield(:meta_description) %>" />
-   <meta name="author" content="" lang="en"/>
-   <meta name="copyright" content="Copyright 2008"/> 
-   <meta name="description" content=""/>
-   <meta name="robots" content="index,follow"/>
-   <meta name="revisit-after" content="7 days"/>
-   <meta http-equiv="imagetoolbar" content="no"/>	
-   <meta name="language" content="en"/>
-   <%= stylesheet_link_tag "reset-fonts", :media => 'screen, projection' %>
-   <%= stylesheet_link_tag "main", :media => 'screen, projection' %>
-   <%= javascript_include_tag 'prototype' %>
-   <%= javascript_include_tag 'effects' %>
-   <%= javascript_include_tag 'lowpro' %>
-   <%= javascript_include_tag 'application' %>
-   <%= yield :head %>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title><%= yield(:title) %></title>
+    <meta name="keywords" content="<%= yield(:meta_keywords) %>" />
+    <meta name="description" content="<%= yield(:meta_description) %>" />
+    <meta name="author" content="" lang="en"/>
+    <meta name="copyright" content="Copyright 2008"/>
+    <meta name="description" content=""/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="revisit-after" content="7 days"/>
+    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta name="language" content="en"/>
+    <%= stylesheet_link_tag "reset-fonts", :media => 'screen, projection' %>
+    <%= stylesheet_link_tag "main", :media => 'screen, projection' %>
+    <%= javascript_include_tag 'pebbles/prototype' %>
+    <%= javascript_include_tag 'pebbles/effects' %>
+    <%= javascript_include_tag 'pebbles/lowpro' %>
+    <%= javascript_include_tag 'pebbles/application' %>
+    <%= yield :head %>
 
-	<!--[if lte IE 6]>
-		<%= stylesheet_link_tag "ie6", :media => 'screen, projection' %>
-	<![endif]-->
-	
-   <%= GMap.header if @map %>
-   <%= @map.to_html if @map %>
-</head>
-	<body>
-		<!-- Head -->
-		<div id="hd">
-			<!-- logo -->
-			<h1 id="logo"><a href="/">Company Name</a></h1>
-			
-			<!-- nav -->
-			<div id="nav">
-				<ul>
-					<li><a <%= current_style('home') %> href="/"><span>home</span></a></li>
-					<li><a <%= current_style('about') %> href="/index/about"><span>about</span></a></li>
-					<% if products_in_shopping_cart? %>
-					<li><a <%= current_style('cart') %> href="/carts/<%= current_cart.id %>"><span>shopping cart</span></a></li>
-					<% else %>
-					<li><a <%= current_style('cart') %> href="/categories"><span>shop</span></a></li>
-					<% end %>
-					<li><a <%= current_style('contact') %> href="/index/contact_us"><span>contact</span></a></li>
-					<li><a <%= current_style('retail') %> href="/stores"><span>find retailer</span></a></li>
-				</ul>
-			</div>
-			
-		</div>
-		<!-- / Head -->
-		
-		<!-- Body -->
-		<div id="bd" class="clearfix">
-		
-			<!-- left col -->
-			<div class="left">
-				<div class="sidebar-top"></div>
-				<div class="sidebar">
-					
-					<%= render :partial => '/shared/product_menu' %>
-					<br/>
-					
-				</div>
-				<div class="sidebar-btm"></div>
-			</div><!-- /left col -->
-			
-			<!-- right col -->
-			<div class="right">
-				 <% if flash.any? %>
-				 	<div id="flash"><%= flash[:notice] %></div><% flash.clear %>
-				<% end %>
-				<%= yield %>
-				</div></div></div></div><!-- /box -->
-			</div><!-- /right col -->
-			
-		</div>
-		<!-- / Body -->
-		<%= render :partial => "/layouts/footer" %>
-		<!-- <script type="text/javascript" src="https://cetrk.com/pages/scripts/0009/0115.js"> </script>
-		<!-- <script type="text/javascript">
-				var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-				document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-				</script>
-		 -->		<!-- <script type="text/javascript">
-		 			var pageTracker = _gat._getTracker("UA-992687-1");
-		 			pageTracker._initData();
-		 			pageTracker._trackPageview();
-		 		</script> --> -->
-	</body>
+    <!--[if lte IE 6]>
+    <%= stylesheet_link_tag "ie6", :media => 'screen, projection' %>
+    <![endif]-->
+
+    <%= GMap.header if @map %>
+    <%= @map.to_html if @map %>
+  </head>
+  <body>
+    <!-- Head -->
+    <div id="hd">
+      <!-- logo -->
+      <h1 id="logo"><a href="/">Company Name</a></h1>
+
+      <!-- nav -->
+      <div id="nav">
+        <ul>
+          <li><a <%= current_style('home') %> href="/"><span>home</span></a></li>
+          <li><a <%= current_style('about') %> href="/index/about"><span>about</span></a></li>
+          <% if products_in_shopping_cart? %>
+            <li><a <%= current_style('cart') %> href="/carts/<%= current_cart.id %>"><span>shopping cart</span></a></li>
+          <% else %>
+            <li><a <%= current_style('cart') %> href="/categories"><span>shop</span></a></li>
+          <% end %>
+          <li><a <%= current_style('contact') %> href="/index/contact_us"><span>contact</span></a></li>
+          <li><a <%= current_style('retail') %> href="/stores"><span>find retailer</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+    <!-- / Head -->
+
+    <!-- Body -->
+    <div id="bd" class="clearfix">
+
+      <!-- left col -->
+      <div class="left">
+        <div class="sidebar-top"></div>
+        <div class="sidebar">
+          <%= render :partial => '/shared/product_menu' %>
+          <br/>
+        </div>
+        <div class="sidebar-btm"></div>
+      </div><!-- /left col -->
+
+      <!-- right col -->
+      <div class="right">
+        <% if flash.any? %>
+          <div id="flash"><%= flash[:notice] %></div><% flash.clear %>
+        <% end %>
+        <%= yield %>
+      </div></div></div></div><!-- /box -->
+</div><!-- /right col -->
+
+</div>
+<!-- / Body -->
+<%= render :partial => "/layouts/footer" %>
+</body>
 </html>
