@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.2.10"
+  s.version = "0.2.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-11-30}
+  s.date = %q{2009-12-02}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -428,31 +428,33 @@ Gem::Specification.new do |s|
      "public/images/update_quantity_button.gif",
      "public/images/visa.png",
      "public/images/wait.gif",
-     "public/javascripts/application.js",
-     "public/javascripts/builder.js",
-     "public/javascripts/checkout.js",
-     "public/javascripts/clusterer.js",
-     "public/javascripts/controls.js",
-     "public/javascripts/dragdrop.js",
-     "public/javascripts/effects.js",
-     "public/javascripts/geoRssOverlay.js",
-     "public/javascripts/jquery/creditcard2.js",
-     "public/javascripts/jquery/form.js",
-     "public/javascripts/jquery/jquery.js",
-     "public/javascripts/jquery/livequery.js",
-     "public/javascripts/jquery/spinner.js",
-     "public/javascripts/jquery/ui.js",
-     "public/javascripts/jquery/validate.js",
-     "public/javascripts/lightbox.js",
-     "public/javascripts/lowpro.js",
-     "public/javascripts/markerGroup.js",
-     "public/javascripts/ordering.js",
-     "public/javascripts/p7tpscripts.js",
-     "public/javascripts/prototype.js",
-     "public/javascripts/scriptaculous.js",
-     "public/javascripts/slider.js",
-     "public/javascripts/sound.js",
-     "public/javascripts/unittest.js",
+     "public/javascripts/pebbles/application.js",
+     "public/javascripts/pebbles/builder.js",
+     "public/javascripts/pebbles/checkout.js",
+     "public/javascripts/pebbles/clusterer.js",
+     "public/javascripts/pebbles/controls.js",
+     "public/javascripts/pebbles/dragdrop.js",
+     "public/javascripts/pebbles/effects.js",
+     "public/javascripts/pebbles/geoRssOverlay.js",
+     "public/javascripts/pebbles/jquery/creditcard2.js",
+     "public/javascripts/pebbles/jquery/form.js",
+     "public/javascripts/pebbles/jquery/jquery.js",
+     "public/javascripts/pebbles/jquery/livequery.js",
+     "public/javascripts/pebbles/jquery/spinner.js",
+     "public/javascripts/pebbles/jquery/ui.js",
+     "public/javascripts/pebbles/jquery/validate.js",
+     "public/javascripts/pebbles/lightbox.js",
+     "public/javascripts/pebbles/lowpro.js",
+     "public/javascripts/pebbles/markerGroup.js",
+     "public/javascripts/pebbles/ordering.js",
+     "public/javascripts/pebbles/p7tpscripts.js",
+     "public/javascripts/pebbles/prototype.js",
+     "public/javascripts/pebbles/scriptaculous.js",
+     "public/javascripts/pebbles/slider.js",
+     "public/javascripts/pebbles/sound.js",
+     "public/javascripts/pebbles/unittest.js",
+     "public/javascripts/pebbles/wms-gs.js",
+     "public/javascripts/pebbles/ym4r-gm.js",
      "public/javascripts/views/admin/categories/edit.js",
      "public/javascripts/views/admin/categories/index.js",
      "public/javascripts/views/admin/orders/index.js",
@@ -463,8 +465,6 @@ Gem::Specification.new do |s|
      "public/javascripts/views/carts/show.js",
      "public/javascripts/views/orders/new-create.js",
      "public/javascripts/views/products/show.js",
-     "public/javascripts/wms-gs.js",
-     "public/javascripts/ym4r-gm.js",
      "public/robots.txt",
      "public/stylesheets/admin.css",
      "public/stylesheets/admin_print.css",
