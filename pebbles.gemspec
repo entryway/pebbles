@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.2.11"
+  s.version = "0.2.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-12-02}
+  s.date = %q{2009-12-03}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -535,50 +535,6 @@ Gem::Specification.new do |s|
      "vendor/plugins/acts_as_state_machine/test/fixtures/person.rb",
      "vendor/plugins/acts_as_state_machine/test/schema.rb",
      "vendor/plugins/acts_as_state_machine/test/test_helper.rb",
-     "vendor/plugins/attachment_fu/.gitignore",
-     "vendor/plugins/attachment_fu/CHANGELOG",
-     "vendor/plugins/attachment_fu/README",
-     "vendor/plugins/attachment_fu/Rakefile",
-     "vendor/plugins/attachment_fu/amazon_s3.yml.tpl",
-     "vendor/plugins/attachment_fu/init.rb",
-     "vendor/plugins/attachment_fu/install.rb",
-     "vendor/plugins/attachment_fu/lib/geometry.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu/backends/db_file_backend.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu/backends/file_system_backend.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu/backends/s3_backend.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu/processors/core_image_processor.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu/processors/gd2_processor.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu/processors/image_science_processor.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu/processors/mini_magick_processor.rb",
-     "vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu/processors/rmagick_processor.rb",
-     "vendor/plugins/attachment_fu/test/backends/db_file_test.rb",
-     "vendor/plugins/attachment_fu/test/backends/file_system_test.rb",
-     "vendor/plugins/attachment_fu/test/backends/remote/s3_test.rb",
-     "vendor/plugins/attachment_fu/test/base_attachment_tests.rb",
-     "vendor/plugins/attachment_fu/test/basic_test.rb",
-     "vendor/plugins/attachment_fu/test/database.yml",
-     "vendor/plugins/attachment_fu/test/extra_attachment_test.rb",
-     "vendor/plugins/attachment_fu/test/fixtures/attachment.rb",
-     "vendor/plugins/attachment_fu/test/fixtures/files/fake/rails.png",
-     "vendor/plugins/attachment_fu/test/fixtures/files/foo.txt",
-     "vendor/plugins/attachment_fu/test/fixtures/files/rails.png",
-     "vendor/plugins/attachment_fu/test/geometry_test.rb",
-     "vendor/plugins/attachment_fu/test/processors/core_image_test.rb",
-     "vendor/plugins/attachment_fu/test/processors/gd2_test.rb",
-     "vendor/plugins/attachment_fu/test/processors/image_science_test.rb",
-     "vendor/plugins/attachment_fu/test/processors/mini_magick_test.rb",
-     "vendor/plugins/attachment_fu/test/processors/rmagick_test.rb",
-     "vendor/plugins/attachment_fu/test/schema.rb",
-     "vendor/plugins/attachment_fu/test/test_helper.rb",
-     "vendor/plugins/attachment_fu/test/validation_test.rb",
-     "vendor/plugins/attachment_fu/vendor/red_artisan/core_image/filters/color.rb",
-     "vendor/plugins/attachment_fu/vendor/red_artisan/core_image/filters/effects.rb",
-     "vendor/plugins/attachment_fu/vendor/red_artisan/core_image/filters/perspective.rb",
-     "vendor/plugins/attachment_fu/vendor/red_artisan/core_image/filters/quality.rb",
-     "vendor/plugins/attachment_fu/vendor/red_artisan/core_image/filters/scale.rb",
-     "vendor/plugins/attachment_fu/vendor/red_artisan/core_image/filters/watermark.rb",
-     "vendor/plugins/attachment_fu/vendor/red_artisan/core_image/processor.rb",
      "vendor/plugins/enkoder/LICENSE",
      "vendor/plugins/enkoder/README",
      "vendor/plugins/enkoder/init.rb",
