@@ -15,110 +15,108 @@
       <div id="p7tpc1_1">
 
 
-<p>
-	<div style="float:left">
-		<label for="delivery_number"><b>Order Number: </b></label>
-		<%= @order.order_number %><br/>
-		<label for="delivery_number"><b>Order State: </b></label>
-		<%= @order.state %><br/>
-	</div>
-	<div style="float:right">
-		<b><%= nice_date(@order.created_at) %></b><br/>
-		<%= @order.created_at.hour.to_s + ':' + @order.created_at.min.to_s + '.' + @order.created_at.sec.to_s %>
-	</div>
-	<div style="clear:both"></div>
-	<hr/>
-	<div style="float:left">
-		<label for="delivery_to_full_name"><b>Name: </b></label>
-		<%= @order.full_name %><br/>
-		<span class='print-hide'>
-			<label for="delivery_to_full_name"><b>Business: </b></label>
-			<%= @order.business %><br/>
-			<label for="delivery_to_email"><b>Email: </b></label>
-			<%= @order.email %><br/>
-			<label for="delivery_to_full_name"><b>Phone Number: </b></label>
-			<%= @order.phone_number %>
-		</span>
-	</div>
-	<div style="float:right">
-		<% if @order.order_type == OrderType::EBAY %>
-			<label for="delivery_to_full_name"><b>Buyer Id: </b></label>
-			<%= @order.ebay_auction_id %><br/>
-			<label for="delivery_to_full_name"><b>Item Number: </b></label>
-			<%= @order.ebay_item_number %><br/>
-		<% end %>
-	</div>
-	<div style="clear:both"></div>
-	<hr/>
+        <p>
+          <div style="float:left">
+            <label for="delivery_number"><b>Order Number: </b></label>
+            <%= @order.order_number %><br/>
+            <label for="delivery_number"><b>Order State: </b></label>
+            <%= @order.state %><br/>
+          </div>
+          <div style="float:right">
+            <b><%= nice_date(@order.created_at) %></b><br/>
+            <%= @order.created_at.hour.to_s + ':' + @order.created_at.min.to_s + '.' + @order.created_at.sec.to_s %>
+          </div>
+          <div style="clear:both"></div>
+          <hr/>
+          <div style="float:left">
+            <label for="delivery_to_full_name"><b>Name: </b></label>
+            <%= @order.full_name %><br/>
+            <span class='print-hide'>
+              <label for="delivery_to_full_name"><b>Business: </b></label>
+              <%= @order.business %><br/>
+              <label for="delivery_to_email"><b>Email: </b></label>
+              <%= @order.email %><br/>
+              <label for="delivery_to_full_name"><b>Phone Number: </b></label>
+              <%= @order.phone_number %>
+            </span>
+          </div>
+          <div style="float:right">
+            <% if @order.order_type == OrderType::EBAY %>
+              <label for="delivery_to_full_name"><b>Buyer Id: </b></label>
+              <%= @order.ebay_auction_id %><br/>
+              <label for="delivery_to_full_name"><b>Item Number: </b></label>
+              <%= @order.ebay_item_number %><br/>
+            <% end %>
+          </div>
+          <div style="clear:both"></div>
+          <hr/>
 
-	<div style="float:left">
-	  <b class='print-hide'>Billing Address</b><br/>
-	  <label class='print-hide' for="address1"></label>
-	  <% if @order.billing_address %>
-	    <span class='print-hide'>
-	      <%= @order.billing_address.address_1 %><br/>
-	      <%= @order.billing_address.address_2 -%>
-	      <%= content_tag('br/') unless @order.billing_address.address_2.blank? %>
-	      <%= @order.billing_address.city %>, 
-	      <%= @order.billing_address.state %>&nbsp;
-	      <%= @order.billing_address.postal_code %><br/>
-	      <%= @order.billing_address.country -%>
-	    </span>
-	  <% end %>
-	</div>
+          <div style="float:left">
+            <b class='print-hide'>Billing Address</b><br/>
+            <label class='print-hide' for="address1"></label>
+            <% if @order.billing_address %>
+              <span class='print-hide'>
+                <%= @order.billing_address.address_1 %><br/>
+                <%= @order.billing_address.address_2 -%>
+                <%= content_tag('br/') unless @order.billing_address.address_2.blank? %>
+                <%= @order.billing_address.city %>, 
+                <%= @order.billing_address.state %>&nbsp;
+                <%= @order.billing_address.postal_code %><br/>
+                <%= @order.billing_address.country -%>
+              </span>
+            <% end %>
+          </div>
 
-	<div style="float:right" id='shipping-address'>
-	  <b>Shipping Address</b><br/>
-	  <label for="address1"></label>
-	  <% if @order.shipping_address %>
-	    <%= @order.shipping_address.address_1 %><br/>
-	    <%= @order.shipping_address.address_2 -%>
-	    <%= content_tag('br/') unless @order.shipping_address.address_2.blank? %>
-	    <%= @order.shipping_address.city %>, 
-	    <%= @order.shipping_address.state %>&nbsp;
-	    <%= @order.shipping_address.postal_code %><br/>
-	    <%= @order.shipping_address.country -%>
-	  <% end %>
-	</div>
-	<hr/>
+          <div style="float:right" id='shipping-address'>
+            <b>Shipping Address</b><br/>
+            <label for="address1"></label>
+            <% if @order.shipping_address %>
+              <%= @order.shipping_address.address_1 %><br/>
+              <%= @order.shipping_address.address_2 -%>
+              <%= content_tag('br/') unless @order.shipping_address.address_2.blank? %>
+              <%= @order.shipping_address.city %>, 
+              <%= @order.shipping_address.state %>&nbsp;
+              <%= @order.shipping_address.postal_code %><br/>
+              <%= @order.shipping_address.country -%>
+            <% end %>
+          </div>
+          <hr/>
 
-	<div id="order_items"> 
-	  <%= render :partial => 'edit_order_items' %>
-	</div>
-	
-  	<br/>
-  	<label><b>Shipping Method:</b></label>	
-	<span><%= @order.shipping_method %></span>
-	<br/>
-	
-  	<div id = "order_totals" >
-    	<%= render :partial => "order_totals" %>
-  	</div>
+          <div id="order_items"> 
+            <%= render :partial => 'edit_order_items' %>
+          </div>
+          
+          <br/>
+          <label><b>Shipping Method:</b></label>  
+          <span><%= @order.shipping_method %></span>
+          <br/>
+          
+          <div id = "order_totals" >
+            <%= render :partial => "order_totals" %>
+          </div>
 
-  	<%= render :partial => "order_transactions" %>
-	
-	</p>
-<% form_for :order, :url => admin_order_path(@order),  
-			:html => { :method => :put, :class => 'gt-form' } do |form| %>
-	<hr/>	
-	<label class='print-hide' for="admin_notes">Notes:</label><br/>
-	<%= form.text_area :admin_notes, :class => 'gt-form-text' %>
-	<br/><br/>
-  	<%= image_submit_tag 'gt/btn-update.jpg', :class => 'gt-submit-btn' %>
-    or 
-	<%= link_to 'Cancel', admin_order_path(@order) %>
+          <%= render :partial => "order_transactions" %>
+          
+        </p>
+        <% form_for :order, :url => admin_order_path(@order),  
+           :html => { :method => :put, :class => 'gt-form' } do |form| %>
+        <hr/>   
+        <label class='print-hide' for="admin_notes">Notes:</label><br/>
+        <%= form.text_area :admin_notes, :class => 'gt-form-text' %>
+        <br/><br/>
+        <%= image_submit_tag 'gt/btn-update.jpg', :class => 'gt-submit-btn' %>
+        or 
+        <%= link_to 'Cancel', admin_order_path(@order) %>
 
 <% end %>
 
-      </div>
-    </div>
-  </div>
-  <!--[if lte IE 6]>
-		<style type="text/css">.p7TPpanel div,.p7TPpanel a{zoom:100%;}.p7TP_tabs a{white-space:nowrap;}</style>
-	<![endif]-->
-  <!--[if IE 7]>
-		<style>.p7TPpanel div{zoom:100%;}</style>
-	<![endif]-->
 </div>
-
-
+</div>
+</div>
+<!--[if lte IE 6]>
+<style type="text/css">.p7TPpanel div,.p7TPpanel a{zoom:100%;}.p7TP_tabs a{white-space:nowrap;}</style>
+<![endif]-->
+<!--[if IE 7]>
+<style>.p7TPpanel div{zoom:100%;}</style>
+<![endif]-->
+</div>
