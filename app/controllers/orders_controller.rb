@@ -83,8 +83,8 @@ class OrdersController < ApplicationController
   private
   
   def refresh_cart
-    region = Region.find(active_shipping_region_id)
-    @shipping_methods = region.shipping_methods
+    @region = Region.find(active_shipping_region_id)
+    @shipping_methods = @region.shipping_methods
     @default_method = ShippingMethod.find(active_shipping_method_id)
    
     @cart ||= current_cart
