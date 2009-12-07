@@ -95,8 +95,9 @@
             <%= render :partial => "order_totals" %>
           </div>
 
-          <%= render :partial => "order_transactions" %>
-          
+          <div id="order_transactions">
+            <%= render :partial => "order_transactions" %>
+          </div>
         </p>
         <% form_for :order, :url => admin_order_path(@order),  
            :html => { :method => :put, :class => 'gt-form' } do |form| %>

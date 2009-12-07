@@ -48,9 +48,15 @@ module OrderProcessing
     #    amount is a member of the hash to overide to deafult self.total_in_cents
     def capture_payment(options = {})
       options = populate_options if options.size == 0
-      options[:amount] ||= self.total_in_cents
+
+      amount = if options[:amount] 
+        options[:amount] * 100
+      else
+        self.total_in_cents
+      end
+
       transaction do
-        capture = OrderTransaction.capture(options[:amount], authorization_reference, options)
+        capture = OrderTransaction.capture(amount, authorization_reference, options)
         self.transactions << capture
         if capture.success?
           payment_captured!

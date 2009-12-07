@@ -23,7 +23,7 @@ jQuery.validator.addMethod("creditcard2", function(value, element, param) {
 	
 	var cards = new Array();
 	cards [0] = {cardName: "Visa", lengths: "13,16", prefixes: "4", checkdigit: true};
-	cards [1] = {cardName: "MasterCard", lengths: "16", prefixes: "51,52,53,54,55", checkdigit: true};
+	cards [1] = {cardName: "master", lengths: "16", prefixes: "51,52,53,54,55", checkdigit: true};
 	cards [2] = {cardName: "DinersClub", lengths: "14,16", prefixes: "300,301,302,303,304,305,36,38,55", checkdigit: true};
 	cards [3] = {cardName: "CarteBlanche", lengths: "14", prefixes: "300,301,302,303,304,305,36,38", checkdigit: true};
 	cards [4] = {cardName: "american_express", lengths: "15", prefixes: "34,37", checkdigit: true};

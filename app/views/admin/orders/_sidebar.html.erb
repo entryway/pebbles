@@ -1,9 +1,9 @@
 <% content_for :sidebar do %>
-	<ul>
-		<li><a href='#' id='print-packing-sheet'>Print Packing Sheet</a></li>
-		<li><a href='#' id='print-gift-receipt'>Print Gift Receipt</a></li>
-		<% unless APP_CONFIG['pre_and_post_authorization'] %>
-		  <li><%= link_to 'Edit Order', edit_admin_order_path(@order) %></li>
-		<% end %>
-	</ul>
+  <%= raw '<ul>
+             <li><a href="#" id="print-packing-sheet">Print Packing Sheet</a></li>
+             <li><a href="#" id="print-gift-receipt">Print Gift Receipt</a></li>' %>
+  <% unless APP_CONFIG['pre_and_post_authorization'] %>
+    <%= raw '<li>' %><%= link_to 'Edit Order', edit_admin_order_path(@order) %><%= raw '</li>' %>
+  <% end %>
+  <%= raw '</ul>' %>
 <% end %>
