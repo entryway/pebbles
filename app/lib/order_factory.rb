@@ -152,7 +152,7 @@ class OrderFactory
         billing_address.valid? && shipping_address.valid?
       if valid
         order.credit_card_display = order.credit_card.display_number
-        
+                
         order.shipping_method_id = options[:active_shipping_method_id]
         order.region_id = options[:active_shipping_region_id]
         order.add_order_items_from_cart(cart)
