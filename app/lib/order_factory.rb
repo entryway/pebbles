@@ -116,7 +116,6 @@ class OrderFactory
       order.shipping_method_id = active_shipping_method_id
       order.region_id = active_shipping_region_id
       order.add_order_items_from_cart(cart)
-      order.calculate_order_costs
       
       order.payment_type = 'paypal'
       
