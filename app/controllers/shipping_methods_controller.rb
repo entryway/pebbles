@@ -1,5 +1,6 @@
 class ShippingMethodsController < ApplicationController
   include ActionView::Helpers::NumberHelper
+  ssl_allowed :index, :update
   
   def index
     region = Region.find(params[:region_id])
