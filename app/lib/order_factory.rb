@@ -116,6 +116,7 @@ class OrderFactory
       order.shipping_method_id = active_shipping_method_id
       order.region_id = active_shipping_region_id
       order.add_order_items_from_cart(cart)
+      order.calculate_order_costs
       
       order.payment_type = 'paypal'
       
@@ -153,12 +154,12 @@ class OrderFactory
       if valid
         order.credit_card_display = order.credit_card.display_number
         
-        promo = PromoCode.find_by_code(options[:order][:promo_code])
-        promo.apply(order) if promo
-        
         order.shipping_method_id = options[:active_shipping_method_id]
         order.region_id = options[:active_shipping_region_id]
         order.add_order_items_from_cart(cart)
+        promo = PromoCode.find_by_code(options[:order][:promo_code])
+        promo.apply(order) if promo
+        order.calculate_order_costs
       else
         order.invalid = true
       end
