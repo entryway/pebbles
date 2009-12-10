@@ -129,9 +129,7 @@ class Product < ActiveRecord::Base
   def specification
     { :weight => weight, :dimensions => [length || 0 , width || 0, height || 0 ] }
   end
-  
-    
-  
+
 protected
   
   def validate

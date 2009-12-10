@@ -1,58 +1,58 @@
 <%= stylesheet('product_detail') %>
 <%= stylesheet('lightbox') %>
-<%= javascript('lightbox', 'shipping') %>
+<%= javascript('pebbles/lightbox', 'pebbles/shipping') %>
 <% title(@product.title ? @product.title : @product.name) -%>
 <% meta_keywords(@product.keywords) unless @product.name -%>
 <% meta_description(@product.description) unless @product.long_description -%>
 
 <div class="box1"><div class="box2"><div class="box3"><div class="box4 clearfix">
-	<h1><%= @product.name %></h1>
-	<h2><%= @product.subname %></h2>
-	<div id="product-detail">
-		<div id="product_image">
-		  <%= render "product_image", :image => @product.product_image %>
-		</div>
+        <h1><%= @product.name %></h1>
+        <h2><%= @product.subname %></h2>
+        <div id="product-detail">
+          <div id="product_image">
+            <%= render "product_image", :image => @product.product_image %>
+          </div>
 
-		<br/>
-		<h4 id="price"><%= number_to_currency(@product.product_or_first_variant_price) %></h4>
-		</div>
-		
-		<div id="product_attributes">
-		    <% if @is_wholesaler %>
-		     	Wholesale Price: <%= number_to_currency(@product.wholesale_price) %>
-		    <% end %>
-			<% form_for :product, @product, 
-						:url => cart_cart_items_path(current_cart),
-                		:html => { :id => "product" } do |form| %> 
-				<div id="product_options">
-					<%= render :partial => 'product_options', 
-                     :locals => { :product => @product } %>
-				</div>
-				
-				<div id="add_to_cart">		
-					<input type="hidden" name="id" value="<%= @product.id %>" id="product_id"><br/><br/>
-					Quantity: <%= text_field_tag :quantity, '1', :size => 3 %><br/><br/>
-				<div id="shipping">
-					<%= render :partial => 'shipping' %>
-				</div>
-				<div id="product_accessories">
-					<%= render :partial => 'product_accessories', 
-					 		   :locals => { :product => @product } %>
-				</div>
-					<span class="button">
-      			<div id="button"> 
-              <%= render :partial => 'add_to_cart',
-          				   	   :locals => { :out_of_stock => false } %>
-      			</div>
-					</span>
-				</div>
-			<% end %>
-		</div>
-		
-		<div class="clear"/>
-		<br/><br/>
-		<p><%= @product.short_description %></p>	
-		<br/><br/>
-	</div>
+          <br/>
+          <h4 id="price"><%= number_to_currency(@product.product_or_first_variant_price) %></h4>
+        </div>
+
+        <div id="product_attributes">
+          <% if @is_wholesaler %>
+            Wholesale Price: <%= number_to_currency(@product.wholesale_price) %>
+          <% end %>
+          <% form_for :product, @product,
+             :url => cart_cart_items_path(current_cart),
+             :html => { :id => "product" } do |form| %>
+          <div id="product_options">
+            <%= render :partial => 'product_options',
+                :locals => { :product => @product } %>
+          </div>
+
+          <div id="add_to_cart">
+            <input type="hidden" name="id" value="<%= @product.id %>" id="product_id"><br/><br/>
+            Quantity: <%= text_field_tag :quantity, '1', :size => 3 %><br/><br/>
+            <div id="shipping">
+              <%= render :partial => 'shipping' %>
+            </div>
+            <div id="product_accessories">
+              <%= render :partial => 'product_accessories',
+                  :locals => { :product => @product } %>
+            </div>
+            <span class="button">
+              <div id="button">
+                <%= render :partial => 'add_to_cart',
+                    :locals => { :out_of_stock => false } %>
+              </div>
+            </span>
+          </div>
+<% end %>
+</div>
+
+<div class="clear"/>
+<br/><br/>
+<p><%= @product.short_description %></p>
+<br/><br/>
+</div>
 
 </div></div></div></div>

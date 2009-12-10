@@ -54,6 +54,3 @@ config.to_prepare do
     ApplicationController.helper(class_name)
   end
 end
-
-
-

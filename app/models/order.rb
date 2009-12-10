@@ -81,9 +81,8 @@ class Order < ActiveRecord::Base
     cart.cart_items.each do |item|
       oi = OrderItem.from_cart_item(item)
       self.order_items << oi
-    end    
-    
-    self.calculate_order_costs
+    end 
+    #self.calculate_order_costs
   end
   
   # count all the order items, taking into consideration quantity

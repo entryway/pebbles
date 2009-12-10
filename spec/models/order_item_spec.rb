@@ -23,6 +23,7 @@ describe OrderItem do
 
     context "variant product" do
       before(:each) do
+        build_variant_cart
         build_variant_order_item      
       end
 

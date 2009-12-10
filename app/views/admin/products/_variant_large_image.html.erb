@@ -1,6 +1,6 @@
 <% if large_image.new_record? %>
   <% form_for [:admin, variant_image, large_image], 
-              :html => { :multipart => true, :class => 'variant_image_large_add' } do |form| %>
+              :html => { :multipart => true, :id => 'variant_image_large_add' } do |form| %>
     <p>
       <label for="uploaded_data">Upload Large Image:</label>
       <%= form.file_field :filename, :value => "Browse" %>

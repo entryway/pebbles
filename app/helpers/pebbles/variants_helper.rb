@@ -6,7 +6,7 @@ module Pebbles::VariantsHelper
   # @param[String] VariantImage The variant image to create a thumbnail link for.
   def variant_thumbnail(image)
     thumbnail = image.variant_image_thumbnail || image
-    image.filename.url
+    thumbnail.filename.url
   end
   
 end

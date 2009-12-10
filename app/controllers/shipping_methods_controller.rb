@@ -1,5 +1,6 @@
 class ShippingMethodsController < ApplicationController
   include ActionView::Helpers::NumberHelper
+  ssl_allowed :index, :update
   
   def index
     region = Region.find(params[:region_id])
@@ -10,10 +11,11 @@ class ShippingMethodsController < ApplicationController
     @subtotal = cart.sub_total
     @shipping_total = cart.shipping_total(@default_method)
     @grand_total = cart.grand_total(@shipping_total)
+    @order = true if params[:order]
 
     # change the active region
-    active_shipping_region_id = region.id
-    active_shipping_method_id = @default_method.id
+    self.active_shipping_region_id = region.id
+    self.active_shipping_method_id = @default_method.id
   end
   
   def update

@@ -1,7 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
    map.resources :users
    map.resources :promo_codes
-   map.resources :stores
    
    map.resource :session, :controller => 'sessions'
  

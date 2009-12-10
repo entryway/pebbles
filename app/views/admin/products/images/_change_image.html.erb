@@ -1,0 +1,10 @@
+<% form_for [:admin, product, image], 
+            :html => { :multipart => true, :id => 'product_image_edit' } do |form| %>
+  <p>
+    <label for="uploaded_data">Change Regular Image:</label>
+    <%= form.file_field :filename, :value => "Browse" %>
+  </p>
+  <p>
+    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
+  </p>
+<% end %>

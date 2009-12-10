@@ -1,6 +1,9 @@
 <%= render 'sidebar' %>
 
 <h1>Listing Products</h1>
+
+<%= will_paginate @products %>
+
 <div class="gt-table-controls clearfix">
   <table class="gt-list-table">
     <thead>

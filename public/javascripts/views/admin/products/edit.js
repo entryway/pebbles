@@ -10,6 +10,16 @@ jQuery(document).ready(function() {
     jQuery(this).ajaxSubmit(product_image_options); 
     return false; 
   });
+  jQuery('.edit-product-image').live('click', function() {
+    jQuery(this).nextAll('div.change-image').show();
+    return false;
+  });
+  jQuery('#product_image_edit').livequery( function() { 
+    jQuery(this).submit(function() { 
+      jQuery(this).ajaxSubmit(product_image_options); 
+      return false; 
+    })
+  });
   jQuery('.image_thumbnail_add').livequery( function() {
     jQuery(this).submit(function() { 
       jQuery(this).ajaxSubmit(product_image_options); 
@@ -99,7 +109,7 @@ jQuery(document).ready(function() {
 
     jQuery("#add_category").live("click", function() {
         var selected_category = parseInt(jQuery("#category_select").val());
-        var category_ids = eval(jQuery("#category_ids").val());
+        var category_ids = eval(jQuery("#category_ids").val() || []);
         var href = jQuery(this).attr('href');
         category_ids.push(selected_category);
         jQuery("#category_list").load(href, {'product[category_ids][]': category_ids, 
@@ -113,6 +123,9 @@ jQuery(document).ready(function() {
         var href = jQuery(this).attr('href');
         var category_index = category_ids.indexOf(category_to_remove);
         category_ids.splice(category_index, 1);
+        if (category_ids == "") { 
+          category_ids = [""];
+          }
         jQuery("#category_list").load(href, {'product[category_ids][]': category_ids, 
                                              _method: 'PUT'});
         return false;

@@ -1,7 +1,7 @@
 class ShippingMethod < ActiveRecord::Base
   belongs_to :region
   
-  has_many :flat_rate_shippings, :dependent => :destroy
+  has_many :flat_rate_shippings, :dependent => :destroy, :order => 'order_total_low asc'
   has_many :fulfillment_codes
   
   validates_presence_of :name 

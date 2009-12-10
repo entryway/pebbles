@@ -9,11 +9,13 @@ class AuthorizationsController < ApplicationController
     amount ||= @order.total_in_cents
     
     if @order.authorized?
-      @order.capture_payment(amount)
+      @order.capture_payment({:amount => amount})
     else
       @order.authorize_payment
     end
     @order.save!
+
+    render :partial => 'admin/orders/order_transactions'
   end
   
   
