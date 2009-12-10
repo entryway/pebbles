@@ -89,7 +89,10 @@
 	<div id="order_transactions">
 		<%= render :partial => "order_transactions" %>
 	</div>
-		
+	
+        <hr />
+        <label for="gift_note">Gift Note:</label><br/>
+        <p><%= @order.gift_note %>
 	<hr class='print-hide '/>
 	<label class='print-hide' for="admin_notes">Notes:</label><br/>
 	<span class='print-hide'><%= @order.admin_notes %></span><br/><br/>
