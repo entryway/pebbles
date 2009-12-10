@@ -8,6 +8,9 @@
             :class => 'gt-form-text', :focus => true %><br/>
   <label for="code">Code <span class="required-field">*</span>:</label>
   <%= form.text_field :code, :size => 10, :class => 'gt-form-text'  %>
+   <label for="minimum_ammount">Minimum Order Amount: $</label>
+  <%= form.text_field :minimum_order_amount, :size => 10, :class => 'gt-form-text' %>
+  <hr/>
   <label for="dollar_discount">Dollar Discount: $</label>
   <%= form.text_field :dollar_discount, :size => 10, 
             :class => 'gt-form-text'  %>
