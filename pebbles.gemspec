@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.2.23"
+  s.version = "0.2.24"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2009-12-14}
+  s.date = %q{2009-12-17}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
@@ -332,6 +332,7 @@ Gem::Specification.new do |s|
      "db/migrate/20091008143231_add_category_icon_table.rb",
      "db/migrate/20091012193601_add_category_icon_hovers_table.rb",
      "db/migrate/20091027175846_change_orderitem_column_length.rb",
+     "db/migrate/20091215163757_create_slugs.rb",
      "db/schema.rb",
      "db/seeds.rb",
      "lib/authenticated_system.rb",
