@@ -16,7 +16,7 @@ module Pebbles::Admin::ProductsHelper
   def setup_selection(option)
     returning(option) do |o|
       3.times do 
-        o.product_option_selections.build
+        option.product_option_selections.build
       end
     end
   end
@@ -26,5 +26,7 @@ module Pebbles::Admin::ProductsHelper
       "<a href='#' class=\"add-object\">add another #{object_name}</a>"
     end
   end
+  
+  safe_helper :add_another_link?
     
 end
