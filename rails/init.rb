@@ -27,17 +27,14 @@ class ActionController::Routing::RouteSet
 end
 
 config.gem 'activemerchant', :lib => 'active_merchant'
-config.gem 'collectiveidea-awesome_nested_set',
-           :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
+config.gem 'aasm', :version => '~> 2.0.2'
 config.gem 'carrierwave'
-config.gem 'stephencelis-acts_as_singleton',
-           :lib => 'acts_as_singleton', :source => 'http://gems.github.com'
+config.gem 'collectiveidea-awesome_nested_set'
+config.gem 'friendly_id'
 config.gem 'ssl_requirement', :source => 'http://74.207.230.57'
-config.gem 'rubyist-aasm', :version => '~> 2.0.2', :lib => 'aasm', 
-                           :source => 'http://gems.github.com'
-config.gem "friendly_id", :source => 'http://gemcutter.org/'
-config.gem 'mislav-will_paginate', :lib => 'will_paginate',
-                                   :source => 'http://gems.github.com'
+config.gem 'stephencelis-acts_as_singleton'
+config.gem 'will_paginate'
+
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')
