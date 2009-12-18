@@ -27,12 +27,12 @@ class ActionController::Routing::RouteSet
 end
 
 config.gem 'activemerchant', :lib => 'active_merchant'
+config.gem 'acts_as_singleton'
 config.gem 'aasm', :version => '~> 2.0.2'
 config.gem 'carrierwave'
-config.gem 'collectiveidea-awesome_nested_set'
+config.gem 'awesome_nested_set'
 config.gem 'friendly_id'
 config.gem 'ssl_requirement', :source => 'http://74.207.230.57'
-config.gem 'stephencelis-acts_as_singleton'
 config.gem 'will_paginate'
 
 
@@ -43,6 +43,7 @@ ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), ".."
   ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'app', path) 
 end
 ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'lib')
+
 
 config.to_prepare do
   helpers = Dir.glob(File.join(File.dirname(__FILE__), '..','app','helpers','pebbles', '**', '*.rb'))
