@@ -29,6 +29,8 @@ module Pebbles::CategoryHelper
       "<li class='branch category_item' id='#{category.id}'>"
     end
   end
+  
+  safe_helper :category_li, :category_icon, :category_image, :category_link
 
 end
 
