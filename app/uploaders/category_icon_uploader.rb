@@ -16,6 +16,10 @@ class CategoryIconUploader < CarrierWave::Uploader::Base
     "uploads/category_icons"
   end
 
+  def cache_dir
+    "#{RAILS_ROOT}/tmp/uploads"
+  end
+
   # Provide a default path as a default if there hasn't been a file uploaded
   #     def default_path
   #       "images/fallback/" + [version_name, "default.png"].compact.join('_')
