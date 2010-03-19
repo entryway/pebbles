@@ -28,5 +28,21 @@ describe "OrderFactory" do
       order = OrderFactory.create_web_order(@cart, @options)
       order.order_items.size.should == 2
     end
+    
+    it "should not apply free shipping when order is less than minimum amount" do 
+      promo_code = Factory(:promo_code, :free_shipping => true, :minimum_order_amount => 100.0)
+      @options[:order].merge!({:promo_code => promo_code.code})
+      order = OrderFactory.create_web_order(@cart, @options)
+      order.free_shipping.should == false
+      order.shipping_cost.should_not == 0.to_f
+    end
+      
+    it "should apply free shipping when order is greater than minimum amount" do
+      promo_code = Factory(:promo_code, :free_shipping => true, :minimum_order_amount => 3.0)
+      @options[:order].merge!({:promo_code => promo_code.code})
+      order = OrderFactory.create_web_order(@cart, @options)
+      order.free_shipping.should == true
+      order.shipping_cost.should == 0.to_f      
+    end
   end
 end

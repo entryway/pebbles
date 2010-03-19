@@ -8,8 +8,9 @@ module Pebbles::CategoryHelper
     end
   end
 
-  def category_image(category, css_class='')
-    category_image = category.category_images[0]
+  def category_image(category, css_class='', options = {})
+    index = options[:index] || 0
+    category_image = category.category_images[index]
     if category_image
       category_image = category_image.filename.url 
       image_tag(category_image, :class => css_class, :alt => "#{category.name}")
@@ -28,6 +29,8 @@ module Pebbles::CategoryHelper
       "<li class='branch category_item' id='#{category.id}'>"
     end
   end
+  
+  safe_helper :category_li, :category_icon, :category_image, :category_link
 
 end
 

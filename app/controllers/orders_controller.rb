@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
          
   def new
     @order = Order.new
-    @order.credit_card = CreditCard.new
+    @order.credit_card = CreditCard.new(:month => Date.today.month, :year => Date.today.year)
     @order.billing_address = Address.new
     @order.shipping_address = Address.new
     @cart = current_cart
@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
             @processing_error_message = error_message(exception)
             refresh_cart
             ExceptionNotifier.deliver_exception_notification(exception, self, request, params) 
-           render :action => 'new' and return
+            render :action => 'new' and return
           end
           # drop current cart
           begin
@@ -83,8 +83,8 @@ class OrdersController < ApplicationController
   private
   
   def refresh_cart
-    region = Region.find(active_shipping_region_id)
-    @shipping_methods = region.shipping_methods
+    @region = Region.find(active_shipping_region_id)
+    @shipping_methods = @region.shipping_methods
     @default_method = ShippingMethod.find(active_shipping_method_id)
    
     @cart ||= current_cart

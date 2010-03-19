@@ -6,23 +6,23 @@
   <table class="gt-list-table">
     <thead>
       <tr>
-	<th>Name</th>
-	<th>ID</th>
+      <th>Name</th>
+      <th>ID</th>
       </tr>
     </thead>
     <tbody>
-      <% for category in categories %>
-	<tr>
-	  <td id="<%= dom_id(category, 'name')%>"><%= category.name %></td>
-	  <td id="<%= dom_id(category, 'id')%>">
-	    <%= category.id %>
-	  </td>
-	  <td>
+      <% categories.each do |category| %>
+        <tr>
+          <td id="<%= dom_id(category, 'name')%>"><%= category.name %></td>
+          <td id="<%= dom_id(category, 'id')%>">
+            <%= category.id %>
+          </td>
+          <td>
             <%= link_to 'Remove', admin_product_path(@product), :class => 'remove_category',
-		  :confirm => "Are you sure you want to remove the product from #{category.name}" %>
+                :confirm => "Are you sure you want to remove the product from #{category.name}" %>
             <input type="hidden" name="category_id" value="<%= category.id %>"/>
           </td>
-	</tr>
+        </tr>
       <% end %>
     </tbody>
   </table>

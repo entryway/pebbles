@@ -2,10 +2,11 @@
 	<% form_for [:admin, @product, @product_image], 
 	            :html => { :multipart => true, :id => 'product_image_add' } do |form| %>
 	  <p>
-	    <label for="uploaded_data">Upload Regular Image:</label>
+	    <label for="uploaded_data">Upload Regular Image:</label><br>
 	    <%= form.file_field :filename, :value => "Browse" %>
 	  </p>
-	  <p>
+	  <%= render '/admin/products/images/dimensions', :type => 'products'%>
+ 	  <p>
 	    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
 	  </p>
 	<% end %>

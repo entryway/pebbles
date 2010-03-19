@@ -48,6 +48,8 @@ module Pebbles::OrdersHelper
     end
   end
   
+  safe_helper :country
+  
   def state(address, type)
     region_name = shipping_region(active_shipping_region_id)
     if region_name == "United States"

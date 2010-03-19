@@ -1,5 +1,11 @@
 (function($) { 
   $(document).ready(function(){
+      $('#post_authorize_link').click(function() {
+          var order_total = $('#post_authorize_amount').val();
+          $('#order_transactions').load($(this).attr('href'), { _method: 'put', post_authorize_amount: order_total}, 
+                                        $(this).hide()); 
+          return false;
+      });
     $('#print-packing-sheet').click( function() {
   		$('#logo').show();
   		window.print();

@@ -1,4 +1,4 @@
-<%= javascript('jquery/form', 'jquery/livequery') %>
+<%= javascript('pebbles/jquery/form', 'pebbles/jquery/livequery') %>
 <% content_for :sidebar do %>
   <ul>
     <li><%#= link_to 'Accessories', edit_admin_product_accessory_path(@product) %></li>
@@ -35,10 +35,6 @@
         </div> 
         <div id="p7tpc1_4">
         <%= render :partial => "categories" %>
-        </div>
-        <div id="p7tpc1_5">       
-        <%= render :partial => "/admin/products/out_of_stock_options/out_of_stock",
-                   :locals => { :product => @product } %>
         </div>
         <div id="p7tpc1_6">
               <%#= render :partial => "/admin/products/wholesale/wholesale",

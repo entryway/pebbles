@@ -1,12 +1,34 @@
 <% product.product_images.each do |image| %>
+ <p>Upload 3 different size images for the product.</p>
+ <p><em>First browse to your image file, then click upload.</em></p>
   <hr>
-  <h3>Regular Size:</h3><br/>
-  <div id="<%= dom_id(image, 'id') %>">
-    <%= image_tag image.filename.url, :name => "image_id" %>
+  <div id="<%= dom_id(image, 'id') %>" class="image-section regular">
+    <h2>Regular Size</h2>
+    <%= image_tag image.filename.url, :name => "image_id" %><br>
+    <%= link_to 'Change Image', '#', :class => "edit-product-image" %>
     <%= link_to 'Remove Image', admin_product_product_image_path(product, image), 
         :class => "destroy-product-image" %>
+    <div class='change-image' style="display:none">
+      </br>
+      <%= render '/admin/products/images/change_image', :product => product, :image => image %>
+    </div>
+  	<% form_for [:admin, @product, @product_image], 
+  	            :html => { :multipart => true, :id => 'product_image_add' } do |form| %>
+	    <div class="error">
+	      <p>First browse to your image file, then click upload.</p>
+	    </div>
+	    <label for="uploaded_data">Upload Regular Image:</label>
+	    <%= form.file_field :filename, :value => "Browse" %>
+
+  	  <%= render '/admin/products/images/dimensions', :type => 'products'%>
+   	  <p>
+  	    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
+  	  </p>
+  	<% end %>
   </div>
-  <div>
+  <div class="image-section thumb">
+    <h2>Thumbnail Size</h2>
+    
     <% if image.product_image_thumbnail %>
       <%= render '/admin/products/images/image_thumbnail_list', 
                  :image => image, :thumbnail => image.product_image_thumbnail %>
@@ -15,7 +37,8 @@
                 :image => image, :thumbnail => image.build_product_image_thumbnail %>
     <% end %>
   </div>
-  <div>
+  <div class="image-section large">
+    <h2>Enlarged Size</h2>
     <% if image.product_large_image %>
       <%= render '/admin/products/images/image_large_list', 
                  :image => image, :large_image => image.product_large_image %>

@@ -39,7 +39,7 @@
         display = @hide_object ? "style=display:none" : ""
         @hide_object = object.new_record?
         return display
-      end
+      end  
       
       def button_to_remote name, options = {}
         button_to_function name, remote_function(options)

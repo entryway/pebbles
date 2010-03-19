@@ -1,21 +1,11 @@
 <div id="category-drop-down">
   <br/><h2>Category:</h2>
-  <select id="category_select" name="category_ids[]">
-    <% for category in @categories %>
-      <% if category.level == 1 %>
-	<option value="<%= category.id %>" <%= disable(category, @product) %>>
-          <%= category.name %>
-        </option>
-	<% if category.children.size > 0 %>
-	  <% category.children.each do |subcat| %>
-	    <option value="<%= subcat.id %>" <%= disable(subcat, @product) %>>
-              &nbsp;&nbsp;&nbsp;&nbsp;<%= subcat.name %>
-            </option>
-	  <% end %>
-	<% end %>
-      <% end %>
-    <% end %>
-  </select>
+  <%= select_tag 'category_ids[]', 
+                  options_for_select(nested_set_options(Category.root.children) do 
+                    |i| raw("#{'&nbsp;&nbsp;' * (i.level - 1)} #{i.name}") 
+                  end, 
+                  :disabled => @product.category_ids), :id => 'category_select'  %>
+
   <%= link_to "Add Category", admin_product_path(@product), :id => 'add_category' %>
 </div>
 <br/><br/>

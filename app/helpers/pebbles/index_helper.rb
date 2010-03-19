@@ -11,7 +11,7 @@ module Pebbles::IndexHelper
         cell += "<td>"
         if !product.product_images.empty?
           cell += link_to \
-                  image_tag(product.product_images[0].public_filename(), \
+                  image_tag(product.product_images[0].filename.url, \
                   :width => '146', :height => '141'), \
                   :controller => 'products', :action => 'show', :id => product.id
         end

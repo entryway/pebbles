@@ -27,15 +27,14 @@ class ActionController::Routing::RouteSet
 end
 
 config.gem 'activemerchant', :lib => 'active_merchant'
-config.gem 'collectiveidea-awesome_nested_set',
-           :lib => 'awesome_nested_set',  :source => 'http://gems.github.com'
+config.gem 'acts_as_singleton'
+config.gem 'aasm'
 config.gem 'carrierwave'
-config.gem 'stephencelis-acts_as_singleton',
-           :lib => 'acts_as_singleton', :source => 'http://gems.github.com'
+config.gem 'awesome_nested_set'
+config.gem 'friendly_id'
 config.gem 'ssl_requirement', :source => 'http://74.207.230.57'
-config.gem 'rubyist-aasm', :version => '~> 2.0.2', :lib => 'aasm', 
-                           :source => 'http://gems.github.com'
-config.gem "friendly_id", :source => 'http://gemcutter.org/'
+config.gem 'will_paginate'
+
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')
@@ -45,6 +44,7 @@ ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), ".."
 end
 ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'lib')
 
+
 config.to_prepare do
   helpers = Dir.glob(File.join(File.dirname(__FILE__), '..','app','helpers','pebbles', '**', '*.rb'))
   helpers.each do |helper_file|
@@ -52,6 +52,3 @@ config.to_prepare do
     ApplicationController.helper(class_name)
   end
 end
-
-
-

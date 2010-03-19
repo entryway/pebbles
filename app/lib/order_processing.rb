@@ -48,9 +48,15 @@ module OrderProcessing
     #    amount is a member of the hash to overide to deafult self.total_in_cents
     def capture_payment(options = {})
       options = populate_options if options.size == 0
-      options[:amount] ||= self.total_in_cents
+
+      amount = if options[:amount] 
+        options[:amount] * 100
+      else
+        self.total_in_cents
+      end
+
       transaction do
-        capture = OrderTransaction.capture(options[:amount], authorization_reference, options)
+        capture = OrderTransaction.capture(amount, authorization_reference, options)
         self.transactions << capture
         if capture.success?
           payment_captured!
@@ -86,9 +92,7 @@ private
     def process_web_order
       initialize_order
       if self.payment_type == 'credit_card'
-        process_with_active_merchant
-        puts self.transactions.inspect
-        
+        process_with_active_merchant 
 
         unless self.paid? || self.authorized?
           msg = self.transactions[0].params['error']

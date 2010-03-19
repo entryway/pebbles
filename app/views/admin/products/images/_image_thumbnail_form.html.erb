@@ -5,7 +5,8 @@
 	    <label for="uploaded_data">Upload Thumbnail Image:</label>
 	    <%= form.file_field :filename, :value => "Browse" %>
 	  </p>
-	  <p>
+	  <%= render '/admin/products/images/dimensions', :type => 'thumbnail'%>
+    <p>
 	    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
 	  </p>
 	<% end %>

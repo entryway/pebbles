@@ -1,2 +1,5 @@
-<%= ', ' if cart_item_selections_counter != 0 -%>
-<%= cart_item_selections.product_option_selection.name -%>
+<% if cart_item_selections_counter > 0 %>
+  &nbsp;&nbsp;
+<% end %>
+<%= selection.product_option.name -%>:
+<%= selection.name -%>
