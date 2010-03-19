@@ -27,9 +27,10 @@ begin
     gem.email = "bobbywilson0@gmail.com"
     gem.homepage = "http://github.com/entryway/pebbles"
     gem.authors = ["gustin", "jonsgreen", "bobbyw"]
-    gem.add_dependency "awesome_nested_set"
-    gem.add_dependency "ssl_requirement"
-    gem.add_development_dependency "thoughtbot-factory_girl"
+    gem.add_dependency 'erubis'
+    gem.add_dependency 'awesome_nested_set'
+    gem.add_dependency 'ssl_requirement'
+    gem.add_development_dependency 'thoughtbot-factory_girl'
     gem.add_dependency 'carrierwave'
     gem.add_dependency 'friendly_id'
     gem.add_dependency 'will_paginate'
