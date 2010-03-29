@@ -1,35 +1,20 @@
 module ShippingCalculations
+  # TODO: Move shipping calculations specific to separate modules in ShippingCalc namespace
+  #include FlateRateShippingCalculations
+  #include RealTimeShippingCalculations
 
   def calculate_shipping_costs
-    calculate_flat_rate_shipping
-  end
-  
-  ##
-  # Calculates flat rate shipping cost
-  #
-  # @return [Float] price shipping price
-  def calculate_flat_rate_shipping
     price = 0
     unless self.free_shipping
       shipping_method = ShippingMethod.find(self.shipping_method_id)
-      price = flat_rate_shipping_cost(shipping_method)
+      price = shipping_method.flat_rate_shipping_cost(self)
     end
     price
   end
+
   
-  ##
-  # flat rate shipping cost
-  #
-  # @param [ShippingMethod] the selected shipping_method
-  # @return [Float] shipping cost
-  def flat_rate_shipping_cost(shipping_method)
-    if shipping_method.flat_rate_shippings.size > 0
-      shipping_method.flat_rate_by_order_total(self.sub_total)
-    else
-      shipping_method.flat_rate_by_base_rate(self.line_items)
-    end
-  end
- 
+private
+
   # calculate cost for product item
   def self.product_quote(product_id, quantity, zipcode, accessories = [])
     product = Product.find(product_id)
@@ -60,7 +45,7 @@ module ShippingCalculations
     shipping_total
   end
   
-  private
+
   def self.flat_rate_shipping_quote(product, accessories, zipcode, quantity)
     quote = product.flat_rate_shipping * quantity
     specifications = Array.new

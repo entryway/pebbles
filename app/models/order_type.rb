@@ -5,7 +5,7 @@ class OrderType
 
   LIST = [["ALL", OrderType::ALL,
            "WEB", OrderType::EBAY,
-					 "EBAY", OrderType::WEB]]
+           "EBAY", OrderType::WEB]]
 
   def self.type(id)
     case id

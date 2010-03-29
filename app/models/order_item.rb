@@ -1,14 +1,8 @@
 class OrderItem < ActiveRecord::Base
   
-  #acts_as_reportable 
-  
   belongs_to :order 
   belongs_to :product
   belongs_to :variant
-  
-  # before_create do
-  #   |order_item| order_item.check_inventory if GeneralConfiguration.instance.inventory_management 
-  # end
   
   def self.from_cart_item(cart_item)
     oi = self.new
