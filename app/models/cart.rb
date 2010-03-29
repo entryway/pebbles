@@ -36,7 +36,7 @@ class Cart < ActiveRecord::Base
   # shipping totals
   def shipping_total(shipping_method)
     self.shipping_method_id = shipping_method
-    calculate_flat_rate_shipping
+    calculate_shipping_costs
   end
   
   # calculate total price
