@@ -6,15 +6,28 @@ module ShippingCalculations
   def calculate_shipping_costs
     price = 0
     unless self.free_shipping
-      shipping_method = ShippingMethod.find(self.shipping_method_id)
-      price = shipping_method.flat_rate_shipping_cost(self)
+      price = calculate_flat_rate_shipping
     end
     price
   end
 
   
 private
+  
+  ##
+  # Calculate shipping cost using flat rates of order total.
+  #
+  # return [Integer] The calculated shipping price.
+  def calculate_flat_rate_shipping
+    shipping_method = ShippingMethod.find(self.shipping_method_id)
+    price = shipping_method.flat_rate_shipping_cost(self)
+  end
 
+
+###
+#### REFACTOR: All of this is from people powered machines and needs review
+###
+  
   # calculate cost for product item
   def self.product_quote(product_id, quantity, zipcode, accessories = [])
     product = Product.find(product_id)
@@ -28,7 +41,8 @@ private
     end 
     quote
   end
-  
+
+
   # calculates total shipping cost
   def calculate_real_time_shipping(items, zipcode)
     grouped_items = items.group_by { |item| item.product.vendor }

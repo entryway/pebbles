@@ -67,16 +67,12 @@ private
   # @return [Float] The total minus freely shipping products.
   def order_total_minus_freely_shipped_products(cart_or_order)
     total = cart_or_order.sub_total
-    puts 'first: ' + total.to_s
-    puts cart_or_order.products.size
-    cart_or_order.products.each do |p| 
-      puts p.name + p.free_shipping.to_s
-      if p.free_shipping 
-        puts 'FREE Shipping'
-        total -= p.price 
+    cart_or_order.line_items.each do |line_item| 
+      product = line_item.product
+      if product.free_shipping 
+        total -= (product.price * line_item.quantity)
       end
     end
-    puts 'second: ' + total.to_s
     total
   end
 

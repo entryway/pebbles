@@ -49,15 +49,23 @@ class Cart < ActiveRecord::Base
      (sub_total + shipping_total) * 100
   end
 
-  # add the product to the cart with any accessories selected
+  ##
+  # Add the product to the cart with any options selected.
+  #
+  # @param [Integer] product_id Id of product to add. # TODO change to product
+  # @param [Integer] quantity The number of products to add. 
+  # @param [Array] options List of options that were selected for the product. 
+  # @return [CartItem] The newly created or existing cart item. 
   def add_product(product_id, quantity, options)
+    cart_item = nil
     Cart.transaction do
       options ||= Array.new
       product = Product.find(product_id)
       variant = product.find_variant_by_selection_ids(options)
       cart_item = find_product_or_variant(product, variant)
-      add_to_cart(cart_item, product, quantity, variant)
+      cart_item = add_to_cart(cart_item, product, quantity, variant)
     end
+    cart_item
   end
   
   ##
@@ -71,6 +79,23 @@ class Cart < ActiveRecord::Base
     cart_items.find(:first, :conditions => { :product_id => product, :variant_id => variant })
   end
   
+
+  def tax_total
+    tax = 0
+    tax = TaxRate.calculate_tax(billing_state, sub_total) if billing_state
+    tax
+  end
+
+private
+
+  ##
+  # Add a cart item to the cart. 
+  #
+  # @param [CartItem] cart_item An existing cart item or a new one will be created.
+  # @param [Product] product The product to add to the cart.
+  # @param [Integer] quantity The number of products to add.
+  # @param [Variant] variant The product variant connected to the product.
+  # @return [CartItem] The newly created or exiting cart item.
   def add_to_cart(cart_item, product, quantity, variant)
     if cart_item
       # increase quantity, exists
@@ -84,12 +109,8 @@ class Cart < ActiveRecord::Base
       cart_item.quantity = CartItem.valid_quantity(quantity)
       cart_items << cart_item
     end
+    cart_item
   end
   
-  def tax_total
-    tax = 0
-    tax = TaxRate.calculate_tax(billing_state, sub_total) if billing_state
-    tax
-  end
 
 end 
