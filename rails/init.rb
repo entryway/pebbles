@@ -28,7 +28,7 @@ end
 
 config.gem 'activemerchant', :lib => 'active_merchant'
 config.gem 'acts_as_singleton'
-config.gem 'aasm', :version => '~> 2.0.2'
+config.gem 'aasm'
 config.gem 'carrierwave'
 config.gem 'awesome_nested_set'
 config.gem 'friendly_id'

@@ -30,6 +30,7 @@ fieldset {
 
 label {
 	font-weight: bold;
+	display: block;
 }
 
 hr {
@@ -107,6 +108,20 @@ hr {
 #post_authorize {
 	float: right;
 	width: 100px;
+}
+
+/* Product Images
+--------------------------------------------------------------------------------------*/
+.image-section {
+  background-color: #fff;
+  border: 1px solid #eee;
+  margin: 1em 0;
+  padding: 1em;
+}
+
+.image-section img {
+  border: 1px solid #eee;
+  padding: 1em;
 }
 
 

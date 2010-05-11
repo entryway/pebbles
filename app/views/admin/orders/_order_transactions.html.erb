@@ -2,26 +2,26 @@
   <b class="print-hide">Credit Card: </b><%= @order.credit_card_display %><br/><br/>
   <b class='print-hide'>Transactions</b><br/>
   <div class="gt-table-controls clearfix print-hide">
-	  <table class="gt-list-table print-hide">
-		<tr> 
-			<th>Action</th>
-			<th>Amount</th>
-			<th>Success</th>
-			<th>Message</th>
-			<th>Params</th>
-			<th>Test</th>
-			<th>Created</th>
-		</tr>
-		<% @order.transactions.each do |transaction| %>
-		<tr>
-			<td><b><%= transaction.action %></b></td>
-			<td><b><%= number_to_currency(transaction.amount/100.00) %></b></td>
-			<td><b><%= transaction.success %></b></td>
-			<td><b><%= transaction.message %></b></td>
-			<td><%= transaction.params %></td>
-			<td><b><%= transaction.test %></b></td>
-			<td><%= nice_date(transaction.created_at) %></td>
-		</tr>
-		<% end %>
-	  </table>
+    <table class="gt-list-table print-hide">
+    <tr> 
+      <th>Action</th>
+      <th>Amount</th>
+      <th>Success</th>
+      <th>Message</th>
+      <th>Params</th>
+      <th>Test</th>
+      <th>Created</th>
+    </tr>
+    <% @order.transactions.each do |transaction| %>
+    <tr>
+      <td><b><%= transaction.action %></b></td>
+      <td><b><%= number_to_currency(transaction.amount/100.00) %></b></td>
+      <td><b><%= transaction.success %></b></td>
+      <td><b><%= transaction.message %></b></td>
+      <td><%= transaction.params %></td>
+      <td><b><%= transaction.test %></b></td>
+      <td><%= nice_date(transaction.created_at) %></td>
+    </tr>
+    <% end %>
+    </table>
   </div>

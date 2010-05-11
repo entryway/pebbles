@@ -2,7 +2,7 @@
 	<% form_for [:admin, image, large_image], 
 	            :html => { :multipart => true, :class => 'image_large_add' } do |form| %>
 	  <p>
-	    <label for="uploaded_data">Upload Large Image:</label>
+	    <label for="uploaded_data">Upload Enlarged Image:</label>
 	    <%= form.file_field :filename, :value => "Browse" %>
 	  </p>
 	  <%= render '/admin/products/images/dimensions', :type => 'large'%>

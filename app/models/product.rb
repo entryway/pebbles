@@ -113,7 +113,9 @@ class Product < ActiveRecord::Base
   
   # gets the price adjustment for the product when an accessory of a given product
   def accessory_price(product)
-    product_accessory = product.product_accessories.find(:first, :conditions => {:accessory_id => self.id})
+    product_accessory = product.product_accessories.find(:first,  
+                                                         :conditions => 
+                                                          { :accessory_id => self.id } )
     price = self.price + (product_accessory.price_adjustment || 0)
   end
   

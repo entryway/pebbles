@@ -86,12 +86,12 @@
   <span><%= @order.shipping_method %></span>
   <br/>
   <%= render :partial => "order_totals" %>
-  <div id="order_transactions">
+  <div id="order_transactions" class="print-hide">
     <%= render :partial => "order_transactions" %>
   </div>
   <hr />
   <label for="gift_note">Gift Note:</label><br/>
-  <p><%#= @order.gift_note %>
+  <p><%= @order.gift_note %>
   <hr class='print-hide '/>
   <label class='print-hide' for="admin_notes">Notes:</label><br/>
   <span class='print-hide'><%= @order.admin_notes %></span><br/><br/>
@@ -104,7 +104,7 @@
   </div>
   <div style="clear:both"></div>
 
-  <%= link_to image_tag('gt/btn-edit.jpg'), edit_admin_order_path(@order) %>
+  <%= link_to image_tag('gt/btn-edit.jpg'), edit_admin_order_path(@order), :class => 'print-hide' %>
   
       </div>
     </div>

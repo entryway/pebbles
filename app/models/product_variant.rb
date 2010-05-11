@@ -72,7 +72,7 @@ module ProductVariant
   def generate_variant(selection_ids)
     selections = ProductOptionSelection.find(selection_ids)
     variant_price = self.price + selections.inject(0){|sum, s| sum + s.price_adjustment }
-    variant_weight = self.weight + selections.inject(0){|sum, s| sum + s.weight_adjustment }
+    variant_weight = (self.weight || 0) + selections.inject(0){|sum, s| sum + s.weight_adjustment }
     variant = self.variants.create(:price => variant_price, :weight => variant_weight, 
                                    :inventory => 0, :sku => self.sku)
     selections.each do |s|

@@ -7,13 +7,17 @@ class CategoryIconUploader < CarrierWave::Uploader::Base
   #     include CarrierWave::ImageScience
 
   # Choose what kind of storage to use for this uploader
-  storage :file
-  #     storage :s3
+  #storage :file
+  #storage :s3
 
   # Override the directory where uploaded files will be stored
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/category_icons"
+  end
+
+  def cache_dir
+    "#{RAILS_ROOT}/tmp/uploads"
   end
 
   # Provide a default path as a default if there hasn't been a file uploaded

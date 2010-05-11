@@ -16,6 +16,7 @@ class ShippingMethodsController < ApplicationController
     # change the active region
     self.active_shipping_region_id = region.id
     self.active_shipping_method_id = @default_method.id
+    render :layout => false
   end
   
   def update
