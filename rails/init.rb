@@ -31,7 +31,7 @@ config.gem 'acts_as_singleton'
 config.gem 'aasm'
 config.gem 'carrierwave'
 config.gem 'awesome_nested_set'
-config.gem 'friendly_id'
+config.gem 'friendly_id', :version => '2.3.3'
 config.gem 'ssl_requirement', :source => 'http://74.207.230.57'
 config.gem 'will_paginate'
 

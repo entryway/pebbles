@@ -29,7 +29,11 @@ class Category < ActiveRecord::Base
     self.move_to_left_of options[:right].to_i if options[:right] =~ /\d/
   end
    
-  # return the products paged
+  ##
+  # The products paged.
+  #
+  # @params [Integer] page The current page to return.
+  # @params [Integer] product_per_page The number of products to return per page.
   def paged_products(page, product_per_page)
      products.available.paginate :per_page => product_per_page, 
                                  :page => page, 
