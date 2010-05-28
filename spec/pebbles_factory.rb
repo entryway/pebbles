@@ -33,11 +33,6 @@ Factory.define :configuration do |f|
   f.shipping_type  ShippingType::REAL_TIME_SHIPPING
 end
 
-Factory.define :tax_rate do |f|
-  f.rate            0.05
-  f.state           'VA'
-end
-
 Factory.define :address do |f|
   f.address_1       "nowhere"
   f.city            "Floyd"
