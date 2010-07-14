@@ -27,14 +27,15 @@ class ActionController::Routing::RouteSet
 end
 
 
+config.gem 'erubis'
+
 config.gem 'activemerchant', :lib => 'active_merchant', :version => '1.4.2'
 config.gem 'awesome_nested_set', :version => '1.4.3'
 config.gem 'geokit', :version  => '1.5.0'
 config.gem 'friendly_id', :version => '2.3.3'
 config.gem 'net-ssh', :lib => 'net/ssh', :version => '2.0.15'
 config.gem 'will_paginate', :version => '~> 2.3.11' 
-config.gem 'ssl_requirement'#, :source => 'http://74.207.230.57'
-
+#config.gem 'ssl_requirement'#, :source => 'http://74.207.230.57'
 
 config.gem 'acts_as_singleton', :version => '0.0.3'
 config.gem 'aasm', :version => '2.0.2'
