@@ -9,11 +9,12 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2010-01-12}
+  s.date = %q{2010-07-15}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{bobbywilson0@gmail.com}
   s.files = [
     ".gitignore",
+     ".rvmrc",
      "Rakefile",
      "VERSION",
      "app/controllers/admin/accessories_controller.rb",
@@ -330,14 +331,29 @@ Gem::Specification.new do |s|
      "db/migrate/20090916031338_create_table_variants.rb",
      "db/migrate/20090916032132_create_table_variant_selections.rb",
      "db/migrate/20090928030909_add_general_configuration_table.rb",
-     "db/migrate/20091001212916_add_variant_image_table.rb",
      "db/migrate/20091002033255_add_variant_image_thumbnail_and_large_tables.rb",
      "db/migrate/20091008143231_add_category_icon_table.rb",
      "db/migrate/20091012193601_add_category_icon_hovers_table.rb",
      "db/migrate/20091027175846_change_orderitem_column_length.rb",
      "db/migrate/20091215163757_create_slugs.rb",
+     "db/migrate/20100319212157_add_no_shipping_flag_to_products.rb",
      "db/schema.rb",
      "db/seeds.rb",
+     "generators/pebbles_configuration/pebbles_configuration_generator.rb",
+     "generators/pebbles_configuration/templates/config/config.yml",
+     "generators/pebbles_configuration/templates/config/initializers/load_config.rb",
+     "generators/pebbles_migrations/pebbles_migrations_generator.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_add_category_icon_hovers_table.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_add_category_icon_table.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_add_general_configuration_table.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_add_no_shipping_flag_to_products.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_add_variant_image_table.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_add_variant_image_thumbnail_and_large_tables.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_change_orderitem_column_length.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_create_slugs.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_create_table_variant_selections.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_create_table_variants.rb",
+     "generators/pebbles_migrations/templates/migrations/pebbles_initial_schema_load.rb",
      "lib/authenticated_system.rb",
      "lib/authenticated_test_helper.rb",
      "lib/hijacker.rb",
@@ -463,6 +479,7 @@ Gem::Specification.new do |s|
      "public/stylesheets/print-base.css",
      "public/stylesheets/reset-fonts.css",
      "rails/init.rb",
+     "rails/tasks/pebbles.rake",
      "spec/cart_builder.rb",
      "spec/factories/cart.rb",
      "spec/factories/cart_item.rb",
@@ -473,6 +490,7 @@ Gem::Specification.new do |s|
      "spec/factories/product_option_selection.rb",
      "spec/factories/promo_code.rb",
      "spec/factories/shipping_method.rb",
+     "spec/factories/tax_rate.rb",
      "spec/lib/inventory_spec.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/order_factory_spec.rb",
@@ -624,66 +642,73 @@ Gem::Specification.new do |s|
      "vendor/plugins/role_requirement/test/controller_stub.rb",
      "vendor/plugins/role_requirement/test/functional/test_role_controller.rb",
      "vendor/plugins/role_requirement/test/test_helper.rb",
-     "vendor/plugins/role_requirement/test/user_stub.rb"
+     "vendor/plugins/role_requirement/test/user_stub.rb",
+     "vendor/plugins/ssl_requirement/README",
+     "vendor/plugins/ssl_requirement/lib/ssl_requirement.rb",
+     "vendor/plugins/ssl_requirement/test/ssl_requirement_test.rb"
   ]
   s.homepage = %q{http://github.com/entryway/pebbles}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{ecommerce}
   s.test_files = [
-    "spec/cart_builder.rb",
-     "spec/factories/cart.rb",
-     "spec/factories/cart_item.rb",
-     "spec/factories/category.rb",
-     "spec/factories/credit_card.rb",
-     "spec/factories/order.rb",
-     "spec/factories/product_option.rb",
-     "spec/factories/product_option_selection.rb",
-     "spec/factories/promo_code.rb",
-     "spec/factories/shipping_method.rb",
-     "spec/lib/inventory_spec.rb",
-     "spec/lib/order_calculations_spec.rb",
-     "spec/lib/order_factory_spec.rb",
-     "spec/lib/shipping_calculations_spec.rb",
+    "spec/models/product_spec.rb",
+     "spec/models/product_accessory_spec.rb",
+     "spec/models/shipping_fulfillment_spec.rb",
      "spec/models/cart_item_spec.rb",
      "spec/models/cart_spec.rb",
-     "spec/models/category_spec.rb",
-     "spec/models/order_item_spec.rb",
-     "spec/models/product_accessory_spec.rb",
-     "spec/models/product_spec.rb",
      "spec/models/promo_code_spec.rb",
-     "spec/models/shipping_fulfillment_spec.rb",
+     "spec/models/order_item_spec.rb",
+     "spec/models/category_spec.rb",
      "spec/models/shipping_method_spec.rb",
-     "spec/order_builder.rb",
-     "spec/order_factory.rb",
+     "spec/factories/category.rb",
+     "spec/factories/shipping_method.rb",
+     "spec/factories/credit_card.rb",
+     "spec/factories/tax_rate.rb",
+     "spec/factories/order.rb",
+     "spec/factories/cart_item.rb",
+     "spec/factories/cart.rb",
+     "spec/factories/product_option_selection.rb",
+     "spec/factories/promo_code.rb",
+     "spec/factories/product_option.rb",
      "spec/pebbles_factory.rb",
-     "spec/spec_helper.rb"
+     "spec/cart_builder.rb",
+     "spec/order_builder.rb",
+     "spec/spec_helper.rb",
+     "spec/order_factory.rb",
+     "spec/lib/shipping_calculations_spec.rb",
+     "spec/lib/order_factory_spec.rb",
+     "spec/lib/order_calculations_spec.rb",
+     "spec/lib/inventory_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<erubis>, [">= 0"])
       s.add_runtime_dependency(%q<awesome_nested_set>, [">= 0"])
       s.add_runtime_dependency(%q<ssl_requirement>, [">= 0"])
-      s.add_development_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
+      s.add_development_dependency(%q<factory_girl>, [">= 0"])
       s.add_runtime_dependency(%q<carrierwave>, [">= 0"])
       s.add_runtime_dependency(%q<friendly_id>, [">= 0"])
       s.add_runtime_dependency(%q<will_paginate>, [">= 0"])
     else
+      s.add_dependency(%q<erubis>, [">= 0"])
       s.add_dependency(%q<awesome_nested_set>, [">= 0"])
       s.add_dependency(%q<ssl_requirement>, [">= 0"])
-      s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
+      s.add_dependency(%q<factory_girl>, [">= 0"])
       s.add_dependency(%q<carrierwave>, [">= 0"])
       s.add_dependency(%q<friendly_id>, [">= 0"])
       s.add_dependency(%q<will_paginate>, [">= 0"])
     end
   else
+    s.add_dependency(%q<erubis>, [">= 0"])
     s.add_dependency(%q<awesome_nested_set>, [">= 0"])
     s.add_dependency(%q<ssl_requirement>, [">= 0"])
-    s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
+    s.add_dependency(%q<factory_girl>, [">= 0"])
     s.add_dependency(%q<carrierwave>, [">= 0"])
     s.add_dependency(%q<friendly_id>, [">= 0"])
     s.add_dependency(%q<will_paginate>, [">= 0"])

@@ -1,4 +1,4 @@
-class AddVariantImageTable < ActiveRecord::Migration
+class PebblesAddVariantImageTable < ActiveRecord::Migration
   def self.up
     create_table "variant_images", :force => true do |t|
       t.string  "filename"
