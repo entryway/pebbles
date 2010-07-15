@@ -10,7 +10,7 @@
         <h2><%= @product.subname %></h2>
         <div id="product-detail">
           <div id="product_image">
-            <%= render "product_image", :image => @product.product_image %>
+            <%= render "product_image", :image => @product.product_image rescue 'missing.png' %>
           </div>
 
           <br/>
@@ -36,7 +36,7 @@
               <%= render :partial => 'shipping' %>
             </div>
             <div id="product_accessories">
-              <%= render :partial => 'product_accessories',
+              <%#= render :partial => 'product_accessories',
                   :locals => { :product => @product } %>
             </div>
             <span class="button">

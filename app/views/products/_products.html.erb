@@ -3,7 +3,7 @@
 	<div class="smallroundbox <%= 'boxright' if (count % 2 == 0) %>">
 	  <div class="boxcontainer">
 	    <div class="photobox">
-		 	  <%= link_to image_tag(product.product_image(true)), 	 
+		 	  <%= link_to product.name, 	 
 		                category_product_path(product.category, product) %>
 		  </div> <!-- /photobox -->
 
