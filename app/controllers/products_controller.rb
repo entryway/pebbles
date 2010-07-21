@@ -2,7 +2,6 @@ class ProductsController < ApplicationController
   include ShippingCalculations
   layout 'shopping'
 
-
   before_filter :ensure_current_post_show_url, :only => :show  
   before_filter :ensure_current_post_index_url, :only => :index  
 
@@ -12,7 +11,12 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html # index.rhtml
-      format.xml  { render :xml => @product.to_xml }
+      format.js do
+        products = @category.paged_products(params[:page], 9)
+        render :partial =>  '/products/product_items', 
+               :locals => { :products => products }
+        
+      end
     end
   end
 
