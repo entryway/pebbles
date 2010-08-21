@@ -24,16 +24,9 @@ begin
     gem.name = "pebbles"
     gem.summary = %Q{ecommerce}
     gem.description = %Q{entryway's ecommerce solution}
-    gem.email = "bobbywilson0@gmail.com"
+    gem.email = "dev@entryway.net"
     gem.homepage = "http://github.com/entryway/pebbles"
     gem.authors = ["gustin", "jonsgreen", "bobbyw"]
-    gem.add_dependency 'erubis'
-    gem.add_dependency 'awesome_nested_set'
-    gem.add_dependency 'ssl_requirement'
-    gem.add_development_dependency 'thoughtbot-factory_girl'
-    gem.add_dependency 'carrierwave'
-    gem.add_dependency 'friendly_id'
-    gem.add_dependency 'will_paginate'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
