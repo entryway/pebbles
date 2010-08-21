@@ -8,7 +8,6 @@ class ShippingsController < ApplicationController
     # create an array of selected accessory ids; note that it helps to reject the collected nil
     accessories = ProductAccessory.selected_accessories(params[:accessories]) if params[:accessories]                        
     @shipping = ShippingCalculations.product_quote(product_id, quantity, zipcode, accessories)
-    puts "******#{@shipping}"
     render :partial => 'products/shipping'
   end
     

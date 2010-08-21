@@ -37,17 +37,14 @@ class Category < ActiveRecord::Base
   def paged_products(page, product_per_page)
      products.available.paginate :per_page => product_per_page, 
                                  :page => page, 
-                                 :order => "name"
+                                 :order => 'name'
   end
 
   ##
   # A random set of products from all the children.
-  
- 
   def descended_paged_products(page, product_per_page)
-
     products = Array.new
-    descendants.active.each do |category|
+    self_and_descendants.active.each do |category|
       products += category.products.available
     end
     products.uniq.paginate(:page => page, :per_page => product_per_page)
@@ -61,14 +58,6 @@ class Category < ActiveRecord::Base
   def self.position_sorted
     return [] if root.nil?
     root.children.position_sorted.active
-  end
-  
-  def alpha_sorted
-    children.sort_by { |a| a.name }
-  end
-  
-  def self.alpha_sorted
-    root.children.sort_by { |a| a.name }
   end
   
   def active_children

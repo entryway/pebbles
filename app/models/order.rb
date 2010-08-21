@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
   attr_accessor :credit_card
   attr_accessor :region_id
   attr_accessor :invalid
-  
+  attr_accessor :opt_in
   #protect these fields from values that were
   #inserted into the request intentionally
   attr_protected :id, :credit_card, :customer_ip, :updated_at, :created_at

@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @categories = @category.children.active
     @products = @category.paged_products(params[:page], 15)
+
     respond_to do |format|
       format.html
       format.js do

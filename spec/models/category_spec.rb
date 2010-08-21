@@ -38,7 +38,7 @@ describe Category do
     cute_tube.active = false
     cute_tube.save!
 
-    womens = @women.active_descendants
+    womens = @women.active_children
     womens[0].name.should_not == 'cute-tube'
   end
 
