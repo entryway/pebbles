@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   layout 'shopping'
 
   ssl_required :new, :create
-         
+
   def new
     @order = Order.new
     @order.credit_card = CreditCard.new(:month => Date.today.month, :year => Date.today.year)
@@ -14,10 +14,10 @@ class OrdersController < ApplicationController
     @order.shipping_address = Address.new
     @cart = current_cart
     @cart.validate
-    
+
     refresh_cart
   end
-  
+
   def create
     @cart = current_cart
     # move to factory, little funky with validation, maybe builder?
@@ -25,8 +25,7 @@ class OrdersController < ApplicationController
                            :active_shipping_region_id => active_shipping_region_id)
     @order = OrderFactory.create_web_order(@cart, options)
     if @order.invalid
-      puts "errors in controller #{@cart.errors.on_base}"
-      refresh_cart      
+      refresh_cart
       render :action => 'new' and return
     else
       begin
@@ -34,13 +33,13 @@ class OrdersController < ApplicationController
           begin
             @order.process
           rescue Exceptions::FulfillmentException => exception
-            # shipping exceptions allow the customer to move onto 
+            # shipping exceptions allow the customer to move onto
             # the congradulation screen, log and sent email
-            ExceptionNotifier.deliver_exception_notification(exception, self, request, params) 
+            ExceptionNotifier.deliver_exception_notification(exception, self, request, params)
           rescue Exceptions::OrderException => exception
             @processing_error_message = error_message(exception)
             refresh_cart
-            ExceptionNotifier.deliver_exception_notification(exception, self, request, params) 
+            ExceptionNotifier.deliver_exception_notification(exception, self, request, params)
             render :action => 'new' and return
           end
           # drop current cart
@@ -55,14 +54,14 @@ class OrdersController < ApplicationController
         @processing_error_message = error_message(exception)
         refresh_cart
         ExceptionNotifier.deliver_exception_notification(exception, self, request, params)
-        render :action => 'new' and return      
+        render :action => 'new' and return
       end
     end
   end
-  
+
 
   private
-  
+
   def error_message(exception)
     message = "There was an error processing your credit card:"
     exception = exception.to_s.strip.upcase
@@ -79,14 +78,14 @@ class OrdersController < ApplicationController
     end
     message
   end
-  
+
   private
-  
+
   def refresh_cart
     @region = Region.find(active_shipping_region_id)
     @shipping_methods = @region.shipping_methods
     @default_method = ShippingMethod.find(active_shipping_method_id)
-   
+
     @cart ||= current_cart
     @product_total = @cart.product_total
     PromoCode.apply(@cart, @cart.promo_code) if @cart.promo_code
@@ -94,7 +93,7 @@ class OrdersController < ApplicationController
     @shipping_total = @cart.shipping_total(@default_method)
     @grand_total = @cart.grand_total(@shipping_total)
   end
-  
+
 
 end
 
