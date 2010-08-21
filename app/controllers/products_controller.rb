@@ -2,7 +2,6 @@ class ProductsController < ApplicationController
   include ShippingCalculations
   layout 'shopping'
 
-
   before_filter :ensure_current_post_show_url, :only => :show
   before_filter :ensure_current_post_index_url, :only => :index
 
