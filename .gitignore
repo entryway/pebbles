@@ -1,6 +1,8 @@
+.rvmc
 config/database.yml
 *.*~
 log/*.log
 tmp/**/*
 pkg/*
+.bundler
 
