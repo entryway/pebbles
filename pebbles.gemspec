@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
   s.date = %q{2010-08-21}
   s.description = %q{entryway's ecommerce solution}
-  s.email = %q{bobbywilson0@gmail.com}
+  s.email = %q{dev@entryway.net}
   s.files = [
     ".gitignore",
      "Rakefile",
@@ -673,30 +673,9 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<erubis>, [">= 0"])
-      s.add_runtime_dependency(%q<awesome_nested_set>, [">= 0"])
-      s.add_runtime_dependency(%q<ssl_requirement>, [">= 0"])
-      s.add_development_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
-      s.add_runtime_dependency(%q<carrierwave>, [">= 0"])
-      s.add_runtime_dependency(%q<friendly_id>, [">= 0"])
-      s.add_runtime_dependency(%q<will_paginate>, [">= 0"])
     else
-      s.add_dependency(%q<erubis>, [">= 0"])
-      s.add_dependency(%q<awesome_nested_set>, [">= 0"])
-      s.add_dependency(%q<ssl_requirement>, [">= 0"])
-      s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
-      s.add_dependency(%q<carrierwave>, [">= 0"])
-      s.add_dependency(%q<friendly_id>, [">= 0"])
-      s.add_dependency(%q<will_paginate>, [">= 0"])
     end
   else
-    s.add_dependency(%q<erubis>, [">= 0"])
-    s.add_dependency(%q<awesome_nested_set>, [">= 0"])
-    s.add_dependency(%q<ssl_requirement>, [">= 0"])
-    s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
-    s.add_dependency(%q<carrierwave>, [">= 0"])
-    s.add_dependency(%q<friendly_id>, [">= 0"])
-    s.add_dependency(%q<will_paginate>, [">= 0"])
   end
 end
 
