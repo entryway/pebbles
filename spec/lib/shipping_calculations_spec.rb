@@ -125,7 +125,6 @@ describe ShippingCalculations do
         end
         product1 = Factory(:product)
         product1.free_shipping = true
-        puts product1.price
         product2 = Factory(:product)
         @cart = Cart.new
         @cart.add_product(product1.id, 1, nil)
@@ -138,9 +137,11 @@ describe ShippingCalculations do
         end
       end
 
-      it 'total does not include products marked for free shipping'
-        @order.calculate_flat_rate_shipping.should == 3.99
+      it 'total does not include products marked with free shipping'
+        @order.calculate_flat_rate_shipping.should == 2.99
       end
+
+    end
 
   end
 
