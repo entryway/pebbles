@@ -75,7 +75,7 @@ describe ShippingCalculations do
       @cart.add_product(product1.id, 1, nil)
       @cart.add_product(product2.id, 1, nil)
       @cart.shipping_method_id = @shipping_method.id
-      @order = Order.new(:shipping_method_id => @shipping_method.id)
+      @order = Factory(:order, :shipping_method_id => @shipping_method.id)
       @cart.cart_items.each do |item|
         oi = OrderItem.from_cart_item(item)
         @order.order_items << oi
@@ -84,21 +84,21 @@ describe ShippingCalculations do
 
     context "using flat rate by order total" do
       it "should calculate flat_rate shipping for an order" do
-        @order.calculate_flat_rate_shipping.should == 3.99
+        @order.calculate_shipping_costs.should == 3.99
       end
 
       it "should calculate flat_rate shipping for a discounted order" do
         @order.promo_discount = 2.00
-        @order.calculate_flat_rate_shipping.should == 2.99
+        @order.calculate_shipping_costs.should == 2.99
       end
 
       it "should calculate flat_rate shipping for a cart" do
-        @cart.calculate_flat_rate_shipping.should == 3.99
+        @cart.calculate_shipping_costs.should == 3.99
       end
 
       it "should calculate flat_rate shipping for a discounted cart" do
         @cart.promo_discount = 2.00
-        @cart.calculate_flat_rate_shipping.should == 2.99
+        @cart.calculate_shipping_costs.should == 2.99
       end
 
     end
@@ -106,7 +106,7 @@ describe ShippingCalculations do
     context "using flat rate by base rate" do
       it "should calculate flat_rate shipping for an order" do
         @shipping_method.flat_rate_shippings.delete_all
-        @order.calculate_flat_rate_shipping.should == 6.00
+        @order.calculate_shipping_costs.should == 6.00
       end
     end
     
@@ -114,23 +114,25 @@ describe ShippingCalculations do
   
     
 
-  describe 'Specified products have free shipping'
+  describe 'Specified products have free shipping:' do
 
-    context 'Flat Rate Shipping calculations'
+    context 'Flat Rate Shipping calculations' do
 
       before(:each) do
         @shipping_method = Factory(:shipping_method)
-        {0 => 2.99, 10.00 => 3.99, 20.00 => 4.99}.each do |k, v|
+        { 0 => 2.99, 10.00 => 3.99, 20.00 => 4.99 }.each do |k, v|
           @shipping_method.flat_rate_shippings.create(:flat_rate => v, :order_total_low => k)
         end
-        product1 = Factory(:product)
-        product1.free_shipping = true
-        product2 = Factory(:product)
+
+        @product1 = Factory(:product, :price => '5.5', :free_shipping => true)
+        @product2 = Factory(:product, :price => '5.5')
+
         @cart = Cart.new
-        @cart.add_product(product1.id, 1, nil)
-        @cart.add_product(product2.id, 1, nil)
+        @cart.add_product(@product1.id, 1, nil)
+        @cart.add_product(@product2.id, 1, nil)
         @cart.shipping_method_id = @shipping_method.id
-        @order = Order.new(:shipping_method_id => @shipping_method.id)
+
+        @order = Factory(:order, :shipping_method_id => @shipping_method.id)
         @cart.cart_items.each do |item|
           oi = OrderItem.from_cart_item(item)
           @order.order_items << oi
@@ -139,6 +141,15 @@ describe ShippingCalculations do
 
       it 'total does not include products marked with free shipping'
         @order.calculate_flat_rate_shipping.should == 2.99
+
+      end
+
+      it 'total does not include products marked for free shipping with more than one product' do
+        cart_item = @cart.add_product(@product1.id, 1, nil)
+        oi = OrderItem.from_cart_item(cart_item)
+        @order.order_items << oi
+
+        @order.calculate_shipping_costs.should == 2.99
       end
 
     end

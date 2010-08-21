@@ -1,12 +1,9 @@
-
 class Order < ActiveRecord::Base
   include ActiveMerchant::Billing
   include OrderCalculations 
   include OrderProcessing
   include AASM
   include OrderStateMachine
-  
-  #acts_as_reportable
   
 
   belongs_to :billing_address,
@@ -82,7 +79,6 @@ class Order < ActiveRecord::Base
       oi = OrderItem.from_cart_item(item)
       self.order_items << oi
     end 
-    #self.calculate_order_costs
   end
   
   # count all the order items, taking into consideration quantity
@@ -127,7 +123,7 @@ protected
     
   def validate
      if full_name.nil?
-         errors.add(:full_name, "must contain a first and last name.") if ! full_name.include? ' '
+      errors.add(:full_name, "must contain a first and last name.") if !full_name.include?(' ')
      end
   end
 end

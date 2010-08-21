@@ -10,33 +10,38 @@ class ShippingMethod < ActiveRecord::Base
                                 :reject_if => proc{ |attributes| attributes['flat_rate'].blank? }
   
   ##
-  # determines whether shipping_method uses flat rate (otherwise uses base rate)                              
+  # Determines whether shipping_method uses flat rate (otherwise uses base rate)
+  #
   def is_flat_rate?
     flat_rate_shippings.select{|rate| !rate.new_record? }.size > 0
   end
   
   ##
-  # flat rate shipping cost
+  # Flat rate shipping cost
   #
-  # @param [Cart, Order] cart_or_order
+  # @param [Cart, Order] cart_or_order A cart or order that has the same interface.
   # @return [Float] shipping cost
   def flat_rate_shipping_cost(cart_or_order)
     if self.flat_rate_shippings.size > 0
-      flat_rate_by_order_total(cart_or_order.sub_total)
+      total = order_total_minus_freely_shipped_products(cart_or_order)
+      flat_rate_by_order_total(total)
     else
       flat_rate_by_base_rate(cart_or_order.line_items)
     end
   end
-  
+ 
+private
+
   ##
-  # returns the shipping rate of the flat_rate_shippings with the highest order_total_low
-  # that is less than or equal to the order_total for the shipping method
+  # Returns the shipping rate of the flat rate shippings for flat rates between
+  # a low and high order total.
   #
-  # @param [Float] total order_total
+  # @param [Float] total The order total to determine the shipping costs from. 
   # @return [Float] flat_rate of the flat_rate_shipping
   def flat_rate_by_order_total(total)
     shipping = self.flat_rate_shippings.ordered_by_total_ranges.find(:last, 
-                                                                     :conditions => "order_total_low <= #{total}")
+                                                                     :conditions => 
+                                                                      "order_total_low <= #{total}")
     shipping.flat_rate
   end
 
@@ -52,6 +57,23 @@ class ShippingMethod < ActiveRecord::Base
       price += per_item * line_item.quantity 
     end 
     price -= per_item # compensate for first item
+  end
+
+  ##
+  # Determines the order total not counting any products that have
+  # been marked free to ship.
+  #
+  # @param [Cart, Order] cart_or_order The cart_or_order to determine total.
+  # @return [Float] The total minus freely shipping products.
+  def order_total_minus_freely_shipped_products(cart_or_order)
+    total = cart_or_order.sub_total
+    cart_or_order.line_items.each do |line_item| 
+      product = line_item.product
+      if product.free_shipping 
+        total -= (product.price * line_item.quantity)
+      end
+    end
+    total
   end
 
 end
