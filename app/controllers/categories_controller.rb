@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @categories = @category.children.active
-    @products = @category.paged_products(params[:page], 15)
+    @products = @category.paged_products(params[:page], 9)
     respond_to do |format|
       format.html
       format.js do
@@ -26,7 +26,9 @@ private
 
   def ensure_current_post_show_url
     @category = Category.find(params[:id])
-    redirect_to @category, :status => :moved_permanently if @category.has_better_id?
+    unless @category.friendly_id_status.best?
+      redirect_to @category, :status => :moved_permanently
+    end
   end
 
 end

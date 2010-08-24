@@ -1,19 +1,19 @@
 class Category < ActiveRecord::Base
-  
+
   has_many :category_images, :dependent => :destroy
   has_one :category_icon, :dependent => :destroy
-  
+
   has_and_belongs_to_many :products
   #has_and_belongs_to_many :faux_products
   named_scope :active, :conditions => {:active => true}
   named_scope :position_sorted, :order => 'position'
-  
-  acts_as_nested_set 
 
-  has_friendly_id :name, :use_slug => true
-  
+  acts_as_nested_set
+
+  has_friendly_id :parent_and_name, :use_slug => true
+
   attr_accessor :style
-  
+
   ##
   # Reorders a category to nest under a parent category and above a sibling category
   #
@@ -22,21 +22,31 @@ class Category < ActiveRecord::Base
   # #option options [String] :right id of the sibling category to the right
   def reorder(options = {})
     if options[:parent] =~ /\d/
-      self.move_to_child_of options[:parent] 
+      self.move_to_child_of options[:parent]
     else
       self.move_to_child_of Category.root
     end
     self.move_to_left_of options[:right].to_i if options[:right] =~ /\d/
   end
-   
+
+  ##
+  # The category parent and current category name concated
+  def parent_and_name
+    slug_name = name
+    if parent && parent.name != 'products'
+      slug_name = parent.name + '-' + name
+    end
+    slug_name
+  end
+
   ##
   # The products paged.
   #
   # @params [Integer] page The current page to return.
   # @params [Integer] product_per_page The number of products to return per page.
   def paged_products(page, product_per_page)
-     products.available.paginate :per_page => product_per_page, 
-                                 :page => page, 
+     products.available.paginate :per_page => product_per_page,
+                                 :page => page,
                                  :order => 'name'
   end
 
@@ -49,17 +59,17 @@ class Category < ActiveRecord::Base
     end
     products.uniq.paginate(:page => page, :per_page => product_per_page)
   end
-  
+
   #
   def level
     self.ancestors.size
   end
-  
+
   def self.position_sorted
     return [] if root.nil?
     root.children.position_sorted.active
   end
-  
+
   def active_children
     Category.active.find(:all, :conditions => {:parent_id => self.id})
   end
@@ -69,24 +79,24 @@ class Category < ActiveRecord::Base
   end
 
   ##
-  # Return a category tree ordered by position. A tree is all the children and nested 
-  # children not incluiding the current category. 
+  # Return a category tree ordered by position. A tree is all the children and nested
+  # children not incluiding the current category.
   #
   # If a specific category name is passed, it will be the root and not retured, all
-  # its children and nested children will be returned. 
+  # its children and nested children will be returned.
   #
   # TODO: Adapt to return a tree positioned, alphabetical, or natural ordered by
   # passing a paramenter hash.
   #
   # @param[String, Category] category_name The name of the category or the category to be the root of the tree.
-  # @return[Category[]] The array of children and nested children categories. 
+  # @return[Category[]] The array of children and nested children categories.
   def self.subtree(category=Category.root)
     if category.is_a?(String)
       category = Category.find_by_name(category)
     end
 
-    return Array.new unless category 
- 
+    return Array.new unless category
+
     category.children.active
   end
 
