@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
 
   layout 'shopping'
 
-  ssl_required :new, :create
+  ssl_required :new, :create unless Rails.env.development?
 
   def new
     @order = Order.new
