@@ -4,6 +4,8 @@ Factory.define :product_option do |p|
   p.description             'option description'
 end
 
+Factory.sequence(:sku) {|n| "sku#{n}"}
+
 Factory.define :product do |f|
   f.sku                { Factory.next(:sku) } 
   f.name               'product1'
