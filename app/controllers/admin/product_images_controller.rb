@@ -2,7 +2,7 @@ class Admin::ProductImagesController < ApplicationController
   layout "admin"
   require_role "admin"
   
-  def create 
+  def create
     product = Product.find(params[:product_id])
     product_image = ProductImage.new(params[:product_image])
     product.product_images << product_image
@@ -11,11 +11,11 @@ class Admin::ProductImagesController < ApplicationController
   end
   
   def update
-    product = Product.find(params[:product_id])
+    @product = Product.find(params[:product_id])
     product_image = ProductImage.find(params[:id])
     product_image.update_attributes(params[:product_image])
     render :partial => '/admin/products/images/image_list', 
-           :locals => { :product => product }
+           :locals => { :product => @product }
   end
     
   

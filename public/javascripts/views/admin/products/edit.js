@@ -6,9 +6,12 @@ jQuery(document).ready(function() {
   var product_image_options = { 
     target: "#image_list" 
   }
-  jQuery('#product_image_add').submit(function() { 
-    jQuery(this).ajaxSubmit(product_image_options); 
-    return false; 
+
+  jQuery('#product_image_add').livequery( function() {
+    jQuery(this).submit(function() { 
+      jQuery(this).ajaxSubmit(product_image_options); 
+      return false; 
+    })
   });
   jQuery('.edit-product-image').live('click', function() {
     jQuery(this).nextAll('div.change-image').show();
