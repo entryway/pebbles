@@ -6,6 +6,7 @@ jQuery(document).ready(function() {
   var product_image_options = { 
     target: "#image_list" 
   }
+
   jQuery('#product_image_add').livequery( function() {
     jQuery(this).submit(function() { 
       jQuery(this).ajaxSubmit(product_image_options); 
