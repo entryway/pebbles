@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-require File.dirname(__FILE__) + '/../pebbles_factory'
 
-describe ProductAccessory do 
-  before(:each) do 
+describe ProductAccessory do
+  before(:each) do
     #ShippingCalculations.stub!(:quote_packages).and_return(5)
     Factory(:configuration)
     @cart = Cart.new
@@ -21,10 +20,10 @@ describe ProductAccessory do
     CartItem.add_to_cart(@cart, nil, @product2.id, 1, nil, product_accessory.id)
     @cart.save
   end
-  
+
   it "it should adjust the product price in the cart" do
     @cart.sub_total.should == 10
   end
-  
+
 end
-    
+
