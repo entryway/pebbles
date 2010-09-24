@@ -1,4 +1,13 @@
 module Pebbles::Admin::ProductsHelper
+  
+  def regular_image_label(product)
+    if product.product_images.empty?
+      "Upload Regular Image:"
+    else
+      "Upload Another Regular Image:"
+    end
+  end
+    
   def add_discount_link(name)
     link_to_function name do |page|
       page.insert_html :bottom, :quantity_discounts, 
