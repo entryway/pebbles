@@ -6,4 +6,6 @@ class ProductImage < ActiveRecord::Base
     
   mount_uploader :filename, ImageUploader
   
+  validates_presence_of :filename
+  
 end

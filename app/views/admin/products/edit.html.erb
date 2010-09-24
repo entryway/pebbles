@@ -31,7 +31,9 @@
           <%= render :partial => "/admin/product_options/options" %> 
         </div>
         <div id="p7tpc1_3">
-          <%= render :partial => "/admin/products/images/images" %>  
+          <div id="images">
+            <%= render :partial => "/admin/products/images/images", :locals => {:product => @product} %>
+          </div>  
         </div> 
         <div id="p7tpc1_4">
         <%= render :partial => "categories" %>

@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
     return false;
   });
   var product_image_options = { 
-    target: "#image_list" 
+    target: "#images" 
   }
 
   jQuery('#product_image_add').livequery( function() {
