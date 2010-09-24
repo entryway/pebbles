@@ -17,7 +17,6 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     category = Category.find(params[:category_id])
     product.categories.delete(category)
-
     respond_to do |format|
       format.js { 
         render :partial => 'category_list', 

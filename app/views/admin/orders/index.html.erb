@@ -1,6 +1,7 @@
 <%= javascript('pebbles/jquery/spinner') %>
 <% content_for :sidebar do %>
   <ul>
+    <li><%= link_to "Export Ordered Items", admin_order_items_path(:format => 'csv') %></li>
     <li><%= raw link_to 'Promo Codes', admin_promo_codes_path %></li>
   </ul>
 <% end %>
@@ -12,31 +13,31 @@ Orders <%= @orders.offset+1 %> - <%= @orders.length * @orders.current_page %> of
   <table class="gt-list-table">
     <thead>
       <tr>
-      <th>Number</td>
-      <th>Payment Status</td>
-          <th>Delivery Status</td>
-      <th>Full Name</th>
-      <th>Country</th>
-      <th>Total</th>
-      <th>Created On</td>
+        <th>Number</td>
+        <th>Payment Status</td>
+        <th>Delivery Status</td>
+        <th>Full Name</th>
+        <th>Country</th>
+        <th>Total</th>
+        <th>Created On</td>
       </tr>
     </thead>
     <tbody>
-    <% for order in @orders %>
-      <tr class="even">
-      <td><%= order.order_number %></td>
-      <td><%= order.state %></td>
-          <td><%= render :partial => 'delivery_status', 
-                 :locals => { :order => order }  %></td>
-      <td><%= order.full_name %></td>
-      <td><%= order.shipping_address.country if order.shipping_address %></td>
-      <td><%= number_to_currency(order.total) %></td>
-      <td><%= order.created_at.to_date %>
-        <td class='blank'><%= link_to 'Show', admin_order_path(order) %></td>
-      </tr>
-      <tr class="sorted">
-      </tr>
-    <% end %>
+      <% for order in @orders %>
+        <tr class="even">
+          <td><%= order.order_number %></td>
+          <td><%= order.state %></td>
+          <td><%= render :partial => 'delivery_status',
+            :locals => { :order => order }  %></td>
+          <td><%= order.full_name %></td>
+          <td><%= order.shipping_address.country if order.shipping_address %></td>
+          <td><%= number_to_currency(order.total) %></td>
+          <td><%= order.created_at.to_date %></td>
+          <td class='blank'><%= link_to 'Show', admin_order_path(order) %></td>
+        </tr>
+        <tr class="sorted">
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
