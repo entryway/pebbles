@@ -1,5 +1,7 @@
 class Category < ActiveRecord::Base
 
+  acts_as_reportable
+
   has_many :category_images, :dependent => :destroy
   has_one :category_icon, :dependent => :destroy
 
