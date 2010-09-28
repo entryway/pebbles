@@ -1,5 +1,5 @@
 1.0.8 - September 28, 2010
-  * Changed _delete to _destroy in form (changed in 2.3.9) [Gustin]
+  * Changed _delete to _destroy in form (required in 2.3.9) [Gustin]
   * Add unloadable to OrdersController to help with checking out in
     development mode [Gustin]
   * Always return zero if all the products have free shipping [Gustin]
