@@ -9,17 +9,18 @@
   <%= form.text_field :subname, :size => 40, :class => 'gt-form-text' %><br/>
   <% if @product.variants.empty? %>
     <label for="sku">Quantity *</label>
-    <%= form.text_field :inventory, :size => 10, :class => 'gt-form-text'  %><br/>  
+    <%= form.text_field :inventory, :size => 10, :class => 'gt-form-text'  %><br/>
   <% end %>
-  <hr/> 
+  <hr/>
   <label>Display</label>
   <%= form.check_box :available %> Available<br/>
   <%= form.check_box :is_featured %> Featured Product<br/>
   <%= form.check_box :free_shipping %> Free Shipping<br/>
-  <hr/> 
+  <%= form.check_box :no_tax %> No Tax<br/>
+  <hr/>
   <div class="required">
     <label for="sku">Sku *</label>
-    <%= form.text_field :sku, :size => 10, :class => 'gt-form-text'  %><br/>  
+    <%= form.text_field :sku, :size => 10, :class => 'gt-form-text'  %><br/>
     <label for="price">Price *</label>
     <%= form.text_field :price, :size => 10, :class => 'gt-form-text'  %>
     <label for="wholesale_price">Wholesale Price</label>
@@ -36,20 +37,20 @@
     <%= form.text_field :height, :size => 10, :class => 'gt-form-text'  %>
   </div>
   <div class="clear"></div>
-  <hr/> 
+  <hr/>
   <label for="short_description">Short Description</label>
-  <%= form.text_area :short_description, :rows => 3, 
+  <%= form.text_area :short_description, :rows => 3,
              :cols => 90, :class => 'gt-form-textarea' %><br/>
   <label for="short_description">Description</label>
-  <%= form.text_area :long_description, :rows => 7, 
+  <%= form.text_area :long_description, :rows => 7,
              :cols => 90, :class => 'gt-form-textarea' %><br/>
   <hr/>
   <label for="admin_notes">Admin Notes</label>
-  <%= form.text_area :admin_notes, :rows => 2, 
+  <%= form.text_area :admin_notes, :rows => 2,
              :cols => 90, :class => 'gt-form-textarea' %><br/>
-  
+
 <br/>
-  
+
     <%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>
 <br/><br/>
   </p>

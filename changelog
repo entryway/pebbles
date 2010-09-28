@@ -1,3 +1,11 @@
+1.0.9 - September 28, 2010  
+  * Changed _delete to _destroy in form (required in 2.3.9) [Gustin]
+  * Add unloadable to OrdersController to help with checking out in
+    development mode [Gustin]
+  * Always return zero if all the products have free shipping [Gustin]
+  * Add migration to default product weight to 0 [Gustin]
+  * Added no tax flag to products [Gustin]
+  * Add sorted name options to sort on list order [Gustin]
 1.0.8 - September 28, 2010
   * Added restful support for contact mailer
 1.0.7 - September 27, 2010
