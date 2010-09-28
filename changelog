@@ -2,6 +2,7 @@
   * Changed _delete to _destroy in form (changed in 2.3.9)
   * Add unloadable to OrdersController to help with checking out in
     development mode
+  * Always return zero if all the products have free shipping
 1.0.7 - September 27, 2010
   * Added hooks for admin product tabs. See admin/products
 1.0.6 - September 24, 2010
