@@ -1,5 +1,7 @@
 
 class OrdersController < ApplicationController
+  unloadable
+
   include ActiveMerchant::Billing
   include ActiveMerchant::Billing::Integrations
 

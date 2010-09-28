@@ -30,8 +30,8 @@
   	      </td>
   	      <td>
   	        <% unless flat_rate_form.object.new_record? %>
-              <%= flat_rate_form.check_box '_delete' %>
-              <%= flat_rate_form.label '_delete', 'Remove' %>
+              <%= flat_rate_form.check_box '_destroy' %>
+              <%= flat_rate_form.label '_destroy', 'Remove' %>
             <% else %>
               <%= add_another_link?(flat_rate_form.object, 'flat rate range') %>
             <% end %>
