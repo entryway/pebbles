@@ -1,6 +1,6 @@
 class ProductOption < ActiveRecord::Base
   has_many :product_option_selections,
-           :order => "list_order, name"
+           :order => 'list_order, name'
   has_many :sorted_options, :class_name => 'ProductOptionSelection',
            :order => 'list_order'
 

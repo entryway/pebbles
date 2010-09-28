@@ -5,6 +5,7 @@
   * Always return zero if all the products have free shipping [Gustin]
   * Add migration to default product weight to 0 [Gustin]
   * Added no tax flag to products [Gustin]
+  * Add sorted name options to sort on list order [Gustin]
 
 1.0.7 - September 27, 2010
   * Added hooks for admin product tabs. See admin/products
