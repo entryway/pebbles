@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+   map.resources :contacts, :only => :create
    map.resources :users
    map.resources :promo_codes
    
