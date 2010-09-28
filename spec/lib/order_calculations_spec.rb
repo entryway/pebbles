@@ -24,48 +24,45 @@ describe OrderCalculations do
     end
     
   end
-  
-  describe "subject" do
-    
-  end
 
-  describe "Calculating tax" do
+  describe "Tax Calculations" do
 
-    context "for specified products that don't charge tax, " do
+    context "Specified products are not charged tax" do
 
-      before(:each) do 
-        @tax_rate = Factory(:tax_rate)
-        product1 = Factory(:product, :no_tax => true)
+      before(:each) do
+        @shipping_method = Factory(:shipping_method)
+        {0 => 2.99, 10.00 => 3.99, 20.00 => 4.99}.each do |k, v|
+          @shipping_method.flat_rate_shippings.create(:flat_rate => v, :order_total_low => k)
+        end
+        product1 = Factory(:product)
+        product1.no_tax = true
         product2 = Factory(:product)
         @cart = Cart.new
         @cart.add_product(product1.id, 1, nil)
         @cart.add_product(product2.id, 1, nil)
-        @address = Factory(:address)
-        @order = Factory(:order, :shipping_method_id => @shipping_method.id, 
-                         :billing_address => @address)
+        @order = Order.new(:shipping_method_id => @shipping_method.id)
         @cart.cart_items.each do |item|
           oi = OrderItem.from_cart_item(item)
           @order.order_items << oi
         end
       end
-      
-      it 'should not charge tax on nontaxed products' do
-        @order.calculate_tax.should ==  5.50 * @tax_rate.rate
+
+      it 'total does not include products marked with no tax' do
+       @order.calculate_flat_rate_shipping.should == 2.99
       end
-      
     end
 
 
-    context "person lives in state with tax rate" do 
+    before(:each) do
+      rate = Factory(:tax_rate)
+      @address = Factory(:address)
+      @order = Order.new(:product_cost => 39.90, :shipping_cost => 6.45, 
+                          :billing_address => @address)
+      @order.stub!(:product_total).and_return(39.90)
+      @order.tax = @order.calculate_tax
+    end
 
-       before(:each) do
-        rate = Factory(:tax_rate)
-        @address = Factory(:address)
-        @order = Order.new(:product_cost => 39.90, :shipping_cost => 6.45, 
-                            :billing_address => @address)
-        @order.stub!(:product_total).and_return(39.90)
-        @order.tax = @order.calculate_tax
-      end
+    context "person lives in state with tax rate" do 
 
       it "should round taxrate to match ActiveMerchant" do
         number_to_currency(@order.total)[1,5].should == sprintf("%.2f", 4834.5.to_f / 100)
@@ -84,12 +81,6 @@ describe OrderCalculations do
     
     context "person lives in state without tax rate" do
       before(:each) do
-        rate = Factory(:tax_rate)
-        @address = Factory(:address)
-        @order = Order.new(:product_cost => 39.90, :shipping_cost => 6.45, 
-                            :billing_address => @address)
-        @order.stub!(:product_total).and_return(39.90)
-        @order.tax = @order.calculate_tax
         @address.state = "CO"
       end
 
@@ -101,4 +92,3 @@ describe OrderCalculations do
   end
   
 end
-
