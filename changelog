@@ -1,10 +1,14 @@
 1.0.8 - September 28, 2010
-  * Changed _delete to _destroy in form (changed in 2.3.9)
+  * Changed _delete to _destroy in form (changed in 2.3.9) [Gustin]
   * Add unloadable to OrdersController to help with checking out in
-    development mode
-  * Always return zero if all the products have free shipping
+    development mode [Gustin]
+  * Always return zero if all the products have free shipping [Gustin]
+  * Add migration to default product weight to 0 [Gustin]
+  * Added no tax flag to products [Gustin]
+
 1.0.7 - September 27, 2010
   * Added hooks for admin product tabs. See admin/products
+
 1.0.6 - September 24, 2010
   * Add ruport and acts_as_reportable to multiple models [Lake Denman]
   * Repair product image uploads on admin [Jonathan Greenberg]
