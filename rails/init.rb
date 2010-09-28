@@ -3,7 +3,7 @@ require 'pebbles'
 class ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
-  include SslRequirement
+#  include SslRequirement
   include Pebbles::Shipping
   include Pebbles::Cart
   include Pebbles::Categories
@@ -15,7 +15,7 @@ end
 
 class ActionController::Routing::RouteSet
   def load_routes_with_pebbles!
-    pebbles_routes = File.join(File.dirname(__FILE__), 
+    pebbles_routes = File.join(File.dirname(__FILE__),
                                *%w[.. config pebbles_routes.rb])
     unless configuration_files.include? pebbles_routes
       add_configuration_file(pebbles_routes)
@@ -26,21 +26,12 @@ class ActionController::Routing::RouteSet
   alias_method_chain :load_routes!, :pebbles
 end
 
-config.gem 'activemerchant', :lib => 'active_merchant'
-config.gem 'acts_as_singleton'
-config.gem 'aasm'
-config.gem 'carrierwave'
-config.gem 'awesome_nested_set'
-config.gem 'friendly_id', :version => '2.3.3'
-config.gem 'ssl_requirement', :source => 'http://74.207.230.57'
-config.gem 'will_paginate'
-
 
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')
 ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", "app", "uploaders")
 %w(controllers helpers lib models notifiers views ).each  do |path|
-  ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'app', path) 
+  ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'app', path)
 end
 ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'lib')
 

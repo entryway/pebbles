@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+   map.resources :contacts, :only => :create
    map.resources :users
    map.resources :promo_codes
    
@@ -47,7 +48,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.login  '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-                  
+  map.root :controller => 'index', :action => 'index'                
        
   map.connect 'admin/:action', :controller => 'admin'
                        

@@ -1,8 +1,9 @@
-# This controller handles the login/logout function of the site.  
+# This controller handles the login/logout function of the site.
 class SessionsController < ApplicationController
   layout "shopping"
- # ssl_required :new, :create
-  
+
+  ssl_required :new, :create unless Rails.env.development?
+
   # render new.rhtml
   def new
   end
@@ -10,7 +11,7 @@ class SessionsController < ApplicationController
   def create
     self.current_user = User.authenticate(params[:login], params[:password])
     if logged_in?
-      
+
       if params[:remember_me] == "1"
         self.current_admin_user.remember_me
         cookies[:auth_token] = { :value => self.current_admin_user.remember_token , :expires => self.current_admin_user.remember_token_expires_at }
@@ -22,7 +23,7 @@ class SessionsController < ApplicationController
         redirect_back_or_default('/')
       end
     elsif (params[:login] == APP_CONFIG['wholesale_login'] && params[:password] == APP_CONFIG['wholesale_password'])
-        session[:wholesaler] = "wholesaler" 
+        session[:wholesaler] = "wholesaler"
         redirect_to('/')
     else
       render :action => 'new'

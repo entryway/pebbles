@@ -1,14 +1,10 @@
 <%= error_messages_for :product_image %>
 
 <h1>Image Uploader</h1>
+<div id="image_list">
+  <% unless product.product_images.empty? %>
+      <%= render :partial => '/admin/products/images/image_list', :locals => { :product => product } -%>
+  <% end %>
+</div>
 
-<% if @product.product_images.empty? %>
-
-<%= render :partial => '/admin/products/images/image_form', :object => @product %>
-
-<% else %>
-  <div id="image_list">
-    <%= render :partial => '/admin/products/images/image_list', :locals => { :product => @product } -%>
-  </div>
-<% end %>
-  
+<%= render :partial => '/admin/products/images/image_form', :locals => { :product => product }  %>  

@@ -24,32 +24,35 @@ describe OrderCalculations do
     end
     
   end
+  
+  describe "subject" do
+    
+  end
 
   describe "Calculating tax" do
 
     context "for specified products that don't charge tax, " do
 
-      before(:each) do
-        @shipping_method = Factory(:shipping_method)
-        {0 => 2.99, 10.00 => 3.99, 20.00 => 4.99}.each do |k, v|
-          @shipping_method.flat_rate_shippings.create(:flat_rate => v, :order_total_low => k)
-        end
-        product1 = Factory(:product)
-        product1.no_tax = true
+      before(:each) do 
+        @tax_rate = Factory(:tax_rate)
+        product1 = Factory(:product, :no_tax => true)
         product2 = Factory(:product)
         @cart = Cart.new
         @cart.add_product(product1.id, 1, nil)
         @cart.add_product(product2.id, 1, nil)
-        @order = Order.new(:shipping_method_id => @shipping_method.id)
+        @address = Factory(:address)
+        @order = Factory(:order, :shipping_method_id => @shipping_method.id, 
+                         :billing_address => @address)
         @cart.cart_items.each do |item|
           oi = OrderItem.from_cart_item(item)
           @order.order_items << oi
         end
       end
-
-      it 'the total does not include products marked with no tax' do
-        @order.calculate_shipping_costs.should == 2.99
+      
+      it 'should not charge tax on nontaxed products' do
+        @order.calculate_tax.should ==  5.50 * @tax_rate.rate
       end
+      
     end
 
 

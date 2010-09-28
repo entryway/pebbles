@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2010-01-12}
+  s.date = %q{2010-08-21}
   s.description = %q{entryway's ecommerce solution}
-  s.email = %q{bobbywilson0@gmail.com}
+  s.email = %q{dev@entryway.net}
   s.files = [
     ".gitignore",
      "Rakefile",
@@ -336,8 +336,10 @@ Gem::Specification.new do |s|
      "db/migrate/20091012193601_add_category_icon_hovers_table.rb",
      "db/migrate/20091027175846_change_orderitem_column_length.rb",
      "db/migrate/20091215163757_create_slugs.rb",
+     "db/migrate/20100319212157_add_no_shipping_flag_to_products.rb",
      "db/schema.rb",
      "db/seeds.rb",
+     "git-flow-version",
      "lib/authenticated_system.rb",
      "lib/authenticated_test_helper.rb",
      "lib/hijacker.rb",
@@ -473,6 +475,7 @@ Gem::Specification.new do |s|
      "spec/factories/product_option_selection.rb",
      "spec/factories/promo_code.rb",
      "spec/factories/shipping_method.rb",
+     "spec/factories/tax_rate.rb",
      "spec/lib/inventory_spec.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/order_factory_spec.rb",
@@ -624,12 +627,15 @@ Gem::Specification.new do |s|
      "vendor/plugins/role_requirement/test/controller_stub.rb",
      "vendor/plugins/role_requirement/test/functional/test_role_controller.rb",
      "vendor/plugins/role_requirement/test/test_helper.rb",
-     "vendor/plugins/role_requirement/test/user_stub.rb"
+     "vendor/plugins/role_requirement/test/user_stub.rb",
+     "vendor/plugins/ssl_requirement/README",
+     "vendor/plugins/ssl_requirement/lib/ssl_requirement.rb",
+     "vendor/plugins/ssl_requirement/test/ssl_requirement_test.rb"
   ]
   s.homepage = %q{http://github.com/entryway/pebbles}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{ecommerce}
   s.test_files = [
     "spec/cart_builder.rb",
@@ -642,6 +648,7 @@ Gem::Specification.new do |s|
      "spec/factories/product_option_selection.rb",
      "spec/factories/promo_code.rb",
      "spec/factories/shipping_method.rb",
+     "spec/factories/tax_rate.rb",
      "spec/lib/inventory_spec.rb",
      "spec/lib/order_calculations_spec.rb",
      "spec/lib/order_factory_spec.rb",
@@ -666,27 +673,9 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<awesome_nested_set>, [">= 0"])
-      s.add_runtime_dependency(%q<ssl_requirement>, [">= 0"])
-      s.add_development_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
-      s.add_runtime_dependency(%q<carrierwave>, [">= 0"])
-      s.add_runtime_dependency(%q<friendly_id>, [">= 0"])
-      s.add_runtime_dependency(%q<will_paginate>, [">= 0"])
     else
-      s.add_dependency(%q<awesome_nested_set>, [">= 0"])
-      s.add_dependency(%q<ssl_requirement>, [">= 0"])
-      s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
-      s.add_dependency(%q<carrierwave>, [">= 0"])
-      s.add_dependency(%q<friendly_id>, [">= 0"])
-      s.add_dependency(%q<will_paginate>, [">= 0"])
     end
   else
-    s.add_dependency(%q<awesome_nested_set>, [">= 0"])
-    s.add_dependency(%q<ssl_requirement>, [">= 0"])
-    s.add_dependency(%q<thoughtbot-factory_girl>, [">= 0"])
-    s.add_dependency(%q<carrierwave>, [">= 0"])
-    s.add_dependency(%q<friendly_id>, [">= 0"])
-    s.add_dependency(%q<will_paginate>, [">= 0"])
   end
 end
 
