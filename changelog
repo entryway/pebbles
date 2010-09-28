@@ -1,3 +1,5 @@
+1.0.8 - September 28, 2010
+  * Added restful support for contact mailer
 1.0.7 - September 27, 2010
   * Added hooks for admin product tabs. See admin/products
 1.0.6 - September 24, 2010
