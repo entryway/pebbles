@@ -5,7 +5,6 @@
 
 
 <h3>Regions</h3>
-
 <h3>Flat Rate</h3>
 <br>
 <h4><%= check_box_tag :flat_rate, true, true %>Per Item</h4>
@@ -17,7 +16,7 @@
 	</tr>
 <% @shipping_rates.each do |shipping_rate| %>
 	<tr>
-		<td>$<%= shipping_rate.rate %></td> 
+		<td>$<%= shipping_rate.rate %></td>
 		<td><%= shipping_rate.item_low %></td>
 		<td><%= shipping_rate.item_high %></td>
 	</tr>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100319212157) do
+ActiveRecord::Schema.define(:version => 20100930024650) do
 
   create_table "addresses", :force => true do |t|
     t.string  "address_1",   :limit => 50
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(:version => 20100319212157) do
     t.boolean "is_shipping"
     t.string  "country",     :limit => 50
     t.string  "state",       :limit => 50
+  end
+
+  create_table "audio_clips", :force => true do |t|
+    t.string   "audio_file"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "cart_items", :force => true do |t|
@@ -101,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20100319212157) do
 
   create_table "general_configurations", :force => true do |t|
     t.boolean "inventory_management"
+    t.string  "shipping_calculation_method"
   end
 
   create_table "logged_exceptions", :force => true do |t|
@@ -119,12 +127,12 @@ ActiveRecord::Schema.define(:version => 20100319212157) do
     t.integer  "variant_id"
     t.integer  "order_id"
     t.integer  "quantity"
-    t.decimal  "weight",             :default => 0.0
+    t.decimal  "weight",             :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "drop_ship"
     t.integer  "supplier_id"
     t.string   "product_name"
-    t.decimal  "price",              :default => 0.0
-    t.decimal  "drop_shipping_cost", :default => 0.0
+    t.decimal  "price",              :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "drop_shipping_cost", :precision => 8, :scale => 2, :default => 0.0
     t.datetime "updated_at"
     t.datetime "created_at"
   end
@@ -172,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20100319212157) do
     t.string   "promo_code",            :limit => 30,                                :default => ""
     t.decimal  "promo_discount",                       :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "free_shipping",                                                      :default => false
+    t.text     "gift_note"
   end
 
   create_table "out_of_stock_option_selections", :force => true do |t|
@@ -241,7 +250,7 @@ ActiveRecord::Schema.define(:version => 20100319212157) do
     t.string   "name",               :limit => 100
     t.string   "subname",            :limit => 50
     t.text     "short_description"
-    t.decimal  "weight",                            :precision => 8, :scale => 2
+    t.decimal  "weight",                            :precision => 8, :scale => 2, :default => 0.0
     t.text     "admin_notes"
     t.integer  "vendor_id"
     t.decimal  "price",                             :precision => 8, :scale => 2, :default => 0.0
@@ -264,6 +273,7 @@ ActiveRecord::Schema.define(:version => 20100319212157) do
     t.string   "image"
     t.string   "thumbnail"
     t.boolean  "free_shipping",                                                   :default => false
+    t.boolean  "no_tax",                                                          :default => false
   end
 
   create_table "promo_codes", :force => true do |t|
@@ -324,7 +334,7 @@ ActiveRecord::Schema.define(:version => 20100319212157) do
     t.datetime "created_at"
   end
 
-  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["name", "scope", "sequence", "sluggable_type"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "store_images", :force => true do |t|

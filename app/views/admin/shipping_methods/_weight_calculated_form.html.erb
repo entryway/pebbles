@@ -1,29 +1,22 @@
-
 <% form_for [:admin, @region, set_up_shippping_method(@shipping_method)],
 			:html => { :class => 'gt-form' } do |form| %>
 	<label for="name">Method *:</label>
 	<%= form.text_field :name, :size => 20 %><br/><br/>
-	<% if @shipping_method.is_base_rate? %>
-  	<label for="base_price">Shipping Price: </label>
-  	$<%= form.text_field :base_price, :size => 5 %><br/><br/>
-  	<label for="cost_per_item">Additional Cost Per Item: </label>
-  	$<%= form.text_field :cost_per_item, :size => 5 %><br/><br/>
-  <% end %>
 	<%= form.check_box :default_selection %> Default Selection (initial option user selects)<br/><br/>
-	<h2>Price Range Shipping</h2>
+	<h2>Weight Range Shipping</h2>
 	<p><em>Start with 0</em></p>
   <div class="gt-table-controls clearfix">
   	<table class="gt-list-table">
   		<thead>
   		  <tr>
-    			<th>Low Order Total</th>
+    			<th>Low Weight Total</th>
     			<th>Rate</th>
   		  </tr>
     	</thead>
 	    <% form.fields_for :flat_rate_shippings do |flat_rate_form| %>
   	    <tr <%=hide_unless_first_new_object(flat_rate_form.object)%>>
   	      <td>
-  	        $<%= flat_rate_form.text_field :order_total_low, :size => '10' %>
+  	        <%= flat_rate_form.text_field :weight_low, :size => '10' %>lbs
   	      </td>
   	      <td>
   	        <%= flat_rate_form.text_field :flat_rate, :size => '10' %>
@@ -42,8 +35,3 @@
 	  <%= image_submit_tag 'gt/btn-save.jpg' %>
 	</div>
 <% end %>
-
-
-
-
-

@@ -3,4 +3,4 @@ config/database.yml
 log/*.log
 tmp/**/*
 pkg/*
-
+.rvmrc
