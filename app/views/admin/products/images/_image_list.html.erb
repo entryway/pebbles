@@ -1,7 +1,6 @@
-<% product.product_images.each do |image| %>
- <p>Upload 3 different size images for the product.</p>
- <p><em>First browse to your image file, then click upload.</em></p>
-  <hr>
+<% product.product_images.each_with_index do |image, index| %>
+  <br/>
+  <h2> <%=  (index + 1).ordinalize %> Image</h2><br/>  
   <div id="<%= dom_id(image, 'id') %>" class="image-section regular">
     <h2>Regular Size</h2>
     <%= image_tag image.filename.url, :name => "image_id" %><br>
@@ -12,20 +11,9 @@
       </br>
       <%= render '/admin/products/images/change_image', :product => product, :image => image %>
     </div>
-  	<% form_for [:admin, @product, @product_image], 
-  	            :html => { :multipart => true, :id => 'product_image_add' } do |form| %>
-	    <div class="error">
-	      <p>First browse to your image file, then click upload.</p>
-	    </div>
-	    <label for="uploaded_data">Upload Regular Image:</label>
-	    <%= form.file_field :filename, :value => "Browse" %>
 
-  	  <%= render '/admin/products/images/dimensions', :type => 'products'%>
-   	  <p>
-  	    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
-  	  </p>
-  	<% end %>
   </div>
+  <br/>
   <div class="image-section thumb">
     <h2>Thumbnail Size</h2>
     
@@ -33,6 +21,7 @@
       <%= render '/admin/products/images/image_thumbnail_list', 
                  :image => image, :thumbnail => image.product_image_thumbnail %>
     <% else %>
+      <p><em>First browse to your thumbnail image file, then click upload.</em></p>
       <%= render '/admin/products/images/image_thumbnail_form', 
                 :image => image, :thumbnail => image.build_product_image_thumbnail %>
     <% end %>
@@ -43,9 +32,11 @@
       <%= render '/admin/products/images/image_large_list', 
                  :image => image, :large_image => image.product_large_image %>
     <% else %>
+      <p><em>First browse to your large image file, then click upload.</em></p>
       <%= render '/admin/products/images/image_large_form', 
                  :image => image, :large_image => image.build_product_large_image %>
     <% end %>
   </div>
+  <hr>
   
 <% end %>

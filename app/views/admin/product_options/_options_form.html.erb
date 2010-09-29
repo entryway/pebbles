@@ -1,4 +1,4 @@
-  <% form_for [:admin, setup_option(@product)] do |form|%>
+<% form_for [:admin, setup_option(@product)] do |form|%>
     <% form.fields_for :product_options do |option_form| %>
       <div class="gt-table-controls clearfix">
         <% @hide_object = false %>
@@ -34,6 +34,7 @@
                   <th>Selection</th>
                   <th>Price Adjustment</th>
                   <th>Weight Adjustment</th>
+                  <th>List Order</th>
                   <th>Remove</th>
                 </tr>
                 <% @hide_object = false %>
@@ -49,6 +50,10 @@
                     <td>
                       <%= selection_form.text_field :weight_adjustment, :size => 10 %>
                     </td>
+                    <td>
+                      <%= selection_form.text_field :list_order, :size => 5 %>
+                    </td>
+
                     <td>
                       <% unless selection_form.object.new_record? %>
                         <%= selection_form.check_box '_destroy' %>
@@ -67,4 +72,5 @@
     <% end %>
     <%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>
   <% end %>
+
 

@@ -1,21 +1,21 @@
 class ShippingMethod < ActiveRecord::Base
   belongs_to :region
-  
+
   has_many :flat_rate_shippings, :dependent => :destroy, :order => 'order_total_low asc'
   has_many :fulfillment_codes
-  
-  validates_presence_of :name 
-  
+
+  validates_presence_of :name
+
   accepts_nested_attributes_for :flat_rate_shippings, :allow_destroy => true,
                                 :reject_if => proc{ |attributes| attributes['flat_rate'].blank? }
-  
+
   ##
   # Determines whether shipping_method uses flat rate (otherwise uses base rate)
   #
   def is_flat_rate?
     flat_rate_shippings.select{|rate| !rate.new_record? }.size > 0
   end
-  
+
   ##
   # Flat rate shipping cost
   #
@@ -24,23 +24,26 @@ class ShippingMethod < ActiveRecord::Base
   def flat_rate_shipping_cost(cart_or_order)
     if self.flat_rate_shippings.size > 0
       total = order_total_minus_freely_shipped_products(cart_or_order)
-      flat_rate_by_order_total(total)
+      if total > 0
+        total = flat_rate_by_order_total(total)
+      end
+      total
     else
       flat_rate_by_base_rate(cart_or_order.line_items)
     end
   end
- 
+
 private
 
   ##
   # Returns the shipping rate of the flat rate shippings for flat rates between
   # a low and high order total.
   #
-  # @param [Float] total The order total to determine the shipping costs from. 
+  # @param [Float] total The order total to determine the shipping costs from.
   # @return [Float] flat_rate of the flat_rate_shipping
   def flat_rate_by_order_total(total)
-    shipping = self.flat_rate_shippings.ordered_by_total_ranges.find(:last, 
-                                                                     :conditions => 
+    shipping = self.flat_rate_shippings.ordered_by_total_ranges.find(:last,
+                                                                     :conditions =>
                                                                       "order_total_low <= #{total}")
     shipping.flat_rate
   end
@@ -49,13 +52,13 @@ private
   # flat rate shipping cost by base and per item rate
   #
   # @param [Array<OrderItem, CartItem>] line_items items to iterate for per item cost
-  # @return [Float] shipping cost 
+  # @return [Float] shipping cost
   def flat_rate_by_base_rate(line_items)
     price = self.base_price
     per_item = self.cost_per_item
-    line_items.each do |line_item| 
-      price += per_item * line_item.quantity 
-    end 
+    line_items.each do |line_item|
+      price += per_item * line_item.quantity
+    end
     price -= per_item # compensate for first item
   end
 
@@ -67,9 +70,9 @@ private
   # @return [Float] The total minus freely shipping products.
   def order_total_minus_freely_shipped_products(cart_or_order)
     total = cart_or_order.sub_total
-    cart_or_order.line_items.each do |line_item| 
+    cart_or_order.line_items.each do |line_item|
       product = line_item.product
-      if product.free_shipping 
+      if product.free_shipping
         total -= (product.price * line_item.quantity)
       end
     end
