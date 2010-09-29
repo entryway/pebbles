@@ -190,7 +190,6 @@ Gem::Specification.new do |s|
      "app/views/admin/product_options/_option_selection_list.html.erb",
      "app/views/admin/product_options/_options.html.erb",
      "app/views/admin/product_options/_options_form.html.erb",
-     "app/views/admin/product_options/_options_form.rhtml.old",
      "app/views/admin/product_options/_product_option_select.html.erb",
      "app/views/admin/product_options/add_option_selection.rjs",
      "app/views/admin/product_options/apply_option_to_product.rjs",
