@@ -1,0 +1,527 @@
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("schema_migrations")[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("schema_migrations")[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('0')[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to InitialSchemaLoad (20090909191809)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address_1" varchar(50), "address_2" varchar(50), "city" varchar(50), "postal_code" varchar(10), "is_shipping" boolean, "country" varchar(50), "state" varchar(50)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "cart_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "cart_id" integer, "quantity" integer, "created_at" datetime, "updated_at" datetime, "variant_id" integer) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "carts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(40), "created_at" datetime, "updated_at" datetime, "promo_code" varchar(30) DEFAULT '', "promo_discount" decimal(8,2) DEFAULT 0.0, "free_shipping" boolean DEFAULT 'f', "billing_state" varchar(255)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "name" varchar(255), "lft" integer, "rgt" integer, "position" integer, "description" text, "active" boolean DEFAULT 't') [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "categories_products" ("product_id" integer, "category_id" integer) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("categories_products")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_categories_products_on_category_id" ON "categories_products" ("category_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories_products")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_categories_products_on_category_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_categories_suppliers_on_category_id" ON "categories_products" ("category_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("categories_products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_categories_suppliers_on_category_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_categories_products_on_category_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_categories_products_on_product_id" ON "categories_products" ("product_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("categories_products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_categories_products_on_product_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_categories_suppliers_on_category_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_categories_products_on_category_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_categories_suppliers_on_supplier_id" ON "categories_products" ("product_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "category_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255), "category_id" integer) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "featured_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "flat_rate_shippings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "item_low" integer, "item_high" integer, "weight_low" integer, "weight_high" integer, "order_total_low" integer, "order_total_high" integer, "shipping_method_id" integer, "flat_rate" decimal) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "fulfillment_codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "item_low" integer, "item_high" integer, "code" varchar(20), "shipping_method_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "logged_exceptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exception_class" varchar(255), "controller_name" varchar(255), "action_name" varchar(255), "message" text, "backtrace" text, "environment" text, "request" text, "created_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "variant_id" integer, "order_id" integer, "quantity" integer, "weight" decimal(8,2) DEFAULT 0.0, "drop_ship" boolean, "supplier_id" integer, "product_name" varchar(50), "price" decimal(8,2) DEFAULT 0.0, "drop_shipping_cost" decimal(8,2) DEFAULT 0.0, "updated_at" datetime, "created_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "order_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "order_id" integer, "amount" integer, "success" boolean, "reference" varchar(255), "action" varchar(255), "params" text, "test" boolean, "created_at" datetime, "updated_at" datetime, "message" text) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "full_name" varchar(50), "email" varchar(100), "phone_number" varchar(50), "customer_ip" varchar(25), "created_at" datetime, "updated_at" datetime, "order_number" varchar(255), "shipment_weight_total" decimal(8,2) DEFAULT 0.0, "product_cost" decimal(8,2) DEFAULT 0.0, "shipping_cost" decimal(8,2) DEFAULT 0.0, "tax" decimal(8,2) DEFAULT 0.0, "drop_shipping_cost" decimal(8,2) DEFAULT 0.0, "admin_notes" text, "shipping_address_id" integer, "billing_address_id" integer, "amount" integer, "state" varchar(255) DEFAULT 'pending', "order_type" integer, "business" varchar(50), "ebay_item_number" varchar(30), "ebay_auction_id" varchar(30), "company" varchar(50) DEFAULT '', "shipping_method" varchar(50) DEFAULT '', "delivery_status" integer DEFAULT 1, "credit_card_display" varchar(20), "shipping_method_id" integer, "promo_code" varchar(30) DEFAULT '', "promo_discount" decimal(8,2) DEFAULT 0.0, "free_shipping" boolean DEFAULT 'f') [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "out_of_stock_option_selections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "out_of_stock_option_id" integer, "product_option_selection_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "out_of_stock_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "product_image_thumbnails" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_image_id" integer, "filename" varchar(255)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "product_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255), "product_id" integer) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "product_large_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_image_id" integer, "filename" varchar(255)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "product_option_instances" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "product_option_id" integer) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("product_option_instances")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_product_option_instances_on_product_id" ON "product_option_instances" ("product_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("product_option_instances")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_product_option_instances_on_product_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_product_option_instances_on_product_option_id" ON "product_option_instances" ("product_option_id")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "product_option_selection_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "content_type" varchar(255), "filename" varchar(255), "thumbnail" varchar(255), "size" integer, "width" integer, "height" integer, "product_option_selection_id" integer) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "product_option_selections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50) NOT NULL, "price_adjustment" decimal(8,2) DEFAULT 0.0, "weight_adjustment" decimal(8,2) DEFAULT 0.0, "sku_adjustment" varchar(50), "product_option_id" integer, "list_order" integer DEFAULT 99) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "product_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50) NOT NULL, "selection_type" integer, "description" text) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255), "name" varchar(100), "subname" varchar(50), "short_description" text, "weight" decimal(8,2), "admin_notes" text, "vendor_id" integer, "price" decimal(8,2) DEFAULT 0.0, "is_featured" boolean, "long_description" text, "updated_at" datetime, "created_at" datetime, "available" boolean DEFAULT 't', "wholesale_price" decimal(8,2), "flat_rate_shipping" decimal, "keywords" text, "description" text, "title" varchar(255), "handling" decimal, "shipping_type" integer DEFAULT 0, "length" decimal, "width" decimal, "height" decimal, "inventory" integer DEFAULT 0, "image" varchar(255), "thumbnail" varchar(255)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "promo_codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(150) NOT NULL, "code" varchar(30) DEFAULT '' NOT NULL, "dollar_discount" decimal(8,2) DEFAULT 0.0, "percent_discount" decimal(8,2) DEFAULT 0.0, "free_shipping" boolean DEFAULT 'f', "note" text DEFAULT '', "first_time_only" boolean DEFAULT 'f', "created_at" datetime, "updated_at" datetime, "minimum_order_amount" decimal(8,2) DEFAULT 0.0) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "quantity_discounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price_per_product" decimal(8,5) DEFAULT 0.0, "product_id" integer, "quantity_low" integer DEFAULT 0, "quantity_high" integer DEFAULT 0) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "regions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "sessions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "session_id" varchar(255), "data" text, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("sessions")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE INDEX "index_sessions_on_session_id" ON "sessions" ("session_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("sessions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_sessions_on_session_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_sessions_on_updated_at" ON "sessions" ("updated_at")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50), "default_selection" boolean, "region_id" integer, "fulfillment_code" varchar(255), "base_price" decimal, "cost_of_subtotal" integer, "cost_per_weight" integer, "cost_per_item" decimal(8,2) DEFAULT 0.0) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "shipping_providers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50), "shipping_rate_id" integer) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE TABLE "store_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "content_type" varchar(255), "filename" varchar(255), "thumbnail" varchar(255), "size" integer, "width" integer, "height" integer, "store_id" integer) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE TABLE "stores" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(200), "city" varchar(50), "state" varchar(50), "zip" varchar(10), "storename" varchar(50), "hours" varchar(50), "url" varchar(50), "phone" varchar(50), "country" varchar(50), "lat" float, "lng" float) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE TABLE "tax_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "state" varchar(2), "postal_code" varchar(10), "rate" decimal(8,5) DEFAULT 0.0) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar(255), "email" varchar(255), "crypted_password" varchar(40), "salt" varchar(40), "created_at" datetime, "updated_at" datetime, "remember_token" varchar(255), "remember_token_expires_at" datetime, "role" varchar(20)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_users_on_role" ON "users" ("role")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "vendors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50) NOT NULL, "description" text, "active" boolean, "drop_ship" boolean, "shipping" decimal(8,2) DEFAULT 0.0, "admin_notes" text) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090909191809')[0m
+Migrating to CreateTableVariants (20090916031338)
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE TABLE "variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "inventory" integer, "variant_image_id" integer, "weight" decimal, "price" decimal, "out_of_stock" boolean DEFAULT 'f', "sku" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090916031338')[0m
+Migrating to CreateTableVariantSelections (20090916032132)
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE TABLE "variant_selections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_id" integer, "product_option_selection_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090916032132')[0m
+Migrating to AddGeneralConfigurationTable (20090928030909)
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE TABLE "general_configurations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inventory_management" boolean) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090928030909')[0m
+Migrating to AddVariantImageTable (20091001212916)
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "variant_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091001212916')[0m
+Migrating to AddVariantImageThumbnailAndLargeTables (20091002033255)
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "variant_image_thumbnails" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_image_id" integer, "filename" varchar(255)) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "variant_large_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_image_id" integer, "filename" varchar(255)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091002033255')[0m
+Migrating to AddCategoryIconTable (20091008143231)
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "category_icons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255), "category_id" integer) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091008143231')[0m
+Migrating to AddCategoryIconHoversTable (20091012193601)
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "category_icon_hovers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255), "category_icon_id" integer) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091012193601')[0m
+Migrating to ChangeOrderitemColumnLength (20091027175846)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "variant_id" integer, "order_id" integer, "quantity" integer, "weight" decimal DEFAULT 0.0, "drop_ship" boolean, "supplier_id" integer, "product_name" varchar(50), "price" decimal DEFAULT 0.0, "drop_shipping_cost" decimal DEFAULT 0.0, "updated_at" datetime, "created_at" datetime) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("order_items")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mDROP TABLE "order_items"[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "variant_id" integer, "order_id" integer, "quantity" integer, "weight" decimal DEFAULT 0.0, "drop_ship" boolean, "supplier_id" integer, "product_name" varchar(255), "price" decimal DEFAULT 0.0, "drop_shipping_cost" decimal DEFAULT 0.0, "updated_at" datetime, "created_at" datetime) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_order_items")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mDROP TABLE "altered_order_items"[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091027175846')[0m
+Migrating to CreateSlugs (20091215163757)
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE TABLE "slugs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "sluggable_id" integer, "sequence" integer DEFAULT 1 NOT NULL, "sluggable_type" varchar(40), "scope" varchar(40), "created_at" datetime) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("slugs")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_slugs_on_n_s_s_and_s" ON "slugs" ("name", "sluggable_type", "scope", "sequence")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("slugs")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_slugs_on_n_s_s_and_s')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_slugs_on_sluggable_id" ON "slugs" ("sluggable_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091215163757')[0m
+Migrating to AddNoShippingFlagToProducts (20100319212157)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mALTER TABLE "products" ADD "free_shipping" boolean DEFAULT 'f'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100319212157')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("addresses")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("cart_items")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("carts")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("categories_products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_categories_suppliers_on_supplier_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_categories_products_on_product_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_categories_suppliers_on_category_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_categories_products_on_category_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("category_icon_hovers")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("category_icons")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("category_images")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("featured_products")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("flat_rate_shippings")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("fulfillment_codes")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("general_configurations")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("logged_exceptions")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("order_items")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("order_transactions")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("orders")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("out_of_stock_option_selections")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("out_of_stock_options")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("product_image_thumbnails")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("product_images")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("product_large_images")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("product_option_instances")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_product_option_instances_on_product_option_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_product_option_instances_on_product_id')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("product_option_selection_images")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("product_option_selections")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("product_options")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("products")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("promo_codes")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("quantity_discounts")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("regions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sessions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_sessions_on_updated_at')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_sessions_on_session_id')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("shipping_methods")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("shipping_providers")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("slugs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_slugs_on_sluggable_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_slugs_on_n_s_s_and_s')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("store_images")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("stores")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("tax_rates")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_role')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("variant_image_thumbnails")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("variant_images")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("variant_large_images")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("variant_selections")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("variants")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("vendors")[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address_1" varchar(50), "address_2" varchar(50), "city" varchar(50), "postal_code" varchar(10), "is_shipping" boolean, "country" varchar(50), "state" varchar(50)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mCREATE TABLE "cart_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "cart_id" integer, "quantity" integer, "created_at" datetime, "updated_at" datetime, "variant_id" integer) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCREATE TABLE "carts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(40), "created_at" datetime, "updated_at" datetime, "promo_code" varchar(30) DEFAULT '', "promo_discount" decimal(8,2) DEFAULT 0.0, "free_shipping" boolean DEFAULT 'f', "billing_state" varchar(255)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "name" varchar(255), "lft" integer, "rgt" integer, "position" integer, "description" text, "active" boolean DEFAULT 't') [0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE "categories_products" ("product_id" integer, "category_id" integer) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("categories_products")[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCREATE INDEX "index_categories_products_on_category_id" ON "categories_products" ("category_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("categories_products")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_categories_products_on_category_id')[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCREATE INDEX "index_categories_suppliers_on_category_id" ON "categories_products" ("category_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories_products")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_categories_suppliers_on_category_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_categories_products_on_category_id')[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCREATE INDEX "index_categories_products_on_product_id" ON "categories_products" ("product_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("categories_products")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_categories_products_on_product_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_categories_suppliers_on_category_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_categories_products_on_category_id')[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE INDEX "index_categories_suppliers_on_supplier_id" ON "categories_products" ("product_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mCREATE TABLE "category_icon_hovers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255), "category_icon_id" integer) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCREATE TABLE "category_icons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255), "category_id" integer) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mCREATE TABLE "category_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255), "category_id" integer) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mCREATE TABLE "featured_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "flat_rate_shippings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "item_low" integer, "item_high" integer, "weight_low" integer, "weight_high" integer, "order_total_low" integer, "order_total_high" integer, "shipping_method_id" integer, "flat_rate" decimal) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE "fulfillment_codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "item_low" integer, "item_high" integer, "code" varchar(20), "shipping_method_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mCREATE TABLE "general_configurations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inventory_management" boolean) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "logged_exceptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exception_class" varchar(255), "controller_name" varchar(255), "action_name" varchar(255), "message" text, "backtrace" text, "environment" text, "request" text, "created_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCREATE TABLE "order_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "variant_id" integer, "order_id" integer, "quantity" integer, "weight" decimal DEFAULT 0.0, "drop_ship" boolean, "supplier_id" integer, "product_name" varchar(255), "price" decimal DEFAULT 0.0, "drop_shipping_cost" decimal DEFAULT 0.0, "updated_at" datetime, "created_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE "order_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "order_id" integer, "amount" integer, "success" boolean, "reference" varchar(255), "action" varchar(255), "params" text, "test" boolean, "created_at" datetime, "updated_at" datetime, "message" text) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "full_name" varchar(50), "email" varchar(100), "phone_number" varchar(50), "customer_ip" varchar(25), "created_at" datetime, "updated_at" datetime, "order_number" varchar(255), "shipment_weight_total" decimal(8,2) DEFAULT 0.0, "product_cost" decimal(8,2) DEFAULT 0.0, "shipping_cost" decimal(8,2) DEFAULT 0.0, "tax" decimal(8,2) DEFAULT 0.0, "drop_shipping_cost" decimal(8,2) DEFAULT 0.0, "admin_notes" text, "shipping_address_id" integer, "billing_address_id" integer, "amount" integer, "state" varchar(255) DEFAULT 'pending', "order_type" integer, "business" varchar(50), "ebay_item_number" varchar(30), "ebay_auction_id" varchar(30), "company" varchar(50) DEFAULT '', "shipping_method" varchar(50) DEFAULT '', "delivery_status" integer DEFAULT 1, "credit_card_display" varchar(20), "shipping_method_id" integer, "promo_code" varchar(30) DEFAULT '', "promo_discount" decimal(8,2) DEFAULT 0.0, "free_shipping" boolean DEFAULT 'f') [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "out_of_stock_option_selections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "out_of_stock_option_id" integer, "product_option_selection_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCREATE TABLE "out_of_stock_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCREATE TABLE "product_image_thumbnails" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_image_id" integer, "filename" varchar(255)) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCREATE TABLE "product_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255), "product_id" integer) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mCREATE TABLE "product_large_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_image_id" integer, "filename" varchar(255)) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mCREATE TABLE "product_option_instances" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "product_option_id" integer) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("product_option_instances")[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE INDEX "index_product_option_instances_on_product_id" ON "product_option_instances" ("product_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("product_option_instances")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_product_option_instances_on_product_id')[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mCREATE INDEX "index_product_option_instances_on_product_option_id" ON "product_option_instances" ("product_option_id")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE "product_option_selection_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "content_type" varchar(255), "filename" varchar(255), "thumbnail" varchar(255), "size" integer, "width" integer, "height" integer, "product_option_selection_id" integer) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCREATE TABLE "product_option_selections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50) NOT NULL, "price_adjustment" decimal(8,2) DEFAULT 0.0, "weight_adjustment" decimal(8,2) DEFAULT 0.0, "sku_adjustment" varchar(50), "product_option_id" integer, "list_order" integer DEFAULT 99) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mCREATE TABLE "product_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50) NOT NULL, "selection_type" integer, "description" text) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255), "name" varchar(100), "subname" varchar(50), "short_description" text, "weight" decimal(8,2), "admin_notes" text, "vendor_id" integer, "price" decimal(8,2) DEFAULT 0.0, "is_featured" boolean, "long_description" text, "updated_at" datetime, "created_at" datetime, "available" boolean DEFAULT 't', "wholesale_price" decimal(8,2), "flat_rate_shipping" decimal, "keywords" text, "description" text, "title" varchar(255), "handling" decimal, "shipping_type" integer DEFAULT 0, "length" decimal, "width" decimal, "height" decimal, "inventory" integer DEFAULT 0, "image" varchar(255), "thumbnail" varchar(255), "free_shipping" boolean DEFAULT 'f') [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE "promo_codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(150) NOT NULL, "code" varchar(30) DEFAULT '' NOT NULL, "dollar_discount" decimal(8,2) DEFAULT 0.0, "percent_discount" decimal(8,2) DEFAULT 0.0, "free_shipping" boolean DEFAULT 'f', "note" text DEFAULT '', "first_time_only" boolean DEFAULT 'f', "created_at" datetime, "updated_at" datetime, "minimum_order_amount" decimal(8,2) DEFAULT 0.0) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE TABLE "quantity_discounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "price_per_product" decimal(8,5) DEFAULT 0.0, "product_id" integer, "quantity_low" integer DEFAULT 0, "quantity_high" integer DEFAULT 0) [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mCREATE TABLE "regions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50)) [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mCREATE TABLE "sessions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "session_id" varchar(255), "data" text, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("sessions")[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE INDEX "index_sessions_on_session_id" ON "sessions" ("session_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("sessions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_sessions_on_session_id')[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mCREATE INDEX "index_sessions_on_updated_at" ON "sessions" ("updated_at")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mCREATE TABLE "shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50), "default_selection" boolean, "region_id" integer, "fulfillment_code" varchar(255), "base_price" decimal, "cost_of_subtotal" integer, "cost_per_weight" integer, "cost_per_item" decimal(8,2) DEFAULT 0.0) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE "shipping_providers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50), "shipping_rate_id" integer) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "slugs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "sluggable_id" integer, "sequence" integer DEFAULT 1 NOT NULL, "sluggable_type" varchar(40), "scope" varchar(40), "created_at" datetime) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("slugs")[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mCREATE UNIQUE INDEX "index_slugs_on_n_s_s_and_s" ON "slugs" ("name", "sluggable_type", "scope", "sequence")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("slugs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_slugs_on_n_s_s_and_s')[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE INDEX "index_slugs_on_sluggable_id" ON "slugs" ("sluggable_id")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mCREATE TABLE "store_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "content_type" varchar(255), "filename" varchar(255), "thumbnail" varchar(255), "size" integer, "width" integer, "height" integer, "store_id" integer) [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCREATE TABLE "stores" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(200), "city" varchar(50), "state" varchar(50), "zip" varchar(10), "storename" varchar(50), "hours" varchar(50), "url" varchar(50), "phone" varchar(50), "country" varchar(50), "lat" float, "lng" float) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mCREATE TABLE "tax_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "state" varchar(2), "postal_code" varchar(10), "rate" decimal(8,5) DEFAULT 0.0) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar(255), "email" varchar(255), "crypted_password" varchar(40), "salt" varchar(40), "created_at" datetime, "updated_at" datetime, "remember_token" varchar(255), "remember_token_expires_at" datetime, "role" varchar(20)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCREATE INDEX "index_users_on_role" ON "users" ("role")[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCREATE TABLE "variant_image_thumbnails" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_image_id" integer, "filename" varchar(255)) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE "variant_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar(255)) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE TABLE "variant_large_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_image_id" integer, "filename" varchar(255)) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mCREATE TABLE "variant_selections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_id" integer, "product_option_selection_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE TABLE "variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "inventory" integer, "variant_image_id" integer, "weight" decimal, "price" decimal, "out_of_stock" boolean DEFAULT 'f', "sku" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCREATE TABLE "vendors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50) NOT NULL, "description" text, "active" boolean, "drop_ship" boolean, "shipping" decimal(8,2) DEFAULT 0.0, "admin_notes" text) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("schema_migrations")[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM "schema_migrations"[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20100319212157')[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090909191809')[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090916031338')[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090916032132')[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090928030909')[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091001212916')[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091002033255')[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091008143231')[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091012193601')[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20091027175846')[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20091215163757')[0m

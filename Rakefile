@@ -27,6 +27,14 @@ begin
     gem.email = "dev@entryway.net"
     gem.homepage = "http://github.com/entryway/pebbles"
     gem.authors = ["gustin", "jonsgreen", "bobbyw"]
+    gem.add_dependency 'ruport'
+    gem.add_dependency 'acts_as_reportable'
+    gem.add_development_dependency 'rspec'
+    gem.add_dependency 'activemerchant'
+    gem.add_dependency 'awesome_nested_set'
+    gem.add_dependency 'friendly_id'
+    gem.add_dependency 'acts_as_singleton'
+    gem.add_dependency 'aasm'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
