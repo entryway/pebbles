@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "0.2.33"
+  s.version = "0.2.35"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2010-09-24}
+  s.date = %q{2010-09-29}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{dev@entryway.net}
   s.files = [
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "app/controllers/admin/order_items_controller.rb",
      "app/controllers/admin/orders_controller.rb",
      "app/controllers/admin/out_of_stock_options_controller.rb",
+     "app/controllers/admin/product_export_controller.rb",
      "app/controllers/admin/product_image_thumbnails_controller.rb",
      "app/controllers/admin/product_images_controller.rb",
      "app/controllers/admin/product_large_images_controller.rb",
@@ -48,6 +49,7 @@ Gem::Specification.new do |s|
      "app/controllers/cart_items_controller.rb",
      "app/controllers/carts_controller.rb",
      "app/controllers/categories_controller.rb",
+     "app/controllers/contacts_controller.rb",
      "app/controllers/index_controller.rb",
      "app/controllers/orders_controller.rb",
      "app/controllers/paypal_ipn_controller.rb",
@@ -76,6 +78,7 @@ Gem::Specification.new do |s|
      "app/helpers/pebbles/stores_helper.rb",
      "app/helpers/pebbles/variants_helper.rb",
      "app/lib/exceptions.rb",
+     "app/lib/exporter.rb",
      "app/lib/inventory.rb",
      "app/lib/order_calculations.rb",
      "app/lib/order_factory.rb",
@@ -190,7 +193,6 @@ Gem::Specification.new do |s|
      "app/views/admin/product_options/_option_selection_list.html.erb",
      "app/views/admin/product_options/_options.html.erb",
      "app/views/admin/product_options/_options_form.html.erb",
-     "app/views/admin/product_options/_options_form.rhtml.old",
      "app/views/admin/product_options/_product_option_select.html.erb",
      "app/views/admin/product_options/add_option_selection.rjs",
      "app/views/admin/product_options/apply_option_to_product.rjs",
@@ -204,6 +206,7 @@ Gem::Specification.new do |s|
      "app/views/admin/products/_category_list.html.erb",
      "app/views/admin/products/_details.html.erb",
      "app/views/admin/products/_edit.html.erb",
+     "app/views/admin/products/_extensions.html.erb",
      "app/views/admin/products/_new.html.erb",
      "app/views/admin/products/_optimizations.html.erb",
      "app/views/admin/products/_sidebar.html.erb",
@@ -269,6 +272,7 @@ Gem::Specification.new do |s|
      "app/views/categories/index.html.erb",
      "app/views/categories/show.html.erb",
      "app/views/contact_notifier/contact_confirmation.html.erb",
+     "app/views/contacts/create.js.erb",
      "app/views/index/_featured_products.html.erb",
      "app/views/index/about.html.erb",
      "app/views/index/charity.html.erb",
@@ -320,6 +324,7 @@ Gem::Specification.new do |s|
      "app/views/shipping_methods/index.js.erb",
      "app/views/shipping_methods/update.js.erb",
      "app/views/users/new.html.erb",
+     "changelog",
      "config/boot.rb",
      "config/config.yml",
      "config/deploy.rb",
@@ -335,8 +340,11 @@ Gem::Specification.new do |s|
      "db/migrate/20091008143231_add_category_icon_table.rb",
      "db/migrate/20091012193601_add_category_icon_hovers_table.rb",
      "db/migrate/20091027175846_change_orderitem_column_length.rb",
+     "db/migrate/20091116181242_add_gift_note_to_orders.rb",
      "db/migrate/20091215163757_create_slugs.rb",
      "db/migrate/20100319212157_add_no_shipping_flag_to_products.rb",
+     "db/migrate/20100423015752_add_no_tax_flag_to_products.rb",
+     "db/migrate/20100916173402_add_default_weight_to_products.rb",
      "db/schema.rb",
      "db/seeds.rb",
      "git-flow-version",

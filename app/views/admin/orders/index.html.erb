@@ -1,8 +1,8 @@
 <%= javascript('pebbles/jquery/spinner') %>
 <% content_for :sidebar do %>
   <ul>
-    <li><%= link_to "Export Ordered Items", admin_order_items_path(:format => 'csv') %></li>
     <li><%= raw link_to 'Promo Codes', admin_promo_codes_path %></li>
+    <li><%= link_to "Export Orders", admin_order_items_path(:format => 'csv') %></li>
   </ul>
 <% end %>
 <h1>Listing Orders</h1>

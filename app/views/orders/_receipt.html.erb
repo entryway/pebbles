@@ -1,11 +1,11 @@
 ﻿<div class="box1"><div class="box2"><div class="box3"><div class="box4 clearfix">
-<h1>Order Complete</h1>	
+<h1>Order Complete</h1>
 <p>Thank you for your purchase of Green Label Organic clothing and <b>special thanks for your commitment to organic cotton</b>.  Your support of organic cotton will <b>save up to 1/3 of pound of toxic chemicals per shirt</b> from being sprayed onto our earth.</p><br />
 <h2>Order Details</h2>
 Order Number: <b><%= order.order_number %></b>
-<br /><br/> 
+<br /><br/>
 <% order.order_items.each do |order_item| %>
-	<%= order_item.quantity %> - <%= order_item.product_name %> Organic T-Shirt - 
+	<%= order_item.quantity %> - <%= order_item.product_name %> Organic T-Shirt -
 	<%= number_to_currency(order_item.quantity * order_item.price) %><br/>
 <% end %>
 <br/><br/>
@@ -20,16 +20,16 @@ Shipping: <%= number_to_currency(order.shipping_cost) %><br/>
 <h2>Shipping Address</h2>
 <%= order.shipping_address.address_1 %><br/>
 <%= order.shipping_address.address_2 -%><br/>
-<%= order.shipping_address.city %>, <%= order.shipping_address.state %> 
+<%= order.shipping_address.city %>, <%= order.shipping_address.state %>
 <%= order.shipping_address.postal_code %><br/>
 <%= order.shipping_address.country %><br/>
 <br/>
-<label><b>Shipping Method:</b></label>	
+<label><b>Shipping Method:</b></label>
 <span><%= order.shipping_method %></span>
 <br/><br/><br/>
 <h2>Contact us:</h2>
-Please contact us at 
-<%= enkode_mail('customerservice@greenlabel.com', 'customerservice@greenlabel.com') %></a> for any questions.<br />
+Please contact us at
+<%= enkode_mail('customerservice@greenlabel.com', 'customerservice@greenlabel.com').html_safe! %></a> for any questions.<br />
 
 
 <br/><br/>

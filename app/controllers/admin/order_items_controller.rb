@@ -5,9 +5,18 @@ module Admin
     require_role "admin"
 
     def index
-      respond_to do |format|
-        format.csv do
-          OrderItem.report_table.to_csv
+      respond_to do |wants|
+        wants.csv do
+          order_items_report = OrderItem.report_table(:all, :only => [],
+                              :include => { :product => { :only => [:sku, :name],
+                                            :include => {:categories => {:only => [:name]}}},
+                                            :order => { :only => [:full_name, :phone_number],
+                                            :include => {:shipping_address => {
+                                            :only => [:address_1, :address_2, :city,
+                                            :postal_code, :state, :country]}}}})
+          csv = order_items_report.to_csv
+          send_data csv, :type => 'text/csv',
+                         :filename => "orders_#{Date.today.to_s}.csv"
         end
       end
     end
