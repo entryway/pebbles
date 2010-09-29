@@ -7,6 +7,7 @@
   * Added no tax flag to products [Gustin]
   * Add sorted name options to sort on list order [Gustin]
   * Additional fields and relations addded to Order Export [Gustin]
+  * Added Product Inventory Exporting from FCS to pebbles [Gustin]
 
 1.0.8 - September 28, 2010
   * Added restful support for contact mailer
