@@ -13,7 +13,11 @@
           </div>
           <div class="p7TPcontent">
             <div id="p7tpc1_1">
-              <%= render :partial => "form" %>
+              <% if GeneralConfiguration.shipping_calculated_by_weight? %>
+                <%= render :partial => "weight_calculated_form"%>
+              <% else %>
+                <%= render :partial => "form" %>
+              <% end %>
             </div>  
           </div>
         </div>

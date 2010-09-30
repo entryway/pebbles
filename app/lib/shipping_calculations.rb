@@ -10,7 +10,10 @@ module ShippingCalculations
     end
     price
   end
-
+  
+  def shipping_weight_total
+    self.line_items.to_a.sum {|i| i.product.free_shipping? ? 0 : i.product.weight * i.quantity}
+  end
   
 private
   
@@ -22,6 +25,8 @@ private
     shipping_method = ShippingMethod.find(self.shipping_method_id)
     price = shipping_method.flat_rate_shipping_cost(self)
   end
+  
+
 
 
 ###

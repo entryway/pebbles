@@ -1,3 +1,10 @@
+1.0.11 - September 30, 2010
+  * Added support for shipping calculations by weight total ranges
+    note: set the GeneralConfiguration.instance shipping_calculation_method to 'weight' to use this.
+          Otherwise the shipping_calculation_method can be left nil so should be backwards compatible
+1.0.10 - September 29, 2010
+  * Added product export routes to pebbles route file [Gustin]
+
 1.0.9 - September 28, 2010
   * Changed _delete to _destroy in form (required in 2.3.9) [Gustin]
   * Add unloadable to OrdersController to help with checking out in
@@ -10,7 +17,7 @@
   * Added Product Inventory Exporting from FCS to pebbles [Gustin]
 
 1.0.8 - September 28, 2010
-  * Added restful support for contact mailer
+  * Added restful support for contact mailer [Jonathan]
 
 1.0.7 - September 27, 2010
   * Added hooks for admin product tabs. See admin/products

@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 .rvmrc
-=======
-.rvmc
->>>>>>> release/v1.0.2
 config/database.yml
 *.*~
 log/*.log
 tmp/**/*
 pkg/*
 .bundler
-

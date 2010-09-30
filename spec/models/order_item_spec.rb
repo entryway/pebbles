@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-require File.dirname(__FILE__) + '/../pebbles_factory'
 require File.dirname(__FILE__) + '/../cart_builder'
 
 include CartBuilder
@@ -24,7 +23,7 @@ describe OrderItem do
     context "variant product" do
       before(:each) do
         build_variant_cart
-        build_variant_order_item      
+        build_variant_order_item
       end
 
       it "should create an order item from a cart item for a variant product" do
