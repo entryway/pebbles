@@ -1,3 +1,7 @@
+1.0.11 - September 30, 2010
+  * Added support for shipping calculations by weight total ranges
+    note: set the GeneralConfiguration.instance shipping_calculation_method to 'weight' to use this.
+          Otherwise the shipping_calculation_method can be left nil so should be backwards compatible
 1.0.10 - September 29, 2010
   * Added product export routes to pebbles route file [Gustin]
 
