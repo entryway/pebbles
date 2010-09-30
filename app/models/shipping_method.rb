@@ -1,7 +1,7 @@
 class ShippingMethod < ActiveRecord::Base
   belongs_to :region
 
-  has_many :flat_rate_shippings, :dependent => :destroy, :order => 'order_total_low asc'
+  has_many :flat_rate_shippings, :dependent => :destroy
   has_many :fulfillment_codes
 
   validates_presence_of :name
@@ -10,9 +10,13 @@ class ShippingMethod < ActiveRecord::Base
                                 :reject_if => proc{ |attributes| attributes['flat_rate'].blank? }
 
   ##
-  # Determines whether shipping_method uses flat rate (otherwise uses base rate)
+  # Determines whether shipping_method uses base rate
   #
-  def is_flat_rate?
+  def is_base_rate?
+    !(GeneralConfiguration.shipping_calculated_by_weight? || is_order_range_flat_rated?)
+  end
+  
+  def is_order_range_flat_rated?
     flat_rate_shippings.select{|rate| !rate.new_record? }.size > 0
   end
 
@@ -23,11 +27,13 @@ class ShippingMethod < ActiveRecord::Base
   # @return [Float] shipping cost
   def flat_rate_shipping_cost(cart_or_order)
     if self.flat_rate_shippings.size > 0
-      total = order_total_minus_freely_shipped_products(cart_or_order)
-      if total > 0
-        total = flat_rate_by_order_total(total)
+      if GeneralConfiguration.shipping_calculated_by_weight?
+        weight_total = cart_or_order.shipping_weight_total
+        flat_rate_by_weight_total(weight_total)
+      else
+        order_total = order_total_minus_freely_shipped_products(cart_or_order)
+        flat_rate_by_order_total(order_total)
       end
-      total
     else
       flat_rate_by_base_rate(cart_or_order.line_items)
     end
@@ -45,7 +51,11 @@ private
     shipping = self.flat_rate_shippings.ordered_by_total_ranges.find(:last,
                                                                      :conditions =>
                                                                       "order_total_low <= #{total}")
-    shipping.flat_rate
+    shipping.nil? ? 0 : shipping.flat_rate
+  end
+
+  def flat_rate_by_weight_total(weight)
+    flat_rate_shippings.ordered_by_weight_ranges(weight).last.flat_rate
   end
 
   ##

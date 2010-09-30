@@ -27,19 +27,19 @@ class ActionController::Routing::RouteSet
 end
 
 
-ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
-ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')
-ActiveSupport::Dependencies.load_paths << File.join(File.dirname(__FILE__), "..", "app", "uploaders")
+ActiveSupport::Dependencies.autoload_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
+ActiveSupport::Dependencies.autoload_paths << File.join(File.dirname(__FILE__), "..", 'app', 'notifiers')
+ActiveSupport::Dependencies.autoload_paths << File.join(File.dirname(__FILE__), "..", "app", "uploaders")
 %w(controllers helpers lib models notifiers views ).each  do |path|
-  ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'app', path)
+  ActiveSupport::Dependencies.autoload_once_paths.delete File.join(File.dirname(__FILE__), "..", 'app', path)
 end
-ActiveSupport::Dependencies.load_once_paths.delete File.join(File.dirname(__FILE__), "..", 'lib')
+ActiveSupport::Dependencies.autoload_once_paths.delete File.join(File.dirname(__FILE__), "..", 'lib')
 
 
 config.to_prepare do
-  helpers = Dir.glob(File.join(File.dirname(__FILE__), '..','app','helpers','pebbles', '**', '*.rb'))
-  helpers.each do |helper_file|
-    class_name = eval(helper_file.gsub!(/^.+helpers\//, "")[0..-4].camelize)
-    ApplicationController.helper(class_name)
-  end
+ helpers = Dir.glob(File.join(File.dirname(__FILE__), '..','app','helpers','pebbles', '**', '*.rb'))
+ helpers.each do |helper_file|
+   class_name = eval(helper_file.gsub!(/^.+helpers\//, "")[0..-4].camelize)
+   ApplicationController.helper(class_name)
+ end
 end

@@ -2,6 +2,45 @@ require File.dirname(__FILE__) + '/../spec_helper'
 require File.dirname(__FILE__) + '/../pebbles_factory'
 
 describe ShippingCalculations do 
+  describe "#weight_total" do
+    context "for cart" do
+      before(:each) do
+        product1 = Factory(:product, :weight => 2.5)
+        @product2 = Factory(:product, :weight => 3.5)
+        @cart = Factory(:cart)
+        @cart.cart_items.create(:product_id => product1.id, :quantity => 1)
+        @cart.cart_items.create(:product_id => @product2.id, :quantity => 2)
+      end
+
+      it "should calculate sum of product weights multiplied by quantity ordered" do
+        @cart.shipping_weight_total.should eql(9.5)
+      end
+
+      it "should not include free shipping in the weight total" do
+        @product2.update_attribute(:free_shipping, true)
+        @cart.shipping_weight_total.should eql(2.5)
+      end
+    end
+    context "for order" do
+      before(:each) do
+        product1 = Factory(:product, :weight => 2.5)
+        @product2 = Factory(:product, :weight => 3.5)
+        @order = Factory(:order)
+        @order.order_items.create(:product_id => product1.id, :quantity => 1)
+        @order.order_items.create(:product_id => @product2.id, :quantity => 2)
+      end
+
+      it "should calculate sum of product weights multiplied by quantity ordered" do
+        @order.shipping_weight_total.should eql(9.5)
+      end
+
+      it "should not include free shipping in the weight total" do
+        @product2.update_attribute(:free_shipping, true)
+        @order.shipping_weight_total.should eql(2.5)
+      end
+    end
+  end
+
   # before(:each) do 
   #    #ShippingCalculations.stub!(:quote_packages).and_return(5)
   #    Factory(:configuration)
@@ -65,6 +104,7 @@ describe ShippingCalculations do
   
   describe "Flat Rate Shipping calculations" do
     before(:each) do
+      GeneralConfiguration.instance
       @shipping_method = Factory(:shipping_method)
       {0 => 2.99, 10.00 => 3.99, 20.00 => 4.99}.each do |k, v|
         @shipping_method.flat_rate_shippings.create(:flat_rate => v, :order_total_low => k)
@@ -119,6 +159,7 @@ describe ShippingCalculations do
     context 'Flat Rate Shipping calculations' do
 
       before(:each) do
+        GeneralConfiguration.instance
         @shipping_method = Factory(:shipping_method)
         { 0 => 2.99, 10.00 => 3.99, 20.00 => 4.99 }.each do |k, v|
           @shipping_method.flat_rate_shippings.create(:flat_rate => v, :order_total_low => k)
@@ -153,6 +194,7 @@ describe ShippingCalculations do
     end
 
   end
+  
 
 
 

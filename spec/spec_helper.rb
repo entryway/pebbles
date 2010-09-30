@@ -1,12 +1,17 @@
 ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../../../../config/environment")
+
+require File.expand_path(File.dirname(__FILE__) + "/../fixture_rails_root/config/environment")
+
+require 'rubygems'
+require 'pebbles'
+require 'factory_girl'
 require 'spec'
+require 'spec/autorun'
 require 'spec/rails'
-require File.dirname(__FILE__) + '/pebbles_factory'
 
-Dir.glob("#{File.dirname(__FILE__)}/../spec/factories/*.rb").each{|factory| require factory}
-
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'factories', '*rb'))].each {|f| require f}
 
 Spec::Runner.configure do |config|
-  config.fixture_path = "#{File.dirname(__FILE__)}/../spec/fixtures"
+    config.use_transactional_fixtures = true
+    config.use_instantiated_fixtures = false
 end
