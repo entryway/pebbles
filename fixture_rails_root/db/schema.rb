@@ -21,13 +21,6 @@ ActiveRecord::Schema.define(:version => 20100930024650) do
     t.string  "state",       :limit => 50
   end
 
-  create_table "audio_clips", :force => true do |t|
-    t.string   "audio_file"
-    t.integer  "product_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "cart_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
@@ -334,7 +327,7 @@ ActiveRecord::Schema.define(:version => 20100930024650) do
     t.datetime "created_at"
   end
 
-  add_index "slugs", ["name", "scope", "sequence", "sluggable_type"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "store_images", :force => true do |t|
