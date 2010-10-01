@@ -11,10 +11,10 @@ Order Number: <b><%= order.order_number %></b>
 <br/><br/>
 
 SubTotal: <%= number_to_currency(order.product_cost) %><br/>
-<%= "Tax:" + number_to_currency(order.tax) + "<br/>" if order.tax > 0 %>
+<%= ("Tax:" + number_to_currency(order.tax) + "<br/>").html_safe! if order.tax > 0 %>
 Shipping: <%= number_to_currency(order.shipping_cost) %><br/>
-<%= "Promo Code: " + order.promo_code + "<br/>" unless order.promo_code.empty? -%>
-<%= "Promo Discount: -" + number_to_currency(order.promo_discount) + "<br/>" unless order.promo_code.empty? -%>
+<%= ("Promo Code: " + order.promo_code + "<br/>").html_safe! unless order.promo_code.empty? -%>
+<%= ("Promo Discount: -" + number_to_currency(order.promo_discount) + "<br/>").html_safe! unless order.promo_code.empty? -%>
 <br/>Total: <%= number_to_currency(order.total) %><br/>
 <br /><br/><br/>
 <h2>Shipping Address</h2>
