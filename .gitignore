@@ -1,6 +1,7 @@
 config/database.yml
 *.*~
-log/*.log
+*.log
 tmp/**/*
 pkg/*
 .rvmrc
+fixture_rails_root/public/uploads

@@ -13,18 +13,18 @@ class ActionController::Base
   helper_method :current_cart
 end
 
-class ActionController::Routing::RouteSet
-  def load_routes_with_pebbles!
-    pebbles_routes = File.join(File.dirname(__FILE__),
-                               *%w[.. config pebbles_routes.rb])
-    unless configuration_files.include? pebbles_routes
-      add_configuration_file(pebbles_routes)
-    end
-    load_routes_without_pebbles!
-  end
+#class ActionController::Routing::RouteSet
+  #def load_routes_with_pebbles!
+    #pebbles_routes = File.join(File.dirname(__FILE__),
+                               #*%w[.. config pebbles_routes.rb])
+    #unless configuration_files.include? pebbles_routes
+      #add_configuration_file(pebbles_routes)
+    #end
+    #load_routes_without_pebbles!
+  #end
 
-  alias_method_chain :load_routes!, :pebbles
-end
+  #alias_method_chain :load_routes!, :pebbles
+#end
 
 
 ActiveSupport::Dependencies.autoload_paths << File.join(File.dirname(__FILE__), "..", 'app', 'lib')
