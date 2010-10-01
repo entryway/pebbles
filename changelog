@@ -1,5 +1,7 @@
-1.0.12 - September 30, 2010
+1.0.13 - September 30, 2010
   * some minor improvements on contact email, order receipt and shipping weight ranges
+1.0.12 - September 30, 2010
+  * added a featured instance var to the products controller
 1.0.11 - September 30, 2010
   * Added support for shipping calculations by weight total ranges
     note: set the GeneralConfiguration.instance shipping_calculation_method to 'weight' to use this.
