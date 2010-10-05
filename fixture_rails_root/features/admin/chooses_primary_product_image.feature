@@ -24,4 +24,7 @@ Feature: Admin chooses primary product image
     And I attach a regular product image "test.jpg"
     And I press "upload"
     And I wait 2 seconds
-    Then show me the page
+    Then I should see "1st Image"
+    And I should see "2nd Image"
+    When I follow "Set as Primary Image" within "#primary_product_image_1"
+    Then I should see "xxx"

@@ -1,12 +1,15 @@
 <% product.product_images.each_with_index do |image, index| %>
   <br/>
-  <h2> <%=  (index + 1).ordinalize %> Image</h2><br/>  
+  <h2> <%=  (index + 1).ordinalize %> Image</h2><br/>
   <div id="<%= dom_id(image, 'id') %>" class="image-section regular">
     <h2>Regular Size</h2>
     <%= image_tag image.filename.url, :name => "image_id" %><br>
     <%= link_to 'Change Image', '#', :class => "edit-product-image" %>
-    <%= link_to 'Remove Image', admin_product_product_image_path(product, image), 
+    <%= link_to 'Remove Image', admin_product_product_image_path(product, image),
         :class => "destroy-product-image" %>
+    <div id="primary_product_image_<%= index + 1 %>">
+      <%= link_to "Set as Primary Image", '#', :class => "set_primary_image" %>
+    </div>
     <div class='change-image' style="display:none">
       </br>
       <%= render '/admin/products/images/change_image', :product => product, :image => image %>
@@ -16,27 +19,27 @@
   <br/>
   <div class="image-section thumb">
     <h2>Thumbnail Size</h2>
-    
+
     <% if image.product_image_thumbnail %>
-      <%= render '/admin/products/images/image_thumbnail_list', 
+      <%= render '/admin/products/images/image_thumbnail_list',
                  :image => image, :thumbnail => image.product_image_thumbnail %>
     <% else %>
       <p><em>First browse to your thumbnail image file, then click upload.</em></p>
-      <%= render '/admin/products/images/image_thumbnail_form', 
+      <%= render '/admin/products/images/image_thumbnail_form',
                 :image => image, :thumbnail => image.build_product_image_thumbnail %>
     <% end %>
   </div>
   <div class="image-section large">
     <h2>Enlarged Size</h2>
     <% if image.product_large_image %>
-      <%= render '/admin/products/images/image_large_list', 
+      <%= render '/admin/products/images/image_large_list',
                  :image => image, :large_image => image.product_large_image %>
     <% else %>
       <p><em>First browse to your large image file, then click upload.</em></p>
-      <%= render '/admin/products/images/image_large_form', 
+      <%= render '/admin/products/images/image_large_form',
                  :image => image, :large_image => image.build_product_large_image %>
     <% end %>
   </div>
   <hr>
-  
+
 <% end %>

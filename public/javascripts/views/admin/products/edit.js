@@ -3,6 +3,12 @@ jQuery(document).ready(function() {
     jQuery(this).hide().parent("td").parent("tr").next("tr").show();
     return false;
   });
+
+  jQuery(".set_primary_image").live("click", function() {
+    jQuery(this).parent().html("xxx");
+    return false;
+  });
+
   var product_image_options = {
     target: "#images"
   }
@@ -110,27 +116,28 @@ jQuery(document).ready(function() {
     return false;
   });
 
-    jQuery("#add_category").live("click", function() {
-        var selected_category = parseInt(jQuery("#category_select").val());
-        var category_ids = eval(jQuery("#category_ids").val() || []);
-        var href = jQuery(this).attr('href');
-        category_ids.push(selected_category);
-        jQuery("#category_list").load(href, {'product[category_ids][]': category_ids,
-                                             _method: 'PUT'});
-        return false;
-    });
+  jQuery("#add_category").live("click", function() {
+    var selected_category = parseInt(jQuery("#category_select").val());
+    var category_ids = eval(jQuery("#category_ids").val() || []);
+    var href = jQuery(this).attr('href');
+    category_ids.push(selected_category);
+    jQuery("#category_list").load(href, {'product[category_ids][]': category_ids,
+    _method: 'PUT'});
+    return false;
+  });
 
-    jQuery(".remove_category").live("click", function() {
-        var category_to_remove = parseInt(jQuery(this).next("input:hidden").val());
-        var category_ids = eval(jQuery("#category_ids").val());
-        var href = jQuery(this).attr('href');
-        var category_index = category_ids.indexOf(category_to_remove);
-        category_ids.splice(category_index, 1);
-        if (category_ids == "") {
-          category_ids = [""];
-          }
-        jQuery("#category_list").load(href, {'product[category_ids][]': category_ids,
-                                             _method: 'PUT'});
-        return false;
-    });
-})
+  jQuery(".remove_category").live("click", function() {
+    var category_to_remove = parseInt(jQuery(this).next("input:hidden").val());
+    var category_ids = eval(jQuery("#category_ids").val());
+    var href = jQuery(this).attr('href');
+    var category_index = category_ids.indexOf(category_to_remove);
+    category_ids.splice(category_index, 1);
+    if (category_ids == "") {
+      category_ids = [""];
+    }
+    jQuery("#category_list").load(href, {'product[category_ids][]': category_ids,
+    _method: 'PUT'});
+    return false;
+  });
+
+});
