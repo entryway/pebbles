@@ -1,11 +1,20 @@
+1.0.14 - October 8, 2010
+  * added primary product image for a product
+  * added ability to choose primary product images for a product
+  * added cucumber functionality to fixture_rails_root app
+  * added spec functionality to fixture_rails_root app
+
 1.0.13 - September 30, 2010
   * some minor improvements on contact email, order receipt and shipping weight ranges
+
 1.0.12 - September 30, 2010
   * added a featured instance var to the products controller
+
 1.0.11 - September 30, 2010
   * Added support for shipping calculations by weight total ranges
     note: set the GeneralConfiguration.instance shipping_calculation_method to 'weight' to use this.
           Otherwise the shipping_calculation_method can be left nil so should be backwards compatible
+
 1.0.10 - September 29, 2010
   * Added product export routes to pebbles route file [Gustin]
 

@@ -1,7 +1,9 @@
 .rvmrc
 config/database.yml
 *.*~
-log/*.log
+*.log
 tmp/**/*
 pkg/*
 .bundler
+.rvmrc
+fixture_rails_root/public/uploads

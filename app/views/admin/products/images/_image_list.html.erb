@@ -1,42 +1,57 @@
-<% product.product_images.each_with_index do |image, index| %>
+<% product.product_images.sort_by(&:id).each_with_index do |image, index| %>
   <br/>
-  <h2> <%=  (index + 1).ordinalize %> Image</h2><br/>  
+  <h2> <%=  (index + 1).ordinalize %> Image</h2><br/>
   <div id="<%= dom_id(image, 'id') %>" class="image-section regular">
     <h2>Regular Size</h2>
-    <%= image_tag image.filename.url, :name => "image_id" %><br>
-    <%= link_to 'Change Image', '#', :class => "edit-product-image" %>
-    <%= link_to 'Remove Image', admin_product_product_image_path(product, image), 
-        :class => "destroy-product-image" %>
-    <div class='change-image' style="display:none">
-      </br>
-      <%= render '/admin/products/images/change_image', :product => product, :image => image %>
+    <%= image_tag image.filename.url, :name => "image_id" if image.filename.url %><br>
+
+    <div id="primary_product_image_<%= index + 1 %>">
+      <br />
+      <% if image.primary? %>
+        This image is primary.
+      <% else %>
+        <% form_for image, :url => admin_product_product_image_path(:product_id => product.id, :id => image.id), :html => { :class => 'set_primary_image', :method => 'put', :multipart => true } do |f| %>
+          <%= hidden_field :product_image, :primary, :value => true %>
+          <%= f.submit 'Set as Primary Image', :id => "set_primary_product_image_#{index.next}" %>
+        <% end %>
+      <% end %>
+      <br />
     </div>
 
-  </div>
-  <br/>
-  <div class="image-section thumb">
-    <h2>Thumbnail Size</h2>
-    
-    <% if image.product_image_thumbnail %>
-      <%= render '/admin/products/images/image_thumbnail_list', 
-                 :image => image, :thumbnail => image.product_image_thumbnail %>
-    <% else %>
-      <p><em>First browse to your thumbnail image file, then click upload.</em></p>
-      <%= render '/admin/products/images/image_thumbnail_form', 
-                :image => image, :thumbnail => image.build_product_image_thumbnail %>
-    <% end %>
-  </div>
-  <div class="image-section large">
-    <h2>Enlarged Size</h2>
-    <% if image.product_large_image %>
-      <%= render '/admin/products/images/image_large_list', 
-                 :image => image, :large_image => image.product_large_image %>
-    <% else %>
-      <p><em>First browse to your large image file, then click upload.</em></p>
-      <%= render '/admin/products/images/image_large_form', 
-                 :image => image, :large_image => image.build_product_large_image %>
-    <% end %>
-  </div>
-  <hr>
-  
-<% end %>
+    <%= link_to 'Change Image', '#', :class => "edit-product-image" %>
+    <%= link_to 'Remove Image', admin_product_product_image_path(product, image),
+      :class => "destroy-product-image" %>
+
+      <div class='change-image' style="display:none">
+        </br>
+        <%= render '/admin/products/images/change_image', :product => product, :image => image %>
+      </div>
+
+    </div>
+    <br/>
+    <div class="image-section thumb">
+      <h2>Thumbnail Size</h2>
+
+      <% if image.product_image_thumbnail %>
+        <%= render '/admin/products/images/image_thumbnail_list',
+          :image => image, :thumbnail => image.product_image_thumbnail %>
+        <% else %>
+          <p><em>First browse to your thumbnail image file, then click upload.</em></p>
+          <%= render '/admin/products/images/image_thumbnail_form',
+            :image => image, :thumbnail => image.build_product_image_thumbnail %>
+          <% end %>
+        </div>
+        <div class="image-section large">
+          <h2>Enlarged Size</h2>
+          <% if image.product_large_image %>
+            <%= render '/admin/products/images/image_large_list',
+              :image => image, :large_image => image.product_large_image %>
+            <% else %>
+              <p><em>First browse to your large image file, then click upload.</em></p>
+              <%= render '/admin/products/images/image_large_form',
+                :image => image, :large_image => image.build_product_large_image %>
+              <% end %>
+            </div>
+            <hr>
+
+          <% end %>

@@ -9,7 +9,7 @@ module Admin
         wants.csv do
           order_items_report = OrderItem.report_table(:all, :only => [],
                               :include => { :product => { :only => [:sku, :name],
-                                            :include => {:categories => {:only => [:name]}}},
+                                              :include => {:categories => {:only => [:name]}}},
                                             :order => { :only => [:full_name, :phone_number],
                                             :include => {:shipping_address => {
                                             :only => [:address_1, :address_2, :city,
