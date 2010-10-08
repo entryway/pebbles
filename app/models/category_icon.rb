@@ -5,4 +5,6 @@ class CategoryIcon < ActiveRecord::Base
     
   mount_uploader :filename, CategoryIconUploader
   
+  validates_presence_of :filename
+  
 end
