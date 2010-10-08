@@ -2,7 +2,9 @@
 class SessionsController < ApplicationController
   layout "shopping"
 
-  ssl_required :new, :create unless Rails.env.development?
+  if Rails.env.production?
+    ssl_required :new, :create
+  end
 
   # render new.rhtml
   def new

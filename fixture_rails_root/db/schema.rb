@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100930024650) do
+ActiveRecord::Schema.define(:version => 20101006174246) do
 
   create_table "addresses", :force => true do |t|
     t.string  "address_1",   :limit => 50
@@ -19,13 +19,6 @@ ActiveRecord::Schema.define(:version => 20100930024650) do
     t.boolean "is_shipping"
     t.string  "country",     :limit => 50
     t.string  "state",       :limit => 50
-  end
-
-  create_table "audio_clips", :force => true do |t|
-    t.string   "audio_file"
-    t.integer  "product_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "cart_items", :force => true do |t|
@@ -204,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20100930024650) do
   create_table "product_images", :force => true do |t|
     t.string  "filename"
     t.integer "product_id"
+    t.boolean "primary"
   end
 
   create_table "product_large_images", :force => true do |t|
@@ -334,7 +328,7 @@ ActiveRecord::Schema.define(:version => 20100930024650) do
     t.datetime "created_at"
   end
 
-  add_index "slugs", ["name", "scope", "sequence", "sluggable_type"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "store_images", :force => true do |t|

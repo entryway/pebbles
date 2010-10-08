@@ -14,8 +14,11 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
   config.plugin_locators << TestGemLocator
 
-  config.gem 'awesome_nested_set'
   config.gem 'friendly_id'
-  config.gem 'acts_as_singleton'
+  config.gem 'awesome_nested_set'
   config.gem 'aasm'
+  config.gem 'will_paginate'
+  config.gem 'rails_xss'
+  config.gem 'ssl_requirement'
+  config.gem 'carrierwave'
 end

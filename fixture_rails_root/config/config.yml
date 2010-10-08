@@ -1,0 +1,95 @@
+development:
+    paypal_login: ''
+    paypal_password: ''
+    paypal_signature: ''
+    linkpoint_store_number: '1171936'
+    fulfillment: false
+    fulfillment_host: ''
+    fulfillment_order_post: ''
+    fulfillment_status_post: ''
+    fulfillment_merchant_name: ''
+    fulfillment_merchant_id: ''
+    ship_ups_url: 'https://wwwcie.ups.com/ups.app/xml'
+    ship_sender_zip: '24091'
+    ship_sender_country: 'US'
+    paypal_email: ''
+    google_cx: ''
+    order_email: 'gustin@entryway.net'
+    contact_email: 'gustin@entryway.net'
+    support_email: 'gustin@entryway.net'
+    support_phone: '1.540.745.6162'
+    site_address: 'http://localhost:3000/'
+    pre_and_post_authorization: false
+
+test: &test
+    paypal_login: ''
+    paypal_password: ''
+    paypal_signature: ''
+    linkpoint_store_number: '1205810196'
+    fulfillment: false
+    fulfillment_host: ''
+    fulfillment_order_post: ''
+    fulfillment_status_post: ''
+    fulfillment_merchant_name: ''
+    fulfillment_merchant_id: ''
+    ship_ups_url: 'https://wwwcie.ups.com/ups.app/xml'
+    ship_sender_zip: '24091'
+    ship_sender_country: 'US'
+    paypal_email: ''
+    google_cx: ''
+    order_email: 'gustin@entryway.net'
+    contact_email: 'gustin@entryway.net'
+    support_email: 'gustin@entryway.net'
+    support_phone: '1.540.745.6162'
+    site_address: 'http://greenlabel.entryway.net.com/'
+    pre_and_post_authorization: false
+
+cucumber:
+  <<: *test
+
+staging:
+    paypal_login: ''
+    paypal_password: ''
+    paypal_signature: ''
+    linkpoint_store_number: '1205810196'
+    fulfillment: false
+    fulfillment_host: ''
+    fulfillment_order_post: ''
+    fulfillment_status_post: ''
+    fulfillment_merchant_name: ''
+    fulfillment_merchant_id: ''
+    ship_ups_url: 'https://wwwcie.ups.com/ups.app/xml'
+    ship_sender_zip: '24091'
+    ship_sender_country: 'US'
+    paypal_email: ''
+    google_cx: ''
+    order_email: 'gustin@entryway.net'
+    contact_email: 'gustin@entryway.net'
+    support_email: 'gustin@entryway.net'
+    support_phone: '1.540.745.6162'
+    site_address: 'http://greenlabel.entryway.net.com/'
+    pre_and_post_authorization: false
+    title: ''
+
+production:
+    paypal_login: ''
+    paypal_password: ''
+    paypal_signature: ''
+    linkpoint_store_number: '1205810196'
+    fulfillment: false
+    fulfillment_host: ''
+    fulfillment_order_post: ''
+    fulfillment_status_post: ''
+    fulfillment_merchant_name: ''
+    fulfillment_merchant_id: ''
+    ship_ups_url: 'https://wwwcie.ups.com/ups.app/xml'
+    ship_sender_zip: '24091'
+    ship_sender_country: 'US'
+    paypal_email: ''
+    google_cx: ''
+    order_email: 'gustin@entryway.net'
+    contact_email: 'gustin@entryway.net'
+    support_email: 'gustin@entryway.net'
+    support_phone: '1.540.745.6162'
+    site_address: 'http://www.greenlabel.com/'
+    pre_and_post_authorization: false
