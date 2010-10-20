@@ -1,3 +1,6 @@
+1.0.15 - October 20, 2010
+  * Fixed CarrierWave issue with CategoryImages
+  * Added filename validation for CategoryImages, CategoryIcons and CategoryHoverIcons 
 1.0.14 - October 8, 2010
   * added primary product image for a product
   * added ability to choose primary product images for a product
