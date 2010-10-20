@@ -5,6 +5,7 @@ class Admin::CategoryIconsController < ApplicationController
   def create 
     category = Category.find(params[:category_id])
     category.create_category_icon(params[:category_icon])
+    
     render :partial => '/admin/categories/icon', 
            :locals => { :category => category }
   end
