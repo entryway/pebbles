@@ -12,13 +12,12 @@ ActionController::Routing::Routes.draw do |map|
    map.resources :orders
    map.resources :categories do |categories|
      categories.resources :products
+   end
    map.resources :shippings
    map.resources :variants
    map.resources :variant_images, :only => [:show, :index]
    map.resources :regions, :has_many => [:shipping_methods]
    map.resources :taxes, :only => :update
-
-   end
 
    map.namespace :admin do |admin|
      admin.resources :authorizations

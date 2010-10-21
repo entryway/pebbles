@@ -1,5 +1,5 @@
 PATH
-  remote: /Users/trypticon/Sites/pebbles
+  remote: /Users/jonathangreenberg/dev/pebbles
   specs:
     pebbles (0.2.35)
       aasm

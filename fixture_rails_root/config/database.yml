@@ -1,8 +1,8 @@
 development: &dev
   database: pebbles_development
   adapter: postgresql
-  username: rails
-  password:
+  username: jonathangreenberg
+  password: tussy2
   min_messages: warning
 
 staging:
@@ -14,8 +14,8 @@ production:
 test: &TEST
   database: pebbles_test
   adapter: postgresql
-  username: rails
-  password:
+  username: jonathangreenberg
+  password: tussy2
   min_messages: warning
 
 cucumber:
