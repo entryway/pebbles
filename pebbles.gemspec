@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2010-10-08}
+  s.date = %q{2010-10-27}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{dev@entryway.net}
   s.files = [
@@ -331,7 +331,7 @@ Gem::Specification.new do |s|
      "config/deploy.rb",
      "config/gmaps_api_key.yml",
      "config/initializers/load_config.rb",
-     "config/routes.rb",
+     "config/pebbles_routes.rb",
      "db/migrate/20090909191809_initial_schema_load.rb",
      "db/migrate/20090916031338_create_table_variants.rb",
      "db/migrate/20090916032132_create_table_variant_selections.rb",
@@ -347,6 +347,7 @@ Gem::Specification.new do |s|
      "db/migrate/20100423015752_add_no_tax_flag_to_products.rb",
      "db/migrate/20100916173402_add_default_weight_to_products.rb",
      "db/migrate/20100930024650_add_shipping_calculation_method_to_general_configuration.rb",
+     "db/migrate/20101006174246_add_primary_boolean_to_product_image.rb",
      "db/schema.rb",
      "db/seeds.rb",
      "fixture_rails_root/.bundle/config",
@@ -407,6 +408,7 @@ Gem::Specification.new do |s|
      "fixture_rails_root/features/support/env.rb",
      "fixture_rails_root/features/support/paths.rb",
      "fixture_rails_root/lib/tasks/cucumber.rake",
+     "fixture_rails_root/lib/tasks/rspec.rake",
      "fixture_rails_root/public/404.html",
      "fixture_rails_root/public/422.html",
      "fixture_rails_root/public/500.html",
@@ -528,6 +530,7 @@ Gem::Specification.new do |s|
      "fixture_rails_root/public/stylesheets/print-base.css",
      "fixture_rails_root/public/stylesheets/reset-fonts.css",
      "fixture_rails_root/script/about",
+     "fixture_rails_root/script/autospec",
      "fixture_rails_root/script/console",
      "fixture_rails_root/script/cucumber",
      "fixture_rails_root/script/dbconsole",
@@ -538,7 +541,12 @@ Gem::Specification.new do |s|
      "fixture_rails_root/script/plugin",
      "fixture_rails_root/script/runner",
      "fixture_rails_root/script/server",
+     "fixture_rails_root/script/spec",
      "fixture_rails_root/spec/factories.rb",
+     "fixture_rails_root/spec/models/product_spec.rb",
+     "fixture_rails_root/spec/rcov.opts",
+     "fixture_rails_root/spec/spec.opts",
+     "fixture_rails_root/spec/spec_helper.rb",
      "fixture_rails_root/test/performance/browsing_test.rb",
      "fixture_rails_root/test/test_helper.rb",
      "fixture_rails_root/vendor/plugins/javascript_auto_include/README",
