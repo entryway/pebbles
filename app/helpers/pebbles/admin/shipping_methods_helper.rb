@@ -9,7 +9,7 @@ module Pebbles::Admin::ShippingMethodsHelper
   
   def set_up_shippping_method(shipping_method)
     returning(shipping_method) do |m|
-      3.times do 
+      10.times do 
         m.flat_rate_shippings.build
       end
     end

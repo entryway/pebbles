@@ -1,6 +1,6 @@
 module Admin
-  
-  
+
+
 class ShippingMethodsController < ApplicationController
     layout 'admin'
     require_role "admin"
@@ -15,7 +15,7 @@ class ShippingMethodsController < ApplicationController
 
     def show
       @shipping_method = ShippingMethod.find(params[:id])
-      
+
       respond_to do |format|
         format.html # show.rhtml
       end
@@ -29,6 +29,7 @@ class ShippingMethodsController < ApplicationController
     def edit
       @region = Region.find(params[:region_id])
       @shipping_method = ShippingMethod.find(params[:id])
+      @flat_rate_shippings = @shipping_method.flat_rate_shippings.find(:all, :order => :order_total_low)
     end
 
     def create
@@ -49,20 +50,20 @@ class ShippingMethodsController < ApplicationController
         flash[:notice] = "Shipping method #{@shipping_method.name} was successfully updated."
         redirect_to admin_regions_path
       else
-        render :action => "edit" 
+        render :action => "edit"
       end
     end
 
     def destroy
       shipping_method = ShippingMethod.find(params[:id])
-      
+
       shipping_method.destroy
-      
+
       respond_to do |format|
         format.html { redirect_to admin_regions_path }
       end
     end
-    
+
 end
 
 

@@ -4,8 +4,8 @@ class Admin::CategoryImagesController < ApplicationController
   
   def create 
     category = Category.find(params[:category_id])
-    category_image = CategoryImage.new(params[:category_image])
-    category.category_images << category_image
+    category.category_images.create(params[:category_image])
+    category = Category.find(params[:category_id])
     render :partial => '/admin/categories/image_list', 
            :locals => { :category => category }
   end

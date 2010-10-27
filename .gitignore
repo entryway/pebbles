@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 .rvmrc
-=======
-.rvmc
->>>>>>> release/v1.0.2
 config/database.yml
 *.*~
-log/*.log
+*.log
 tmp/**/*
 pkg/*
 .bundler
-
+.rvmrc
+fixture_rails_root/public/uploads

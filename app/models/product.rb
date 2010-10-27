@@ -49,6 +49,13 @@ class Product < ActiveRecord::Base
     product_options.select {|o| !o.new_record? }
   end
 
+  def primary_product_image
+    product_images.primary.first || product_images.first
+  end
+
+  def non_primary_product_images
+    product_images.non_primary - [primary_product_image]
+  end
 
   ##
   # Grab the first available product image.

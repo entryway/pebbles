@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090916032132) do
+ActiveRecord::Schema.define(:version => 20100930024650) do
 
   create_table "addresses", :force => true do |t|
     t.string  "address_1",   :limit => 50
@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.string  "state",       :limit => 50
   end
 
-  create_table "cart_item_selections", :force => true do |t|
-    t.integer "cart_item_id"
-    t.integer "product_option_selection_id"
+  create_table "audio_clips", :force => true do |t|
+    t.string   "audio_file"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "cart_items", :force => true do |t|
@@ -32,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "product_option_selection_id"
+    t.integer  "variant_id"
   end
 
   create_table "carts", :force => true do |t|
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.string   "promo_code",     :limit => 30,                               :default => ""
     t.decimal  "promo_discount",               :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "free_shipping",                                              :default => false
+    t.string   "billing_state"
   end
 
   create_table "categories", :force => true do |t|
@@ -64,14 +67,18 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
   add_index "categories_products", ["product_id"], :name => "index_categories_products_on_product_id"
   add_index "categories_products", ["product_id"], :name => "index_categories_suppliers_on_supplier_id"
 
-  create_table "category_images", :force => true do |t|
-    t.integer "parent_id"
-    t.string  "content_type"
+  create_table "category_icon_hovers", :force => true do |t|
     t.string  "filename"
-    t.string  "thumbnail"
-    t.integer "size"
-    t.integer "width"
-    t.integer "height"
+    t.integer "category_icon_id"
+  end
+
+  create_table "category_icons", :force => true do |t|
+    t.string  "filename"
+    t.integer "category_id"
+  end
+
+  create_table "category_images", :force => true do |t|
+    t.string  "filename"
     t.integer "category_id"
   end
 
@@ -80,10 +87,6 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
   end
 
   create_table "flat_rate_shippings", :force => true do |t|
-    t.string  "name",               :limit => 50
-    t.decimal "base_price"
-    t.integer "cost_of_subtotal"
-    t.integer "cost_per_weight"
     t.integer "item_low"
     t.integer "item_high"
     t.integer "weight_low"
@@ -91,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.integer "order_total_low"
     t.integer "order_total_high"
     t.integer "shipping_method_id"
-    t.decimal "cost_per_item",                    :precision => 8, :scale => 2, :default => 0.0
+    t.decimal "flat_rate"
   end
 
   create_table "fulfillment_codes", :force => true do |t|
@@ -101,6 +104,11 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.integer  "shipping_method_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "general_configurations", :force => true do |t|
+    t.boolean "inventory_management"
+    t.string  "shipping_calculation_method"
   end
 
   create_table "logged_exceptions", :force => true do |t|
@@ -114,27 +122,17 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.datetime "created_at"
   end
 
-  create_table "order_item_selections", :force => true do |t|
-    t.integer "order_item_id"
-    t.string  "product_option_name",   :limit => 50
-    t.string  "option_selection_name", :limit => 50
-    t.decimal "weight_adjustment",                   :precision => 8, :scale => 2, :default => 0.0
-    t.string  "sku_adjustment"
-    t.decimal "price_adjustment",                    :precision => 8, :scale => 2, :default => 0.0
-  end
-
   create_table "order_items", :force => true do |t|
     t.integer  "product_id"
+    t.integer  "variant_id"
     t.integer  "order_id"
     t.integer  "quantity"
-    t.decimal  "weight",                           :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "adjusted_weight",                  :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "weight",             :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "drop_ship"
     t.integer  "supplier_id"
-    t.string   "product_name",       :limit => 50
-    t.decimal  "price",                            :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "adjusted_price",                   :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "drop_shipping_cost",               :precision => 8, :scale => 2, :default => 0.0
+    t.string   "product_name"
+    t.decimal  "price",              :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "drop_shipping_cost", :precision => 8, :scale => 2, :default => 0.0
     t.datetime "updated_at"
     t.datetime "created_at"
   end
@@ -182,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.string   "promo_code",            :limit => 30,                                :default => ""
     t.decimal  "promo_discount",                       :precision => 8, :scale => 2, :default => 0.0
     t.boolean  "free_shipping",                                                      :default => false
+    t.text     "gift_note"
   end
 
   create_table "out_of_stock_option_selections", :force => true do |t|
@@ -198,35 +197,18 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
   end
 
   create_table "product_image_thumbnails", :force => true do |t|
-    t.integer "parent_id"
-    t.string  "content_type"
+    t.integer "product_image_id"
     t.string  "filename"
-    t.string  "thumbnail"
-    t.integer "size"
-    t.integer "width"
-    t.integer "height"
   end
 
   create_table "product_images", :force => true do |t|
-    t.integer "parent_id"
-    t.string  "content_type"
     t.string  "filename"
-    t.string  "thumbnail"
-    t.integer "size"
-    t.integer "width"
-    t.integer "height"
     t.integer "product_id"
   end
 
   create_table "product_large_images", :force => true do |t|
-    t.integer "parent_id"
-    t.string  "content_type"
+    t.integer "product_image_id"
     t.string  "filename"
-    t.string  "thumbnail"
-    t.integer "size"
-    t.integer "width"
-    t.integer "height"
-    t.integer "product_id"
   end
 
   create_table "product_option_instances", :force => true do |t|
@@ -268,7 +250,7 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.string   "name",               :limit => 100
     t.string   "subname",            :limit => 50
     t.text     "short_description"
-    t.decimal  "weight",                            :precision => 8, :scale => 2
+    t.decimal  "weight",                            :precision => 8, :scale => 2, :default => 0.0
     t.text     "admin_notes"
     t.integer  "vendor_id"
     t.decimal  "price",                             :precision => 8, :scale => 2, :default => 0.0
@@ -287,6 +269,11 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.decimal  "length"
     t.decimal  "width"
     t.decimal  "height"
+    t.integer  "inventory",                                                       :default => 0
+    t.string   "image"
+    t.string   "thumbnail"
+    t.boolean  "free_shipping",                                                   :default => false
+    t.boolean  "no_tax",                                                          :default => false
   end
 
   create_table "promo_codes", :force => true do |t|
@@ -327,12 +314,28 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
     t.boolean "default_selection"
     t.integer "region_id"
     t.string  "fulfillment_code"
+    t.decimal "base_price"
+    t.integer "cost_of_subtotal"
+    t.integer "cost_per_weight"
+    t.decimal "cost_per_item",                   :precision => 8, :scale => 2, :default => 0.0
   end
 
   create_table "shipping_providers", :force => true do |t|
     t.string  "name",             :limit => 50
     t.integer "shipping_rate_id"
   end
+
+  create_table "slugs", :force => true do |t|
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope",          :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "slugs", ["name", "scope", "sequence", "sluggable_type"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "store_images", :force => true do |t|
     t.integer "parent_id"
@@ -379,6 +382,20 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
 
   add_index "users", ["role"], :name => "index_users_on_role"
 
+  create_table "variant_image_thumbnails", :force => true do |t|
+    t.integer "variant_image_id"
+    t.string  "filename"
+  end
+
+  create_table "variant_images", :force => true do |t|
+    t.string "filename"
+  end
+
+  create_table "variant_large_images", :force => true do |t|
+    t.integer "variant_image_id"
+    t.string  "filename"
+  end
+
   create_table "variant_selections", :force => true do |t|
     t.integer  "variant_id"
     t.integer  "product_option_selection_id"
@@ -389,7 +406,10 @@ ActiveRecord::Schema.define(:version => 20090916032132) do
   create_table "variants", :force => true do |t|
     t.integer  "product_id"
     t.integer  "inventory"
+    t.integer  "variant_image_id"
     t.decimal  "weight"
+    t.decimal  "price"
+    t.boolean  "out_of_stock",     :default => false
     t.string   "sku"
     t.datetime "created_at"
     t.datetime "updated_at"

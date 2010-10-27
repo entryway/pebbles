@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   def index
     @category = Category.find(params[:category_id])
     @products = @category.descended_paged_products(params[:page], 9)
+    @featured = @category.products.featured.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.rhtml
