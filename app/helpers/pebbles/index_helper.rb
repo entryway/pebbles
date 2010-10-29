@@ -1,5 +1,5 @@
 module Pebbles::IndexHelper
-  
+
   # displays empty message or category contents
   def featured_products(products)
     if products.length > 0
@@ -13,16 +13,16 @@ module Pebbles::IndexHelper
           cell += link_to \
                   image_tag(product.product_images[0].filename.url, \
                   :width => '146', :height => '141'), \
-                  :controller => 'products', :action => 'show', :id => product.id
+                  category_product_path(product.category, product)
         end
         cell += "</td>"
-			  cell += "</tr>" if (count % 2 == 0) 
-				count += 1 
-				cell += "<tr>" if (count % 2 == 0 < products.length)      
+        cell += "</tr>" if (count % 2 == 0)
+        count += 1
+        cell += "<tr>" if (count % 2 == 0 < products.length)
       end
       cell += "</table>"
       return cell
     end
   end
-  
+
 end
