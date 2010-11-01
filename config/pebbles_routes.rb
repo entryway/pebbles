@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
 
      admin.resources :ebay_orders
 
-     admin.resources :orders
+     admin.resources :orders, :member => { :change_delivery_status => :put }
      admin.resources :order_items
 
      admin.resource  :product_export, :controller => 'product_export'
