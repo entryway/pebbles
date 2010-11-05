@@ -109,7 +109,7 @@ class Order < ActiveRecord::Base
   def self.find_by_full_name_or_order_number(query)
     wildcard = "%#{query}%"
     find(:all, :conditions =>
-         ["full_name ILIKE ? OR order_number LIKE ?", wildcard, wildcard])
+         ["full_name ILIKE ? OR order_number ILIKE ?", wildcard, wildcard])
   end
 
 protected
