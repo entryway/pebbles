@@ -1,3 +1,6 @@
+1.0.21 = November 5, 2010
+  * As an admin I can search orders by name and number
+
 1.0.20 = November 1, 2010
   * Applied fix for delivery status change
 1.0.19
