@@ -106,6 +106,11 @@ class Order < ActiveRecord::Base
               :order => 'id DESC')
   end
 
+  def self.find_by_full_name_or_order_number(query)
+    wildcard = "%#{query}%"
+    find(:all, :conditions =>
+         ["full_name ILIKE ? OR order_number LIKE ?", wildcard, wildcard])
+  end
 
 protected
 
