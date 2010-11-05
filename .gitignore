@@ -7,3 +7,5 @@ pkg/*
 .bundler
 .rvmrc
 fixture_rails_root/public/uploads
+config/database.yml
+fixture_rails_root/config/database.yml

@@ -15,4 +15,4 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
-require 'pebbles/tasks'
+#require 'pebbles/tasks'
