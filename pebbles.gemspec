@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2010-10-27}
+  s.date = %q{2010-11-05}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{dev@entryway.net}
   s.files = [
@@ -360,7 +360,6 @@ Gem::Specification.new do |s|
      "fixture_rails_root/config/boot.rb",
      "fixture_rails_root/config/config.yml",
      "fixture_rails_root/config/cucumber.yml",
-     "fixture_rails_root/config/database.yml",
      "fixture_rails_root/config/environment.rb",
      "fixture_rails_root/config/environments/cucumber.rb",
      "fixture_rails_root/config/environments/development.rb",
@@ -398,10 +397,12 @@ Gem::Specification.new do |s|
      "fixture_rails_root/db/test.sqlite3",
      "fixture_rails_root/doc/README_FOR_APP",
      "fixture_rails_root/features/admin/chooses_primary_product_image.feature",
+     "fixture_rails_root/features/admin/searches_orders.feature",
      "fixture_rails_root/features/fixtures/test.jpg",
      "fixture_rails_root/features/step_definitions/authentication_steps.rb",
      "fixture_rails_root/features/step_definitions/category_steps.rb",
      "fixture_rails_root/features/step_definitions/debugger_steps.rb",
+     "fixture_rails_root/features/step_definitions/order_steps.rb",
      "fixture_rails_root/features/step_definitions/product_image_steps.rb",
      "fixture_rails_root/features/step_definitions/product_steps.rb",
      "fixture_rails_root/features/step_definitions/web_steps.rb",
@@ -862,37 +863,37 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{ecommerce}
   s.test_files = [
-    "spec/cart_builder.rb",
-     "spec/factories/cart.rb",
-     "spec/factories/cart_item.rb",
-     "spec/factories/category.rb",
-     "spec/factories/credit_card.rb",
-     "spec/factories/flat_rate_shipping.rb",
-     "spec/factories/general_configuration.rb",
-     "spec/factories/order.rb",
-     "spec/factories/product.rb",
-     "spec/factories/product_option.rb",
-     "spec/factories/product_option_selection.rb",
-     "spec/factories/promo_code.rb",
-     "spec/factories/shipping_method.rb",
-     "spec/factories/tax_rate.rb",
-     "spec/lib/inventory_spec.rb",
-     "spec/lib/order_calculations_spec.rb",
-     "spec/lib/order_factory_spec.rb",
-     "spec/lib/shipping_calculations_spec.rb",
-     "spec/models/cart_item_spec.rb",
-     "spec/models/cart_spec.rb",
+    "spec/models/product_accessory_spec.rb",
      "spec/models/category_spec.rb",
-     "spec/models/general_configuration_spec.rb",
-     "spec/models/order_item_spec.rb",
-     "spec/models/product_accessory_spec.rb",
+     "spec/models/cart_item_spec.rb",
      "spec/models/product_spec.rb",
      "spec/models/promo_code_spec.rb",
+     "spec/models/general_configuration_spec.rb",
      "spec/models/shipping_method_spec.rb",
-     "spec/order_builder.rb",
+     "spec/models/cart_spec.rb",
+     "spec/models/order_item_spec.rb",
+     "spec/factories/general_configuration.rb",
+     "spec/factories/order.rb",
+     "spec/factories/product_option_selection.rb",
+     "spec/factories/cart.rb",
+     "spec/factories/category.rb",
+     "spec/factories/promo_code.rb",
+     "spec/factories/tax_rate.rb",
+     "spec/factories/shipping_method.rb",
+     "spec/factories/product.rb",
+     "spec/factories/cart_item.rb",
+     "spec/factories/credit_card.rb",
+     "spec/factories/flat_rate_shipping.rb",
+     "spec/factories/product_option.rb",
      "spec/order_factory.rb",
+     "spec/lib/order_calculations_spec.rb",
+     "spec/lib/shipping_calculations_spec.rb",
+     "spec/lib/inventory_spec.rb",
+     "spec/lib/order_factory_spec.rb",
      "spec/pebbles_factory.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/cart_builder.rb",
+     "spec/order_builder.rb"
   ]
 
   if s.respond_to? :specification_version then
