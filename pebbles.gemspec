@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2010-10-27}
+  s.date = %q{2010-11-05}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{dev@entryway.net}
   s.files = [
@@ -360,7 +360,6 @@ Gem::Specification.new do |s|
      "fixture_rails_root/config/boot.rb",
      "fixture_rails_root/config/config.yml",
      "fixture_rails_root/config/cucumber.yml",
-     "fixture_rails_root/config/database.yml",
      "fixture_rails_root/config/environment.rb",
      "fixture_rails_root/config/environments/cucumber.rb",
      "fixture_rails_root/config/environments/development.rb",
@@ -398,10 +397,12 @@ Gem::Specification.new do |s|
      "fixture_rails_root/db/test.sqlite3",
      "fixture_rails_root/doc/README_FOR_APP",
      "fixture_rails_root/features/admin/chooses_primary_product_image.feature",
+     "fixture_rails_root/features/admin/searches_orders.feature",
      "fixture_rails_root/features/fixtures/test.jpg",
      "fixture_rails_root/features/step_definitions/authentication_steps.rb",
      "fixture_rails_root/features/step_definitions/category_steps.rb",
      "fixture_rails_root/features/step_definitions/debugger_steps.rb",
+     "fixture_rails_root/features/step_definitions/order_steps.rb",
      "fixture_rails_root/features/step_definitions/product_image_steps.rb",
      "fixture_rails_root/features/step_definitions/product_steps.rb",
      "fixture_rails_root/features/step_definitions/web_steps.rb",
