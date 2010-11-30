@@ -33,7 +33,9 @@ class Product < ActiveRecord::Base
   named_scope :featured, :order => :name,
                 :conditions => { :is_featured => true,
                                  :available => true }
-
+  named_scope :non_featured, :order => :name,
+                :conditions => { :is_featured => false,
+                                 :available => true }
   named_scope :available, :order => :name,
                 :conditions => { :available => true }
 
