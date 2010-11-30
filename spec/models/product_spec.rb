@@ -1,6 +1,20 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Product do
+
+  context "named scopes" do
+    context "non_featured" do
+      before do
+        @non_featured_product = Factory(:product, :is_featured => false)
+        @featured_product = Factory(:product, :is_featured => true)
+      end
+
+      it "returns products that are not featured" do
+        Product.non_featured.should ==  [@non_featured_product]
+      end
+    end
+  end
+
   describe "#generate_variants" do
     before(:each) do
       @product = Factory(:product)
