@@ -1,3 +1,6 @@
+1.0.25 = November 30, 2010
+  * Find non featured products based on is_featured not being set to true
+
 1.0.24 = November 30, 2010
   * Add non_featured named scope to product. Check for category icon before
   display category icon image
