@@ -24,3 +24,7 @@ Factory.define(:order) do |order|
   order.email "hello@world.com"
   order.order_type 1
 end
+
+Factory.define(:general_configuration) do |gc|
+
+end
