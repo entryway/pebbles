@@ -1,3 +1,7 @@
+1.0.26 = December 1, 2010
+  * Add pickle gem, Add feature to validate presence of product weight
+  * Add validation of presence on Product weight when shipping method is set to weight.
+
 1.0.25 = November 30, 2010
   * Find non featured products based on is_featured not being set to true
 

@@ -27,6 +27,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :sku
   validates_uniqueness_of :sku
   validates_numericality_of :inventory, :only_integer => true, :greater_than_or_equal_to => 0
+  validates_presence_of :weight, :if => Proc.new {GeneralConfiguration.shipping_calculated_by_weight? }
 
   after_update :save_quantity_discounts
 

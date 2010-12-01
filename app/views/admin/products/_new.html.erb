@@ -7,15 +7,15 @@
   <%= form.text_field :subname, :size => 40, :class => 'gt-form-text'  %><br/>
   <% if @product.variants.empty? %>
     <label for="sku">Quantity *</label>
-    <%= form.text_field :inventory, :size => 10, :class => 'gt-form-text'  %><br/>  
+    <%= form.text_field :inventory, :size => 10, :class => 'gt-form-text'  %><br/>
   <% end %>
-  <hr/> 
+  <hr/>
   <%= form.check_box :available %> Available<br/>
   <%= form.check_box :is_featured %> Featured Product<br/>
 
   <!-- TODO: Per Product Shipping Override, not fully implemented
   <label for="shipping_type">Shipping Type *:</label>
-  <%#= form.select :shipping_type || 1, ShippingType::PRODUCT_SHIPPING_TYPES.invert %><br/>  
+  <%#= form.select :shipping_type || 1, ShippingType::PRODUCT_SHIPPING_TYPES.invert %><br/>
   <label for="flat_rate_shipping">Flat Rate Shipping Price :</label>
   <%#= form.text_field :flat_rate_shipping, :size => 10 %><br/>
   -->
@@ -29,7 +29,7 @@
     <label for="weight">Weight * </label>
     <%= form.text_field :weight, :size => 10, :class => 'gt-form-text'  %><br/>
     </div>
-  <div class="optional">  
+  <div class="optional">
     <label for="wholesale_price">Wholesale Price</label>
     <%= form.text_field :wholesale_price, :size => 10, :class => 'gt-form-text'  %>
     <label for="length">Length </label>
@@ -40,23 +40,23 @@
     <%= form.text_field :height, :size => 10, :class => 'gt-form-text'  %>
   </div>
   <div class="clear"></div>
-  <hr/> 
-  
+  <hr/>
+
   <!--><label for="vendor_id">Vendor</label>
   <%= form.collection_select :vendor_id, @vendors, :id, :name %><br/>
   <hr/>-->
   <label for="short_description">Short Description</label>
   <%= form.text_area :short_description, :rows => 3, :cols => 90, :class => 'gt-form-textarea'  %><br/>
   <label for="short_description">Description</label>
-  <%= form.text_area :long_description, :rows => 7, 
+  <%= form.text_area :long_description, :rows => 7,
              :cols => 90, :class => 'gt-form-textarea' %><br/>
   <hr/>
   <label for="admin_notes">Admin Notes</label>
   <%= form.text_area :admin_notes, :rows => 2, :cols => 90, :class => 'gt-form-textarea'  %><br/>
-  
+
   <hr/>
-  
+
   <br/>
   </p>
-<%= image_submit_tag 'gt/btn-add.jpg' %> or <%= link_to 'Cancel', admin_products_path %>
+  <%= image_submit_tag 'gt/btn-add.jpg', :id => "add-product" %> or <%= link_to 'Cancel', admin_products_path %>
 <% end %>
