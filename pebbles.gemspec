@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pebbles}
-  s.version = "1.0.25"
+  s.version = "1.0.26"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gustin", "jonsgreen", "bobbyw"]
-  s.date = %q{2010-11-30}
+  s.date = %q{2010-12-01}
   s.description = %q{entryway's ecommerce solution}
   s.email = %q{dev@entryway.net}
   s.files = [
@@ -397,17 +397,21 @@ Gem::Specification.new do |s|
      "fixture_rails_root/db/test.sqlite3",
      "fixture_rails_root/doc/README_FOR_APP",
      "fixture_rails_root/features/admin/chooses_primary_product_image.feature",
+     "fixture_rails_root/features/admin/creates_product.feature",
      "fixture_rails_root/features/admin/searches_orders.feature",
      "fixture_rails_root/features/fixtures/test.jpg",
      "fixture_rails_root/features/step_definitions/authentication_steps.rb",
      "fixture_rails_root/features/step_definitions/category_steps.rb",
+     "fixture_rails_root/features/step_definitions/configuration_steps.rb",
      "fixture_rails_root/features/step_definitions/debugger_steps.rb",
      "fixture_rails_root/features/step_definitions/order_steps.rb",
+     "fixture_rails_root/features/step_definitions/pickle_steps.rb",
      "fixture_rails_root/features/step_definitions/product_image_steps.rb",
      "fixture_rails_root/features/step_definitions/product_steps.rb",
      "fixture_rails_root/features/step_definitions/web_steps.rb",
      "fixture_rails_root/features/support/env.rb",
      "fixture_rails_root/features/support/paths.rb",
+     "fixture_rails_root/features/support/pickle.rb",
      "fixture_rails_root/lib/tasks/cucumber.rake",
      "fixture_rails_root/lib/tasks/rspec.rake",
      "fixture_rails_root/public/404.html",
@@ -544,7 +548,6 @@ Gem::Specification.new do |s|
      "fixture_rails_root/script/server",
      "fixture_rails_root/script/spec",
      "fixture_rails_root/spec/factories.rb",
-     "fixture_rails_root/spec/models/product_spec.rb",
      "fixture_rails_root/spec/rcov.opts",
      "fixture_rails_root/spec/spec.opts",
      "fixture_rails_root/spec/spec_helper.rb",
@@ -695,6 +698,7 @@ Gem::Specification.new do |s|
      "spec/factories/general_configuration.rb",
      "spec/factories/order.rb",
      "spec/factories/product.rb",
+     "spec/factories/product_image.rb",
      "spec/factories/product_option.rb",
      "spec/factories/product_option_selection.rb",
      "spec/factories/promo_code.rb",
@@ -879,6 +883,7 @@ Gem::Specification.new do |s|
      "spec/factories/category.rb",
      "spec/factories/promo_code.rb",
      "spec/factories/tax_rate.rb",
+     "spec/factories/product_image.rb",
      "spec/factories/shipping_method.rb",
      "spec/factories/product.rb",
      "spec/factories/cart_item.rb",
