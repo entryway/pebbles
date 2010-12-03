@@ -10,6 +10,7 @@ Feature:
       | full_name | order_number |
       | Foo Bar   | 12345        |
       | Jon Doe   | 76832        |
+      | Bob Will  | W-1234       |
     And I am on the admin orders page
 
   Scenario Outline:
@@ -22,5 +23,10 @@ Feature:
 
     Examples:
       | search | full_name | order_number | unmatched full_name | unmatched order_number |
-      | foo    | Foo Bar           | 12345                | Jon Doe             | 76832  |
-      | 12345  | Foo Bar           | 12345                | Jon Doe             | 76832  |
+      | foo    | Foo Bar   | 12345        | Jon Doe             | 76832  |
+      | 12345  | Foo Bar   | 12345        | Jon Doe             | 76832  |
+
+  Scenario: Admin searches order by case insensitive order number
+    When I fill in "w-1234" for "search"
+    And I press "search"
+    Then I should see "W-1234" within ".order_number"

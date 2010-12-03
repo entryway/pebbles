@@ -19,11 +19,12 @@ end
 Factory.define(:category) do |c|
 end
 
-Factory.define(:product_image) do |pi|
-  pi.filename { File.open(File.join(Rails.root, 'features', 'fixtures', 'test.jpg')) }
-end
 
 Factory.define(:order) do |order|
   order.email "hello@world.com"
   order.order_type 1
+end
+
+Factory.define(:general_configuration) do |gc|
+
 end

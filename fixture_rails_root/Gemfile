@@ -28,4 +28,5 @@ group :test do
   gem 'capybara', '0.3.9'
   gem 'database_cleaner', '0.5.2'
   gem 'launchy', '0.3.7'
+  gem 'pickle', '~> 0.4'
 end
