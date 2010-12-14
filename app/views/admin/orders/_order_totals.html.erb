@@ -2,9 +2,9 @@
   <b>SubTotal:</b> <%= number_to_currency(@order.product_cost) %><br/>
   <b>Tax:</b> <%= number_to_currency(@order.tax) %><br/>
   <b>Shipping:</b> <%= number_to_currency(@order.shipping_cost) %><br/>
-  <%= "<b>Promo Code:</b> " + @order.promo_code + "<br/>" \
-      unless @order.promo_code.empty? -%>
-  <%= "<b>Promo Discount:</b> -" + number_to_currency(@order.promo_discount) + "<br/>" \
-      unless @order.promo_code.empty? -%>
+  <b>Promo Code:</b>
+  <%= @order.promo_code unless @order.promo_code.empty? -%><br/>
+  <b>Promo Discount:</b>
+  <%= number_to_currency(@order.promo_discount) unless @order.promo_code.empty? -%><br/>
   <span class="line"><b>Total:</b> <%= number_to_currency(@order.total) %></span><br/>
 </div>
