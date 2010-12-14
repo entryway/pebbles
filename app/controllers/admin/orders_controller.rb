@@ -3,16 +3,16 @@ module Admin
 class OrdersController < ApplicationController
   layout "admin"
   require_role "admin"
-  
+
   # GET /orders
   # GET /orders.xml
   def index
-    @orders = Order.paginate :page => params[:page],
-                             :order => 'id DESC'
 
-    respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @orders.to_xml }
+    if params[:search]
+      @orders = Order.find_by_full_name_or_order_number(params[:search]).paginate(:page => params[:page])
+    else
+      @orders = Order.paginate :page => params[:page],
+                               :order => 'id DESC'
     end
   end
 
@@ -82,12 +82,12 @@ class OrdersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def change_delivery_status
     @order = Order.find(params[:order_id])
     @order.delivery_status = params['delivery_status']
     @order.save!
-    
+
     render :nothing => true
   end
 end

@@ -6,6 +6,10 @@
   </ul>
 <% end %>
 <h1>Listing Orders</h1>
+<% form_tag(admin_orders_path, :method => :get) do %>
+  <%= text_field_tag(:search) %>
+  <%= submit_tag(:search) %>
+<% end %>
 
 Orders <%= @orders.offset+1 %> - <%= @orders.length * @orders.current_page %> of <%= @orders.total_entries %><br/>
 <%= will_paginate @orders %>
@@ -25,11 +29,11 @@ Orders <%= @orders.offset+1 %> - <%= @orders.length * @orders.current_page %> of
     <tbody>
       <% for order in @orders %>
         <tr class="even">
-          <td><%= order.order_number %></td>
+          <td class="order_number"><%= order.order_number %></td>
           <td><%= order.state %></td>
           <td><%= render :partial => 'delivery_status',
             :locals => { :order => order }  %></td>
-          <td><%= order.full_name %></td>
+          <td class="full_name"><%= order.full_name %></td>
           <td><%= order.shipping_address.country if order.shipping_address %></td>
           <td><%= number_to_currency(order.total) %></td>
           <td><%= order.created_at.to_date %></td>

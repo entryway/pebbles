@@ -1,3 +1,27 @@
+1.0.26 = December 1, 2010
+  * Add pickle gem, Add feature to validate presence of product weight
+  * Add validation of presence on Product weight when shipping method is set to weight.
+
+1.0.25 = November 30, 2010
+  * Find non featured products based on is_featured not being set to true
+
+1.0.24 = November 30, 2010
+  * Add non_featured named scope to product. Check for category icon before
+  display category icon image
+
+1.0.23 = November 5, 2010
+  * Use case insentive search on order number
+
+1.0.22 = November 5, 2010
+  * updated gemspec
+
+1.0.21 = November 5, 2010
+  * As an admin I can search orders by name and number
+
+1.0.20 = November 1, 2010
+  * Applied fix for delivery status change
+1.0.19
+  * bad release
 1.0.18 = October 29, 2010
   * Changed the featured products helper use of category/product path
 
