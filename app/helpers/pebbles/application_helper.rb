@@ -11,7 +11,7 @@
         parent_category = category.parent
         if parent_category
           crumb = link_to(parent_category.name, category_path(parent_category)) +
-                  content_tag(:span, ' &gt ') +
+                  content_tag(:span, ' > ') +
                   link_to(category.name, category_path(category))
         end
         crumb
