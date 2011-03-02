@@ -397,10 +397,7 @@ Gem::Specification.new do |s|
      "fixture_rails_root/db/test.sqlite3",
      "fixture_rails_root/doc/README_FOR_APP",
      "fixture_rails_root/features/admin/chooses_primary_product_image.feature",
-<<<<<<< HEAD
-=======
      "fixture_rails_root/features/admin/creates_product.feature",
->>>>>>> e5fd3c9c3e16a8e8f8a1d4f2ea8e14728c3bfd59
      "fixture_rails_root/features/admin/searches_orders.feature",
      "fixture_rails_root/features/fixtures/test.jpg",
      "fixture_rails_root/features/step_definitions/authentication_steps.rb",
