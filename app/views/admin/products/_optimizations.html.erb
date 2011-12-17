@@ -1,23 +1,23 @@
 <% form_for :product, @product, :url => admin_product_url(@product.id),
             :html => { :class => 'gt-form', :method => :put } do |form| %>
-  <p>These fields help with Search Engine Optimization. 
-  
+  <p>These fields help with Search Engine Optimization.
+
   <hr/>
-  	
+
 	<label for="title">Title</label>
 	<%= form.text_field :title, :class => 'gt-form-text'  %><br/>
 
 	<label for="keywords">Meta Keywords</label>
-	<%= form.text_area :keywords, :rows => 3, 
+	<%= form.text_area :keywords, :rows => 3,
 					   :cols => 90, :class => 'gt-form-textarea' %><br/>
 	<label for="description">Meta Description</label>
-	<%= form.text_area :description, :rows => 6, 
+	<%= form.text_area :description, :rows => 6,
 					   :cols => 90, :class => 'gt-form-textarea' %><br/>
 <br/>
-    <%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>                             
+    <%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %>
   	<br/><br/>
-	
+
   </p>
-  	
-  
+
+
 <% end %>

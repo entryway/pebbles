@@ -1,7 +1,7 @@
 class ShippingMethodsController < ApplicationController
   include ActionView::Helpers::NumberHelper
   ssl_allowed :index, :update
-  
+
   def index
     region = Region.find(params[:region_id])
     @shipping_methods = region.shipping_methods
@@ -18,7 +18,7 @@ class ShippingMethodsController < ApplicationController
     self.active_shipping_method_id = @default_method.id
     render :layout => false
   end
-  
+
   def update
     method = ShippingMethod.find(params[:id])
 
@@ -28,11 +28,11 @@ class ShippingMethodsController < ApplicationController
 
     # change active shipping rate depending on selection
     self.active_shipping_method_id = method.id
-    
-    render :json => { :shipping_total => number_to_currency(shipping_total), 
+
+    render :json => { :shipping_total => number_to_currency(shipping_total),
                       :grand_total => number_to_currency(grand_total) }
-    
-  end 
-    
+
+  end
+
 
 end

@@ -1,9 +1,9 @@
 # Handle processing of an order
-module OrderProcessing 
-    
+module OrderProcessing
+
     # process the order with the current merchant
     def process
-      if self.order_items.size > 0 
+      if self.order_items.size > 0
         case self.order_type
         when OrderType::WEB
           process_web_order
@@ -14,13 +14,13 @@ module OrderProcessing
         end
       end
     end
-    
+
     # make an authorization on a payment
     def authorize_payment(options = {})
       options = populate_options if options.size == 0
       options[:order_id] = self.order_number
       transaction do
-        authorization = OrderTransaction.authorize(self.total_in_cents, 
+        authorization = OrderTransaction.authorize(self.total_in_cents,
                                                    self.credit_card, options
                         )
         self.transactions << authorization
@@ -35,7 +35,7 @@ module OrderProcessing
 
     # return the authorized reference for further use
     def authorization_reference
-      if authorization = transactions.find_by_action_and_success('authorization', 
+      if authorization = transactions.find_by_action_and_success('authorization',
                                                                  true, :order => 'id ASC')
         authorization.reference
       end
@@ -49,7 +49,7 @@ module OrderProcessing
     def capture_payment(options = {})
       options = populate_options if options.size == 0
 
-      amount = if options[:amount] 
+      amount = if options[:amount]
         options[:amount] * 100
       else
         self.total_in_cents
@@ -66,9 +66,9 @@ module OrderProcessing
         capture
       end
     end
-    
+
 private
-    
+
     # TODO: move to acts_as_state_machine transitions
     def initialize_order
       save!
@@ -82,23 +82,23 @@ private
       end
       build_order_number(prefix)
     end
-  
+
     def process_ebay_order
       initialize_order
       # send off to integration
       ShippingFulfillment.fulfill_order(self)
     end
-     
+
     def process_web_order
       initialize_order
       if self.payment_type == 'credit_card'
-        process_with_active_merchant 
+        process_with_active_merchant
 
         unless self.paid? || self.authorized?
           msg = self.transactions[0].params['error']
           raise Exceptions::OrderException, msg, caller
         end
-                
+
         if APP_CONFIG['fulfillment'] == true
           if self.paid?
             ShippingFulfillment.fulfill_order(self)
@@ -107,13 +107,13 @@ private
               raise Exceptions::OrderException, msg, caller
             end
           elsif self.payment_type == 'paypal'
-            begin 
+            begin
               ShippingFulfillment.fulfill_order(self)
-            rescue 
+            rescue
             end
-          end 
+          end
         end
-      
+
         OrderNotifier.deliver_order_confirmation(self, self.email, '128.9.0.0')
         OrderNotifier.deliver_supplier_confirmation(self, self.email, '128.9.0.0')
     end
@@ -138,13 +138,13 @@ private
           :country => self.shipping_address.country,
           :phone => self.phone_number
         },
-        :company => self.business, 
+        :company => self.business,
         :order_id => self.id,
         :customer => self.full_name,
         :email => self.email
       }
     end
-    
+
     # Active Merchant order processing
     def process_with_active_merchant
       options = populate_options
@@ -157,5 +157,5 @@ private
         end
       end
     end
-    
+
 end

@@ -13,8 +13,8 @@ module Pebbles::InventoryHelper
       "inventory"
     end
   end
-    
- 
+
+
   ##
   #
   def inventory_management_hidden_field(inventory)

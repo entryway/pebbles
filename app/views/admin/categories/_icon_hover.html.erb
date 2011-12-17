@@ -1,7 +1,7 @@
 <% if icon.category_icon_hover %>
   <div style="display:inline">
   	<%= image_tag icon.category_icon_hover.filename.url %>
-  	<%= link_to 'Remove Image', admin_category_icon_category_icon_hover_path(icon, icon.category_icon_hover), 
+  	<%= link_to 'Remove Image', admin_category_icon_category_icon_hover_path(icon, icon.category_icon_hover),
   	    :id => "destroy-category-icon-hover" %>
   </div>
 <% else %>

@@ -6,7 +6,7 @@
 // Copyright © 2005,2006 by Jef Poskanzer <jef@mail.acme.com>.
 // All rights reserved.
 //
-// Modified for inclusion into the YM4R library in accordance with the 
+// Modified for inclusion into the YM4R library in accordance with the
 // following license:
 //
 // Redistribution and use in source and binary forms, with or without
@@ -34,21 +34,21 @@
 
 
 // Constructor.
-Clusterer = function(markers,icon,maxVisibleMarkers,gridSize,minMarkersPerCluster,maxLinesPerInfoBox) {	
+Clusterer = function(markers,icon,maxVisibleMarkers,gridSize,minMarkersPerCluster,maxLinesPerInfoBox) {
     this.markers = [];
     if(markers){
 	for(var i =0 ; i< markers.length ; i++){
 	    this.addMarker(markers[i]);
 	}
-    }    
+    }
     this.clusters = [];
     this.timeout = null;
-        
+
     this.maxVisibleMarkers = maxVisibleMarkers || 150;
     this.gridSize = gridSize || 5;
     this.minMarkersPerCluster = minMarkersPerCluster || 5;
     this.maxLinesPerInfoBox = maxLinesPerInfoBox || 10;
-    
+
     this.icon = icon || G_DEFAULT_ICON;
 }
 
@@ -57,7 +57,7 @@ Clusterer.prototype = new GOverlay();
 Clusterer.prototype.initialize = function ( map ){
     this.map = map;
     this.currentZoomLevel = map.getZoom();
-   
+
     GEvent.addListener( map, 'zoomend', Clusterer.makeCaller( Clusterer.display, this ) );
     GEvent.addListener( map, 'moveend', Clusterer.makeCaller( Clusterer.display, this ) );
     GEvent.addListener( map, 'infowindowclose', Clusterer.makeCaller( Clusterer.popDown, this ) );
@@ -165,7 +165,7 @@ Clusterer.display = function ( clusterer ){
     dy *= 0.10;
     bounds = new GLatLngBounds(
       new GLatLng( sw.lat() - dy, sw.lng() - dx ),
-      new GLatLng( ne.lat() + dy, ne.lng() + dx ) 
+      new GLatLng( ne.lat() + dy, ne.lng() + dx )
     );
 
     // Partition the markers into visible and non-visible lists.
@@ -265,7 +265,7 @@ Clusterer.display = function ( clusterer ){
 		}
 	    }
 	}
-	
+
 	// Now make cluster-markers for any clusters that need one.
 	for ( i = 0, len = clusterer.clusters.length; i < len; ++i ){
 	    cluster = clusterer.clusters[i];
@@ -361,13 +361,13 @@ Clusterer.prototype.clearCluster = function ( cluster ){
 	    cluster.markers[i] = null;
 	}
     }
-    
+
     cluster.markers.length = 0;
     cluster.markerCount = 0;
-    
+
     if ( cluster == this.poppedUpCluster )
 	this.map.closeInfoWindow();
-    
+
     if ( cluster.onMap )
     {
 	this.map.removeOverlay( cluster.marker );

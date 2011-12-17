@@ -4,26 +4,26 @@
 	<%= check_box_tag 'address_choice', 'same_as_billing', true,
 	 					  :onclick => "Element.toggle('shipping_address_fields');
 				  		  return  true;" %>
-	Ship to billing address 
+	Ship to billing address
 	<% fields_for :shipping_address, shipping_address do |address| %>
-	<div id="shipping_address_fields" style="display:none"> 
+	<div id="shipping_address_fields" style="display:none">
 		<%= error_messages_for "#{address_type}_address" %>
 
 		<div id="field_details">
 			<label>Address 1: </label>&nbsp;
-			<%= address.text_field :address_1, :size => 20  %><br/>			
+			<%= address.text_field :address_1, :size => 20  %><br/>
 			<label>Address 2: </label>&nbsp;
-			<%= address.text_field :address_2, :size => 20  %><br/>			
+			<%= address.text_field :address_2, :size => 20  %><br/>
 			<label>City: </label>&nbsp;
-			<%= address.text_field :city, :size => 20 %><br/>			
+			<%= address.text_field :city, :size => 20 %><br/>
 			<label>State/Province: </label>&nbsp;
-			<%= state(address, 'shipping_address') %><br/>			
+			<%= state(address, 'shipping_address') %><br/>
 			<label>ZIP/Other: </label>&nbsp;
-			<%= address.text_field :postal_code, :size => 15  %><br/>			
+			<%= address.text_field :postal_code, :size => 15  %><br/>
 			<label>Country: </label>&nbsp;
-			<%= country(address, 'shipping_address') %>					
+			<%= country(address, 'shipping_address') %>
 		</div>
-		
+
 	</div>
 	<% end %>
 </div>

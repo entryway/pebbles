@@ -19,8 +19,8 @@ var WGS84_ECCENTRICITY = 0.0818191913108718138;
 var DEG2RAD=0.0174532922519943;
 var PI=3.14159267;
 
-function dd2MercMetersLng(p_lng) { 
-	return WGS84_SEMI_MAJOR_AXIS * (p_lng*DEG2RAD); 
+function dd2MercMetersLng(p_lng) {
+	return WGS84_SEMI_MAJOR_AXIS * (p_lng*DEG2RAD);
 }
 
 function dd2MercMetersLat(p_lat) {
@@ -43,7 +43,7 @@ getTileUrlForWMS=function(a,b,c) {
 	var lLRP = new GPoint((a.x+1)*256,a.y*256);
 	var lUL = G_NORMAL_MAP.getProjection().fromPixelToLatLng(lULP,b,c);
 	var lLR = G_NORMAL_MAP.getProjection().fromPixelToLatLng(lLRP,b,c);
-	 
+
 	if (this.useGeographic){
            var lBbox=lUL.x+","+lUL.y+","+lLR.x+","+lLR.y;
     	   var lSRS="EPSG:4326";
@@ -56,7 +56,7 @@ getTileUrlForWMS=function(a,b,c) {
 	lURL+="&SERVICE=WMS";
 	lURL+="&VERSION=1.1.1";
 	lURL+="&LAYERS="+this.layers;
-	lURL+="&STYLES="+this.styles; 
+	lURL+="&STYLES="+this.styles;
 	lURL+="&FORMAT=image/"+this.format;
 	lURL+="&BGCOLOR=0xFFFFFF";
 	lURL+="&TRANSPARENT=TRUE";

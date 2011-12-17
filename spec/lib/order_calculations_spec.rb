@@ -13,7 +13,7 @@ describe OrderCalculations do
       build_variant_cart
       build_order
     end
-    
+
     it "should add the total of the order_items prices" do
       @order.sub_total.should == 13.00
     end
@@ -22,7 +22,7 @@ describe OrderCalculations do
       @order.promo_discount = 1.00
       @order.sub_total.should == 12.00
     end
-    
+
   end
 
   describe "Tax Calculations" do
@@ -56,13 +56,13 @@ describe OrderCalculations do
     before(:each) do
       rate = Factory(:tax_rate)
       @address = Factory(:address)
-      @order = Order.new(:product_cost => 39.90, :shipping_cost => 6.45, 
+      @order = Order.new(:product_cost => 39.90, :shipping_cost => 6.45,
                           :billing_address => @address)
       @order.stub!(:product_total).and_return(39.90)
       @order.tax = @order.calculate_tax
     end
 
-    context "person lives in state with tax rate" do 
+    context "person lives in state with tax rate" do
 
       it "should round taxrate to match ActiveMerchant" do
         number_to_currency(@order.total)[1,5].should == sprintf("%.2f", 4834.5.to_f / 100)
@@ -78,7 +78,7 @@ describe OrderCalculations do
       end
 
     end
-    
+
     context "person lives in state without tax rate" do
       before(:each) do
         @address.state = "CO"
@@ -87,8 +87,8 @@ describe OrderCalculations do
       it "should not charge tax" do
         @order.calculate_tax.should == 0
       end
-      
+
     end
   end
-  
+
 end

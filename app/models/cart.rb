@@ -2,29 +2,29 @@
 # should be extracted/abstracted out someway to share common impl
 class Cart < ActiveRecord::Base
   include ShippingCalculations
-  
+
   has_many :cart_items, :order => 'product_id, variant_id'
   has_many :products, :through => :cart_items
-  
+
   validates_length_of :name, :in => 1..40
-  
+
   accepts_nested_attributes_for :cart_items
-  
+
   attr_accessor :shipping_method_id
-  
+
   def validate
     Inventory.new.validate_cart(self)
   end
-  
+
   def line_items
     cart_items
   end
-  
+
   # order cart items
   def ordered_cart_items
     cart_items.find(:all, :order => 'product_id')
   end
-  
+
   def product_total
     cart_items.inject(0) {|sum, n| n.price * n.quantity + sum}
   end
@@ -32,18 +32,18 @@ class Cart < ActiveRecord::Base
   def sub_total
     product_total - promo_discount
   end
-  
+
   # shipping totals
   def shipping_total(shipping_method)
     self.shipping_method_id = shipping_method
     calculate_shipping_costs
   end
-  
+
   # calculate total price
   def grand_total(shipping_total)
      product_total + shipping_total + tax_total - self.promo_discount
   end
-  
+
   # calculate total price in cents
   def grand_total_in_cents(shipping_total)
      (sub_total + shipping_total) * 100
@@ -53,9 +53,9 @@ class Cart < ActiveRecord::Base
   # Add the product to the cart with any options selected.
   #
   # @param [Integer] product_id Id of product to add. # TODO change to product
-  # @param [Integer] quantity The number of products to add. 
-  # @param [Array] options List of options that were selected for the product. 
-  # @return [CartItem] The newly created or existing cart item. 
+  # @param [Integer] quantity The number of products to add.
+  # @param [Array] options List of options that were selected for the product.
+  # @return [CartItem] The newly created or existing cart item.
   def add_product(product_id, quantity, options)
     cart_item = nil
     Cart.transaction do
@@ -67,7 +67,7 @@ class Cart < ActiveRecord::Base
     end
     cart_item
   end
-  
+
   ##
   # returns the cart item that matches the product or variant
   #
@@ -78,7 +78,7 @@ class Cart < ActiveRecord::Base
   def find_product_or_variant(product, variant)
     cart_items.find(:first, :conditions => { :product_id => product, :variant_id => variant })
   end
-  
+
 
   def tax_total
     tax = 0
@@ -89,7 +89,7 @@ class Cart < ActiveRecord::Base
 private
 
   ##
-  # Add a cart item to the cart. 
+  # Add a cart item to the cart.
   #
   # @param [CartItem] cart_item An existing cart item or a new one will be created.
   # @param [Product] product The product to add to the cart.
@@ -111,6 +111,6 @@ private
     end
     cart_item
   end
-  
 
-end 
+
+end

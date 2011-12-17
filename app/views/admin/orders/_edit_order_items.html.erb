@@ -16,9 +16,9 @@
 		<tr>
 			<td id='<%= dom_id(order_item) %>' >
 				<%= text_field_tag 'quantity', order_item.quantity.to_s, :size => 3 %>
-			    <%= link_to_remote 'Update', 
-								{ :url => admin_order_item_path(order_item), 
-								  :method => :put, 
+			    <%= link_to_remote 'Update',
+								{ :url => admin_order_item_path(order_item),
+								  :method => :put,
 								  :submit => dom_id(order_item) } %>
 			</td>
 			<td>
@@ -36,9 +36,9 @@
 			<td class='total-value' style='display:table-cell'>
 				<%= number_to_currency(order_item.price * order_item.quantity) %>
 			</td>
-        <td><%= link_to_remote 'Remove', 
-						{ :url => admin_order_item_path(order_item), 
-						:confirm => "Are you sure you want to remove #{order_item.product_name}?", 
+        <td><%= link_to_remote 'Remove',
+						{ :url => admin_order_item_path(order_item),
+						:confirm => "Are you sure you want to remove #{order_item.product_name}?",
 						:method => :delete } %></td>
 		</tr>
 		<% end %>
@@ -47,5 +47,5 @@
 		<b>SubTotal:</b> <%= number_to_currency(@order.product_cost) %><br/>
 	</div>
 </div>
-  
+
 

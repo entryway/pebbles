@@ -2,5 +2,4 @@ page[:selection_form].replace_html :partial => '/admin/product_options/option_se
                                  :locals => { :product_option_selection => @option_selection,
                                               :product => @product,
                                               :product_option => @product_option }
-                                 
- 
+

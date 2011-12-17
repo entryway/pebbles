@@ -1,6 +1,6 @@
-page[:option_list].replace_html :partial => '/admin/product_options/option_list', 
-                                :locals => { :product => @product }      
-		                                                   
+page[:option_list].replace_html :partial => '/admin/product_options/option_list',
+                                :locals => { :product => @product }
+
 #page[:product_option_select].replace_html :partial => 'product_option_select',
 #                                          :locals => { :product => @product,
 #                                                        :available_options => @available_options }

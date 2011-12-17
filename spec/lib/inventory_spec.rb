@@ -6,7 +6,7 @@ include CartBuilder
 include ActiveMerchant::Billing
 
 describe "Inventory" do
-  before(:each) do 
+  before(:each) do
     configuration = GeneralConfiguration.instance
     configuration.inventory_management = true
     configuration.save!
@@ -16,7 +16,7 @@ describe "Inventory" do
     @variant = @variant_product.find_variant_by_selection_ids([@large.id, @red.id])
     @variant.update_attributes!(:inventory => 10)
   end
-  
+
   describe "#validate_cart" do
     context "valid cart" do
       before(:each) do
@@ -27,27 +27,27 @@ describe "Inventory" do
         @cart.errors.size.should == 0
       end
     end
-    
+
     context "invalid cart" do
       before(:each) do
         @variant.update_attributes!(:inventory => 0)
         Inventory.new.validate_cart(@cart)
       end
-      
+
       it "should invalidate a cart with items that are beyond the inventory availability" do
         @cart.errors.size.should_not == 0
       end
     end
   end
-  
+
   describe "#decrease_order_inventory" do
-    before(:each) do 
+    before(:each) do
       @address = Factory(:address)
       @order = Factory.build(:order)
       @options = Hash.new
       @options[:billing_address] = @address.attributes
-      @options[:credit_card] = {:first_name => "testing", :last_name => "tester", 
-                                :number => "4012888818888", :month => "12", :year => "2011", 
+      @options[:credit_card] = {:first_name => "testing", :last_name => "tester",
+                                :number => "4012888818888", :month => "12", :year => "2011",
                                 :verification_value => "234" }
       @options[:order] = @order.attributes
       @options[:address_choice] = true

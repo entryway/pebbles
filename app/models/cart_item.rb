@@ -3,26 +3,26 @@ class CartItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :product
   belongs_to :variant
-  
-  has_many :option_selections, 
+
+  has_many :option_selections,
            :class_name => 'CartItemSelection'
-           
-  validates_numericality_of :quantity, :only_integer => true, :greater_than_or_equal_to => 0 
-  
-  cattr_accessor :discounted  
- 
+
+  validates_numericality_of :quantity, :only_integer => true, :greater_than_or_equal_to => 0
+
+  cattr_accessor :discounted
+
   def price
     # take quantity discount into consideration
     # self.discounted = false
     # unless @price
-    #   # TODO: if wholesale module 
+    #   # TODO: if wholesale module
     #   @price = QuantityDiscount.discounted_price(self)
     #   self.discounted = true if @price != product.price
     # end
     # @price
     self.discounted = false
     if variant
-      self.variant.price 
+      self.variant.price
     else
       self.product.price
     end
@@ -41,8 +41,8 @@ class CartItem < ActiveRecord::Base
       # default to one
       quantity <= 0 ? 1 : quantity
     end
-    
+
     private
-    
+
   end
 end

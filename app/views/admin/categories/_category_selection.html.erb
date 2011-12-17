@@ -1,22 +1,22 @@
 
 	<select id="category_selector" size="80"
-			onchange="<%= remote_function(:update => 'category_edit', 
-										  :url => { :action => "setup_edit_category" }, 
+			onchange="<%= remote_function(:update => 'category_edit',
+										  :url => { :action => "setup_edit_category" },
 									      :submit => 'category_selection') %>;return false;"
 	 		name="category_selector">
-	
+
 		<% for category in @categories %>
 			<option value="<%= category.id %>">
-		   	<% category.level.times do %> 
+		   	<% category.level.times do %>
 		 			&nbsp;&nbsp;
-				<% end %>	
+				<% end %>
 				<%= category.name %>
 			</option>
 		<% end %>
-	
-	
+
+
 	</select>
-	
+
 	<br/>
 	<br/>
 

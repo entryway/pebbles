@@ -1,5 +1,5 @@
 <select id="product_selector" size="20" name = "accessory_id" class=".selector">
-  <% for product in @products %> 
+  <% for product in @products %>
     <option value="<%= product.id %>">
       <%= product.name %>
     </option>
@@ -8,4 +8,3 @@
 
 <%= link_to 'add accessory', admin_product_accessories_path(@product), :id => 'add_accessory_link' %>
 
-  

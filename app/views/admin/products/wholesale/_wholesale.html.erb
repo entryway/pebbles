@@ -10,13 +10,13 @@
 			<th>Quantity High</th>
 			<th>Price Per Product</th>
 		  </tr>
-			<%= render :partial => '/admin/products/wholesale/quantity_discount', 
+			<%= render :partial => '/admin/products/wholesale/quantity_discount',
 				   	   :collection => product.quantity_discounts %>
-		<br/>	
+		<br/>
 		</table>
 		<br/><br/>
 		<%= add_discount_link('Add Quantity Discount') %>
-	</div>		
+	</div>
 
 	<%= image_submit_tag 'gt/btn-save.jpg' %>
 <% end %>

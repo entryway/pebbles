@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  $('#category-list').sortable({ 
-    items: 'li', 
+  $('#category-list').sortable({
+    items: 'li',
     placeholder: 'ui-state-highlight',
     forcePlaceholderSize: 'true',
     update: function(event, ui) {
@@ -9,7 +9,7 @@ $(document).ready(function() {
         {
           _method: 'PUT',
           parent: $(ui.item).parent().attr('id'),
-          right: $(ui.item).next().attr('id') 
+          right: $(ui.item).next().attr('id')
         }
       );
     }

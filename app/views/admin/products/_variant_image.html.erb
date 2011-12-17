@@ -1,5 +1,5 @@
 <% if variant_image.new_record? %>
-  <% form_for [:admin, variant_image], 
+  <% form_for [:admin, variant_image],
                :html => { :multipart => true, :id => 'variant_image_add' } do |form|%>
 	  <p>
 	    <label for="uploaded_data">Upload Regular Image:</label>
@@ -14,7 +14,7 @@
   <h3>Regular Size:</h3><br/>
   <div>
 	  <%= image_tag variant_image.filename.url %>
-	  <%= link_to 'Remove Variant Image', admin_variant_image_path(variant_image), 
+	  <%= link_to 'Remove Variant Image', admin_variant_image_path(variant_image),
 	    :class => "destroy-variant-image" %>
   </div>
   <div id="variant_large_image">

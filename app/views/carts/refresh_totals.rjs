@@ -1,10 +1,10 @@
-page[:shipping_totals].replace_html :partial => "/carts/shipping_totals", 
+page[:shipping_totals].replace_html :partial => "/carts/shipping_totals",
                                     :locals => { :shipping_total => @shipping_total }
 #page[:shipping_label].visual_effect :highlight, :duration => 3
 #page[:shipping_total].visual_effect :highlight, :duration => 3
 
-page[:cart_totals].replace_html :partial => "/carts/cart_totals", 
+page[:cart_totals].replace_html :partial => "/carts/cart_totals",
                                 :locals => { :grand_total => @grand_total }
 page[:cart_total].visual_effect :highlight, :duration => 3
-page[:cart_total_label].visual_effect :highlight, :duration => 3,                                 
+page[:cart_total_label].visual_effect :highlight, :duration => 3,
                                       :endcolor => '#f3f5da'

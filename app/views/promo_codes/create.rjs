@@ -2,12 +2,12 @@ page[:promo_code_message].replace_html @promo_code_message
 page[:promo_code_note].replace_html @promo_code_note
 page[:promo_code_note].visual_effect :highlight, :duration => 3,
                                      :endcolor => '#f3f5da'
-page[:promo_code_message].visual_effect :highlight, :duration => 3,                                 
+page[:promo_code_message].visual_effect :highlight, :duration => 3,
                                         :endcolor => '#f3f5da'
 
-page[:cart_totals].replace_html :partial => "/carts/cart_totals", 
-		                            :locals => { :grand_total => @grand_total }  
-		                            
-page[:shipping_totals].replace_html :partial => "/carts/shipping_totals", 
+page[:cart_totals].replace_html :partial => "/carts/cart_totals",
+		                            :locals => { :grand_total => @grand_total }
+
+page[:shipping_totals].replace_html :partial => "/carts/shipping_totals",
 		                                :locals => { :shipping_total => @shipping_total }
 

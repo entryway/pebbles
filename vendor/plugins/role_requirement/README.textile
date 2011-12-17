@@ -23,7 +23,7 @@ role_requirement accepts several methods as an options hash of key/value pairs. 
 These methods can be thought of as telling role_requirement when to evaluate current_user's roles.
 
 <pre><code>
-  # Anytime an action is called, require the role admin in order to execute, 
+  # Anytime an action is called, require the role admin in order to execute,
   # EXCEPT when index is called.  So, index passes through this require_role
   # line allowing anyone to access it, ALL other actions are evaluated against
   # the specified role(s).
@@ -62,7 +62,7 @@ Each line serves as an additional requirement to any other lines in the controll
   # required only for index.
   # The controller always requires admin and requires executive only when
   # index is called. Useful for allowing only executive to call certain, more
-  # restricted, actions, for example. 
+  # restricted, actions, for example.
 </code></pre>
 
 h2. Passing Arrays
@@ -124,14 +124,14 @@ If you use strings as keys for the options hash, it will throw an error. ie:
   require_role "admin", :only => "index"
 </code></pre>
 
-RoleRequirement does not care if the values are symbols or strings, regarding action names. 
+RoleRequirement does not care if the values are symbols or strings, regarding action names.
 
 <pre><code>
   require_role "admin", :only => "index"
   require_role "admin", :only => :index
 </code></pre>
 
-Roles are passed to User#has_role? exactly as specified.  By default, RoleRequirement generates this method to not care.  If you customize User#has_role? in such a way that it does care, then you'll have problems. 
+Roles are passed to User#has_role? exactly as specified.  By default, RoleRequirement generates this method to not care.  If you customize User#has_role? in such a way that it does care, then you'll have problems.
 
 <pre><code>
   # ultimately calls User#has_role?("admin")

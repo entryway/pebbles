@@ -1,10 +1,10 @@
 module Admin
-  
-  
+
+
 class ShippingRatesController < ApplicationController
     layout 'admin'
     require_role "admin"
-  
+
     # GET /shipping_rates
     def index
       @shipping_rates = ShippingRate.find(:all)
@@ -18,7 +18,7 @@ class ShippingRatesController < ApplicationController
     # GET /shipping_rates/1.xml
     def show
       @shipping_rate = ShippingRate.find(params[:id])
-      
+
       respond_to do |format|
         format.html # show.rhtml
       end
@@ -27,7 +27,7 @@ class ShippingRatesController < ApplicationController
     # GET /shipping_rates/new
     def new
       puts params
-      
+
       @shipping_rate = ShippingRate.new
     end
 

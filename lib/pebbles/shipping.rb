@@ -1,8 +1,8 @@
 module Pebbles
   module Shipping
-    
+
     def self.included(base)
-      base.class_eval do 
+      base.class_eval do
         helper_method :active_shipping_region_id
         helper_method :active_shipping_region_id=
         helper_method :active_shipping_method_id
@@ -36,8 +36,8 @@ module Pebbles
     def active_shipping_method_id=(method_value)
       session[:shipping_method_id] = method_value
     end
-    
-    
+
+
 
   end
 end

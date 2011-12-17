@@ -59,7 +59,7 @@
                 <%= @order.billing_address.address_1 %><br/>
                 <%= @order.billing_address.address_2 -%>
                 <%= content_tag('br/') unless @order.billing_address.address_2.blank? %>
-                <%= @order.billing_address.city %>, 
+                <%= @order.billing_address.city %>,
                 <%= @order.billing_address.state %>&nbsp;
                 <%= @order.billing_address.postal_code %><br/>
                 <%= @order.billing_address.country -%>
@@ -74,7 +74,7 @@
               <%= @order.shipping_address.address_1 %><br/>
               <%= @order.shipping_address.address_2 -%>
               <%= content_tag('br/') unless @order.shipping_address.address_2.blank? %>
-              <%= @order.shipping_address.city %>, 
+              <%= @order.shipping_address.city %>,
               <%= @order.shipping_address.state %>&nbsp;
               <%= @order.shipping_address.postal_code %><br/>
               <%= @order.shipping_address.country -%>
@@ -82,15 +82,15 @@
           </div>
           <hr/>
 
-          <div id="order_items"> 
+          <div id="order_items">
             <%= render :partial => 'edit_order_items' %>
           </div>
-          
+
           <br/>
-          <label><b>Shipping Method:</b></label>  
+          <label><b>Shipping Method:</b></label>
           <span><%= @order.shipping_method %></span>
           <br/>
-          
+
           <div id = "order_totals" >
             <%= render :partial => "order_totals" %>
           </div>
@@ -99,14 +99,14 @@
             <%= render :partial => "order_transactions" %>
           </div>
         </p>
-        <% form_for :order, :url => admin_order_path(@order),  
+        <% form_for :order, :url => admin_order_path(@order),
            :html => { :method => :put, :class => 'gt-form' } do |form| %>
-        <hr/>   
+        <hr/>
         <label class='print-hide' for="admin_notes">Notes:</label><br/>
         <%= form.text_area :admin_notes, :class => 'gt-form-text' %>
         <br/><br/>
         <%= image_submit_tag 'gt/btn-update.jpg', :class => 'gt-submit-btn' %>
-        or 
+        or
         <%= link_to 'Cancel', admin_order_path(@order) %>
 
 <% end %>

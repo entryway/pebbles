@@ -6,7 +6,7 @@ include AuthenticatedTestHelper
 
 describe <%= class_name %> do
   fixtures :<%= table_name %>
-  
+
   it 'creates <%= file_name %>' do
     lambda do
       <%= file_name %> = create_<%= file_name %>

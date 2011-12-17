@@ -3,7 +3,7 @@ module Admin
 class VendorsController < ApplicationController
   layout "admin"
   require_role "admin"
-  
+
   # GET /vendors
   # GET /vendors.xml
   def index

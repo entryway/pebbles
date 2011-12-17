@@ -4,42 +4,42 @@ module Admin
 class ProductsController < ApplicationController
   layout "admin"
   require_role "admin"
-  
+
   # add a product to the category
   def add_to_category
     @product = Product.find(params[:id])
     @category = Category.find(params[:category_select])
     @product.categories << @category
   end
-  
+
   # remove product from category
   def remove_from_category
     product = Product.find(params[:id])
     category = Category.find(params[:category_id])
     product.categories.delete(category)
     respond_to do |format|
-      format.js { 
-        render :partial => 'category_list', 
+      format.js {
+        render :partial => 'category_list',
         :locals => { :product_id => product.id, :categories => product.categories }
       }
     end
   end
-  
+
   # upload an image fu
   def upload_image
       @image = ProductImage.new(params[:mugshot])
       if @image.save
-        flash[:notice] = 'Mugshot was successfully created.'     
+        flash[:notice] = 'Mugshot was successfully created.'
       else
         render :action => :new
       end
   end
-  
+
   # The REST:
-  
+
   def index
     @products = Product.paginate(:page => params[:page], :order => 'name')
-    
+
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @products.to_xml }
@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     3.times { @product.quantity_discounts.build }
-    
+
     @vendors = Vendor.find(:all)
     @categories = Category.find(:all)
   end
@@ -96,7 +96,7 @@ class ProductsController < ApplicationController
       if @product.update_attributes(params[:product])
         flash[:notice] = "Product #{@product.name} was successfully updated."
         format.html { redirect_to edit_admin_product_path(@product.id) }
-        format.js 
+        format.js
       else
         @vendors = Vendor.find(:all)
         @categories = Category.root.descendants
@@ -112,7 +112,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to admin_products_url 
+    redirect_to admin_products_url
   end
 end
 

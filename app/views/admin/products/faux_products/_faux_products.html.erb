@@ -28,8 +28,8 @@
 				</select>
 			</td>
 			<td>
-				<%= link_to 'Destroy', admin_product_faux_product_path(@product), 
-							:confirm => "Are you sure you want to delete #{ faux_product.name } ?", 
+				<%= link_to 'Destroy', admin_product_faux_product_path(@product),
+							:confirm => "Are you sure you want to delete #{ faux_product.name } ?",
 							:method => :delete %>
 			</td>
 			<br/>
@@ -43,7 +43,7 @@
 <h3>Faux Description:</h3>
 <% form_for :product, @product, :url => admin_product_url(@product),
             :html => { :class => 'gt-form', :method => :put } do |form| %>
-		<%= form.text_area :faux_description, :rows => 30, 
+		<%= form.text_area :faux_description, :rows => 30,
 						   :cols => 70, :class => 'gt-form-textarea' %><br/><br/>
 		<%= image_submit_tag 'gt/btn-save.jpg', :class => 'gt-submit-btn' %> or <%= link_to "Cancel", admin_product_path %>
 <% end %>

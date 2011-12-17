@@ -32,7 +32,7 @@ end
 #         true
 #       end
 #     end
-#     
+#
 #     console_for(binding)
 #
 # Then type "quit" or "exit" to get out. In a step definition, it should look like:

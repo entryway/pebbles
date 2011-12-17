@@ -3,20 +3,20 @@ module Admin
   class OptimizationsController < ApplicationController
     layout "admin"
     require_role "admin"
-  
+
     def index
       @optimization = Optimization.first || Optimization.create
-      
+
       respond_to do |format|
         format.html # index.rhtml
         format.xml  { render :xml => @optimization.to_xml }
       end
     end
-  
+
     def edit
-      @optimization = Optimization.first 
+      @optimization = Optimization.first
     end
-  
+
     def update
       @optimization = Optimization.first
       respond_to do |format|
@@ -31,6 +31,6 @@ module Admin
         end
       end
     end
-  
+
   end
 end

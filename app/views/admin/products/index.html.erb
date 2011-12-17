@@ -26,8 +26,8 @@
         <td><%= product.id %></td>
           <td class='blank'><%= link_to 'Edit', edit_admin_product_path(product.id) %></td>
           <td class='blank'>
-          <%= link_to 'Delete', admin_product_path(product.id), 
-                :confirm => 'Are you sure?', 
+          <%= link_to 'Delete', admin_product_path(product.id),
+                :confirm => 'Are you sure?',
                 :method => :delete %>
         </td>
         </tr>

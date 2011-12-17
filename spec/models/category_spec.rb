@@ -27,8 +27,8 @@ describe Category do
     sub_category.move_to_child_of @men
     sub_category = Factory(:category, :name => 'long-sleeve', :position => 3)
     sub_category.move_to_child_of @men
-    
-    @categories.root.descendants.size.should == 10 
+
+    @categories.root.descendants.size.should == 10
     @men.children.size.should == 4
     @women.children.size.should == 4
   end
@@ -56,7 +56,7 @@ describe Category do
     sorted[9].position.should == 5
 
 
-    sorted = @men.positioned 
+    sorted = @men.positioned
     sorted[0].position.should == 2
     sorted[1].position.should == 3
     sorted[2].position.should == 4
@@ -70,7 +70,7 @@ describe Category do
     sorted[2].name.should == 'short-sleeve'
     sorted[3].name.should == 'tanks'
 
-    sorted = Category.alphabetical 
+    sorted = Category.alphabetical
     sorted[0].name.should == 'crews'
     sorted[1].name.should == 'cute-tube'
     sorted[2].name.should == 'long'
@@ -82,7 +82,7 @@ describe Category do
     categories = Category.tree('bunk')
     categories.empty?.should == true
 
-    categories = Category.tree('men') 
+    categories = Category.tree('men')
     categories[0].name.should == 'short-sleeve'
     categories[1].name.should == 'long-sleeve'
     categories[2].name.should == 'tanks'

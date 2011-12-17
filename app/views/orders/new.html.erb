@@ -8,27 +8,27 @@
     <% end %>
     <h3><span>1</span> Review Your Order</h3>
     <div id="order_review">
-      <%= render :partial => '/carts/cart', 
+      <%= render :partial => '/carts/cart',
     :locals => { :order_review => true } %>
     </div>
     <div id="checkin_out">
       <h3><span>2</span> Promo Code</h3>
-      <% form_for :order, :url => orders_url, 
+      <% form_for :order, :url => orders_url,
          :html => { :method => :post } do |form| %>
-      
+
       <%= render :partial => 'promo_code' %>
-      
+
       <% if @cart.sub_total > 0 %>
         <h3><span>3</span> Payment</h3>
         <%= render :partial => 'payment_method', :credit_card => @order.credit_card %>
         <br/>
         <div id="billing_shipping_info">
     <h3><span>4</span> Information </h3>
-    <%= render :partial => 'billing_shipping_info', 
+    <%= render :partial => 'billing_shipping_info',
         :locals => { :billing_address => @order.billing_address,
           :shipping_address => @order.shipping_address,
           :form => form } %>
-        </div>  
+        </div>
         <hr/>
         <div class="btnclick btnright" id="credit_card_button">
     <br/>
@@ -43,14 +43,14 @@
     </span>
         </div>
         <div id="paypal_details" style="display:none">
-    <%#= link_to image_tag('paypal_button.gif'), 
+    <%#= link_to image_tag('paypal_button.gif'),
        paypal_checkout_path %>
         </div>
-        
+
       <% else %>
         <div class="order_process_errors">Please add additional items to checkout.</div>
       <% end %>
-      
+
 =======
         <div id="checkout">
 	  <% if @processing_error_message %>
@@ -58,27 +58,27 @@
 	  <% end %>
 	  <h3><span>1</span> Review Your Order</h3>
 	  <div id="order_review">
-	    <%= render :partial => '/carts/cart', 
+	    <%= render :partial => '/carts/cart',
 		:locals => { :order_review => true } %>
 	  </div>
 	  <div id="checkin_out">
 	    <h3><span>2</span> Promo Code</h3>
-	    <% form_for :order, :url => orders_url, 
+	    <% form_for :order, :url => orders_url,
 	       :html => { :method => :post } do |form| %>
-	    
+
 	    <%= render :partial => 'promo_code' %>
-	    
+
 	    <% if @cart.sub_total > 0 %>
 	      <h3><span>3</span> Payment</h3>
 	      <%= render :partial => 'payment_method', :credit_card => @order.credit_card %>
 	      <br/>
 	      <div id="billing_shipping_info">
 		<h3><span>4</span> Information </h3>
-		<%= render :partial => 'billing_shipping_info', 
+		<%= render :partial => 'billing_shipping_info',
 		    :locals => { :billing_address => @order.billing_address,
 		      :shipping_address => @order.shipping_address,
 		      :form => form } %>
-	      </div>	
+	      </div>
 	      <hr/>
 	      <div class="btnclick btnright" id="credit_card_button">
 		<br/>
@@ -93,14 +93,14 @@
 		</span>
 	      </div>
 	      <div id="paypal_details" style="display:none">
-		<%#= link_to image_tag('paypal_button.gif'), 
+		<%#= link_to image_tag('paypal_button.gif'),
 		   paypal_checkout_path %>
 	      </div>
-	      
+
 	    <% else %>
 	      <div class="order_process_errors">Please add additional items to checkout.</div>
 	    <% end %>
-	    
+
 >>>>>>> abf4830788514b0161ca65127932212b3c312e3a
 <% end %>
 </div>

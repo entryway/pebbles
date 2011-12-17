@@ -9,14 +9,14 @@ Example
 =======
 
 Controller:
- 
+
   class Test < ActionController::Base
     def main
     end
- 
+
     def form_action
       # Do stuff with params[:uploaded_file]
-        
+
       responds_to_parent do
         render :update do |page|
           page << "alert($('stuff').innerHTML)"
@@ -24,19 +24,19 @@ Controller:
       end
     end
   end
- 
+
 main.rhtml:
- 
+
   <html>
     <body>
       <div id="stuff">Here is some stuff</div>
- 
+
       <form target="frame" action="form_action">
         <input type="file" name="uploaded_file"/>
         <input type="submit"/>
       </form>
- 
+
       <iframe id='frame' name="frame"></iframe>
     </body>
   </html>
-  
+

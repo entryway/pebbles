@@ -12,8 +12,8 @@ development:
     fulfillment_merchant_id: ''
     ship_ups_url: 'https://wwwcie.ups.com/ups.app/xml'
     ship_sender_zip: '24091'
-    ship_sender_country: 'US'    
-    paypal_email: ''  
+    ship_sender_country: 'US'
+    paypal_email: ''
     google_cx: ''
     order_email: 'gustin@entryway.net'
     contact_email: 'gustin@entryway.net'
@@ -21,7 +21,7 @@ development:
     support_phone: '1.540.745.6162'
     site_address: 'http://localhost:3000/'
     pre_and_post_authorization: false
-    
+
 test:
     paypal_login: ''
     paypal_password: ''
@@ -35,8 +35,8 @@ test:
     fulfillment_merchant_id: ''
     ship_ups_url: 'https://wwwcie.ups.com/ups.app/xml'
     ship_sender_zip: '24091'
-    ship_sender_country: 'US'    
-    paypal_email: ''  
+    ship_sender_country: 'US'
+    paypal_email: ''
     google_cx: ''
     order_email: 'gustin@entryway.net'
     contact_email: 'gustin@entryway.net'
@@ -58,8 +58,8 @@ staging:
     fulfillment_merchant_id: ''
     ship_ups_url: 'https://wwwcie.ups.com/ups.app/xml'
     ship_sender_zip: '24091'
-    ship_sender_country: 'US'    
-    paypal_email: ''  
+    ship_sender_country: 'US'
+    paypal_email: ''
     google_cx: ''
     order_email: 'gustin@entryway.net'
     contact_email: 'gustin@entryway.net'
@@ -68,8 +68,8 @@ staging:
     site_address: 'http://greenlabel.entryway.net.com/'
     pre_and_post_authorization: false
     title
-                  
-production:   
+
+production:
     paypal_login: ''
     paypal_password: ''
     paypal_signature: ''
@@ -82,8 +82,8 @@ production:
     fulfillment_merchant_id: ''
     ship_ups_url: 'https://wwwcie.ups.com/ups.app/xml'
     ship_sender_zip: '24091'
-    ship_sender_country: 'US'    
-    paypal_email: ''  
+    ship_sender_country: 'US'
+    paypal_email: ''
     google_cx: ''
     order_email: 'gustin@entryway.net'
     contact_email: 'gustin@entryway.net'

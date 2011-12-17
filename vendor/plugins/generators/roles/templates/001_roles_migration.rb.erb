@@ -3,7 +3,7 @@ class <%= migration_name %> < ActiveRecord::Migration
     create_table "<%= roles_table_name %>" do |t|
       t.column :name, :string
     end
-    
+
     # generate the join table
     create_table "<%= habtm_name %>", :id => false do |t|
       t.column "<%= roles_foreign_key %>", :integer

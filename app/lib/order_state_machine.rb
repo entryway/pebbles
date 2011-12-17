@@ -1,14 +1,14 @@
 module OrderStateMachine
-  
+
   def self.included(base)
-    base.class_eval do 
+    base.class_eval do
       aasm_column :state
       aasm_initial_state :pending
 
-      aasm_state :pending 
+      aasm_state :pending
       aasm_state :authorized
-      aasm_state :paid, :enter => :decrease_inventory 
-      aasm_state :payment_declined 
+      aasm_state :paid, :enter => :decrease_inventory
+      aasm_state :payment_declined
       aasm_state :refunded
       aasm_state :disputed
       aasm_state :shipping_delayed
@@ -16,7 +16,7 @@ module OrderStateMachine
       aasm_state :shipped
       aasm_state :issue
 
-      # state events 
+      # state events
       aasm_event :payment_authorized do
         transitions :from => :pending,
                     :to => :authorized
@@ -36,10 +36,10 @@ module OrderStateMachine
 
         transitions :from => :payment_declined,
                     :to   => :payment_declined
-                    
+
         transitions :from => :authorized,
                     :to   => :payment_declined
-        
+
       end
 
       aasm_event :issue_raised do
@@ -49,7 +49,7 @@ module OrderStateMachine
         transitions :from => :paid,
                     :to => :issue
 
-        transitions :from => :authorized, 
+        transitions :from => :authorized,
                     :to => :issue
       end
 
@@ -76,9 +76,9 @@ module OrderStateMachine
       end
     end
   end
-  
+
   def decrease_inventory
     Inventory.new.decrease_order_inventory(self)
   end
-  
+
 end

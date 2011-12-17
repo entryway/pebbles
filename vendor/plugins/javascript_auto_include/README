@@ -6,13 +6,13 @@ JavascriptAutoInclude
 Install
  * On rails 2.1 and above run
  script/plugin install git://github.com/kernow/javascript_auto_include.git
- 
+
 == Usage
 
  Add the following to the head of your template file
 
  <%= javascript_auto_include_tags %>
- 
+
  Now each time the template is loaded javascript files in the public/javascripts/views
  folder that correspond to the name of the current controller or view will be auto
  loaded. It's also possible for the same javascript file to be loaded by multiple views
@@ -32,7 +32,7 @@ Install
 		 show.js
 
  Assuming the above file structure loading each of the following urls would include:
- 
+
  mydomain.com/users             # includes users.js
  mydomain.com/users/edit/1      # includes users.js and edit.js
  mydomain.com/users/show/1      # includes users.js
@@ -47,7 +47,7 @@ Install
 
 http://kernowsoul.com/page/javascript_auto_include
 
-== Acknowledgements 
+== Acknowledgements
 
  Thanks to geoffgarside http://github.com/geoffgarside for also creating a version that can
  include the same file in multiple views. Some of the code comments are from his version as

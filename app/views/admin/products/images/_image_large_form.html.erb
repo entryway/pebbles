@@ -1,5 +1,5 @@
 <div class="images_large_form">
-	<% form_for [:admin, image, large_image], 
+	<% form_for [:admin, image, large_image],
 	            :html => { :multipart => true, :class => 'image_large_add' } do |form| %>
 	  <p>
 	    <label for="uploaded_data">Upload Enlarged Image:</label>
@@ -10,4 +10,4 @@
 	    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
 	  </p>
 	<% end %>
-</div>	
+</div>
