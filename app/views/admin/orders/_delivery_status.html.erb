@@ -1,6 +1,6 @@
 
  <input type='hidden' name='id' value='<%= order.id %>' class="hidden_order_id">
   <%= select_tag( "delivery_status_#{order.id}",
- 				  options_for_select(OrderDeliveryStatus::LIST, order.delivery_status), 
+ 				  options_for_select(OrderDeliveryStatus::LIST, order.delivery_status),
  				  :class => "delivery_status" ) %>
 </span>

@@ -12,7 +12,7 @@ module Admin
     def new
       @category = Category.new
     end
-    
+
     def create
       @category = Category.new(params[:category])
       respond_to do |format|
@@ -27,11 +27,11 @@ module Admin
         end
       end
     end
-    
+
     def edit
       @category = Category.find(params[:id])
     end
-    
+
     def update
       @category = Category.find(params[:id])
 
@@ -42,10 +42,10 @@ module Admin
           flash[:notice] = 'Category was successfully updated.'
         end
         format.html { render :action => "edit" }
-        
+
       end
     end
-    
+
    def show
       @category = Category.find(params[:id])
 
@@ -58,12 +58,12 @@ module Admin
    def destroy
       category = Category.find(params[:id])
       category.destroy
-      
+
       respond_to do |format|
         format.html { redirect_to(admin_categories_url) }
       end
     end
-    
+
     def reorder
       category = Category.find(params[:id])
       category.reorder(params)

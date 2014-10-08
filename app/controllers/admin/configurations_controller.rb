@@ -3,22 +3,22 @@ module Admin
   class ConfigurationsController < ApplicationController
     layout "admin"
     require_role "admin"
-  
+
     def index
       @configuration = Configuration.first || Configuration.create
-      
+
       respond_to do |format|
         format.html # index.rhtml
         format.xml  { render :xml => @optimization.to_xml }
       end
     end
-  
+
     def edit
       @configuration = Configuration.first || Configuration.create
     end
-  
+
     def update
-      @configuration = Configuration.first 
+      @configuration = Configuration.first
       respond_to do |format|
         if @configuration.update_attributes(params[:configuration])
           flash[:notice] = 'configuration was successfully updated.'
@@ -31,6 +31,6 @@ module Admin
         end
       end
     end
-  
+
   end
 end

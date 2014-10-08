@@ -2,7 +2,7 @@
 
 
 class OrderBuilder
-  
+
   def self.build_products(num_products = 1)
     @@products = Array.new
     num_products.times do
@@ -10,7 +10,7 @@ class OrderBuilder
       @@products << product
     end
   end
-  
+
   def self.build_order_items(order)
     @@order_items = Array.new
     @@products.each do |product|
@@ -20,24 +20,24 @@ class OrderBuilder
       @@order_items << order_item
     end
   end
-  
+
   def self.build_order(num_products = 1)
     build_products(num_products)
-    
+
     order = OrderFactory.create_order
-    
+
     billing_address = OrderFactory.create_address
     shipping_address = OrderFactory.create_address
     order.billing_address = billing_address
     order.shipping_address = shipping_address
-    
+
     build_order_items(order)
     order
   end
-  
 
-  
-  
+
+
+
 private
 
 

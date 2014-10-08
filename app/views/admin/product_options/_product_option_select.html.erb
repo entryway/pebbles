@@ -1,6 +1,6 @@
-<%= collection_select 'product_option', :id, available_options, 
-				  	  :id, :name %> 
-<%= link_to_remote "Select Option",  
+<%= collection_select 'product_option', :id, available_options,
+				  	  :id, :name %>
+<%= link_to_remote "Select Option",
 					:submit => 'product_option_select',
 					:method => 'get',
 					:url => { :action => 'edit',

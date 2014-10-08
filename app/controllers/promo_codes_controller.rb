@@ -1,8 +1,8 @@
 class PromoCodesController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  
+
   ssl_allowed :create
-  
+
   def create
     cart = current_cart
 
@@ -17,16 +17,16 @@ class PromoCodesController < ApplicationController
     method = ShippingMethod.find(active_shipping_method_id)
     shipping_total = cart.shipping_total(method)
     grand_total = cart.grand_total(shipping_total)
-    
+
     render :json => { :promo_code_message => promo_code_message,
                       :promo_code_note => promo_code_note,
-                      :no_discount => discount == 0, 
-                      :discount => number_to_currency(discount),                      
+                      :no_discount => discount == 0,
+                      :discount => number_to_currency(discount),
                       :no_tax => tax_total == 0,
-                      :tax_total => number_to_currency(tax_total), 
+                      :tax_total => number_to_currency(tax_total),
                       :shipping_total => number_to_currency(shipping_total),
                       :grand_total => number_to_currency(grand_total) }
-    
+
   end
 
 end

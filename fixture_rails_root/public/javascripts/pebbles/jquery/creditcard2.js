@@ -17,10 +17,10 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
 */
- 
+
 jQuery.validator.addMethod("creditcard2", function(value, element, param) {
-	var cardName = param;	
-	
+	var cardName = param;
+
 	var cards = new Array();
 	cards [0] = {cardName: "Visa", lengths: "13,16", prefixes: "4", checkdigit: true};
 	cards [1] = {cardName: "master", lengths: "16", prefixes: "51,52,53,54,55", checkdigit: true};
@@ -34,23 +34,23 @@ jQuery.validator.addMethod("creditcard2", function(value, element, param) {
 	cards [9] = {cardName: "Switch", lengths: "16,18,19", prefixes: "4903,4905,4911,4936,564182,633110,6333,6759", checkdigit: true};
 	cards [10] = {cardName: "Maestro", lengths: "16,18", prefixes: "5020,6", checkdigit: true};
 	cards [11] = {cardName: "VisaElectron", lengths: "16", prefixes: "417500,4917,4913", checkdigit: true};
-  			   
+
 	var cardType = -1;
 	for (var i=0; i<cards.length; i++) {
 		if (cardName.toLowerCase() == cards[i].cardName.toLowerCase()) {
 			cardType = i;
 			break;
 		}
-	}	
+	}
 	if (cardType == -1) { return false; } // card type not found
-  
+
 	value = value.replace (/[\s-]/g, ""); // remove spaces and dashes
 	if (value.length == 0) { return false; } // no length
 
 	var cardNo = value;
 	var cardexp = /^[0-9]{13,19}$/;
 	if (!cardexp.exec(cardNo)) { return false; } // has chars or wrong length
-	
+
 	cardNo = cardNo.replace(/\D/g, ""); // strip down to digits
 
 	if (cards[cardType].checkdigit){
@@ -67,13 +67,13 @@ jQuery.validator.addMethod("creditcard2", function(value, element, param) {
 			}
 			checksum = checksum + calc;
 			if (j ==1) {j = 2} else {j = 1};
-		} 
+		}
 
 		if (checksum % 10 != 0) { return false; } // not mod10
-	}  
+	}
 
 	var lengthValid = false;
-	var prefixValid = false; 
+	var prefixValid = false;
 	var prefix = new Array ();
 	var lengths = new Array ();
 

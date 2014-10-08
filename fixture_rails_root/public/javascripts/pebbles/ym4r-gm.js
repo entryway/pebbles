@@ -61,9 +61,9 @@ GMap2.prototype.centerAndZoomOnMarkers = function(markers) {
      for (var i=1, len = markers.length ; i<len; i++) {
 	 bounds.extend(markers[i].getPoint());
      }
-     
+
      this.centerAndZoomOnBounds(bounds);
- } 
+ }
 
 GMap2.prototype.centerAndZoomOnPoints = function(points) {
      var bounds = new GLatLngBounds(points[0],
@@ -71,14 +71,14 @@ GMap2.prototype.centerAndZoomOnPoints = function(points) {
      for (var i=1, len = points.length ; i<len; i++) {
 	 bounds.extend(points[i]);
      }
-     
+
      this.centerAndZoomOnBounds(bounds);
- } 
+ }
 
 GMap2.prototype.centerAndZoomOnBounds = function(bounds) {
     var center = bounds.getCenter();
     this.setCenter(center, this.getBoundsZoomLevel(bounds));
-} 
+}
 
 //For full screen mode
 function setWindowDims(elem) {

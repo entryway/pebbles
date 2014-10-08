@@ -27,7 +27,7 @@
   			    <% variant.product_option_selections.each do |selection| %>
   			      <td><%= selection.name %></td>
   			    <% end %>
-  			    
+
   				  <td>
   				    <% if inventory_managed? %>
   				      <%= variant_form.text_field :inventory, :size => 5 %>
@@ -42,10 +42,10 @@
   				    <%= check_box_tag "variant_checkbox", variant.id, false, :class => "variant_image_upload" %>
   				    <% if variant.variant_image %>
   				      <%= link_to image_tag(variant.variant_image.filename.url, :height => 30),
-  				                  admin_variant_image_path(variant.variant_image), 
+  				                  admin_variant_image_path(variant.variant_image),
   				                  :class => 'show-variant-image' %>
-               	<%= link_to 'Remove', admin_variant_path(variant), 
-                            :class => "remove-variant-image" %>  				   
+               	<%= link_to 'Remove', admin_variant_path(variant),
+                            :class => "remove-variant-image" %>
               <% end %>
   				  </td>
   			  </tr>
@@ -56,8 +56,8 @@
     	</tbody>
   	</table>
 	<% end %>
-	
-	<div id="variant_image"> 
+
+	<div id="variant_image">
 	  <%= render "admin/products/variant_image", :variant_image => variant_image %>
 	</div>
 </div>

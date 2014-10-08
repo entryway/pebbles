@@ -22,6 +22,6 @@ Factory.define :address do |f|
   f.postal_code     "24091"
   f.is_shipping     true
   f.country         "US"
-  f.state           "VA" 
+  f.state           "VA"
 end
 

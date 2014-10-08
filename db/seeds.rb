@@ -1,4 +1,4 @@
-Address.create(:address_1   => '123 test lane', 
+Address.create(:address_1   => '123 test lane',
                :address_2   => 'continued address',
                :city        => 'douglas',
                :postal_code => '32342',
@@ -12,7 +12,7 @@ Category.create(:name     => 'hats',
 
 Product.create(:name => 'test',
                :sku  => '2342342')
-User.create(:login => 'admin', 
+User.create(:login => 'admin',
             :password => 'admin',
             :email => 'dev@entryway.net',
             :password_confirmation => 'admin',

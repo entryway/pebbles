@@ -2,15 +2,15 @@
 <% categories.each do |category| %>
 	<div class="box1"><div class="box2"><div class="box3"><div class="box4 clearfix">
 	    <div class="photobox">
-		 	<%= link_to image_tag(category.category_image), 	 
+		 	<%= link_to image_tag(category.category_image),
 		           category_path(category) unless category.category_image.blank? %>
 		</div> <!-- /photobox -->
 
 		<div class="infobox">
-		  <h4><%= link_to category.name, 	 
+		  <h4><%= link_to category.name,
 		           category_path(category) %></h4>
 		  <br/><br/>
-		  <%= link_to 'view shirts >>', 	 
+		  <%= link_to 'view shirts >>',
 	           category_path(category) %>
 		</div> <!-- /infobox -->
 		<br class="clear" />

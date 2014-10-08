@@ -2,31 +2,31 @@
 	<input type="hidden" name="product_option_id" value="<%= product_option.id %>">
 	<input type="hidden" name="product_id" value="<%= product.id %>">
 	<label>Selection Name:</label>
-	<%= option_selection.text_field :name, :size => 20, 
+	<%= option_selection.text_field :name, :size => 20,
 									:class => 'gt-form-text'   %><br/>
 	<label>Price Adjustment:</label>
-	<%= option_selection.text_field :price_adjustment, :size => 20, 
+	<%= option_selection.text_field :price_adjustment, :size => 20,
 									:class => 'gt-form-text'   %><br/>
 	<label>Weight Adjustment:</label>
-	<%= option_selection.text_field :weight_adjustment, :size => 20, 
+	<%= option_selection.text_field :weight_adjustment, :size => 20,
 									:class => 'gt-form-text'   %><br/>
 	<label>Sku:</label>
-	<%= option_selection.text_field :sku_adjustment, :size => 20, 
+	<%= option_selection.text_field :sku_adjustment, :size => 20,
 									:class => 'gt-form-text'   %><br/>
 <% end %>
 <% if product_option_selection.new_record? %>
 	<br/><br/>
-	<%= link_to_remote "Add New Selection", 
+	<%= link_to_remote "Add New Selection",
 						:submit => 'selection_form',
-						:url => { :action => 'add_option_selection', 
+						:url => { :action => 'add_option_selection',
 								  :controller => 'product_options' } %>
 <% else %>
 	<label for="image_upload">Image Upload:</label>
 	<%= render :partial => '/admin/product_options/option_selection_images',
 	 		   :locals => { :option_selection => product_option_selection } %>
 	<br/><br/>
-	<%= link_to_remote "Save Selection", 
+	<%= link_to_remote "Save Selection",
 						:submit => 'selection_form',
-						:url => { :action => 'edit_option_selection', 
+						:url => { :action => 'edit_option_selection',
 								  :controller => 'product_options' } %>
 <% end %>

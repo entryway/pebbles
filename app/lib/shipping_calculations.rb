@@ -10,13 +10,13 @@ module ShippingCalculations
     end
     price
   end
-  
+
   def shipping_weight_total
     self.line_items.to_a.sum {|i| i.product.free_shipping? ? 0 : i.product.weight * i.quantity}
   end
-  
+
 private
-  
+
   ##
   # Calculate shipping cost using flat rates of order total.
   #
@@ -25,25 +25,25 @@ private
     shipping_method = ShippingMethod.find(self.shipping_method_id)
     price = shipping_method.flat_rate_shipping_cost(self)
   end
-  
+
 
 
 
 ###
 #### REFACTOR: All of this is from people powered machines and needs review
 ###
-  
+
   # calculate cost for product item
   def self.product_quote(product_id, quantity, zipcode, accessories = [])
     product = Product.find(product_id)
-    quote = case product.determined_shipping_type 
+    quote = case product.determined_shipping_type
     when ShippingType::FREE_SHIPPING
       0
     when ShippingType::FLAT_RATE_SHIPPING
       self.flat_rate_shipping_quote(product, accessories, zipcode, quantity)
     when ShippingType::REAL_TIME_SHIPPING
       self.real_time_shipping_quote(product, accessories, zipcode, quantity)
-    end 
+    end
     quote
   end
 
@@ -63,19 +63,19 @@ private
     end
     shipping_total
   end
-  
+
 
   def self.flat_rate_shipping_quote(product, accessories, zipcode, quantity)
     quote = product.flat_rate_shipping * quantity
     specifications = Array.new
     quote += self.accessory_quote(specifications, accessories, zipcode, product.vendor.zipcode)
   end
-  
+
   def self.real_time_shipping_quote(product, accessories, zipcode, quantity)
     specifications = quantity_specifications(product, quantity)
     quote = self.accessory_quote(specifications, accessories, zipcode, product.vendor.zipcode)
   end
-  
+
   def self.accessory_quote(specifications, accessories, zipcode, vendor_zipcode)
     quote = 0
     accessories.each do |accessory|
@@ -84,8 +84,8 @@ private
         quote += 0
       when ShippingType::FLAT_RATE_SHIPPING
         quote += accessory.flat_rate_shipping
-      when ShippingType::REAL_TIME_SHIPPING 
-        # for now we are assuming that only one accessory is added otherwise this will need to 
+      when ShippingType::REAL_TIME_SHIPPING
+        # for now we are assuming that only one accessory is added otherwise this will need to
         # do something like quantity.times do...
         specifications << accessory.specification
       end
@@ -93,12 +93,12 @@ private
     quote += self.shipping_quote(specifications, zipcode, vendor_zipcode) unless specifications.empty?
     quote
   end
-  
+
   def self.shipping_quote(specifications, zipcode, vendor_zipcode)
     packages = build_packages(specifications)
     quote = quote_packages(packages, zipcode, vendor_zipcode)
   end
-  
+
   def self.build_packages(specifications)
     packages = Array.new
     specifications.each do |specification|
@@ -107,28 +107,28 @@ private
     end
     packages
   end
-    
+
   def self.quote_packages(packages, zipcode, vendor_zipcode)
     origin = Location.new(:country => 'US', :zip => vendor_zipcode)
     country = /^\d{5}([\-]\d{4})?$/.match(zipcode)? 'US' : 'CA'
     destination = Location.new(:country => country, :postal_code => zipcode)
-    ups = UPS.new(:login => APP_CONFIG['ups_login'], :password => APP_CONFIG['ups_password'], 
+    ups = UPS.new(:login => APP_CONFIG['ups_login'], :password => APP_CONFIG['ups_password'],
                   :key => APP_CONFIG['ups_key'])
     response = ups.find_rates(origin, destination, packages)
     quote = response.rates.sort_by(&:price).first.price * 0.01
   end
-  
+
   def self.quantity_specifications(product, quantity)
     specifications = Array.new
-    quantity.times do 
+    quantity.times do
       specification = product.specification
       specifications << specification
     end
     specifications
   end
-  
+
   def calculate_shipping_per_vendor(items, zipcode, vendor_zipcode)
-    # we create a separate package for each quantity of each item 
+    # we create a separate package for each quantity of each item
     specifications = Array.new
     shipping_total = 0
     items.each do |item|
@@ -138,18 +138,18 @@ private
         shipping_total += 0
       when ShippingType::FLAT_RATE_SHIPPING
         shipping_total += product.flat_rate_shipping
-      when ShippingType::REAL_TIME_SHIPPING 
+      when ShippingType::REAL_TIME_SHIPPING
         specifications += ShippingCalculations.quantity_specifications(product, item.quantity)
       end
     end
-    unless specifications.empty?  
+    unless specifications.empty?
       shipping_total += ShippingCalculations.shipping_quote(specifications, zipcode, vendor_zipcode)
     end
     shipping_total
   end
-  
+
   def total_weight(items)
     sum = items.sum {|item| item.quantity * item.product.weight}
   end
-  
+
 end

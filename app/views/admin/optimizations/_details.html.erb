@@ -3,7 +3,7 @@
 <% form_for :optimization, @optimization, :url => admin_optimization_path(1), :html => { :method => :put }  do |form| %>
   <p>
     <label for="name">Title *:</label>
-    <%= form.text_field :title, :size => 20 %><br/>	
+    <%= form.text_field :title, :size => 20 %><br/>
     <label for="description">Keywords:</label>
     <%= form.text_area :keywords, :rows => 10 %><br/>
     <label for="description">Description:</label>

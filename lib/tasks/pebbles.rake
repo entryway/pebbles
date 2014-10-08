@@ -5,6 +5,6 @@ namespace :pebbles do
     system "rsync -ruv vendor/plugins/pebbles/db/migrate db"
     system "rsync -ruv vendor/plugins/pebbles/public ."
   end
-  
-    
+
+
 end

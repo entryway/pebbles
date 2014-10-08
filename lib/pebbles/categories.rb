@@ -1,8 +1,8 @@
 module Pebbles
   module Categories
-    
+
     def self.included(base)
-      base.class_eval do 
+      base.class_eval do
         helper_method :categories
       end
     end

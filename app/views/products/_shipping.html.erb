@@ -1,15 +1,15 @@
 <div id = 'zipcode_error' style = 'display:none; color:red'>
   You must enter a zipcode to calculate shipping before adding item to cart
-</div>  
+</div>
 <div id = 'invalid_zipcode_error' style = 'display:none; color:red'>
-  Zipcode must be valid US zipcode (in the format "12345" or "12345-1234") 
+  Zipcode must be valid US zipcode (in the format "12345" or "12345-1234")
   or valid Canadian postal code  (in the format A1A 1A1)
 </div>
 <div id= 'shipping_quote'>
   <% if @shipping %>
     <% if @shipping == 0 %>
       Free Shipping!
-    <% else %>  
+    <% else %>
       Shipping: <%= number_to_currency(@shipping) %>
     <% end %>
   <% else %>

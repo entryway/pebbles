@@ -21,16 +21,16 @@
 			<td>
 				<%= option.description %>
 			</td>
-			<td><%= link_to_remote "Edit",  
+			<td><%= link_to_remote "Edit",
 								:with => "'product_option_id=' + #{option.id}",
 								:method => 'get',
 								:url => { :action => 'edit',
 										  :controller => 'product_options',
 										  :id => product.id } %>
 			</td>
-		    <td><%= link_to_remote 'Remove', 
+		    <td><%= link_to_remote 'Remove',
 								:method => :delete,
-								:confirm => "Remove the option #{option.name}?", 
+								:confirm => "Remove the option #{option.name}?",
 								:url => admin_product_product_option_path(product, option) %></td>
 		 </tr>
 		<% end %>
@@ -38,4 +38,3 @@
 		</table>
 	</div>
 <% end %>
-    

@@ -4,13 +4,13 @@
 
 	<% if product_option.selection_type == ProductOption::DROP_DOWN_LIST %>
 		<select name="accessories[<%= accessory.id %>][options]" id="options[]"><br/>
-			<% product_option.product_option_selections.each do |selection| %>			
+			<% product_option.product_option_selections.each do |selection| %>
 				<option value="<%= selection.id %>">
 					<% if selection.price_adjustment.blank? || selection.price_adjustment == 0 %>
-						<%= selection.name %> 	
-					<% else %>	
+						<%= selection.name %>
+					<% else %>
 						<%= selection.name + ' (' + number_to_currency(selection.price_adjustment +
-																	   product.price)  + ')'%>					
+																	   product.price)  + ')'%>
 					<% end %>
 				</option>
 			<% end %>

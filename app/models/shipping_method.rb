@@ -15,7 +15,7 @@ class ShippingMethod < ActiveRecord::Base
   def is_base_rate?
     !(GeneralConfiguration.shipping_calculated_by_weight? || is_order_range_flat_rated?)
   end
-  
+
   def is_order_range_flat_rated?
     flat_rate_shippings.select{|rate| !rate.new_record? }.size > 0
   end

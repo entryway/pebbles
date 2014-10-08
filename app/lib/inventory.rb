@@ -1,17 +1,17 @@
 class Inventory
-  
+
   def initialize
     @inventory_managed = inventory_managed?
   end
-  
+
   def inventory_managed?
     GeneralConfiguration.instance.inventory_management?
   end
-  
+
   ##
   # Validates a cart adding errors when cart_items exceed current inventory for product or variant
   #
-  # @param [Cart] cart cart to validate 
+  # @param [Cart] cart cart to validate
   def validate_cart(cart)
     if @inventory_managed
       cart.cart_items.each do |cart_item|
@@ -27,7 +27,7 @@ class Inventory
       end
     end
   end
-  
+
   ##
   # Decreases the inventory for the products and or variants for items in an order
   #
@@ -39,7 +39,7 @@ class Inventory
       end
     end
   end
-  
+
   ##
   # returns the inventory remaining for a product or variant minus any existing cart_item quantities
   #
@@ -50,7 +50,7 @@ class Inventory
   # @return [<Integer, nil>] the inventory remaining or nil if no inventory is being managed
   def inventory_remaining(cart, product, variant = nil)
     if @inventory_managed
-      inventory = (variant || product).inventory 
+      inventory = (variant || product).inventory
       existing_cart_item = cart.find_product_or_variant(product, variant)
       inventory -= existing_cart_item.quantity if existing_cart_item
       inventory
@@ -60,7 +60,7 @@ class Inventory
   end
 
 private
-  
+
   ##
   # Validates a cart_item adjusting its quantity and adding an error if quantity exceeds inventory
   #
@@ -78,7 +78,7 @@ private
       return true
     end
   end
-  
+
   ##
   # Decreases the inventory for the product or variant of an order_item
   #

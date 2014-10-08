@@ -8,7 +8,7 @@ GMarkerGroup.prototype = new GOverlay();
 
 GMarkerGroup.prototype.initialize = function(map) {
     this.map = map;
-    
+
     if(this.active){
 	for(var i = 0 , len = this.markers.length; i < len; i++) {
 	    this.map.addOverlay(this.markers[i]);
@@ -104,9 +104,9 @@ GMarkerGroup.prototype.centerAndZoomOnMarkers = function() {
 	}
 	if(tmpMarkers.length > 0){
     	    this.map.centerAndZoomOnMarkers(tmpMarkers);
-	} 
+	}
     }
-}	
+}
 
 //Deactivate the Group Overlay (convenience method)
 GMarkerGroup.prototype.deactivate = function(){

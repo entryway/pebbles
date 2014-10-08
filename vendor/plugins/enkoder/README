@@ -23,7 +23,7 @@ Just drop the "enkoder" folder into the /vendor/plugins folder in your project.
 There are two methods:
 
 	enkode( html )
-	
+
 This method accepts a block of html (or any text) and returns an enkoded JavaScript.
 
 The second method is:

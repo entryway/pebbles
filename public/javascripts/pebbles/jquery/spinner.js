@@ -2,7 +2,7 @@ jQuery(document).ready(function(){
   jQuery("body").spin().unspin(); // Weird "image not showing" bug. :-( Need a better solution
 })
 if (typeof jQuery == 'undefined') throw("jQuery could not be found.");
- 
+
 (function($){
   $.extend({
     Spinner: {
@@ -29,7 +29,7 @@ if (typeof jQuery == 'undefined') throw("jQuery could not be found.");
                     }
       }
     });
-    
+
   $.fn.spin = function(){
     var defaults = {
       className: $.Spinner.className,
@@ -37,9 +37,9 @@ if (typeof jQuery == 'undefined') throw("jQuery could not be found.");
       spinnerID: $.Spinner.spinnerID
       }
     var settings = $.extend(defaults, arguments.length != 0 ? arguments[0] : {});
- 
+
     (settings.unspinOthers && $.Spinner.unspin());
-    
+
     return this.each(function(){
       var spun = $(this);
       if((spinner = $("#"+spun.attr("spinner"))) && spinner.get(0)){
@@ -47,7 +47,7 @@ if (typeof jQuery == 'undefined') throw("jQuery could not be found.");
         $.Spinner.logger("Already spinning.");
         return jQuery;
       }
-        
+
       var spinnerID = $.Spinner.spinnerID + String(Math.random()).substring(2);
       $("body")
         .append(
@@ -63,7 +63,7 @@ if (typeof jQuery == 'undefined') throw("jQuery could not be found.");
       spun.attr({spinner: spinnerID}); // Keep track of the spinner for the element
     });
   };
-  
+
   $.fn.unspin = function(){
     return this.each(function(){
       $("#"+$(this).attr("spinner")).hide();

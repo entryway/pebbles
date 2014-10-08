@@ -33,7 +33,7 @@ class CartsController < ApplicationController
 
   def show
     @cart = current_cart
-    @cart.validate 
+    @cart.validate
     refresh_cart
   end
 
@@ -47,7 +47,7 @@ class CartsController < ApplicationController
       render :action => 'show'
     end
   end
-  
+
   def refresh_cart
     region = Region.find(active_shipping_region_id)
     method = active_shipping_method_id

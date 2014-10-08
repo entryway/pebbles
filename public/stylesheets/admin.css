@@ -5,8 +5,8 @@ html,body {
 }
 
 body {
-	font-family: "Myriad Pro", "Myriad Web", "Lucida Grande", 
-				 "Trebuchet MS",  Tahoma, Helvetica, Arial, 
+	font-family: "Myriad Pro", "Myriad Web", "Lucida Grande",
+				 "Trebuchet MS",  Tahoma, Helvetica, Arial,
 				sans-serif;
 	font-size: small;
 	position: relative;
@@ -73,7 +73,7 @@ ol, ul {
 
 		#utilty-navigation a:hover {
 			text-decoration: underline;
-	
+
 		}
 
 	#main-navigation li {
@@ -114,7 +114,7 @@ ol, ul {
 	   border-right: 3px #fff solid;
 	   border-bottom: none;
 	}
-		
+
 /* utility navigation */
 
 #utility-navigation {
@@ -133,7 +133,7 @@ ol, ul {
 
 		#utility-navigation a:hover {
 			text-decoration: underline;
-	
+
 		}
 
 	#utility-navigation li {
@@ -141,7 +141,7 @@ ol, ul {
 		margin: 0px;
 		padding: 9px 19px;
 	}
-	
+
 /* auxilary navigation */
 
 #auxilary-navigation {
@@ -158,7 +158,7 @@ ol, ul {
 
 		#auxilary-navigation a:hover {
 			text-decoration: underline;
-	
+
 		}
 
 	#auxilary-navigation li {
@@ -168,8 +168,8 @@ ol, ul {
 	}
 
 /* footer bar */
-#footer-navigation { 
-    color: #666; 
+#footer-navigation {
+    color: #666;
 	background: #eeeee1;
 	clear: both;
 	font-size:  90%;
@@ -179,10 +179,10 @@ ol, ul {
 	padding: 3px;
 }
 
-	#footer-navigation ul { 
+	#footer-navigation ul {
 		margin: 0;
 		padding: 0;
-		text-align: left; 
+		text-align: left;
 		clear:  both;
 	}
 
@@ -195,7 +195,7 @@ ol, ul {
 
 	#footer-navigation a {
 		color: #666;
-		text-decoration: none; 
+		text-decoration: none;
 	}
 
 	#footer-navigation a:hover {
@@ -222,7 +222,7 @@ ol, ul {
 /* banner */
 
 #banner {
-	float: left;	
+	float: left;
 }
 
 /* search */
@@ -279,9 +279,9 @@ ol, ul {
 	border-bottom: solid 1px #C5DBF7;
 	border-left: solid 1px #C5DBF7;
  }
- 
+
 .listing-table td.subcat {
-	margin-left: 20px;	
+	margin-left: 20px;
 }
 
 .listing-table td.actions {
@@ -297,7 +297,7 @@ ol, ul {
  	background-color:#fff;
  	border: solid 0px #ddd;
 }
- 
+
 .listing-table tr td.sorted {
  	background-color: #B9DCFF;
  	border-bottom: solid 1px #AFD0F5;
@@ -369,9 +369,9 @@ ol, ul {
  	background: #333 url(../images/indicator-small.gif) right 50% no-repeat;
 }
 
- 
+
  /* Product Options */
- 
+
 #selection-list {
 	border-style: dotted;
 	border-color: #ccc;
@@ -421,7 +421,7 @@ ol, ul {
 
 
  /* Project Seven Tabs */
- 
+
 .p7TPwrapper {
 	padding: 8px 0px 7px 0px;
 }
@@ -447,7 +447,7 @@ ol, ul {
 	font-size: 1.1em;
 }
 #p7TP1 .p7TP_tabs a, #p7TP2 .p7TP_tabs a,
-#p7TP3 .p7TP_tabs a, #p7TP4 .p7TP_tabs a, 
+#p7TP3 .p7TP_tabs a, #p7TP4 .p7TP_tabs a,
 #p7TP5 .p7TP_tabs a {
 	padding: 8px 8px 4px 6px;
 	display: block;
@@ -465,11 +465,11 @@ ol, ul {
 	outline: 1px dotted;
 	outline-color: #ffffff;
 }
-#p7TP1 .p7TP_tabs a:hover, #p7TP2 .p7TP_tabs a:hover, 
-#p7TP3 .p7TP_tabs a:hover, #p7TP4 .p7TP_tabs a:hover, 
-#p7TP5 .p7TP_tabs a:hover, #p7TP1 .p7TP_tabs a:active, 
+#p7TP1 .p7TP_tabs a:hover, #p7TP2 .p7TP_tabs a:hover,
+#p7TP3 .p7TP_tabs a:hover, #p7TP4 .p7TP_tabs a:hover,
+#p7TP5 .p7TP_tabs a:hover, #p7TP1 .p7TP_tabs a:active,
 #p7TP2 .p7TP_tabs a:active, #p7TP3 .p7TP_tabs a:active,
-#p7TP4 .p7TP_tabs a:active, 
+#p7TP4 .p7TP_tabs a:active,
 #p7TP5 .p7TP_tabs a:active {
 		background-color: transparent;
 }
@@ -499,7 +499,7 @@ ol, ul {
 	border: 1px solid #CCCCCC;
 
 }
-.p7TPcontent h2, .p7TPcontent h3, 
+.p7TPcontent h2, .p7TPcontent h3,
 .p7TPcontent h4 {
 	font-size: 1.1em;
 	color: #444444;
@@ -509,8 +509,8 @@ ol, ul {
 .p7TPcontent p {
 	margin: 6px 0 12px 0;
 }
-#p7TP1 .p7TP_tabs div.down, #p7TP2 .p7TP_tabs div.down, 
-#p7TP3 .p7TP_tabs div.down, #p7TP4 .p7TP_tabs div.down, 
+#p7TP1 .p7TP_tabs div.down, #p7TP2 .p7TP_tabs div.down,
+#p7TP3 .p7TP_tabs div.down, #p7TP4 .p7TP_tabs div.down,
 #p7TP5 .p7TP_tabs div.down {
 	padding: 0;
 	position: relative;
@@ -518,8 +518,8 @@ ol, ul {
 	background-image: url(p7tp/tabs01_down.gif);
 	background-repeat: no-repeat;
 }
-#p7TP1 .p7TP_tabs div.down a, #p7TP2 .p7TP_tabs div.down a, 
-#p7TP3 .p7TP_tabs div.down a, #p7TP4 .p7TP_tabs div.down a, 
+#p7TP1 .p7TP_tabs div.down a, #p7TP2 .p7TP_tabs div.down a,
+#p7TP3 .p7TP_tabs div.down a, #p7TP4 .p7TP_tabs div.down a,
 #p7TP5 .p7TP_tabs div.down a {
 	background-image: url(p7tp/tabs01_down2.gif);
 	background-repeat: no-repeat;
@@ -529,4 +529,3 @@ ol, ul {
 .p7TP_tabs {
 	display: none;
 }
- 

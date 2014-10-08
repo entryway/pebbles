@@ -10,11 +10,11 @@
 		<th class="standcol">Total</th>
 		<th class="standcol"></th>
 	  </tr>
-	
+
 <% if @cart.cart_items.length > 0 %>
-  	<% form_for @cart 
+  	<% form_for @cart
 									 :html => { :name => 'cart_form' } do %>
-		
+
 	  <%= render :partial => "/carts/cart_item", :locals => { :cart => @cart } %>
 	  <tr>
 	    <td class="prodcol"/>
@@ -42,10 +42,10 @@
 	  <tr>
 	 	<td colspan="3"/>
 	 	<td id="shipping_methods">
-	 		<%= render :partial => '/carts/shipping_methods', 
+	 		<%= render :partial => '/carts/shipping_methods',
 	 				   :locals => { :shipping_methods => @shipping_methods } %>
 	 	</td>
-	  </tr> 
+	  </tr>
 	  <tr>
 		<td colspan="5"/>
 	  </tr>
@@ -57,7 +57,7 @@
 		<td class="standcol">&nbsp; </td>
 		<td class="standcol">&nbsp;</td>
 		<td class="">Subtotal</td>
-		<td class=""><%= number_to_currency(@subtotal) %></td>	
+		<td class=""><%= number_to_currency(@subtotal) %></td>
 	  </tr>
 	  <tr id="shipping_totals" class="nop">
 	  	<%= render :partial => "/carts/shipping_totals",
@@ -70,7 +70,7 @@
 		<td id="shipping_label" colspan="2">Tax (5% for Virginia residents)</td>
 	  </tr>
       <tr id="cart_totals" class="nop">
-	  	<%= render :partial => "/carts/cart_totals", 
+	  	<%= render :partial => "/carts/cart_totals",
 				   :locals => { :grand_total => @grand_total }  %>
 	  </tr>
 	<% end %>
@@ -78,7 +78,7 @@
 		<tr>
 			<td><h4>Your Cart Is Empty...</h4></td>
 		</tr>
-		
+
 <% end %>
 	</table>
   </div> <!-- /boxcontainer -->

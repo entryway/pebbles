@@ -8,5 +8,5 @@ module Pebbles::VariantsHelper
     thumbnail = image.variant_image_thumbnail || image
     thumbnail.filename.url
   end
-  
+
 end

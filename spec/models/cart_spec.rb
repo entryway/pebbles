@@ -27,7 +27,7 @@ describe Cart do
       new_variant = @product.find_variant_by_selection_ids([@large.id, @blue.id])
       @cart.find_product_or_variant(@product, new_variant).should be_nil
     end
-  
+
   end
 
   describe "#tax_total" do
@@ -57,15 +57,15 @@ describe Cart do
       @cart.cart_items.create(:product_id => product1.id, :quantity => 1)
       @cart.cart_items.create(:product_id => @product2.id, :quantity => 2)
     end
-    
+
     it "should calculate sum of product weights multiplied by quantity ordered" do
       @cart.shipping_weight_total.should eql(9.5)
     end
-    
+
     it "should not include free shipping in the weight total" do
       @product2.update_attribute(:free_shipping, true)
       @cart.shipping_weight_total.should eql(2.5)
     end
   end
- 
+
 end

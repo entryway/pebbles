@@ -1,5 +1,5 @@
  /* Project Seven Tabs */
- 
+
 .p7TPwrapper {
 	padding: 8px 0px 7px 0px;
 }
@@ -25,7 +25,7 @@
 	font-size: 1.1em;
 }
 #p7TP1 .p7TP_tabs a, #p7TP2 .p7TP_tabs a,
-#p7TP3 .p7TP_tabs a, #p7TP4 .p7TP_tabs a, 
+#p7TP3 .p7TP_tabs a, #p7TP4 .p7TP_tabs a,
 #p7TP5 .p7TP_tabs a {
 	padding: 8px 8px 4px 6px;
 	display: block;
@@ -43,11 +43,11 @@
 	outline: 1px dotted;
 	outline-color: #ffffff;
 }
-#p7TP1 .p7TP_tabs a:hover, #p7TP2 .p7TP_tabs a:hover, 
-#p7TP3 .p7TP_tabs a:hover, #p7TP4 .p7TP_tabs a:hover, 
-#p7TP5 .p7TP_tabs a:hover, #p7TP1 .p7TP_tabs a:active, 
+#p7TP1 .p7TP_tabs a:hover, #p7TP2 .p7TP_tabs a:hover,
+#p7TP3 .p7TP_tabs a:hover, #p7TP4 .p7TP_tabs a:hover,
+#p7TP5 .p7TP_tabs a:hover, #p7TP1 .p7TP_tabs a:active,
 #p7TP2 .p7TP_tabs a:active, #p7TP3 .p7TP_tabs a:active,
-#p7TP4 .p7TP_tabs a:active, 
+#p7TP4 .p7TP_tabs a:active,
 #p7TP5 .p7TP_tabs a:active {
 		background-color: transparent;
 }
@@ -77,7 +77,7 @@
 	border: 1px solid #CCCCCC;
 
 }
-.p7TPcontent h2, .p7TPcontent h3, 
+.p7TPcontent h2, .p7TPcontent h3,
 .p7TPcontent h4 {
 	font-size: 1.1em;
 	color: #444444;
@@ -87,8 +87,8 @@
 .p7TPcontent p {
 	margin: 6px 0 12px 0;
 }
-#p7TP1 .p7TP_tabs div.down, #p7TP2 .p7TP_tabs div.down, 
-#p7TP3 .p7TP_tabs div.down, #p7TP4 .p7TP_tabs div.down, 
+#p7TP1 .p7TP_tabs div.down, #p7TP2 .p7TP_tabs div.down,
+#p7TP3 .p7TP_tabs div.down, #p7TP4 .p7TP_tabs div.down,
 #p7TP5 .p7TP_tabs div.down {
 	padding: 0;
 	position: relative;
@@ -96,8 +96,8 @@
 	background-image: url(p7tp/tabs01_down.gif);
 	background-repeat: no-repeat;
 }
-#p7TP1 .p7TP_tabs div.down a, #p7TP2 .p7TP_tabs div.down a, 
-#p7TP3 .p7TP_tabs div.down a, #p7TP4 .p7TP_tabs div.down a, 
+#p7TP1 .p7TP_tabs div.down a, #p7TP2 .p7TP_tabs div.down a,
+#p7TP3 .p7TP_tabs div.down a, #p7TP4 .p7TP_tabs div.down a,
 #p7TP5 .p7TP_tabs div.down a {
 	background-image: url(p7tp/tabs01_down2.gif);
 	background-repeat: no-repeat;

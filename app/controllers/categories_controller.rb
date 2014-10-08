@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
 
 private
 
-  def ensure_current_post_show_url    
+  def ensure_current_post_show_url
     @category = Category.find(params[:id])
     unless @category.friendly_id_status.best?
       redirect_to @category, :status => :moved_permanently

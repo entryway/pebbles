@@ -1,4 +1,4 @@
-desc "Checks your app and gently warns you if you are using deprecated code." 
+desc "Checks your app and gently warns you if you are using deprecated code."
 task :deprecated => :environment do
   deprecated = {
     '@params'    => 'Use params[] instead',
@@ -20,11 +20,11 @@ task :deprecated => :environment do
     puts '--> ' + key
     output = `cd '#{File.expand_path('app', RAILS_ROOT)}' && grep -n --exclude=*.svn* -r '#{key}' *`
     unless output =~ /^$/
-      puts "  !! " + warning + " !!" 
+      puts "  !! " + warning + " !!"
       puts '  ' + '.' * (warning.length + 6)
       puts output
     else
-      puts "  Clean! Cheers for you!" 
+      puts "  Clean! Cheers for you!"
     end
     puts
   end

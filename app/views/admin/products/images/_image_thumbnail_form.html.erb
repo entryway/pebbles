@@ -1,5 +1,5 @@
 <div class="images_thumbnail_form">
-	<% form_for [:admin, image, thumbnail], 
+	<% form_for [:admin, image, thumbnail],
 	            :html => { :multipart => true, :class => 'image_thumbnail_add' } do |form| %>
 	  <p>
 	    <label for="uploaded_data">Upload Thumbnail Image:</label>
@@ -10,4 +10,4 @@
 	    <%= image_submit_tag 'gt/btn-upload.jpg', :class => 'gt-submit-btn' %>
 	  </p>
 	<% end %>
-</div>	
+</div>

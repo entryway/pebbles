@@ -1,9 +1,9 @@
 <div id="apply_promo_code">
 	<%= hidden_field_tag 'subtotal', @sub_total %>
 	<%= text_field_tag 'order[promo_code]', "",
-					   :size => 15, 
+					   :size => 15,
 					   :id => 'promo_text_field' %>
-	<%= link_to_remote "<span> Apply Promo Code</span>", 
+	<%= link_to_remote "<span> Apply Promo Code</span>",
 						{ :submit => 'apply_promo_code',
 						  :url => promo_codes_path,
 						  :method => :post }

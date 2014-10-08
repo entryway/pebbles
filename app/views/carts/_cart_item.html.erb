@@ -4,8 +4,8 @@
 	<tr>
 		<% cart_item.price %>
 	    <td class="prodcol">
-			<%= link_to cart_item.product.name, 	 
-	           			category_product_path(cart_item.product.category, 
+			<%= link_to cart_item.product.name,
+	           			category_product_path(cart_item.product.category,
 						cart_item.product) %>
 			<% if cart_item.option_selections.size > 0 %>
    				(<%= render :partial => '/carts/cart_item_selections',
@@ -22,9 +22,9 @@
 			<%= h(number_to_currency(cart_item.price * cart_item.quantity)) %>
 		</td>
 		<td class="standcol">
-			<%= link_to 'Remove', cart_cart_item_path(cart, cart_item), 
+			<%= link_to 'Remove', cart_cart_item_path(cart, cart_item),
 						:confirm => "Are you sure you want to remove
-									 #{cart_item.product.name}?", 
+									 #{cart_item.product.name}?",
 						:method => :delete %>
 		</td>
 	</tr>

@@ -1,5 +1,5 @@
 ﻿
-<div id="billing_address"> 
+<div id="billing_address">
 	<% fields_for :billing_address, billing_address do |address| %>
 		<h3>Billing Address</h3>
 		<%= error_messages_for :billing_address %>
@@ -7,17 +7,17 @@
 			<label>Address 1:</label>&nbsp;
 			<%= address.text_field :address_1, :size => 20 %><br/>
 			<label>Address 2:</label>&nbsp;
-			<%= address.text_field :address_2, :size => 20 %><br/>		
+			<%= address.text_field :address_2, :size => 20 %><br/>
 			<label>City: </label>&nbsp;
-			<%= address.text_field :city, :size => 20 %><br/>		
+			<%= address.text_field :city, :size => 20 %><br/>
 			<label>State/Province: </label>&nbsp;
-			<%= state(address, 'billing_address') %><br/>			
+			<%= state(address, 'billing_address') %><br/>
 			<label>ZIP / Other: </label>&nbsp;
-			<%= address.text_field :postal_code, :size => 15 %><br/>			
+			<%= address.text_field :postal_code, :size => 15 %><br/>
 			<label>Country: </label>&nbsp;
 			<%= country(address, 'billing_address') %>	<br/>
 		</div>
-		
+
 		<span class="clear"/>
 	<% end %>
 </div>

@@ -1,9 +1,9 @@
 <div id="category-drop-down">
   <br/><h2>Category:</h2>
-  <%= select_tag 'category_ids[]', 
-                  options_for_select(nested_set_options(Category.root.children) do 
-                    |i| raw("#{'&nbsp;&nbsp;' * (i.level - 1)} #{i.name}") 
-                  end, 
+  <%= select_tag 'category_ids[]',
+                  options_for_select(nested_set_options(Category.root.children) do
+                    |i| raw("#{'&nbsp;&nbsp;' * (i.level - 1)} #{i.name}")
+                  end,
                   :disabled => @product.category_ids), :id => 'category_select'  %>
 
   <%= link_to "Add Category", admin_product_path(@product), :id => 'add_category' %>

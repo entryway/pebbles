@@ -5,7 +5,7 @@ function ShowHideShipping() {
     $("#shipping_address_fields").hide();
   }
 }
-(function($) { 
+(function($) {
   $.postJSON = function(url, data, callback) {
     $.post( url, data, callback, "json") ;
   };
@@ -26,7 +26,7 @@ function ShowHideShipping() {
            if (ccMonth < intMonth && ccYear == intYear ) { result = false; }
            return result;
       }, "Card has already expired");
-  
+
   $(document).ready(function(){
     $('#order_form').validate({
       invalidHandler: function() {
@@ -38,13 +38,13 @@ function ShowHideShipping() {
         },
         'shipping_address[city]': {
           required: function (element) { return $('#address_choice:checked').length == 0 }
-        },   
+        },
         'shipping_address[state]': {
           required: function (element) { return $('#address_choice:checked').length == 0 }
-        },     
+        },
         'shipping_address[state]': {
           required: function (element) { return $('#address_choice:checked').length == 0 }
-        },     
+        },
         'shipping_address[postal_code]': {
           zipcode: {depends: function (element) { return $('#address_choice:checked').length == 0 }}
         },
@@ -53,7 +53,7 @@ function ShowHideShipping() {
         }
       }
     });
-    if ($('#order_card_type').length == 0) { 
+    if ($('#order_card_type').length == 0) {
       $('#credit_card_number').rules("remove", "creditcard2");
     }
     $('#promo_code_link').click(function() {
@@ -63,7 +63,7 @@ function ShowHideShipping() {
         function(json) {
           $('#promo_code_message').html(json.promo_code_message).effect("highlight", {}, 3000);
           $('#promo_code_note').html(json.promo_code_note).effect("highlight", {}, 3000);
-          
+
           $('#shipping_total').html(json.shipping_total);
           $('#cart_total').html(json.grand_total);
           if (json.no_discount) {
@@ -87,12 +87,12 @@ function ShowHideShipping() {
           return false;
       });
 
-    
+
     $('#billing_address_state').change(function() {
       var billing_state = $(this).val();
       $.postJSON(
         "../taxes/1",
-        { billing_state: billing_state, _method: "PUT"}, 
+        { billing_state: billing_state, _method: "PUT"},
         function(json){
           if (json.no_tax) {
             $('#tax_row').hide();
@@ -110,7 +110,7 @@ function ShowHideShipping() {
   $('#methods').livequery('change', function() {
       $(this).spin();
       $.postJSON("../regions/1/shipping_methods/" + $(this).val(),
-                 { _method: "PUT"}, 
+                 { _method: "PUT"},
                  function(json){
                    $('#shipping_total').html(json.shipping_total);
                    $('#cart_total').html(json.grand_total);

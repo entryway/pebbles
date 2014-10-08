@@ -3,7 +3,7 @@ Factory.sequence :sku do |n|
 end
 
 Factory.define :product do |f|
-  f.sku                 { Factory.next(:sku) } 
+  f.sku                 { Factory.next(:sku) }
   f.name               'product1'
   f.description        'description for product 1'
   f.weight             1

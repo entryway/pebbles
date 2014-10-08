@@ -1,4 +1,4 @@
-<% if product_option.product_option_selections.size > 0 %>	
+<% if product_option.product_option_selections.size > 0 %>
 	<hr class="dotted_border">
 	<h3>Current Selections:</h3><br/>
 	<!-- May not be the most efficient, updating a single row in a table was acting odd -->
@@ -24,15 +24,15 @@
 		<td>
 			<%= selection.sku_adjustment %>
 		</td>
-		<td><%= link_to_remote "Edit",  
+		<td><%= link_to_remote "Edit",
 							:with => "'product_option_id=' + #{product_option.id} + '&product_id=' + #{product.id}",
 							:method => 'get',
 							:url => { :action => 'edit_option_selection',
 									  :controller => 'product_options',
 									  :id => selection.id } %>
 		</td>
-	    <td><%= link_to_remote 'Remove', :submit => dom_id(selection, 'id'), 
-							:confirm => "Are you sure you want to remove the option #{selection.name}", 
+	    <td><%= link_to_remote 'Remove', :submit => dom_id(selection, 'id'),
+							:confirm => "Are you sure you want to remove the option #{selection.name}",
 							:url => { :action => 'remove_option_selection' } %></td>
 	 </tr>
 	<% end %>
